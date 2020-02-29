@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://model.rj.senac.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://model.rj.senac.br" xmlns:intf="http://model.rj.senac.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://model.rj.senac.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="addCliente">
+    <complexType>
+     <sequence>
+      <element name="c" type="impl:Cliente"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Cliente">
+    <sequence>
+     <element name="id" type="xsd:int"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="addClienteResponse">
+    <complexType>
+     <sequence>
+      <element name="addClienteReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTodosClientes">
+    <complexType/>
+   </element>
+   <element name="getTodosClientesResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getTodosClientesReturn" type="impl:Cliente"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeCliente">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeClienteResponse">
+    <complexType>
+     <sequence>
+      <element name="removeClienteReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCliente">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getClienteResponse">
+    <complexType>
+     <sequence>
+      <element name="getClienteReturn" type="impl:Cliente"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="addClienteResponse">
+
+      <wsdl:part element="impl:addClienteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getClienteRequest">
+
+      <wsdl:part element="impl:getCliente" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addClienteRequest">
+
+      <wsdl:part element="impl:addCliente" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeClienteRequest">
+
+      <wsdl:part element="impl:removeCliente" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeClienteResponse">
+
+      <wsdl:part element="impl:removeClienteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getClienteResponse">
+
+      <wsdl:part element="impl:getClienteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTodosClientesResponse">
+
+      <wsdl:part element="impl:getTodosClientesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTodosClientesRequest">
+
+      <wsdl:part element="impl:getTodosClientes" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ClienteServiceImpl">
+
+      <wsdl:operation name="addCliente">
+
+         <wsdl:input message="impl:addClienteRequest" name="addClienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addClienteResponse" name="addClienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTodosClientes">
+
+         <wsdl:input message="impl:getTodosClientesRequest" name="getTodosClientesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getTodosClientesResponse" name="getTodosClientesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeCliente">
+
+         <wsdl:input message="impl:removeClienteRequest" name="removeClienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:removeClienteResponse" name="removeClienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCliente">
+
+         <wsdl:input message="impl:getClienteRequest" name="getClienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getClienteResponse" name="getClienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ClienteServiceImplSoapBinding" type="impl:ClienteServiceImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addCliente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addClienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addClienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTodosClientes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTodosClientesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTodosClientesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeCliente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeClienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeClienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCliente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getClienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getClienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ClienteServiceImplService">
+
+      <wsdl:port binding="impl:ClienteServiceImplSoapBinding" name="ClienteServiceImpl">
+
+         <wsdlsoap:address location="http://localhost:8080/AxisProject/services/ClienteServiceImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

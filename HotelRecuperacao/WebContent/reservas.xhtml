@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Hotel Senac</title>
+    </h:head>
+    <h:body>
+        
+        <b:navBar brand="Hotel Senac" brandHref="index.xhtml" fluid="true">
+		  <b:navbarLinks>
+		    <b:navLink value="Produtos" href="produtos.xhtml"></b:navLink>
+		    <b:navLink value="Clientes" href="clientes.xhtml"></b:navLink>
+		    <b:navLink value="Vendas" href="vendas.xhtml"></b:navLink>
+		  </b:navbarLinks>
+		</b:navBar>
+		
+		<h:form styleClass="dinamico">
+		  <b:accordion contentDisabled="false">
+		    <b:panel title="Cadastrar Reserva">
+		    	<div>
+		    		<b:selectOneMenu value="#{ controlReservas.reserva }" required="true" label="Selecione o hospede" >
+			      		<f:selectItems value="#{controlHospede.listar()}" var="hospede" itemValue="#{hospede}" itemLabel="#{hospede.nome}" />
+			    	</b:selectOneMenu>
+		    	</div>
+		    	<div>
+			    
+				  <b:dataTable value="#{controlQuarto.listar()}" var="quarto">
+				    <b:dataTableColumn value="#{quarto.numero}" />				    
+				    <b:dataTableColumn label="Opções" style="width:150px">
+				    	<b:commandButton value="ADD" ajax="true" look="primary" action="#{ controlReserva.insertQuarto() }" />
+				    </b:dataTableColumn>
+				  </b:dataTable>
+		    	</div>
+		    	<b:commandButton value="Cadastrar" ajax="true" update="@(.dinamico)" look="primary" action="#{ controlReserva.insert() }"/>
+		    </b:panel>
+		  </b:accordion>
+		</h:form>
+		
+	    <h:form styleClass="dinamico">
+	    	#{ controlRserva.getReserva() }
+			    
+				  <b:dataTable value="#{controlReserva.listar()}" var="reserva">
+				    <b:dataTableColumn value="#{reserva.id}" />
+				    <b:dataTableColumn value="#{reserva.hospede.nome}" label="Hospede" />
+				  </b:dataTable>
+	    </h:form>
+    </h:body>
+</html>

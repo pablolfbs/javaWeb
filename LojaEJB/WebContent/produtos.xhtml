@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Minha Loja - Produtos</title>
+    </h:head>
+    <h:body>
+        
+        <b:navBar brand="Minha Loja" brandHref="index.xhtml" fluid="true">
+		  <b:navbarLinks>
+		    <b:navLink value="Produtos" href="produtos.xhtml"></b:navLink>
+		    <b:navLink value="Clientes" href="clientes.xhtml"></b:navLink>
+		    <b:navLink value="Vendas" href="vendas.xhtml"></b:navLink>
+		  </b:navbarLinks>
+		</b:navBar>
+		
+		<h:form styleClass="dinamico">
+		  <b:accordion contentDisabled="false">
+		    <b:panel title="Cadastrar Produto">
+		    	<b:inputText value="#{ controleProduto.produto.nome }" placeholder="Entre com o nome do produto" label="Nome do Produto:" /> <br/>
+		    	<b:inputText value="#{ controleProduto.produto.preco }" placeholder="Entre com o preco do produto" label="Preço do Produto:" /> <br/>
+		    	 <b:commandButton value="Cadastrar" ajax="true" update="@(.dinamico)" look="primary" action="#{ controleProduto.gravar() }"/>
+		    </b:panel>
+		  </b:accordion>
+		</h:form>
+		
+	    
+	    <h:form styleClass="dinamico">
+	    
+	    #{ controleProduto.getNewProduto() }
+	    
+		  <b:dataTable value="#{controleProduto.listar()}" var="produto">
+		    <b:dataTableColumn value="#{produto.id}" />
+		    <b:dataTableColumn value="#{produto.nome}" />
+		    <b:dataTableColumn value="#{produto.preco}" />
+		    <b:dataTableColumn label="Opções" style="width:150px">
+		    	<b:commandButton value="Remover" ajax="true" update="@(.dinamico)" look="danger" action="#{ controleProduto.remover(produto) }" />
+		    </b:dataTableColumn>
+		  </b:dataTable>
+		</h:form>
+		
+    </h:body>
+</html>

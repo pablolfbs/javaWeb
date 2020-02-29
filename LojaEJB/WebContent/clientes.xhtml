@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Minha Loja - Clientes</title>
+    </h:head>
+    <h:body>
+        
+        <b:navBar brand="Minha Loja" brandHref="index.xhtml" fluid="true">
+		  <b:navbarLinks>
+		    <b:navLink value="Produtos" href="produtos.xhtml"></b:navLink>
+		    <b:navLink value="Clientes" href="clientes.xhtml"></b:navLink>
+		    <b:navLink value="Vendas" href="vendas.xhtml"></b:navLink>
+		  </b:navbarLinks>
+		</b:navBar>
+		
+		<h:form styleClass="dinamico">
+		  <b:accordion contentDisabled="false">
+		    <b:panel title="Cadastrar Cliente">
+		    	<b:inputText value="#{ controleCliente.cliente.nome }" placeholder="Entre com o nome do cliente" label="Nome do Cliente:" /> <br/>
+		    	<b:inputText value="#{ controleCliente.cliente.cpf }" placeholder="Entre com o CPF do cliente" label="CPF do Cliente:" /> <br/>
+		    	<b:inputText value="#{ controleCliente.cliente.email }" placeholder="Entre com o e-mail do cliente" label="E-mail do Cliente:" /> <br/>
+		    	<b:inputText value="#{ controleCliente.cliente.endereco }" placeholder="Entre com o endereco do cliente" label="Endereço do Cliente:" /> <br/>
+		    	 <b:commandButton value="Cadastrar" ajax="true" update="@(.dinamico)" look="primary" action="#{ controleCliente.gravar() }"/>
+		    </b:panel>
+		  </b:accordion>
+		</h:form>
+		
+	    
+	    <h:form styleClass="dinamico">
+	    
+	    #{ controleCliente.getNewCliente() }
+	    
+		  <b:dataTable value="#{controleCliente.listar()}" var="cliente">
+		    <b:dataTableColumn value="#{cliente.id}" />
+		    <b:dataTableColumn value="#{cliente.nome}" />
+		    <b:dataTableColumn value="#{cliente.cpf}" />
+		    <b:dataTableColumn value="#{cliente.email}" />
+		    <b:dataTableColumn value="#{cliente.endereco}" />
+		    <b:dataTableColumn label="Opções" style="width:150px">
+		    	<b:commandButton value="Remover" ajax="true" update="@(.dinamico)" look="danger" action="#{ controleProduto.remover(produto) }" />
+		    </b:dataTableColumn>
+		  </b:dataTable>
+		</h:form>
+		
+    </h:body>
+</html>

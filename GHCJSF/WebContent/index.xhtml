@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Hotel</title>
+</h:head>
+
+<h:body>
+<!-- 
+
+	<b:navBar brand="Hotel" brandHref="index.xhtml" fluid="true">
+		<b:navbarLinks>
+			<b:navLink value="Hospede" href="hospede.xhtml"></b:navLink>
+			<b:navLink value="Reserva" href="reserva.xhtml"></b:navLink>
+			<b:navLink value="Quarto" href="quarto.xhtml"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+
+	<b:container>
+		<b:jumbotron>
+			<h1 style="text-align: center">HOTEL</h1>
+		</b:jumbotron>
+	</b:container>
+ -->
+
+	<h:form>
+	#{controleReserva.novaReserva()}
+		Nome: <h:inputText value="#{controleReserva.hospede.nome}" />
+		Sobrenome: <h:inputText value="#{controleReserva.hospede.sobrenome}" />
+		E-mail: <h:inputText value="#{controleReserva.hospede.email}" />
+		<h:commandButton action="#{controleReserva.gravar()}" value="Gravar" />
+	</h:form>
+</h:body>
+</html>

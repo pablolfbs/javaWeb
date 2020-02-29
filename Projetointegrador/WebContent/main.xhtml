@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Senac RJ</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:dataScroller value="#{dataScrollerView.anuncios}" var="anuncio"
+			chunkSize="10">
+			<f:facet name="header">
+		            Scroll Down para carregar mais anuncios
+		        </f:facet>
+
+			<h:panelGrid columns="2" style="width:100%"
+				columnClasses="logo,detail">
+
+				<p:outputPanel>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputText value="Id:" />
+						<h:outputText value="#{anuncio.id}" style="font-weight: bold" />
+
+						<h:outputText value="Data:" />
+						<h:outputText value="#{anuncio.dataSaida}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Nome:" />
+						<h:outputText value="#{anuncio.nome}" style="font-weight: bold" />
+
+						<h:outputText value="Descrição:" />
+						<h:outputText value="#{anuncio.descricao}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Preço:" />
+						<h:outputText value="#{anuncio.preco}" style="font-weight: bold" />
+					</h:panelGrid>
+				</p:outputPanel>
+			</h:panelGrid>
+		</p:dataScroller>
+	</h:form>
+</h:body>
+</html>

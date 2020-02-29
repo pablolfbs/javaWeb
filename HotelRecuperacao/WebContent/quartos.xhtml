@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Hotel - Quartos</title>
+    </h:head>
+    <h:body>
+        
+        <b:navBar brand="Hotel Quartos" brandHref="index.xhtml" fluid="true">
+		  <b:navbarLinks>
+		    <b:navLink value="Quartos" href="quartos.xhtml"></b:navLink>
+		    <b:navLink value="Hospedes" href="hospedes.xhtml"></b:navLink>
+		    <b:navLink value="Reservas" href="reservas.xhtml"></b:navLink>
+		  </b:navbarLinks>
+		</b:navBar>
+		
+		<h:form styleClass="dinamico">
+		  <b:accordion contentDisabled="false">
+		    <b:panel title="Cadastrar Quartos">
+		    	<b:inputText value="#{ controlQuarto.quarto.numero }" placeholder="Entre com o número do Quarto" label="Número do quarto:" /> <br/>		    			    
+		    	 <b:commandButton value="Cadastrar" ajax="true" update="@(.dinamico)" look="primary" action="#{ controlQuarto.insert() }"/>
+		    </b:panel>
+		  </b:accordion>
+		</h:form>
+		
+	    
+	    <h:form styleClass="dinamico">
+	    
+	    #{ controlQuarto.getQuarto() }
+	    
+		  <b:dataTable value="#{controlQuarto.listar()}" var="quarto">		    		    
+		    <b:dataTableColumn value="#{quarto.numero}" />		    
+		    <b:dataTableColumn label="Opções" style="width:150px">
+		    	<b:commandButton value="Remover" ajax="true" update="@(.dinamico)" look="danger" action="#{ quarto.delete() }" />
+		    </b:dataTableColumn>
+		  </b:dataTable>
+		</h:form>
+		
+    </h:body>
+</html>

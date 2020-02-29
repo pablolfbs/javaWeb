@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Hotel - Hospedes</title>
+    </h:head>
+    <h:body>
+        
+        <b:navBar brand="Hotel Hospedes" brandHref="index.xhtml" fluid="true">
+		  <b:navbarLinks>
+		    <b:navLink value="Quartos" href="quartos.xhtml"></b:navLink>
+		    <b:navLink value="Hospedes" href="hospedes.xhtml"></b:navLink>
+		    <b:navLink value="Reservas" href="reservas.xhtml"></b:navLink>
+		  </b:navbarLinks>
+		</b:navBar>
+		
+		<h:form styleClass="dinamico">
+		  <b:accordion contentDisabled="false">
+		    <b:panel title="Cadastrar Hospedes">
+		    	<b:inputText value="#{ controlHospede.hospede.nome }" placeholder="Entre com o nome do hospede" label="Nome do Hospede:" /> <br/>
+		    	<b:inputText value="#{ controlHospede.hospede.cpf }" placeholder="Entre com o CPF do hospede" label="CPF do Hospede:" /> <br/>		    	
+		    	 <b:commandButton value="Cadastrar" ajax="true" update="@(.dinamico)" look="primary" action="#{ controleHospede.insert() }"/>
+		    </b:panel>
+		  </b:accordion>
+		</h:form>
+		
+	    
+	    <h:form styleClass="dinamico">
+	    
+	    #{ controlHospede.getNewHospede() }
+	    
+		  <b:dataTable value="#{controlHospede.listar()}" var="hospede">
+		    <b:dataTableColumn value="#{hospede.id}" />
+		    <b:dataTableColumn value="#{hospede.nome}" />
+		    <b:dataTableColumn value="#{hospede.cpf}" />		    
+		    <b:dataTableColumn label="Opções" style="width:150px">
+		    	<b:commandButton value="Remover" ajax="true" update="@(.dinamico)" look="danger" action="#{ controlHospede.delete() }" />
+		    </b:dataTableColumn>
+		  </b:dataTable>
+		</h:form>
+		
+    </h:body>
+</html>

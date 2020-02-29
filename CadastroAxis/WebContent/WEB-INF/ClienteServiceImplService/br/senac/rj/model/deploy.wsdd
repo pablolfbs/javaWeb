@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ClienteServiceImplService WSDL service -->
+
+  <service name="ClienteServiceImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://model.rj.senac.br"/>
+      <parameter name="wsdlServiceElement" value="ClienteServiceImplService"/>
+      <parameter name="schemaQualified" value="http://model.rj.senac.br"/>
+      <parameter name="wsdlServicePort" value="ClienteServiceImpl"/>
+      <parameter name="className" value="br.senac.rj.model.ClienteServiceImpl"/>
+      <parameter name="wsdlPortType" value="ClienteServiceImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://model.rj.senac.br" xmlns:retNS="http://model.rj.senac.br" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addCliente" qname="operNS:addCliente" returnQName="retNS:addClienteReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://model.rj.senac.br" xmlns:tns="http://model.rj.senac.br" qname="pns:c" type="tns:Cliente"/>
+      </operation>
+      <operation xmlns:operNS="http://model.rj.senac.br" xmlns:retNS="http://model.rj.senac.br" xmlns:rtns="http://model.rj.senac.br" name="getCliente" qname="operNS:getCliente" returnQName="retNS:getClienteReturn" returnType="rtns:Cliente" soapAction="">
+        <parameter xmlns:pns="http://model.rj.senac.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://model.rj.senac.br" xmlns:retNS="http://model.rj.senac.br" xmlns:rtns="http://model.rj.senac.br" name="getTodosClientes" qname="operNS:getTodosClientes" returnQName="retNS:getTodosClientesReturn" returnType="rtns:Cliente" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://model.rj.senac.br" xmlns:retNS="http://model.rj.senac.br" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="removeCliente" qname="operNS:removeCliente" returnQName="retNS:removeClienteReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://model.rj.senac.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="getTodosClientes addCliente removeCliente getCliente"/>
+
+      <typeMapping xmlns:ns="http://model.rj.senac.br" qname="ns:Cliente" type="java:br.senac.rj.model.Cliente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
