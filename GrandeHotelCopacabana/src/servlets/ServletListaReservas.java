@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import controller.Ctrl;
 import controller.EnvioEmail;
 import model.Hospede;
@@ -31,6 +33,7 @@ public class ServletListaReservas extends HttpServlet {
 		HttpSession secao = request.getSession();
 		
 		String opcao = request.getParameter("opcao");
+		String nome = request.getParameter("valor");
 		
 		QuartoDAO qDAO = new QuartoDAO();
 		ReservaDAO rDAO = new ReservaDAO();
@@ -38,6 +41,7 @@ public class ServletListaReservas extends HttpServlet {
 		
 		List<Reserva> reservas = new ArrayList<Reserva>();
 		List<Quarto> quartos = new ArrayList<Quarto>();
+		List<Hospede> hospedes = new ArrayList<Hospede>();
 		
 		if (opcao.equals("excluirLinha")) {
 			String hospedeId = request.getParameter("hospedeId");
@@ -48,7 +52,6 @@ public class ServletListaReservas extends HttpServlet {
 			Quarto quarto = new Quarto();
 			quarto.setNum(Integer.parseInt(quartoNum));
 			
-
 			qDAO.inserir(quarto);
 			rDAO.excluir(Integer.parseInt(hospedeId));
 			hDAO.excluir(Integer.parseInt(hospedeId));
@@ -73,8 +76,18 @@ public class ServletListaReservas extends HttpServlet {
 			
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/listareservas.jsp");
 			rd.forward(request, response);
+			
+		} else if (opcao.equals("buscarPorNome")) {
+			reservas = Ctrl.buscarReservaPorNomeHospede(nome);
+			// hospedes = hDAO.buscarPorNome(nome);
+			
+			String json = null;
+			json = new Gson().toJson(reservas);
+			
+			response.setContentType("application/json");
+			response.getOutputStream().write(json.getBytes());
+			response.flushBuffer();
 		}
-		
 		
 	}
 

@@ -110,6 +110,26 @@ Connection connection = ConnectionFactory.getConnection();
 		return hospede;
 	}
 	
+	public List<Hospede> buscarPorNome(String nome) {
+		String sql = " SELECT * FROM hospede WHERE nome LIKE '%" + nome + "%' ";
+		
+		List<Hospede> hospedes = new ArrayList<Hospede>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Hospede hospede = new Hospede();
+				hospede.setId(rs.getInt("id"));
+				hospede.setNome(rs.getString("nome"));
+				hospede.setEmail(rs.getString("email"));
+				hospedes.add(hospede);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return hospedes;
+	}
+	
 	public List<Hospede> listar() {
 		String sql = " SELECT * FROM hospede ";
 		

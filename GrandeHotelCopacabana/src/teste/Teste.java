@@ -1,8 +1,24 @@
 package teste;
 
+import java.util.Date;
+import java.util.List;
+
+import model.Hospede;
+import model.dao.HospedeDAO;
+
 public class Teste {
 
 	public static void main(String[] args) {
+		
+//		Hospede h = new Hospede();
+//		h.setNome("FAR");
+//		
+//		HospedeDAO hDAO = new HospedeDAO();
+//		List<Hospede> hospedes = hDAO.buscarPorNome(h);
+//		
+//		for (Hospede hospede : hospedes) {
+//			System.out.println(hospede.getNome());
+//		}
 		
 //		Random rand = new Random();
 //		for (int i = 0; i < 100; i++) {

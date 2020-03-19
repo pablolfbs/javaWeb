@@ -37,25 +37,25 @@
 			<table class="highlight" id="tabela">
 				<thead>
 					<tr>
-						<th class="col s1 center">#</th>
-						<th class="col s2 center">Nome</th>
-						<th class="col s2 center">Quarto</th>
-						<th class="col s2 center">E-mail</th>
-						<th class="col s1 center">Entrada</th>
-						<th class="col s1 center">Saída</th>
-						<th class="col s1 center">Excluir</th>
+						<th class="col s1">#</th>
+						<th class="col s2">Nome</th>
+						<th class="col s2">Quarto</th>
+						<th class="col s2">E-mail</th>
+						<th class="col s1">Entrada</th>
+						<th class="col s1">Saída</th>
+						<th class="col s1">Excluir</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="reserva" items="${listaHospedes}">
 						<tr>
-							<td class="col s1 center"><input type="text" id="id" name="hospedeId" hidden value="${reserva.hospede.id}" /><c:out value="${reserva.hospede.id}" /></td>
+							<td class="col s1"><input type="text" id="id" name="hospedeId" hidden value="${reserva.hospede.id}" /><c:out value="${reserva.hospede.id}" /></td>
 							<td class="col s2"><c:out value="${reserva.hospede.nome}" /></td>
-							<td class="col s2 center"><input type="text" id="quarto" name="quartoNum" hidden value="${reserva.quarto}" /><c:out value="${reserva.quarto}" /></td>
+							<td class="col s2"><input type="text" id="quarto" name="quartoNum" hidden value="${reserva.quarto}" /><c:out value="${reserva.quarto}" /></td>
 							<td class="col s2"><c:out value="${reserva.hospede.email}" /></td>
-							<td class="col s1 center"><c:out value="${reserva.dtEntradaFormatada}" /></td>
-							<td class="col s1 center"><c:out value="${reserva.dtSaidaFormatada}" /></td>
-							<td class="col s1 center">
+							<td class="col s1"><c:out value="${reserva.dtEntradaFormatada}" /></td>
+							<td class="col s1"><c:out value="${reserva.dtSaidaFormatada}" /></td>
+							<td class="col s1">
 								<!-- <a href="javascript:hospedes.id.submit()" id="excluir" value="excluirLinha" name="opcao">
 								<img border="0" src="img/x.jpg" width="22" height="22"></a> -->
 								<button class="btn waves-effect waves-light #e53935 red darken-1" type="submit" id="btExcluir" value="excluirLinha" name="opcao" >
@@ -65,6 +65,11 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<br>
+			<div class="input-field col s6">
+				<input id="buscarPorNome" type="text" name="opcao" class="validate" >
+				<label for="buscarPorNome">Pesquisar por nome</label>
+			</div>
 		</form>
 		<br><a href="index.jsp">voltar</a>
 		
@@ -82,6 +87,37 @@
     		$('#id').val($(this).find('td:first').text());
     		$('#quarto').val($(this).find('td:eq(2)').text());
     		
+    	});
+    	
+    	$('#buscarPorNome').on('keyup', function() {
+    		var nome = $(this).val();
+    		$.ajax({
+                type: 'GET',
+                url: 'listareservas',
+                data: {opcao : 'buscarPorNome', valor : nome},
+                dataType: "JSON",
+                success: function (response) {
+                    console.log(response);
+                    $('tbody tr').remove();
+                    var table;
+                    for (let i = 0; i < response.length; i++) {
+	                    table += '<tr>';
+	                    table += '<td class="col s1">' + response[i].id + '</td>';
+	                    table += '<td class="col s2">' + response[i].hospede.nome + '</td>';
+	                    table += '<td class="col s2">' + response[i].quarto + '</td>';
+	                    table += '<td class="col s2">' + response[i].hospede.email + '</td>';
+	                    table += '<td class="col s1">' + response[i].dtEntrada + '</td>';
+	                    table += '<td class="col s1">' + response[i].dtSaida + '</td>';
+	                    table += '<td class="col s1"><button class="btn waves-effect waves-light #e53935 red darken-1" type="submit" id="btExcluir" value="excluirLinha" name="opcao" >Excluir <i class="material-icons right ">send</i></button></td>';
+	                    table += '</tr>';
+                    }
+                    
+                    $('table tbody').html(table);
+                },
+	            error: function (err) {
+	            	console.log(err);
+	            }
+            });
     	});
     });
     

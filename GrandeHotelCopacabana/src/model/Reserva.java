@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,7 +15,11 @@ public class Reserva implements Serializable {
 	private Date dtEntrada;
 	private Date dtSaida;
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	/*
+	 * SimpleDateFormat está estático por causa da conversão para JSON. Probably
+	 * because Gson uses DecimalFormat to format numeric type data.
+	 */
+	static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	
 	public String getDtEntradaFormatada() {
 		return sdf.format(getDtEntrada());
@@ -23,7 +28,7 @@ public class Reserva implements Serializable {
 	public String getDtSaidaFormatada() {
 		return sdf.format(getDtSaida());
 	}
-
+	
 	public int getId() {
 		return id;
 	}

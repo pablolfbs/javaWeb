@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Hospede;
@@ -86,10 +89,32 @@ public class Ctrl {
 	public static void iniciarQuartos() {
 		Quarto quarto = new Quarto();
 
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 30; i++) {
 			quarto.setNum(i);
 			iniciarQuartosDAO(quarto);
 		}
+	}
+	
+	public static List<Reserva> buscarReservaPorNomeHospede(String nome) {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" + nome + "%' ";
+		
+		List<Reserva> reservas = new ArrayList<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.getHospedeById(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
 	}
 	
 	public static List<Hospede> carregaListaHospedes() {
