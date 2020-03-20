@@ -83,36 +83,19 @@
     $(document).ready(function() {
     	
     	$('#tabela').find('tr').on('click', function() {
-    		
     		$('#id').val($(this).find('td:first').text());
     		$('#quarto').val($(this).find('td:eq(2)').text());
-    		
     	});
     	
     	$('#buscarPorNome').on('keyup', function() {
-    		var nome = $(this).val();
+    		var nome = $(this).val().trim();
     		$.ajax({
                 type: 'GET',
                 url: 'listareservas',
                 data: {opcao : 'buscarPorNome', valor : nome},
                 dataType: "JSON",
-                success: function (response) {
-                    console.log(response);
-                    $('tbody tr').remove();
-                    var table;
-                    for (let i = 0; i < response.length; i++) {
-	                    table += '<tr>';
-	                    table += '<td class="col s1">' + response[i].id + '</td>';
-	                    table += '<td class="col s2">' + response[i].hospede.nome + '</td>';
-	                    table += '<td class="col s2">' + response[i].quarto + '</td>';
-	                    table += '<td class="col s2">' + response[i].hospede.email + '</td>';
-	                    table += '<td class="col s1">' + response[i].dtEntrada + '</td>';
-	                    table += '<td class="col s1">' + response[i].dtSaida + '</td>';
-	                    table += '<td class="col s1"><button class="btn waves-effect waves-light #e53935 red darken-1" type="submit" id="btExcluir" value="excluirLinha" name="opcao" >Excluir <i class="material-icons right ">send</i></button></td>';
-	                    table += '</tr>';
-                    }
-                    
-                    $('table tbody').html(table);
+                success: function(response) {
+                	montarTabela(response);
                 },
 	            error: function (err) {
 	            	console.log(err);
@@ -120,6 +103,28 @@
             });
     	});
     });
+    
+    function montarTabela(data) {
+    	$('tbody tr').remove();
+        var table;
+        for (let i = 0; i < data.length; i++) {
+            table += '<tr>';
+            table += '<td class="col s1"><input type="text" id="id" name="hospedeId" hidden value="' + data[i].id + '" />' + data[i].id + '</td>';
+            table += '<td class="col s2">' + data[i].hospede.nome + '</td>';
+            table += '<td class="col s2"><input type="text" id="quarto" name="quartoNum" hidden value="' + data[i].quarto + '" />' + data[i].quarto + '</td>';
+            table += '<td class="col s2">' + data[i].hospede.email + '</td>';
+            table += '<td class="col s1">' + data[i].dtEntrada + '</td>';
+            table += '<td class="col s1">' + data[i].dtSaida + '</td>';
+            table += '<td class="col s1"><button class="btn waves-effect waves-light #e53935 red darken-1" type="submit" id="btExcluir" value="excluirLinha" name="opcao" >Excluir <i class="material-icons right ">send</i></button></td>';
+            table += '</tr>';
+        }
+        $('table tbody').html(table);
+        
+		$('#tabela').find('tr').on('click', function() {
+    		$('#id').val($(this).find('td:first').text());
+    		$('#quarto').val($(this).find('td:eq(2)').text());
+    	});
+    }
     
     </script>
 </body>

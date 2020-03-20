@@ -102,12 +102,8 @@
 	            type: 'GET',
 	            url: 'quartos',
 	            dataType: 'JSON',
-	            success: function (response) {
-	            	$('#comboBox').append('<option value="" disabled selected >Escolha seu quarto</option>');
-	            	for (let i = 0; i < response.length; i++) {
-		            	$('#comboBox').append('<option value="' + response[i].num + '">' + response[i].num + '</option>');
-					}
-	            	$('select').formSelect();
+	            success: function(response) {
+	            	 montarCombobox(response);
 	            },
 	            error: function (err) {
 	            	console.log(err);
@@ -143,6 +139,14 @@
 				}
 			});
 		});
+		
+		function montarCombobox(data) {
+			$('#comboBox').append('<option value="" disabled selected >Escolha seu quarto</option>');
+        	for (let i = 0; i < data.length; i++) {
+            	$('#comboBox').append('<option value="' + data[i].num + '">' + data[i].num + '</option>');
+			}
+        	$('select').formSelect();
+		}
 		
 	</script>
 </body>
