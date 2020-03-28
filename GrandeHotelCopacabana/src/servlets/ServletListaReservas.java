@@ -82,8 +82,8 @@ public class ServletListaReservas extends HttpServlet {
 			reservas = Ctrl.buscarReservaPorNomeHospede(nome);
 			// hospedes = hDAO.buscarPorNome(nome);
 			
-			Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
 			String json = null;
+			Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
 			json = gson.toJson(reservas);
 			
 			response.setContentType("application/json");
