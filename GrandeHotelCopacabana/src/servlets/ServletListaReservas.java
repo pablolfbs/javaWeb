@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import controller.Ctrl;
 import controller.EnvioEmail;
@@ -82,7 +83,10 @@ public class ServletListaReservas extends HttpServlet {
 			// hospedes = hDAO.buscarPorNome(nome);
 			
 			String json = null;
-			json = new Gson().toJson(reservas);
+			Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
+			json = gson.toJson(reservas);
+			
+			System.out.println(json);
 			
 			response.setContentType("application/json");
 			response.getOutputStream().write(json.getBytes());

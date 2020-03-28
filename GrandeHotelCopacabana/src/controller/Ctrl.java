@@ -89,7 +89,7 @@ public class Ctrl {
 	public static void iniciarQuartos() {
 		Quarto quarto = new Quarto();
 
-		for (int i = 1; i <= 30; i++) {
+		for (int i = 1; i <= 10; i++) {
 			quarto.setNum(i);
 			iniciarQuartosDAO(quarto);
 		}
@@ -108,6 +108,7 @@ public class Ctrl {
 				r.setHospede(Ctrl.getHospedeById(rs.getInt("id_hospede")));
 				r.setQuarto(rs.getInt("quarto"));
 				r.setDtEntrada(rs.getDate("dtEntrada"));
+				System.out.println(rs.getDate("dtEntrada"));
 				r.setDtSaida(rs.getDate("dtSaida"));
 				reservas.add(r);
 			}
