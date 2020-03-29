@@ -108,7 +108,6 @@ public class Ctrl {
 				r.setHospede(Ctrl.getHospedeById(rs.getInt("id_hospede")));
 				r.setQuarto(rs.getInt("quarto"));
 				r.setDtEntrada(rs.getDate("dtEntrada"));
-				System.out.println(rs.getDate("dtEntrada"));
 				r.setDtSaida(rs.getDate("dtSaida"));
 				reservas.add(r);
 			}
