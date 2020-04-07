@@ -40,7 +40,7 @@
 						<th class="col s1">#</th>
 						<th class="col s2">Nome</th>
 						<th class="col s2">Quarto</th>
-						<th class="col s2">E-mail</th>
+						<th class="col s2 center">E-mail</th>
 						<th class="col s1">Entrada</th>
 						<th class="col s1">Saída</th>
 						<th class="col s1">Excluir</th>
@@ -52,7 +52,7 @@
 							<td class="col s1"><input type="text" id="id" name="hospedeId" hidden value="${reserva.hospede.id}" /><c:out value="${reserva.hospede.id}" /></td>
 							<td class="col s2"><c:out value="${reserva.hospede.nome}" /></td>
 							<td class="col s2"><input type="text" id="quarto" name="quartoNum" hidden value="${reserva.quarto}" /><c:out value="${reserva.quarto}" /></td>
-							<td class="col s2"><c:out value="${reserva.hospede.email}" /></td>
+							<td class="col s2 center"><c:out value="${reserva.hospede.email}" /></td>
 							<td class="col s1"><c:out value="${reserva.dtEntradaFormatada}" /></td>
 							<td class="col s1"><c:out value="${reserva.dtSaidaFormatada}" /></td>
 							<td class="col s1">

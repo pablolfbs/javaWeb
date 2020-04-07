@@ -89,7 +89,7 @@ public class Ctrl {
 	public static void iniciarQuartos() {
 		Quarto quarto = new Quarto();
 
-		for (int i = 1; i <= 30; i++) {
+		for (int i = 1; i <= 10; i++) {
 			quarto.setNum(i);
 			iniciarQuartosDAO(quarto);
 		}
