@@ -10,7 +10,7 @@ public class ConnectionFactory {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/hotel?useTimezone=true&serverTimezone=UTC", "root", "root");
+			con = DriverManager.getConnection("jdbc:mysql://localhost/hotel?autoReconnect=true&useTimezone=true&serverTimezone=UTC", "root", "root");
 			System.out.println("Conectado com sucesso!!");
 		} catch (SQLException e) {
 			System.out.println("Não pode conectar: " + e.getMessage());

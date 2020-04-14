@@ -79,18 +79,18 @@ public class ServletListaReservas extends HttpServlet {
 			rd.forward(request, response);
 			
 		} else if (opcao.equals("buscarPorNome")) {
-			reservas = Ctrl.buscarReservaPorNomeHospede(nome);
-			// hospedes = hDAO.buscarPorNome(nome);
-			
-			String json = null;
-			Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
-			json = gson.toJson(reservas);
-			
-			response.setContentType("application/json");
-			response.getOutputStream().write(json.getBytes());
-			response.flushBuffer();
+			if (nome.length() > 2 || nome.equals("")) {
+				
+				reservas = Ctrl.buscarReservaPorNomeHospede(nome);
+				
+				String json = null;
+				Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
+				json = gson.toJson(reservas);
+				
+				response.setContentType("application/json");
+				response.getOutputStream().write(json.getBytes());
+				response.flushBuffer();
+			}
 		}
-		
 	}
-
 }
