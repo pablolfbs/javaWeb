@@ -1,10 +1,9 @@
 package teste;
 
-import java.util.Date;
 import java.util.List;
 
-import model.Hospede;
-import model.dao.HospedeDAO;
+import model.Reserva;
+import model.dao.ReservaDAO;
 
 public class Teste {
 
@@ -85,11 +84,20 @@ public class Teste {
 		 * System.out.println("Números repetidos: " + count);
 		 */
 		
-		String a = null;
-		String teste = a != null ? "a1" : "a2";
+		/*
+		 * String a = null; String teste = a != null ? "a1" : "a2";
+		 * 
+		 * System.out.println(a); System.out.println(teste);
+		 */
 		
-		System.out.println(a);
-		System.out.println(teste);
+		ReservaDAO rDAO = new ReservaDAO();
+		List<Reserva> reservas = rDAO.listar();
+		
+		for (Reserva r : reservas) {
+			System.out.println(r.getHospede().getNome());
+			System.out.println(r.getDtEntrada());
+			System.out.println(r.getDtEntradaFormatada() + "\n");
+		}
 		
 	}
 

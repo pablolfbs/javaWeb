@@ -9,13 +9,11 @@ public class ConnectionFactory {
 	public static Connection getConnection() {
 		Connection con = null;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/hotel?autoReconnect=true&useTimezone=true&serverTimezone=UTC", "root", "root");
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost/hotel?autoReconnect=true", "root", "root");
 			System.out.println("Conectado com sucesso!!");
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println("Não pode conectar: " + e.getMessage());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 		return con;
 	}
