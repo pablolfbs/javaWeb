@@ -9,10 +9,11 @@ public class Reserva implements Serializable {
 	private static final long serialVersionUID = -2316524651754740385L;
 
 	private int id;
-	private Hospede hospede;
 	private Integer quarto;
 	private Date dtEntrada;
 	private Date dtSaida;
+	
+	private Hospede hospede;
 	
 	/*
 	 * SimpleDateFormat está estático por causa da conversão para JSON. Probably
