@@ -1,6 +1,6 @@
 package teste;
 
-import java.util.List;
+import java.util.Collection;
 
 import model.Reserva;
 import model.dao.ReservaDAO;
@@ -91,7 +91,7 @@ public class Teste {
 		 */
 		
 		ReservaDAO rDAO = new ReservaDAO();
-		List<Reserva> reservas = rDAO.listar();
+		Collection<Reserva> reservas = rDAO.listar();
 		
 		for (Reserva r : reservas) {
 			System.out.println(r.getHospede().getNome());

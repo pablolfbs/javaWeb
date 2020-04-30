@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import model.Hospede;
 
@@ -110,10 +110,10 @@ Connection connection = ConnectionFactory.getConnection();
 		return hospede;
 	}
 	
-	public List<Hospede> buscarPorNome(String nome) {
+	public Set<Hospede> buscarPorNome(String nome) {
 		String sql = " SELECT * FROM hospede WHERE nome LIKE '%" + nome + "%' ";
 		
-		List<Hospede> hospedes = new ArrayList<Hospede>();
+		Set<Hospede> hospedes = new LinkedHashSet<Hospede>();
 		try {
 			Statement sttm = connection.createStatement();
 			ResultSet rs = sttm.executeQuery(sql);
@@ -130,12 +130,12 @@ Connection connection = ConnectionFactory.getConnection();
 		return hospedes;
 	}
 	
-	public List<Hospede> listar() {
+	public Set<Hospede> listar() {
 		String sql = " SELECT * FROM hospede ";
 		
 		PreparedStatement ps;
 		ResultSet rs;
-		List<Hospede> hospedes = new ArrayList<Hospede>();
+		Set<Hospede> hospedes = new LinkedHashSet<Hospede>();
 		try {
 			ps = connection.prepareStatement(sql);
 			rs = ps.executeQuery();

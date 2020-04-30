@@ -1,8 +1,9 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +17,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import controller.Ctrl;
-import controller.EnvioEmail;
 import model.Hospede;
 import model.Quarto;
 import model.Reserva;
@@ -40,9 +40,9 @@ public class ServletListaReservas extends HttpServlet {
 		ReservaDAO rDAO = new ReservaDAO();
 		HospedeDAO hDAO = new HospedeDAO();
 		
-		List<Reserva> reservas = new ArrayList<Reserva>();
-		List<Quarto> quartos = new ArrayList<Quarto>();
-		List<Hospede> hospedes = new ArrayList<Hospede>();
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		Set<Quarto> quartos = new HashSet<Quarto>();
+		Set<Hospede> hospedes = new HashSet<Hospede>();
 		
 		if (opcao.equals("excluirLinha")) {
 			String hospedeId = request.getParameter("hospedeId");

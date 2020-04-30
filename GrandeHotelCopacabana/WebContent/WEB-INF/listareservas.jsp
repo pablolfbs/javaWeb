@@ -34,7 +34,7 @@
 			<h1 class="teal-text text-lighten-2">RESERVAS</h1>
 		</div>
 		<form action="listareservas" method="POST">
-			<table class="highlight" id="tabela">
+			<table id="tabela" class="highlight" id="tabela" hidden>
 				<thead>
 					<tr>
 						<th class="col s1">#</th>
@@ -65,6 +65,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<h5 class="center" style="color:red" id="listavazia" hidden>A lista de reservas está vazia.</h5>
 			<br>
 			<div class="input-field col s6">
 				<input id="buscarPorNome" type="text" name="opcao" class="validate" >
@@ -79,8 +80,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
     <script>
-    	
+    
     $(document).ready(function() {
+    	
+    	var valor = $('#tabela td').text();
+    	console.log(valor);
+    	
+    	if (valor == '') {
+    		$('#listavazia').show();
+    		$('#tabela').empty();
+    	} else {
+    		$('#tabela').show();
+    	}
     	
     	$('#tabela').find('tr').on('click', function() {
     		$('#id').val($(this).find('td:first').text());

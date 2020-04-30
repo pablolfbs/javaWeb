@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import model.Quarto;
 
@@ -69,12 +69,12 @@ public class QuartoDAO {
 		}
 	}
 	
-	public List<Quarto> listar() {
+	public Set<Quarto> listar() {
 		String sql = " SELECT * FROM quarto ORDER BY num ";
 		
 		PreparedStatement ps;
 		ResultSet rs;
-		List<Quarto> quartos = new ArrayList<Quarto>();
+		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
 		try {
 			ps = connection.prepareStatement(sql);
 			rs = ps.executeQuery();

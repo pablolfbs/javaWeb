@@ -1,8 +1,8 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +23,7 @@ public class ServletQuartos extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<Quarto> quartos = new ArrayList<Quarto>();
+		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
 		quartos.addAll(Ctrl.carregaListaQuartos());
 
 		if (quartos.isEmpty() && Ctrl.carregaListaReservas().isEmpty()) {

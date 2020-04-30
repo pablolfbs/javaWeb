@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import model.Hospede;
 import model.Quarto;
@@ -94,10 +94,10 @@ public class Ctrl {
 		}
 	}
 	
-	public static List<Reserva> buscarReservaPorNomeHospede(String nome) {
+	public static Set<Reserva> buscarReservaPorNomeHospede(String nome) {
 		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" + nome + "%' ";
 		
-		List<Reserva> reservas = new ArrayList<Reserva>();
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
 		try {
 			Statement sttm = connection.createStatement();
 			ResultSet rs = sttm.executeQuery(sql);
@@ -116,21 +116,21 @@ public class Ctrl {
 		return reservas;
 	}
 	
-	public static List<Hospede> carregaListaHospedes() {
+	public static Set<Hospede> carregaListaHospedes() {
 		HospedeDAO hDAO = new HospedeDAO();
-		List<Hospede> hospedes = hDAO.listar();
+		Set<Hospede> hospedes = hDAO.listar();
 		return hospedes;
 	}
 	
-	public static List<Reserva> carregaListaReservas() {
+	public static Set<Reserva> carregaListaReservas() {
 		ReservaDAO rDAO = new ReservaDAO();
-		List<Reserva> reservas = rDAO.listar();
+		Set<Reserva> reservas = rDAO.listar();
 		return reservas;
 	}
 	
-	public static List<Quarto> carregaListaQuartos() {
+	public static Set<Quarto> carregaListaQuartos() {
 		QuartoDAO qDAO = new QuartoDAO();
-		List<Quarto> quartos = qDAO.listar();
+		Set<Quarto> quartos = qDAO.listar();
 		return quartos;
 	}
 	

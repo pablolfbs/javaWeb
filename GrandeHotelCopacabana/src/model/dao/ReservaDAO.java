@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import controller.Ctrl;
 import model.Hospede;
@@ -79,11 +79,11 @@ public class ReservaDAO {
 		}
 	}
 	
-	public List<Reserva> listar() {
+	public Set<Reserva> listar() {
 		String sql = " SELECT * FROM reserva ";
 		PreparedStatement ps;
 		ResultSet rs;
-		List<Reserva> reservas = new ArrayList<Reserva>();
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
 		try {
 			ps = connection.prepareStatement(sql);
 			rs = ps.executeQuery();
