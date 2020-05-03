@@ -40,7 +40,20 @@
 					<input id="first_name" type="text" name="nome" class="validate" required >
 					<label for="first_name">Nome</label>
 				</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix">email</i>
+					<input id="email" type="email" name="email" class="validate" required >
+					<label for="email">E-mail</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">dvr</i>
+					<input id="cpf" type="text" name="cpf" class="validate" >
+					<label for="cpf">CPF</label>
+				</div>
 				<div id="divSelect" class="input-field col s6">
+					<i class="material-icons prefix">airline_seat_individual_suite</i>
 					<select id="comboBox" name="quarto" class="validate" required >
 						<!-- <option value="" disabled selected >Escolha seu quarto</option> -->
 						<%-- <c:forEach var="quarto" items="${listaQuartos}">
@@ -48,12 +61,6 @@
 						</c:forEach> --%>
 				    </select>
 			    	<label for="quarto">Quarto</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<i class="material-icons prefix">email</i> <input id="email" type="email" name="email" class="validate" required >
-					<label for="email">E-mail</label>
 				</div>
 			</div>
 			<div class="row">
@@ -145,6 +152,10 @@
         	for (let i = 0; i < data.length; i++) {
             	$('#comboBox').append('<option value="' + data[i].num + '">' + data[i].num + '</option>');
 			}
+			
+        	// exemplo de enhanced for feito com arrow functions.
+			// data.map(data => $('#comboBox').append('<option value="' + data.num + '">' + data.num + '</option>'));
+			
         	$('select').formSelect();
 		}
 		

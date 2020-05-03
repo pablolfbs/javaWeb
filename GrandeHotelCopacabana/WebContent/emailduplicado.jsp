@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Apagado</title>
+<title>Confirmação</title>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 				crossorigin="anonymous"></script>
@@ -30,9 +30,12 @@
 <body>
 	<div class="container" style="padding-top: 300px">
 		<div class="section center">
-			<h3 class="red-text">
-				TODAS AS RESERVAS FORAM APAGADAS
-			</h3>
+			<h2 class="red-text">
+				<c:out value="${hospede.email}" />
+				SUA RESERVA NÃO FOI EFETUADA
+				<br>
+				E-MAIL JÁ CADASTRADO
+			</h2>
 		</div>
 		<!-- <a href="index.jsp">voltar</a> -->
 	</div>
@@ -40,15 +43,15 @@
 	<!--JavaScript at end of body for optimized loading-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-	
+		
 	<script>
 	
-		$(function () {
-			setTimeout(function(){
-				window.location.href = 'index.jsp';
-			}, 1500);
-		});
-		
+	$(function () {
+		setTimeout(function(){
+			window.location.href = 'index.jsp';
+		}, 2000);
+	});
+	
 	</script>
 </body>
 

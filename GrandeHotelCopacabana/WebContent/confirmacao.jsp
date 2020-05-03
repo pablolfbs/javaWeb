@@ -28,7 +28,7 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="container" style="padding-top: 300px">
 		<div class="section center">
 			<h2 class="teal-text text-lighten-2">
 				<c:out value="${hospede.nome}" />
@@ -47,7 +47,7 @@
 	$(function () {
 		setTimeout(function(){
 			window.location.href = 'index.jsp';
-		}, 2000);
+		}, 1500);
 	});
 	
 	</script>

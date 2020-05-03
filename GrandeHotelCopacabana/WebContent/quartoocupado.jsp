@@ -28,10 +28,9 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="container" style="padding-top: 300px">
 		<div class="section center">
 			<h2 class="red-text">
-				<c:out value="${hospede.nome}" />
 				QUARTO OCUPADO
 			</h2>
 		</div>

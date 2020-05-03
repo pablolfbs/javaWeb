@@ -20,14 +20,15 @@ import controller.Ctrl;
 import model.Hospede;
 import model.Quarto;
 import model.Reserva;
-import model.dao.HospedeDAO;
-import model.dao.QuartoDAO;
-import model.dao.ReservaDAO;
 
 @WebServlet(name = "listareservas", urlPatterns = { "/listareservas" })
 public class ServletListaReservas extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	
+	Set<Reserva> reservas = null;
+	Set<Quarto> quartos = new HashSet<Quarto>();
+	Set<Hospede> hospedes = new HashSet<Hospede>();
        
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -36,42 +37,30 @@ public class ServletListaReservas extends HttpServlet {
 		String opcao = request.getParameter("opcao");
 		String nome = request.getParameter("valor");
 		
-		QuartoDAO qDAO = new QuartoDAO();
-		ReservaDAO rDAO = new ReservaDAO();
-		HospedeDAO hDAO = new HospedeDAO();
-		
-		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
-		Set<Quarto> quartos = new HashSet<Quarto>();
-		Set<Hospede> hospedes = new HashSet<Hospede>();
-		
 		if (opcao.equals("excluirLinha")) {
 			String hospedeId = request.getParameter("hospedeId");
 			String quartoNum = request.getParameter("quartoNum");
 
-			Hospede hospede = hDAO.buscarPorId(Integer.parseInt(hospedeId));
+			Hospede hospede = Ctrl.buscarPorHospedePorId(Integer.parseInt(hospedeId));
 			
 			Quarto quarto = new Quarto();
 			quarto.setNum(Integer.parseInt(quartoNum));
 			
-			qDAO.inserir(quarto);
-			rDAO.excluir(Integer.parseInt(hospedeId));
-			hDAO.excluir(Integer.parseInt(hospedeId));
+			Ctrl.excluiLinha(hospedeId, quarto);
 
 			quartos.addAll(Ctrl.carregaListaQuartos());
 			secao.setAttribute("listaQuartos", quartos);
 			
-			reservas.addAll(Ctrl.carregaListaReservas());
+			reservas = new LinkedHashSet<Reserva>(Ctrl.carregaListaReservas());
 			secao.setAttribute("listaHospedes", reservas);
-
-//			EnvioEmail.send(hospede.getEmail(), "Sr(a). " + hospede.getNome() + ", sua reserva para o quarto "
-//					+ quarto.getNum() + " foi cancelada.");
+			
+			Ctrl.enviaEmailExclusaoReserva(hospede, quarto);
 
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/listareservas.jsp");
 			rd.forward(request, response);
 			
 		} else if (opcao.equals("listar")) {
-			
-			reservas.addAll(Ctrl.carregaListaReservas());
+			reservas = new LinkedHashSet<Reserva>(Ctrl.carregaListaReservas());
 
 			secao.setAttribute("listaHospedes", reservas);
 			
@@ -79,13 +68,12 @@ public class ServletListaReservas extends HttpServlet {
 			rd.forward(request, response);
 			
 		} else if (opcao.equals("buscarPorNome")) {
-			if (nome.length() > 2 || nome.equals("")) {
+			
+			if (nome.length() > 1 || nome.equals("")) {
+				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeHospede(nome));
 				
-				reservas = Ctrl.buscarReservaPorNomeHospede(nome);
-				
-				String json = null;
 				Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
-				json = gson.toJson(reservas);
+				String json = gson.toJson(reservas);
 				
 				response.setContentType("application/json");
 				response.getOutputStream().write(json.getBytes());

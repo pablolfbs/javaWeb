@@ -39,7 +39,7 @@
 					<tr>
 						<th class="col s1">#</th>
 						<th class="col s2">Nome</th>
-						<th class="col s2">Quarto</th>
+						<th class="col s2 center">Quarto</th>
 						<th class="col s2 center">E-mail</th>
 						<th class="col s1">Entrada</th>
 						<th class="col s1">Saída</th>
@@ -51,7 +51,7 @@
 						<tr>
 							<td class="col s1"><input type="text" id="id" name="hospedeId" hidden value="${reserva.hospede.id}" /><c:out value="${reserva.hospede.id}" /></td>
 							<td class="col s2"><c:out value="${reserva.hospede.nome}" /></td>
-							<td class="col s2"><input type="text" id="quarto" name="quartoNum" hidden value="${reserva.quarto}" /><c:out value="${reserva.quarto}" /></td>
+							<td class="col s2 center"><input type="text" id="quarto" name="quartoNum" hidden value="${reserva.quarto}" /><c:out value="${reserva.quarto}" /></td>
 							<td class="col s2 center"><c:out value="${reserva.hospede.email}" /></td>
 							<td class="col s1"><c:out value="${reserva.dtEntradaFormatada}" /></td>
 							<td class="col s1"><c:out value="${reserva.dtSaidaFormatada}" /></td>
@@ -67,7 +67,7 @@
 			</table>
 			<h5 class="center" style="color:red" id="listavazia" hidden>A lista de reservas está vazia.</h5>
 			<br>
-			<div class="input-field col s6">
+			<div class="input-field col s6" id="busca" hidden>
 				<input id="buscarPorNome" type="text" name="opcao" class="validate" >
 				<label for="buscarPorNome">Pesquisar por nome</label>
 			</div>
@@ -84,13 +84,13 @@
     $(document).ready(function() {
     	
     	var valor = $('#tabela td').text();
-    	console.log(valor);
     	
     	if (valor == '') {
     		$('#listavazia').show();
-    		$('#tabela').empty();
+    		$('#tabela').hide();
     	} else {
     		$('#tabela').show();
+    		$('#busca').show();
     	}
     	
     	$('#tabela').find('tr').on('click', function() {
@@ -99,19 +99,21 @@
     	});
     	
     	$('#buscarPorNome').on('keyup', function() {
-    		var nome = $(this).val().trim();
-    		$.ajax({
-                type: 'GET',
-                url: 'listareservas',
-                data: {opcao : 'buscarPorNome', valor : nome},
-                dataType: "JSON",
-                success: function(response) {
-                	montarTabela(response);
-                },
-	            error: function (err) {
-	            	console.log(err);
-	            }
-            });
+    		if ($(this).val().length > 1 || $(this).val() == '') {
+    			var nome = $(this).val().trim();
+	    		$.ajax({
+	                type: 'GET',
+	                url: 'listareservas',
+	                data: {opcao : 'buscarPorNome', valor : nome},
+	                dataType: "JSON",
+	                success: function(response) {
+	                	montarTabela(response);
+	                },
+		            error: function (err) {
+		            	console.log(err);
+		            }
+	            });
+			}
     	});
     });
     
@@ -122,8 +124,8 @@
             table += '<tr>';
             table += '<td class="col s1"><input type="text" id="id" name="hospedeId" hidden value="' + data[i].id + '" />' + data[i].id + '</td>';
             table += '<td class="col s2">' + data[i].hospede.nome + '</td>';
-            table += '<td class="col s2"><input type="text" id="quarto" name="quartoNum" hidden value="' + data[i].quarto + '" />' + data[i].quarto + '</td>';
-            table += '<td class="col s2">' + data[i].hospede.email + '</td>';
+            table += '<td class="col s2 center"><input type="text" id="quarto" name="quartoNum" hidden value="' + data[i].quarto + '" />' + data[i].quarto + '</td>';
+            table += '<td class="col s2 center">' + data[i].hospede.email + '</td>';
             table += '<td class="col s1">' + data[i].dtEntrada + '</td>';
             table += '<td class="col s1">' + data[i].dtSaida + '</td>';
             table += '<td class="col s1"><button class="btn waves-effect waves-light #e53935 red darken-1" type="submit" id="btExcluir" value="excluirLinha" name="opcao" >Excluir <i class="material-icons right ">send</i></button></td>';
