@@ -15,13 +15,13 @@ public class HospedeDAO {
 Connection connection = ConnectionFactory.getConnection();
 	
 	public int inserir(Hospede hospede) {
-		String sql = " INSERT INTO hospede (nome, sobrenome, email) VALUES (?, ?, ?) ";
+		String sql = " INSERT INTO hospede (nome, cpf, email) VALUES (?, ?, ?) ";
 		
 		PreparedStatement ps = null;
 		try {
 			ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, hospede.getNome());
-			ps.setString(2, hospede.getSobrenome());
+			ps.setString(2, hospede.getCpf());
 			ps.setString(3, hospede.getEmail());
 			ps.execute();
 		} catch (SQLException e) {
@@ -43,13 +43,13 @@ Connection connection = ConnectionFactory.getConnection();
 	}
 	
 	public void atualizar(Hospede hospede) {
-		String sql = " UPDATE hospede SET nome = ?, sobrenome = ?, email = ? WHERE id = ? ";
+		String sql = " UPDATE hospede SET nome = ?, cpf = ?, email = ? WHERE id = ? ";
 		
 		PreparedStatement ps;
 		try {
 			ps = connection.prepareStatement(sql);
 			ps.setString(1, hospede.getNome());
-			ps.setString(2, hospede.getSobrenome());
+			ps.setString(2, hospede.getCpf());
 			ps.setString(3, hospede.getEmail());
 			ps.setInt(4, hospede.getId());
 			ps.execute();
@@ -143,7 +143,7 @@ Connection connection = ConnectionFactory.getConnection();
 				Hospede hospede = new Hospede();
 				hospede.setId(rs.getInt("id"));
 				hospede.setNome(rs.getString("nome"));
-				hospede.setSobrenome(rs.getString("sobrenome"));
+				hospede.setCpf(rs.getString("cpf"));
 				hospede.setEmail(rs.getString("email"));
 				hospedes.add(hospede);
 			}

@@ -20,6 +20,7 @@ import model.dao.ConnectionFactory;
 import model.dao.HospedeDAO;
 import model.dao.QuartoDAO;
 import model.dao.ReservaDAO;
+import util.Util;
 
 public class Ctrl {
 
@@ -43,7 +44,7 @@ public class Ctrl {
 			if (rs.next()) {
 				hospede.setId(rs.getInt("id"));
 				hospede.setNome(rs.getString("nome"));
-				hospede.setSobrenome(rs.getString("sobrenome"));
+				hospede.setCpf(Util.formataCpf(rs.getString("cpf")));
 				hospede.setEmail(rs.getString("email"));
 			}
 			rs.close();
@@ -175,10 +176,11 @@ public class Ctrl {
 		return reserva;
 	}
 
-	public static Hospede inserirHospede(String nomeHospede, String emailHospede) {
+	public static Hospede inserirHospede(String nome, String cpf, String email) {
 		Hospede hospede = new Hospede();
-		hospede.setNome(nomeHospede);
-		hospede.setEmail(emailHospede);
+		hospede.setNome(nome);
+		hospede.setCpf(cpf);
+		hospede.setEmail(email);
 		hospede.setId(hDAO.inserir(hospede));
 		return hospede;
 	}

@@ -10,7 +10,7 @@ public class TesteConexao {
 		HospedeDAO hDAO = new HospedeDAO();
 		Hospede h = new Hospede();
 		h.setNome("Ingrid");
-		h.setSobrenome("Lima");
+		h.setCpf("1234");
 		h.setEmail("didilbs@hotmail.com");
 		hDAO.inserir(h);
 	}

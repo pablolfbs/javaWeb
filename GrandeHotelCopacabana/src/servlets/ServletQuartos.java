@@ -23,12 +23,11 @@ public class ServletQuartos extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
-		quartos.addAll(Ctrl.carregaListaQuartos());
+		Set<Quarto> quartos = new LinkedHashSet<Quarto>(Ctrl.carregaListaQuartos());
 
 		if (quartos.isEmpty() && Ctrl.carregaListaReservas().isEmpty()) {
 			Ctrl.iniciarQuartos();
-			quartos.addAll(Ctrl.carregaListaQuartos());
+			quartos = new LinkedHashSet<Quarto>(Ctrl.carregaListaQuartos());
 		}
 		String json = null;
 		json = new Gson().toJson(quartos);

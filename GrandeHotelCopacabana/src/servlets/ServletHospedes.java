@@ -25,6 +25,7 @@ public class ServletHospedes extends HttpServlet {
 
 		if (opcao.equals("cadastrar")) {
 			String nomeHospede = req.getParameter("nome");
+			String cpfHospede = req.getParameter("cpf");
 			String emailHospede = req.getParameter("email");
 			String quartoHospede = req.getParameter("quarto");
 			String dtEntrada = req.getParameter("dtEntrada");
@@ -37,7 +38,7 @@ public class ServletHospedes extends HttpServlet {
 
 				Quarto quarto = Ctrl.inserirQuarto(quartoHospede);
 	
-				Hospede hospede = Ctrl.inserirHospede(nomeHospede, emailHospede);
+				Hospede hospede = Ctrl.inserirHospede(nomeHospede, cpfHospede, emailHospede);
 	
 				Reserva reserva = Ctrl.inserirReserva(quarto, hospede, dtEntrada, dtSaida);
 				

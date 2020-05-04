@@ -39,6 +39,7 @@
 					<tr>
 						<th class="col s1">#</th>
 						<th class="col s2">Nome</th>
+						<th class="col s2 center">CPF</th>
 						<th class="col s2 center">Quarto</th>
 						<th class="col s2 center">E-mail</th>
 						<th class="col s1">Entrada</th>
@@ -51,6 +52,7 @@
 						<tr>
 							<td class="col s1"><input type="text" id="id" name="hospedeId" hidden value="${reserva.hospede.id}" /><c:out value="${reserva.hospede.id}" /></td>
 							<td class="col s2"><c:out value="${reserva.hospede.nome}" /></td>
+							<td class="col s2 center"><c:out value="${reserva.hospede.cpf}" /></td>
 							<td class="col s2 center"><input type="text" id="quarto" name="quartoNum" hidden value="${reserva.quarto}" /><c:out value="${reserva.quarto}" /></td>
 							<td class="col s2 center"><c:out value="${reserva.hospede.email}" /></td>
 							<td class="col s1"><c:out value="${reserva.dtEntradaFormatada}" /></td>
@@ -95,7 +97,7 @@
     	
     	$('#tabela').find('tr').on('click', function() {
     		$('#id').val($(this).find('td:first').text());
-    		$('#quarto').val($(this).find('td:eq(2)').text());
+    		$('#quarto').val($(this).find('td:eq(3)').text());
     	});
     	
     	$('#buscarPorNome').on('keyup', function() {
@@ -124,6 +126,7 @@
             table += '<tr>';
             table += '<td class="col s1"><input type="text" id="id" name="hospedeId" hidden value="' + data[i].id + '" />' + data[i].id + '</td>';
             table += '<td class="col s2">' + data[i].hospede.nome + '</td>';
+            table += '<td class="col s2 center">' + data[i].hospede.cpf + '</td>';
             table += '<td class="col s2 center"><input type="text" id="quarto" name="quartoNum" hidden value="' + data[i].quarto + '" />' + data[i].quarto + '</td>';
             table += '<td class="col s2 center">' + data[i].hospede.email + '</td>';
             table += '<td class="col s1">' + data[i].dtEntrada + '</td>';
@@ -135,7 +138,7 @@
         
 		$('#tabela').find('tr').on('click', function() {
     		$('#id').val($(this).find('td:first').text());
-    		$('#quarto').val($(this).find('td:eq(2)').text());
+    		$('#quarto').val($(this).find('td:eq(3)').text());
     	});
     }
     
