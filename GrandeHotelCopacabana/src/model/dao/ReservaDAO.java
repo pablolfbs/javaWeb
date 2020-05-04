@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -89,7 +90,7 @@ public class ReservaDAO {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Reserva reserva = new Reserva();
-				reserva.setHospede(Ctrl.getHospedeById(rs.getInt("id_hospede")));
+				reserva.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
 //				reserva.setQuarto(Ctrl.getQuartoByNum(rs.getInt("quarto")));
 				reserva.setQuarto(rs.getInt("quarto"));
 				reserva.setDtEntrada(rs.getDate("dtEntrada"));
@@ -103,5 +104,29 @@ public class ReservaDAO {
 		}
 		return reservas;
 	}
-	
+
+	public Set<Reserva> buscarPorNomeHospede(String nome) {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" + nome
+				+ "%' ";
+
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
 }

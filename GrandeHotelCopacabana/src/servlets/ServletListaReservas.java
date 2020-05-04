@@ -41,7 +41,7 @@ public class ServletListaReservas extends HttpServlet {
 			String hospedeId = request.getParameter("hospedeId");
 			String quartoNum = request.getParameter("quartoNum");
 
-			Hospede hospede = Ctrl.buscarPorHospedePorId(Integer.parseInt(hospedeId));
+			Hospede hospede = Ctrl.buscarHospedePorId(Integer.parseInt(hospedeId));
 			
 			Quarto quarto = new Quarto();
 			quarto.setNum(Integer.parseInt(quartoNum));

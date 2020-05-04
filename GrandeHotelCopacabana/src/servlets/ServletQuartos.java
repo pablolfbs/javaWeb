@@ -26,7 +26,7 @@ public class ServletQuartos extends HttpServlet {
 		Set<Quarto> quartos = new LinkedHashSet<Quarto>(Ctrl.carregaListaQuartos());
 
 		if (quartos.isEmpty() && Ctrl.carregaListaReservas().isEmpty()) {
-			Ctrl.iniciarQuartos();
+			Ctrl.iniciarListaQuartos();
 			quartos = new LinkedHashSet<Quarto>(Ctrl.carregaListaQuartos());
 		}
 		String json = null;

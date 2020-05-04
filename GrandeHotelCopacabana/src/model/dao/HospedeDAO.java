@@ -9,6 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import model.Hospede;
+import util.Util;
 
 public class HospedeDAO {
 	
@@ -86,50 +87,6 @@ Connection connection = ConnectionFactory.getConnection();
 		}
 	}
 	
-	public Hospede buscarPorId(Integer id) {
-		String sql = " SELECT * FROM hospede WHERE id = ? ";
-		
-		Hospede hospede = new Hospede();
-		PreparedStatement ps;
-		ResultSet rs;
-		try {
-			ps = connection.prepareStatement(sql);
-			ps.setInt(1, id);
-			rs = ps.executeQuery();
-			
-			if (rs.next()) {
-				hospede.setId(id);
-				hospede.setNome(rs.getString("nome"));
-				hospede.setEmail(rs.getString("email"));
-			}
-			ps.close();
-			rs.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return hospede;
-	}
-	
-	public Set<Hospede> buscarPorNome(String nome) {
-		String sql = " SELECT * FROM hospede WHERE nome LIKE '%" + nome + "%' ";
-		
-		Set<Hospede> hospedes = new LinkedHashSet<Hospede>();
-		try {
-			Statement sttm = connection.createStatement();
-			ResultSet rs = sttm.executeQuery(sql);
-			while (rs.next()) {
-				Hospede hospede = new Hospede();
-				hospede.setId(rs.getInt("id"));
-				hospede.setNome(rs.getString("nome"));
-				hospede.setEmail(rs.getString("email"));
-				hospedes.add(hospede);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return hospedes;
-	}
-	
 	public Set<Hospede> listar() {
 		String sql = " SELECT * FROM hospede ";
 		
@@ -155,4 +112,27 @@ Connection connection = ConnectionFactory.getConnection();
 		return hospedes;
 	}
 	
+	public Hospede buscarPorId(Integer id) {
+		String sql = " SELECT * FROM hospede WHERE id = ? ";
+
+		Hospede hospede = new Hospede();
+		PreparedStatement ps;
+		try {
+			ps = connection.prepareStatement(sql);
+			ps.setInt(1, id);
+
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				hospede.setId(id);
+				hospede.setNome(rs.getString("nome"));
+				hospede.setCpf(Util.formataCpf(rs.getString("cpf")));
+				hospede.setEmail(rs.getString("email"));
+			}
+			ps.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return hospede;
+	}
 }
