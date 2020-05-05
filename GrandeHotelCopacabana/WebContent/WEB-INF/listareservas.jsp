@@ -59,7 +59,11 @@
 							<td class="col s1"><c:out value="${reserva.dtEntradaFormatada}" /></td>
 							<td class="col s1"><c:out value="${reserva.dtSaidaFormatada}" /></td>
 							<td class="col s1 center">
-								<button type="submit" type="submit" id="btExcluir" value="excluirLinha" name="opcao" style='font-size:20px;'><span class="iconify" data-icon="mdi-delete" data-inline="false" style="color: black;"></span></button>
+							<a href='javascript:pagamento.submit()' target='_blank'>ENVIAR</a>
+								<form name='pagamento' action='teste.html' >
+								<input value='10' name='valor' type='hidden'/>
+								</form>
+								<!-- <button type="submit" type="submit" id="btExcluir" value="excluirLinha" name="opcao" style='font-size:20px;'><span class="iconify" data-icon="mdi-delete" data-inline="false" style="color: black;"></span></button> -->
 							</td>
 						</tr>
 					</c:forEach>
