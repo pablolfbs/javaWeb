@@ -1,10 +1,5 @@
 package teste;
 
-import java.util.Collection;
-
-import model.Reserva;
-import model.dao.ReservaDAO;
-
 public class Teste {
 
 	public static void main(String[] args) {

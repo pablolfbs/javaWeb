@@ -51,17 +51,14 @@
 				<tbody>
 					<c:forEach var="reserva" items="${listaHospedes}">
 						<tr>
-							<td class="col s1"><input type="text" id="id" name="hospedeId" hidden value="${reserva.hospede.id}" /><c:out value="${reserva.hospede.id}" /></td>
+							<td class="col s1"><input type="hidden" id="id" name="hospedeId" value="${reserva.hospede.id}" /><c:out value="${reserva.hospede.id}" /></td>
 							<td class="col s2"><c:out value="${reserva.hospede.nome}" /></td>
 							<td class="col s2 center"><c:out value="${reserva.hospede.cpf}" /></td>
-							<td class="col s2 center"><input type="text" id="quarto" name="quartoNum" hidden value="${reserva.quarto}" /><c:out value="${reserva.quarto}" /></td>
+							<td class="col s2 center"><input type="hidden" id="quarto" name="quartoNum" value="${reserva.quarto}" /><c:out value="${reserva.quarto}" /></td>
 							<td class="col s2 center"><c:out value="${reserva.hospede.email}" /></td>
 							<td class="col s1"><c:out value="${reserva.dtEntradaFormatada}" /></td>
 							<td class="col s1"><c:out value="${reserva.dtSaidaFormatada}" /></td>
 							<td class="col s1 center">
-								<!-- <a href="#" style='font-size:20px;'><span class="iconify" data-icon="mdi-delete" data-inline="false" style="color: black;"></a> -->
-								<!-- <a href="javascript:hospedes.id.submit()" id="excluir" value="excluirLinha" name="opcao">
-								<img border="0" src="img/x.jpg" width="22" height="22"></a> -->
 								<button type="submit" type="submit" id="btExcluir" value="excluirLinha" name="opcao" style='font-size:20px;'><span class="iconify" data-icon="mdi-delete" data-inline="false" style="color: black;"></span></button>
 							</td>
 						</tr>
