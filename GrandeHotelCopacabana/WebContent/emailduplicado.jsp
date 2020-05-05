@@ -32,9 +32,9 @@
 		<div class="section center">
 			<h2 class="red-text">
 				<c:out value="${hospede.email}" />
-				SUA RESERVA NÃO FOI EFETUADA
-				<br>
-				E-MAIL JÁ CADASTRADO
+				PROBLEMA COM O CADASTRO DA RESERVA
+				<br><br>
+				ESTE E-MAIL JÁ ESTÁ CADASTRADO
 			</h2>
 		</div>
 		<!-- <a href="index.jsp">voltar</a> -->

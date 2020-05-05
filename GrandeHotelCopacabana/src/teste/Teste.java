@@ -90,14 +90,14 @@ public class Teste {
 		 * System.out.println(a); System.out.println(teste);
 		 */
 		
-		ReservaDAO rDAO = new ReservaDAO();
-		Collection<Reserva> reservas = rDAO.listar();
-		
-		for (Reserva r : reservas) {
-			System.out.println(r.getHospede().getNome());
-			System.out.println(r.getDtEntrada());
-			System.out.println(r.getDtEntradaFormatada() + "\n");
-		}
+//		ReservaDAO rDAO = new ReservaDAO();
+//		Collection<? extends Reserva> reservas = rDAO.listar();
+//		
+//		for (Reserva r : reservas) {
+//			System.out.println(r.getHospede().getNome());
+//			System.out.println(r.getDtEntrada());
+//			System.out.println(r.getDtEntradaFormatada() + "\n");
+//		}
 		
 	}
 

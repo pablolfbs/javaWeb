@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -80,7 +81,7 @@ public class ReservaDAO {
 		}
 	}
 	
-	public Set<Reserva> listar() {
+	public Collection<? extends Reserva> listar() {
 		String sql = " SELECT * FROM reserva ";
 		PreparedStatement ps;
 		ResultSet rs;
@@ -91,7 +92,6 @@ public class ReservaDAO {
 			while (rs.next()) {
 				Reserva reserva = new Reserva();
 				reserva.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
-//				reserva.setQuarto(Ctrl.getQuartoByNum(rs.getInt("quarto")));
 				reserva.setQuarto(rs.getInt("quarto"));
 				reserva.setDtEntrada(rs.getDate("dtEntrada"));
 				reserva.setDtSaida(rs.getDate("dtSaida"));
@@ -105,9 +105,254 @@ public class ReservaDAO {
 		return reservas;
 	}
 
-	public Set<Reserva> buscarPorNomeHospede(String nome) {
-		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" + nome
-				+ "%' ";
+	public Collection<? extends Reserva> buscarPorNomeHospede(String nome) {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
+				+ nome + "%' ";
+
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+
+	public Collection<? extends Reserva> ordenarReservaPorNome() {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id ORDER BY h.nome ";
+		
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+
+	public Collection<? extends Reserva> ordenarReservaPorId() {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id ORDER BY h.id ";
+		
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+
+	public Collection<? extends Reserva> ordenarReservaPorCpf() {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id ORDER BY h.cpf ";
+		
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+
+	public Collection<? extends Reserva> ordenarReservaPorQuarto() {
+		String sql = " SELECT * FROM reserva r ORDER BY r.quarto ";
+		
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+
+	public Collection<? extends Reserva> ordenarReservaPorEmail() {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id ORDER BY h.Email ";
+		
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+
+	public Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorId(String nome) {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
+				+ nome + "%' ORDER BY h.id";
+
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+
+	public Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorNome(String nome) {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
+				+ nome + "%' ORDER BY h.nome";
+
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+
+	public Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorCpf(String nome) {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
+				+ nome + "%' ORDER BY h.cpf";
+
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+
+	public Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorQuarto(String nome) {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
+				+ nome + "%' ORDER BY r.quarto";
+
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+
+	public Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorEmail(String nome) {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
+				+ nome + "%' ORDER BY h.Email";
 
 		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
 		try {

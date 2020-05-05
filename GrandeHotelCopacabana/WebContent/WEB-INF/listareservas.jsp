@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -26,6 +25,8 @@
 
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 </head>
 
 <body>
@@ -37,14 +38,14 @@
 			<table id="tabela" class="highlight" id="tabela" hidden>
 				<thead>
 					<tr>
-						<th class="col s1">#</th>
-						<th class="col s2">Nome</th>
-						<th class="col s2 center">CPF</th>
-						<th class="col s2 center">Quarto</th>
-						<th class="col s2 center">E-mail</th>
-						<th class="col s1">Entrada</th>
-						<th class="col s1">Saída</th>
-						<th class="col s1">Excluir</th>
+						<th class="col s1"><a class="waves-effect waves-light btn" href="#">#</a></th>
+						<th class="col s2"><a class="waves-effect waves-light btn" href="#">Nome</a></th>
+						<th class="col s2 center"><a class="waves-effect waves-light btn" href="#">CPF</a></th>
+						<th class="col s2 center"><a class="waves-effect waves-light btn" href="#">Quarto</a></th>
+						<th class="col s2 center"><a class="waves-effect waves-light btn" href="#">E-mail</a></th>
+						<th class="col s1"><a class="waves-effect waves-light btn" href="#">Entrada</a></th>
+						<th class="col s1"><a class="waves-effect waves-light btn" href="#">Saída</a></th>
+						<th class="col s1 center"><a class="waves-effect waves-light #e53935 red darken-1 btn" href="#">Excluir</a></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -57,11 +58,11 @@
 							<td class="col s2 center"><c:out value="${reserva.hospede.email}" /></td>
 							<td class="col s1"><c:out value="${reserva.dtEntradaFormatada}" /></td>
 							<td class="col s1"><c:out value="${reserva.dtSaidaFormatada}" /></td>
-							<td class="col s1">
+							<td class="col s1 center">
+								<!-- <a href="#" style='font-size:20px;'><span class="iconify" data-icon="mdi-delete" data-inline="false" style="color: black;"></a> -->
 								<!-- <a href="javascript:hospedes.id.submit()" id="excluir" value="excluirLinha" name="opcao">
 								<img border="0" src="img/x.jpg" width="22" height="22"></a> -->
-								<button class="btn waves-effect waves-light #e53935 red darken-1" type="submit" id="btExcluir" value="excluirLinha" name="opcao" >
-								Excluir <i class="material-icons right ">send</i></button>
+								<button type="submit" type="submit" id="btExcluir" value="excluirLinha" name="opcao" style='font-size:20px;'><span class="iconify" data-icon="mdi-delete" data-inline="false" style="color: black;"></span></button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -115,6 +116,76 @@
 		            	console.log(err);
 		            }
 	            });
+			}
+    	});
+    	
+    	$('#tabela thead tr th').on('click', function() {
+    		var nome = $('#buscarPorNome').val().trim();
+    		if ($(this).text() == '#') {
+    			$.ajax({
+					type: 'GET',
+	                url: 'listareservas',
+	                data: {opcao : 'ordenarPorId', valor : nome},
+	                dataType: "JSON",
+	                success: function(response) {
+	                	montarTabela(response);
+	                },
+		            error: function (err) {
+		            	console.log(err);
+		            }
+				});
+			} else if ($(this).text() == 'Nome') {
+				$.ajax({
+					type: 'GET',
+	                url: 'listareservas',
+	                data: {opcao : 'ordenarPorNome', valor : nome},
+	                dataType: "JSON",
+	                success: function(response) {
+	                	montarTabela(response);
+	                },
+		            error: function (err) {
+		            	console.log(err);
+		            }
+				});
+			} else if ($(this).text() == 'CPF') {
+				$.ajax({
+					type: 'GET',
+	                url: 'listareservas',
+	                data: {opcao : 'ordenarPorCpf', valor : nome},
+	                dataType: "JSON",
+	                success: function(response) {
+	                	montarTabela(response);
+	                },
+		            error: function (err) {
+		            	console.log(err);
+		            }
+				});
+			} else if ($(this).text() == 'Quarto') {
+				$.ajax({
+					type: 'GET',
+	                url: 'listareservas',
+	                data: {opcao : 'ordenarPorQuarto', valor : nome},
+	                dataType: "JSON",
+	                success: function(response) {
+	                	montarTabela(response);
+	                },
+		            error: function (err) {
+		            	console.log(err);
+		            }
+				});
+			} else if ($(this).text() == 'E-mail') {
+				$.ajax({
+					type: 'GET',
+	                url: 'listareservas',
+	                data: {opcao : 'ordenarPorEmail', valor : nome},
+	                dataType: "JSON",
+	                success: function(response) {
+	                	montarTabela(response);
+	                },
+		            error: function (err) {
+		            	console.log(err);
+		            }
+				});
 			}
     	});
     });

@@ -37,7 +37,10 @@ public class ServletListaReservas extends HttpServlet {
 		String opcao = request.getParameter("opcao");
 		String nome = request.getParameter("valor");
 		
-		if (opcao.equals("excluirLinha")) {
+		RequestDispatcher rd;
+		
+		switch (opcao) {
+		case "excluirLinha":
 			String hospedeId = request.getParameter("hospedeId");
 			String quartoNum = request.getParameter("quartoNum");
 
@@ -56,29 +59,83 @@ public class ServletListaReservas extends HttpServlet {
 			
 			Ctrl.enviaEmailExclusaoReserva(hospede, quarto);
 
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/listareservas.jsp");
+			rd = getServletContext().getRequestDispatcher("/WEB-INF/listareservas.jsp");
 			rd.forward(request, response);
+			break;
 			
-		} else if (opcao.equals("listar")) {
+		case "listar":
 			reservas = new LinkedHashSet<Reserva>(Ctrl.carregaListaReservas());
 
 			secao.setAttribute("listaHospedes", reservas);
 			
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/listareservas.jsp");
+			rd = getServletContext().getRequestDispatcher("/WEB-INF/listareservas.jsp");
 			rd.forward(request, response);
+			break;
 			
-		} else if (opcao.equals("buscarPorNome")) {
-			
-			if (nome.length() > 1 || nome.equals("")) {
+		case "buscarPorNome":
+			if (nome.length() > 1 || nome.isEmpty()) {
 				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeHospede(nome));
 				
-				Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
-				String json = gson.toJson(reservas);
-				
-				response.setContentType("application/json");
-				response.getOutputStream().write(json.getBytes());
-				response.flushBuffer();
+				montarJsonComDtFormatada(response);
 			}
+			break;
+			
+		case "ordenarPorId":
+			if (!nome.isEmpty()) {
+				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeOrdenadaPorId(nome));
+			} else {
+				reservas = new LinkedHashSet<Reserva>(Ctrl.ordenarReservaPorIdHospede());
+			}
+			montarJsonComDtFormatada(response);
+			break;
+			
+		case "ordenarPorNome":
+			if (!nome.isEmpty()) {
+				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeOrdenadaPorNome(nome));
+			} else {
+				reservas = new LinkedHashSet<Reserva>(Ctrl.ordenarReservaPorNomeHospede());
+			}
+			montarJsonComDtFormatada(response);
+			break;
+			
+		case "ordenarPorCpf":
+			if (!nome.isEmpty()) {
+				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeOrdenadaPorCpf(nome));
+			} else {
+				reservas = new LinkedHashSet<Reserva>(Ctrl.ordenarReservaPorCpfHospede());
+			}
+			montarJsonComDtFormatada(response);
+			break;
+			
+		case "ordenarPorQuarto":
+			if (!nome.isEmpty()) {
+				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeOrdenadaPorQuarto(nome));
+			} else {
+				reservas = new LinkedHashSet<Reserva>(Ctrl.ordenarReservaPorQuarto());
+			}
+			montarJsonComDtFormatada(response);
+			break;
+			
+		case "ordenarPorEmail":
+			if (!nome.isEmpty()) {
+				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeOrdenadaPorEmail(nome));
+			} else {
+				reservas = new LinkedHashSet<Reserva>(Ctrl.ordenarReservaPorEmailHospede());
+			}
+			montarJsonComDtFormatada(response);
+			break;
+
+		default:
+			break;
 		}
+	}
+
+	private void montarJsonComDtFormatada(HttpServletResponse response) throws IOException {
+		Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
+		String json = gson.toJson(reservas);
+		
+		response.setContentType("application/json");
+		response.getOutputStream().write(json.getBytes());
+		response.flushBuffer();
 	}
 }

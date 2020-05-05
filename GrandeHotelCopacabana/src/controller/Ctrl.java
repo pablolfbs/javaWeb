@@ -2,6 +2,7 @@ package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -38,7 +39,7 @@ public class Ctrl {
 		iniciarQuartos(quartos);
 	}
 
-	public static Set<Reserva> buscarReservaPorNomeHospede(String nome) {
+	public static Collection<? extends Reserva> buscarReservaPorNomeHospede(String nome) {
 		return rDAO.buscarPorNomeHospede(nome);
 	}
 
@@ -47,8 +48,8 @@ public class Ctrl {
 		return hospedes;
 	}
 
-	public static Set<Reserva> carregaListaReservas() {
-		Set<Reserva> reservas = rDAO.listar();
+	public static Collection<? extends Reserva> carregaListaReservas() {
+		Collection<? extends Reserva> reservas = rDAO.listar();
 		return reservas;
 	}
 
@@ -58,7 +59,7 @@ public class Ctrl {
 	}
 
 	public static boolean verificaEmail(String email) {
-		Set<Reserva> r = rDAO.listar();
+		Collection<? extends Reserva> r = rDAO.listar();
 		Set<String> strList = new HashSet<String>();
 
 		r.forEach(res -> strList.add(res.getHospede().getEmail()));
@@ -125,4 +126,44 @@ public class Ctrl {
 		rDAO.inserir(reserva);
 	}
 
+	public static Collection<? extends Reserva> ordenarReservaPorNomeHospede() {
+		return rDAO.ordenarReservaPorNome();
+	}
+
+	public static Collection<? extends Reserva> ordenarReservaPorIdHospede() {
+		return rDAO.ordenarReservaPorId();
+	}
+
+	public static Collection<? extends Reserva> ordenarReservaPorCpfHospede() {
+		return rDAO.ordenarReservaPorCpf();
+	}
+
+	public static Collection<? extends Reserva> ordenarReservaPorQuarto() {
+		return rDAO.ordenarReservaPorQuarto();
+	}
+
+	public static Collection<? extends Reserva> ordenarReservaPorEmailHospede() {
+		return rDAO.ordenarReservaPorEmail();
+	}
+
+	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorId(String nome) {
+		return rDAO.buscarReservaPorNomeOrdenadaPorId(nome);
+	}
+
+	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorNome(String nome) {
+		return rDAO.buscarReservaPorNomeOrdenadaPorNome(nome);
+	}
+
+	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorCpf(String nome) {
+		return rDAO.buscarReservaPorNomeOrdenadaPorCpf(nome);
+	}
+
+	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorQuarto(String nome) {
+		return rDAO.buscarReservaPorNomeOrdenadaPorQuarto(nome);
+	}
+
+	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorEmail(String nome) {
+		return rDAO.buscarReservaPorNomeOrdenadaPorEmail(nome);
+	}
+	
 }
