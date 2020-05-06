@@ -26,7 +26,7 @@
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -43,8 +43,8 @@
 						<th class="col s2 center"><a class="waves-effect waves-light btn" href="#">CPF</a></th>
 						<th class="col s2 center"><a class="waves-effect waves-light btn" href="#">Quarto</a></th>
 						<th class="col s2 center"><a class="waves-effect waves-light btn" href="#">E-mail</a></th>
-						<th class="col s1"><a class="waves-effect waves-light btn" href="#">Entrada</a></th>
-						<th class="col s1"><a class="waves-effect waves-light btn" href="#">Saída</a></th>
+						<th class="col s1 center"><a class="waves-effect waves-light btn" href="#">Entrada</a></th>
+						<th class="col s1 center"><a class="waves-effect waves-light btn" href="#">Saída</a></th>
 						<th class="col s1 center"><a class="waves-effect waves-light #e53935 red darken-1 btn" href="#">Excluir</a></th>
 					</tr>
 				</thead>
@@ -56,14 +56,10 @@
 							<td class="col s2 center"><c:out value="${reserva.hospede.cpf}" /></td>
 							<td class="col s2 center"><input type="hidden" id="quarto" name="quartoNum" value="${reserva.quarto}" /><c:out value="${reserva.quarto}" /></td>
 							<td class="col s2 center"><c:out value="${reserva.hospede.email}" /></td>
-							<td class="col s1"><c:out value="${reserva.dtEntradaFormatada}" /></td>
-							<td class="col s1"><c:out value="${reserva.dtSaidaFormatada}" /></td>
+							<td class="col s1 center"><c:out value="${reserva.dtEntradaFormatada}" /></td>
+							<td class="col s1 center"><c:out value="${reserva.dtSaidaFormatada}" /></td>
 							<td class="col s1 center">
-							<a href='javascript:pagamento.submit()' target='_blank'>ENVIAR</a>
-								<form name='pagamento' action='teste.html' >
-								<input value='10' name='valor' type='hidden'/>
-								</form>
-								<!-- <button type="submit" type="submit" id="btExcluir" value="excluirLinha" name="opcao" style='font-size:20px;'><span class="iconify" data-icon="mdi-delete" data-inline="false" style="color: black;"></span></button> -->
+								<button class="btn" id="btExcluir" value="excluirLinha" name="opcao"><i class="fa fa-trash"></i></button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -77,7 +73,6 @@
 			</div>
 		</form>
 		<br><a href="index.jsp">voltar</a>
-		
 	</div>
 
     <!-- Compiled and minified JavaScript -->
@@ -201,9 +196,9 @@
             table += '<td class="col s2 center">' + data[i].hospede.cpf + '</td>';
             table += '<td class="col s2 center"><input type="text" id="quarto" name="quartoNum" hidden value="' + data[i].quarto + '" />' + data[i].quarto + '</td>';
             table += '<td class="col s2 center">' + data[i].hospede.email + '</td>';
-            table += '<td class="col s1">' + data[i].dtEntrada + '</td>';
-            table += '<td class="col s1">' + data[i].dtSaida + '</td>';
-            table += '<td class="col s1"><button class="btn waves-effect waves-light #e53935 red darken-1" type="submit" id="btExcluir" value="excluirLinha" name="opcao" >Excluir <i class="material-icons right ">send</i></button></td>';
+            table += '<td class="col s1 center">' + data[i].dtEntrada + '</td>';
+            table += '<td class="col s1 center">' + data[i].dtSaida + '</td>';
+            table += '<td class="col s1 center"><button class="btn" id="btExcluir" value="excluirLinha" name="opcao"><i class="fa fa-trash"></i></button></td>';
             table += '</tr>';
         }
         $('table tbody').html(table);

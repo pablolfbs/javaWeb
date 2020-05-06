@@ -40,9 +40,6 @@ public class ServletListaReservas extends HttpServlet {
 		RequestDispatcher rd;
 		
 		switch (opcao) {
-		case "teste":
-			System.out.println("teste");
-			break;
 		case "excluirLinha":
 			String hospedeId = request.getParameter("hospedeId");
 			String quartoNum = request.getParameter("quartoNum");
@@ -126,9 +123,6 @@ public class ServletListaReservas extends HttpServlet {
 				reservas = new LinkedHashSet<Reserva>(Ctrl.ordenarReservaPorEmailHospede());
 			}
 			montarJsonComDtFormatada(response);
-			break;
-
-		default:
 			break;
 		}
 	}

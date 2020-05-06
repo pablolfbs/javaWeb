@@ -91,6 +91,7 @@ public class ReservaDAO {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Reserva reserva = new Reserva();
+				reserva.setId(rs.getInt("id"));
 				reserva.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
 				reserva.setQuarto(rs.getInt("quarto"));
 				reserva.setDtEntrada(rs.getDate("dtEntrada"));
