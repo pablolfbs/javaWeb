@@ -62,7 +62,6 @@ public class ServletListaReservas extends HttpServlet {
 				PdfPTable table = ControllerTable.criarCabecalho();
 				
 				reservas = Ctrl.buscarReservaPorNomeHospede(nome);
-				
 				reservas.forEach(r -> {
 					r.getId();
 					r.getHospede().getNome();
