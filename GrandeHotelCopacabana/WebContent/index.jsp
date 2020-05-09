@@ -26,6 +26,10 @@
 
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style type="text/css">
+	.modal { width: 25% !important; }
+</style>
 </head>
 
 <body>
@@ -33,7 +37,7 @@
 		<div class="section center">
 			<h1 class="teal-text text-lighten-2">RESERVA</h1>
 		</div>
-		<form action="hospedes" method="POST">
+		<form id="formHospedes" action="hospedes" method="POST">
 			<div class="row">
 				<div class="input-field col s6">
 					<i class="material-icons prefix">account_circle</i>
@@ -80,10 +84,55 @@
 					<button class="btn waves-effect waves-light right" type="submit" id="btCadastrar" value="cadastrar" name="opcao" >
 						Cadastrar <i class="material-icons right">send</i>
 					</button>
-					<button class="btn waves-effect waves-light #e53935 red darken-1" type="submit" id="btExcluir" value="excluir" name="opcao" >
+					<!-- <button class="btn waves-effect waves-light #e53935 red darken-1" type="submit" id="btExcluir" value="excluir" name="opcao" >
 						Excluir <i class="material-icons right">send</i>
 					</button>
-					<div id="mensagem"></div>
+					<div id="mensagem"></div> -->
+					<!-- Modal Trigger -->
+					<button data-target="modal1" class="btn modal-trigger #e53935 red darken-1" type="button" id="btExcluir" value="excluir" name="opcao">Excluir <i class="material-icons right">send</i></button>
+								
+					<!-- Modal Structure -->
+					<div id="modal1" class="modal">
+						<div class="modal-content">
+							<h4>AVISO</h4>
+							<p>Tem certeza que deseja excluir todas as reservas?</p>
+						</div>
+						<div class="modal-footer">
+							<a href="#!" class="modal-close waves-effect btn-flat ">Não</a>
+							<a href="#!" class="modal-close waves-effect waves-green btn-flat">Sim</a>
+						</div>
+					</div>
+					
+					<!-- Modal Structure -->
+					<div id="modal2" class="modal">
+						<div class="modal-content">
+							<h4>SUCESSO</h4>
+							<p>Todas as reservas foram apagadas!</p>
+						</div>
+						<div class="modal-footer">
+							<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Modal Structure -->
+			<div id="modal3" class="modal">
+				<div class="modal-content">
+					<h4>AVISO</h4>
+					<p>Por favor, escolha um quarto!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
+			<!-- Modal Structure -->
+			<div id="modal4" class="modal">
+				<div class="modal-content">
+					<h4>AVISO</h4>
+					<p>Este e-mail já está cadastrado!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 				</div>
 			</div>
 		</form>
@@ -101,65 +150,7 @@
 	<!--JavaScript at end of body for optimized loading-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 				
-	<script type="text/javascript">
-	
-		$(document).ready(function () {
-			
-			$.ajax({
-	            type: 'GET',
-	            url: 'quartos',
-	            dataType: 'JSON',
-	            success: function(response) {
-	            	 montarCombobox(response);
-	            },
-	            error: function (err) {
-	            	console.log(err);
-	            }
-	        });
-			
-			$('#divSelect').on('click', function() {
-				if($('li').length == 1) {
-					alert('Não há quartos disponíveis');
-				}
-			});
-		    
-			$('#btListar, #btExcluir, #comboBox').on('click', function() {
-				$('.validate').removeAttr('required');
-			});
-			
-			$('#btExcluir').on('click', function() {
-				var confirmacao = confirm('Tem certeza que deseja excluir todas as reservas?');
-				
-				if (confirmacao) {
-					return true;
-				} else {
-					return false;
-				}
-			});
-			
-			$('#btCadastrar').on('click', function() {
-				if ($('select option:selected').val() == '') {
-					if ($('#first_name').val() != '' && $('#email').val() != '') {
-						alert('Por favor, escolha um quarto!');
-						return false;
-					}
-				}
-			});
-		});
-		
-		function montarCombobox(data) {
-			$('#comboBox').append('<option value="" disabled selected >Escolha seu quarto</option>');
-        	for (let i = 0; i < data.length; i++) {
-            	$('#comboBox').append('<option value="' + data[i].num + '">' + data[i].num + '</option>');
-			}
-			
-        	// exemplo de enhanced for feito com arrow functions.
-			// data.map(data => $('#comboBox').append('<option value="' + data.num + '">' + data.num + '</option>'));
-			
-        	$('select').formSelect();
-		}
-		
-	</script>
+	<script type="text/javascript" src="js/index.js"></script>
 </body>
 
 </html>

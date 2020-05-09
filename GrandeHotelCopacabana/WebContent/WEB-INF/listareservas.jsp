@@ -27,6 +27,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style type="text/css">
+	.modal { width: 25% !important; }
+</style>
 </head>
 
 <body>
@@ -65,12 +69,41 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			
 			<h5 class="center" style="color:red" id="listavazia" hidden>A lista de reservas está vazia.</h5>
 			<br>
 			<div class="input-field col s6" id="busca" hidden>
 				<input id="buscarPorNome" type="text" name="opcao" class="validate" >
 				<label for="buscarPorNome">Pesquisar por nome</label>
 			</div>
+			<!-- <button type="button" class="btn right" id="btPdf" value="exportarPdf" name="opcao">Exportar PDF</button> -->
+			
+			<!-- Modal Trigger -->
+  			<button type="button" data-target="modal1" class="btn modal-trigger right">Exportar PDF</button>
+  			
+			<!-- Modal Structure -->
+			<div id="modal1" class="modal">
+				<div class="modal-content">
+					<h4>AVISO</h4>
+					<p>Deseja exportar para PDF?</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat ">Não</a>
+					<a href="#!" class="modal-close waves-effect waves-green btn-flat" id="confirmaExport">Sim</a>
+				</div>
+			</div>
+			
+			<!-- Modal Structure -->
+			<div id="modal2" class="modal">
+				<div class="modal-content">
+					<h4>SUCESSO</h4>
+					<p>PDF criado com sucesso!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
+          
 		</form>
 		<br><a href="index.jsp">voltar</a>
 	</div>
@@ -78,138 +111,7 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
-    <script>
-    
-    $(document).ready(function() {
-    	
-    	var valor = $('#tabela td').text();
-    	
-    	if (valor == '') {
-    		$('#listavazia').show();
-    		$('#tabela').hide();
-    	} else {
-    		$('#tabela').show();
-    		$('#busca').show();
-    	}
-    	
-    	$('#tabela').find('tr').on('click', function() {
-    		$('#id').val($(this).find('td:first').text());
-    		$('#quarto').val($(this).find('td:eq(3)').text());
-    	});
-    	
-    	$('#buscarPorNome').on('keyup', function() {
-    		if ($(this).val().length > 1 || $(this).val() == '') {
-    			var nome = $(this).val().trim();
-	    		$.ajax({
-	                type: 'GET',
-	                url: 'listareservas',
-	                data: {opcao : 'buscarPorNome', valor : nome},
-	                dataType: "JSON",
-	                success: function(response) {
-	                	montarTabela(response);
-	                },
-		            error: function (err) {
-		            	console.log(err);
-		            }
-	            });
-			}
-    	});
-    	
-    	$('#tabela thead tr th').on('click', function() {
-    		var nome = $('#buscarPorNome').val().trim();
-    		if ($(this).text() == '#') {
-    			$.ajax({
-					type: 'GET',
-	                url: 'listareservas',
-	                data: {opcao : 'ordenarPorId', valor : nome},
-	                dataType: "JSON",
-	                success: function(response) {
-	                	montarTabela(response);
-	                },
-		            error: function (err) {
-		            	console.log(err);
-		            }
-				});
-			} else if ($(this).text() == 'Nome') {
-				$.ajax({
-					type: 'GET',
-	                url: 'listareservas',
-	                data: {opcao : 'ordenarPorNome', valor : nome},
-	                dataType: "JSON",
-	                success: function(response) {
-	                	montarTabela(response);
-	                },
-		            error: function (err) {
-		            	console.log(err);
-		            }
-				});
-			} else if ($(this).text() == 'CPF') {
-				$.ajax({
-					type: 'GET',
-	                url: 'listareservas',
-	                data: {opcao : 'ordenarPorCpf', valor : nome},
-	                dataType: "JSON",
-	                success: function(response) {
-	                	montarTabela(response);
-	                },
-		            error: function (err) {
-		            	console.log(err);
-		            }
-				});
-			} else if ($(this).text() == 'Quarto') {
-				$.ajax({
-					type: 'GET',
-	                url: 'listareservas',
-	                data: {opcao : 'ordenarPorQuarto', valor : nome},
-	                dataType: "JSON",
-	                success: function(response) {
-	                	montarTabela(response);
-	                },
-		            error: function (err) {
-		            	console.log(err);
-		            }
-				});
-			} else if ($(this).text() == 'E-mail') {
-				$.ajax({
-					type: 'GET',
-	                url: 'listareservas',
-	                data: {opcao : 'ordenarPorEmail', valor : nome},
-	                dataType: "JSON",
-	                success: function(response) {
-	                	montarTabela(response);
-	                },
-		            error: function (err) {
-		            	console.log(err);
-		            }
-				});
-			}
-    	});
-    });
-    
-    function montarTabela(data) {
-    	$('tbody tr').remove();
-        var table;
-        for (let i = 0; i < data.length; i++) {
-            table += '<tr>';
-            table += '<td class="col s1"><input type="text" id="id" name="hospedeId" hidden value="' + data[i].id + '" />' + data[i].id + '</td>';
-            table += '<td class="col s2">' + data[i].hospede.nome + '</td>';
-            table += '<td class="col s2 center">' + data[i].hospede.cpf + '</td>';
-            table += '<td class="col s2 center"><input type="text" id="quarto" name="quartoNum" hidden value="' + data[i].quarto + '" />' + data[i].quarto + '</td>';
-            table += '<td class="col s2 center">' + data[i].hospede.email + '</td>';
-            table += '<td class="col s1 center">' + data[i].dtEntrada + '</td>';
-            table += '<td class="col s1 center">' + data[i].dtSaida + '</td>';
-            table += '<td class="col s1 center"><button class="btn" id="btExcluir" value="excluirLinha" name="opcao"><i class="fa fa-trash"></i></button></td>';
-            table += '</tr>';
-        }
-        $('table tbody').html(table);
-        
-		$('#tabela').find('tr').on('click', function() {
-    		$('#id').val($(this).find('td:first').text());
-    		$('#quarto').val($(this).find('td:eq(3)').text());
-    	});
-    }
-    
-    </script>
+    <script type="text/javascript" src="js/listareservas.js"></script>
 </body>
 
 </html>

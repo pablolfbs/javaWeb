@@ -130,7 +130,7 @@ public class ReservaDAO {
 		}
 		return reservas;
 	}
-
+	
 	public Collection<? extends Reserva> ordenarReservaPorNome() {
 		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id ORDER BY h.nome ";
 		
@@ -250,7 +250,55 @@ public class ReservaDAO {
 		}
 		return reservas;
 	}
-
+	
+	public Collection<? extends Reserva> ordenarReservaPorDtEntrada() {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id ORDER BY r.dtEntrada ";
+		
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+	
+	public Collection<? extends Reserva> ordenarReservaPorDtSaida() {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id ORDER BY r.dtSaida ";
+		
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+	
 	public Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorId(String nome) {
 		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
 				+ nome + "%' ORDER BY h.id";
@@ -275,7 +323,7 @@ public class ReservaDAO {
 		}
 		return reservas;
 	}
-
+	
 	public Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorNome(String nome) {
 		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
 				+ nome + "%' ORDER BY h.nome";
@@ -375,4 +423,55 @@ public class ReservaDAO {
 		}
 		return reservas;
 	}
+	
+	public Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorDtEntrada(String nome) {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
+				+ nome + "%' ORDER BY r.dtEntrada";
+
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+
+	public Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorDtSaida(String nome) {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
+				+ nome + "%' ORDER BY r.dtSaida";
+
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+
 }

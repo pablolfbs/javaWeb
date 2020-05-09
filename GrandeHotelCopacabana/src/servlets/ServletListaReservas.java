@@ -1,8 +1,11 @@
 package servlets;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -15,18 +18,24 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import controller.Ctrl;
 import model.Hospede;
 import model.Quarto;
 import model.Reserva;
+import util.ControllerTable;
 
 @WebServlet(name = "listareservas", urlPatterns = { "/listareservas" })
 public class ServletListaReservas extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	Set<Reserva> reservas = null;
+	Collection<? extends Reserva> reservas = null;
 	Set<Quarto> quartos = new HashSet<Quarto>();
 	Set<Hospede> hospedes = new HashSet<Hospede>();
        
@@ -40,6 +49,44 @@ public class ServletListaReservas extends HttpServlet {
 		RequestDispatcher rd;
 		
 		switch (opcao) {
+		case "exportarPdf":
+			try {
+				Document document = new Document();
+				document.setPageSize(PageSize.A3);
+				PdfWriter.getInstance(document, new FileOutputStream("C:\\pdf\\listadereservas- " + 
+							new SimpleDateFormat("dd-MM-yyyy HHmmss").format(new Date()) + ".pdf"));
+				
+				// Abre documento
+				document.open();
+				
+				PdfPTable table = ControllerTable.criarCabecalho();
+				
+				reservas = Ctrl.buscarReservaPorNomeHospede(nome);
+				
+				reservas.forEach(r -> {
+					r.getId();
+					r.getHospede().getNome();
+					r.getHospede().getCpf();
+					r.getQuarto().toString();
+					r.getHospede().getEmail();
+					r.getDtEntrada();
+					r.getDtSaida();
+				});
+				
+				ControllerTable.preencherDados(document, table, reservas);
+				
+				// Encerra documento
+				document.close();
+				
+				montarJsonComDtFormatada(response);
+				
+			} catch (DocumentException de) {
+				System.err.println(de.getMessage());
+			} catch (IOException ioe) {
+				System.err.println(ioe.getMessage());
+			}
+			break;
+			
 		case "excluirLinha":
 			String hospedeId = request.getParameter("hospedeId");
 			String quartoNum = request.getParameter("quartoNum");
@@ -54,7 +101,7 @@ public class ServletListaReservas extends HttpServlet {
 			quartos.addAll(Ctrl.carregaListaQuartos());
 			secao.setAttribute("listaQuartos", quartos);
 			
-			reservas = new LinkedHashSet<Reserva>(Ctrl.carregaListaReservas());
+			reservas = Ctrl.carregaListaReservas();
 			secao.setAttribute("listaHospedes", reservas);
 			
 			Ctrl.enviaEmailExclusaoReserva(hospede, quarto);
@@ -64,7 +111,7 @@ public class ServletListaReservas extends HttpServlet {
 			break;
 			
 		case "listar":
-			reservas = new LinkedHashSet<Reserva>(Ctrl.carregaListaReservas());
+			reservas = Ctrl.carregaListaReservas();
 
 			secao.setAttribute("listaHospedes", reservas);
 			
@@ -74,7 +121,7 @@ public class ServletListaReservas extends HttpServlet {
 			
 		case "buscarPorNome":
 			if (nome.length() > 1 || nome.isEmpty()) {
-				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeHospede(nome));
+				reservas = Ctrl.buscarReservaPorNomeHospede(nome);
 				
 				montarJsonComDtFormatada(response);
 			}
@@ -82,45 +129,63 @@ public class ServletListaReservas extends HttpServlet {
 			
 		case "ordenarPorId":
 			if (!nome.isEmpty()) {
-				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeOrdenadaPorId(nome));
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorId(nome);
 			} else {
-				reservas = new LinkedHashSet<Reserva>(Ctrl.ordenarReservaPorIdHospede());
+				reservas = Ctrl.ordenarReservaPorIdHospede();
 			}
 			montarJsonComDtFormatada(response);
 			break;
 			
 		case "ordenarPorNome":
 			if (!nome.isEmpty()) {
-				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeOrdenadaPorNome(nome));
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorNome(nome);
 			} else {
-				reservas = new LinkedHashSet<Reserva>(Ctrl.ordenarReservaPorNomeHospede());
+				reservas = Ctrl.ordenarReservaPorNomeHospede();
 			}
 			montarJsonComDtFormatada(response);
 			break;
 			
 		case "ordenarPorCpf":
 			if (!nome.isEmpty()) {
-				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeOrdenadaPorCpf(nome));
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorCpf(nome);
 			} else {
-				reservas = new LinkedHashSet<Reserva>(Ctrl.ordenarReservaPorCpfHospede());
+				reservas = Ctrl.ordenarReservaPorCpfHospede();
 			}
 			montarJsonComDtFormatada(response);
 			break;
 			
 		case "ordenarPorQuarto":
 			if (!nome.isEmpty()) {
-				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeOrdenadaPorQuarto(nome));
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorQuarto(nome);
 			} else {
-				reservas = new LinkedHashSet<Reserva>(Ctrl.ordenarReservaPorQuarto());
+				reservas = Ctrl.ordenarReservaPorQuarto();
 			}
 			montarJsonComDtFormatada(response);
 			break;
 			
 		case "ordenarPorEmail":
 			if (!nome.isEmpty()) {
-				reservas = new LinkedHashSet<Reserva>(Ctrl.buscarReservaPorNomeOrdenadaPorEmail(nome));
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorEmail(nome);
 			} else {
-				reservas = new LinkedHashSet<Reserva>(Ctrl.ordenarReservaPorEmailHospede());
+				reservas = Ctrl.ordenarReservaPorEmailHospede();
+			}
+			montarJsonComDtFormatada(response);
+			break;
+			
+		case "ordenarPorDtEntrada":
+			if (!nome.isEmpty()) {
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorDtEntrada(nome);
+			} else {
+				reservas = Ctrl.ordenarReservaPorDtEntrada();
+			}
+			montarJsonComDtFormatada(response);
+			break;
+		
+		case "ordenarPorDtSaida":
+			if (!nome.isEmpty()) {
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorDtSaida(nome);
+			} else {
+				reservas = Ctrl.ordenarReservaPorDtSaida();
 			}
 			montarJsonComDtFormatada(response);
 			break;

@@ -58,7 +58,7 @@ public class Ctrl {
 		return quartos;
 	}
 
-	public static boolean verificaEmail(String email) {
+	public static boolean isCadastrado(String email) {
 		Collection<? extends Reserva> r = rDAO.listar();
 		Set<String> strList = new HashSet<String>();
 
@@ -145,6 +145,14 @@ public class Ctrl {
 	public static Collection<? extends Reserva> ordenarReservaPorEmailHospede() {
 		return rDAO.ordenarReservaPorEmail();
 	}
+	
+	public static Collection<? extends Reserva> ordenarReservaPorDtEntrada() {
+		return rDAO.ordenarReservaPorDtEntrada();
+	}
+	
+	public static Collection<? extends Reserva> ordenarReservaPorDtSaida() {
+		return rDAO.ordenarReservaPorDtSaida();
+	}
 
 	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorId(String nome) {
 		return rDAO.buscarReservaPorNomeOrdenadaPorId(nome);
@@ -165,5 +173,13 @@ public class Ctrl {
 	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorEmail(String nome) {
 		return rDAO.buscarReservaPorNomeOrdenadaPorEmail(nome);
 	}
-	
+
+	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorDtEntrada(String nome) {
+		return rDAO.buscarReservaPorNomeOrdenadaPorDtEntrada(nome);
+	}
+
+	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorDtSaida(String nome) {
+		return rDAO.buscarReservaPorNomeOrdenadaPorDtSaida(nome);
+	}
+
 }

@@ -1,5 +1,10 @@
 package teste;
 
+import java.util.Collection;
+
+import model.Reserva;
+import model.dao.ReservaDAO;
+
 public class Teste {
 
 	public static void main(String[] args) {
@@ -94,6 +99,10 @@ public class Teste {
 //			System.out.println(r.getDtEntradaFormatada() + "\n");
 //		}
 		
+			ReservaDAO rDAO = new ReservaDAO();
+			Collection<? extends Reserva> reservas = rDAO.buscarPorNomeHospede("");
+			reservas.forEach(r -> System.out.println(r.getHospede().getNome()));
+			
 	}
 
 }
