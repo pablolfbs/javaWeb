@@ -53,7 +53,7 @@ public class ServletListaReservas extends HttpServlet {
 			try {
 				Document document = new Document();
 				document.setPageSize(PageSize.A3);
-				PdfWriter.getInstance(document, new FileOutputStream("C:\\pdf\\listadereservas- " + 
+				PdfWriter.getInstance(document, new FileOutputStream("C:\\pdf\\listadereservas " + 
 							new SimpleDateFormat("dd-MM-yyyy HHmmss").format(new Date()) + ".pdf"));
 				
 				// Abre documento

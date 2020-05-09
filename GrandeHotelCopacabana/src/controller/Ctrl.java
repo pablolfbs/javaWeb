@@ -59,7 +59,7 @@ public class Ctrl {
 	}
 
 	public static boolean isCadastrado(String email) {
-		Collection<? extends Reserva> r = rDAO.listar();
+		Collection<? extends Reserva> r = carregaListaReservas();
 		Set<String> strList = new HashSet<String>();
 
 		r.forEach(res -> strList.add(res.getHospede().getEmail()));

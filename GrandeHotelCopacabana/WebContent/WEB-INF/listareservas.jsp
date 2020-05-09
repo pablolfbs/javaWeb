@@ -103,6 +103,17 @@
 					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 				</div>
 			</div>
+			
+			<!-- Modal Structure -->
+			<div id="modal3" class="modal">
+				<div class="modal-content">
+					<h4>ERRO</h4>
+					<p>Falha ao criar PDF!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
           
 		</form>
 		<br><a href="index.jsp">voltar</a>
