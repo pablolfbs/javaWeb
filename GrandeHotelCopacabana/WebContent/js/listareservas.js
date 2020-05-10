@@ -51,6 +51,7 @@ $(function() {
 			},
 			error : function(err) {
 				console.log(err);
+				$('#modal3').modal('open');
 			}
 		});
 	});
