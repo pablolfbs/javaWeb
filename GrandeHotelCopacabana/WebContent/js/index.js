@@ -4,10 +4,6 @@ $(function() {
 
 	carregaQuartos();
 	
-	$('#modal2').on('click', function() {
-		carregaQuartos();
-	});
-
 	/*
 	 * $('#divSelect').on('click', function() { if($('li').length == 1) {
 	 * alert('Não há quartos disponíveis'); } });
@@ -42,6 +38,7 @@ $(function() {
 			},
 			dataType : 'JSON',
 			success : function(response) {
+				carregaQuartos();
 				$('#modal2').modal('open');
 			},
 			error : function(err) {
