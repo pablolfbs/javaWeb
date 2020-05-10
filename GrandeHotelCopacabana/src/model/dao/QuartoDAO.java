@@ -91,19 +91,21 @@ public class QuartoDAO {
 		return quartos;
 	}
 
-	public void iniciarQuartos(LinkedHashSet<Quarto> quartos) {
-		String sql = " INSERT INTO quarto (num) VALUES (?) ";
+	public void iniciarQuartos() {
+		String sql = " INSERT INTO quarto (num) VALUES (?), (?), (?), (?), (?), (?), (?), (?), (?), (?) ";
 
 		PreparedStatement ps = null;
 		try {
 			ps = connection.prepareStatement(sql);
-			for (Quarto q : quartos) {
-				ps.setInt(1, q.getNum());
-				ps.execute();
+			
+			for (int i = 1; i <= 10; i++) {
+				ps.setInt(i, i);
 			}
+			ps.execute();
 			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+	
 }

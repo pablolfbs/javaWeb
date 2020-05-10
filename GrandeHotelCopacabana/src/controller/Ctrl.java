@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import model.Hospede;
@@ -25,18 +24,8 @@ public class Ctrl {
 		return hDAO.buscarPorId(id);
 	}
 
-	private static void iniciarQuartos(LinkedHashSet<Quarto> quartos) {
-		qDAO.iniciarQuartos(quartos);
-	}
-
 	public static void iniciarListaQuartos() {
-		LinkedHashSet<Quarto> quartos = new LinkedHashSet<Quarto>();
-		for (int i = 1; i <= 10; i++) {
-			Quarto q = new Quarto();
-			q.setNum(i);
-			quartos.add(q);
-		}
-		iniciarQuartos(quartos);
+		qDAO.iniciarQuartos();
 	}
 
 	public static Collection<? extends Reserva> buscarReservaPorNomeHospede(String nome) {
@@ -44,20 +33,17 @@ public class Ctrl {
 	}
 
 	public static Set<Hospede> carregaListaHospedes() {
-		Set<Hospede> hospedes = hDAO.listar();
-		return hospedes;
+		return hDAO.listar();
 	}
 
 	public static Collection<? extends Reserva> carregaListaReservas() {
-		Collection<? extends Reserva> reservas = rDAO.listar();
-		return reservas;
+		return rDAO.listar();
 	}
 
 	public static Set<Quarto> carregaListaQuartos() {
-		Set<Quarto> quartos = qDAO.listar();
-		return quartos;
+		return qDAO.listar();
 	}
-
+	
 	public static boolean isCadastrado(String email) {
 		Collection<? extends Reserva> r = rDAO.listar();
 		Set<String> strList = new HashSet<String>();

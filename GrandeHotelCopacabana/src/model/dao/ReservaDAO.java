@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import controller.Ctrl;
@@ -96,6 +98,27 @@ public class ReservaDAO {
 				reserva.setQuarto(rs.getInt("quarto"));
 				reserva.setDtEntrada(rs.getDate("dtEntrada"));
 				reserva.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(reserva);
+			}
+			ps.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+	
+	public List<Reserva> listarQuartosDeReserva() {
+		String sql = " SELECT quarto FROM reserva ";
+		PreparedStatement ps;
+		ResultSet rs;
+		List<Reserva> reservas = new ArrayList<Reserva>();
+		try {
+			ps = connection.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Reserva reserva = new Reserva();
+				reserva.setQuarto(rs.getInt("quarto"));
 				reservas.add(reserva);
 			}
 			ps.close();

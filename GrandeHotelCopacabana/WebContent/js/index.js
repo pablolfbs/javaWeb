@@ -2,16 +2,10 @@ $(function() {
 
 	$('.modal').modal();
 
-	$.ajax({
-		type : 'GET',
-		url : 'quartos',
-		dataType : 'JSON',
-		success : function(response) {
-			montarCombobox(response);
-		},
-		error : function(err) {
-			console.log(err);
-		}
+	carregaQuartos();
+	
+	$('#modal2').on('click', function() {
+		carregaQuartos();
 	});
 
 	/*
@@ -22,7 +16,7 @@ $(function() {
 	$('#btListar, #btExcluir, #comboBox').on('click', function() {
 		$('.validate').removeAttr('required');
 	});
-
+	
 	/*
 	 * $('#btCadastrar').on('click', function() { var email = $('#email').val();
 	 * $.ajax({ type: 'GET', url: 'hospedes', data: { opcao : 'validaCadastro',
@@ -81,4 +75,19 @@ function montarCombobox(data) {
 	// '">' + data.num + '</option>'));
 
 	$('select').formSelect();
+}
+
+function carregaQuartos() {
+	$.ajax({
+		type : 'GET',
+		url : 'quartos',
+		dataType : 'JSON',
+		success : function(response) {
+			$('#comboBox').text('');
+			montarCombobox(response);
+		},
+		error : function(err) {
+			console.log(err);
+		}
+	});
 }

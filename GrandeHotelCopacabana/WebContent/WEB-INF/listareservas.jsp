@@ -38,7 +38,7 @@
 		<div class="section center">
 			<h1 class="teal-text text-lighten-2">RESERVAS</h1>
 		</div>
-		<form action="listareservas" method="POST">
+		<form id="myForm" action="listareservas" method="POST">
 			<table id="tabela" class="highlight" id="tabela" hidden>
 				<thead>
 					<tr>
