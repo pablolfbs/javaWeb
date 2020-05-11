@@ -59,17 +59,13 @@ $(function() {
 });
 
 function montarCombobox(data) {
-	$('#comboBox').append(
-			'<option value="" disabled selected >Escolha seu quarto</option>');
+	$('#comboBox').append('<option value="" disabled selected >Escolha seu quarto</option>');
 	for (let i = 0; i < data.length; i++) {
-		$('#comboBox').append(
-				'<option value="' + data[i].num + '">' + data[i].num
-						+ '</option>');
+		$('#comboBox').append('<option value="' + data[i].num + '">' + data[i].num + '</option>');
 	}
 
 	// exemplo de enhanced for feito com arrow functions.
-	// data.map(data => $('#comboBox').append('<option value="' + data.num +
-	// '">' + data.num + '</option>'));
+	// data.map(data => $('#comboBox').append('<option value="' + data.num + '">' + data.num + '</option>'));
 
 	$('select').formSelect();
 }

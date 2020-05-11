@@ -27,15 +27,6 @@ $(function() {
 	 * function (err) { console.log(err); } }); });
 	 */
 	
-	$('#tabela').find('tr #btExcluir').on('click', function() {
-		var confirmacao = confirm('Tem certeza que deseja excluir essa reserva?');
-		if (confirmacao) {
-			return true;
-		} else {
-			return false;
-		}
-	});
-
 	$('#confirmaExport').on('click', function() {
 		var nome = $('#buscarPorNome').val().trim();
 		$.ajax({

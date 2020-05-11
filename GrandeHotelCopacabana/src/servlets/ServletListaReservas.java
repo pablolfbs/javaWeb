@@ -119,63 +119,63 @@ public class ServletListaReservas extends HttpServlet {
 			
 		case "ordenarPorId":
 			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorId(nome);
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(opcao, nome);
 			} else {
-				reservas = Ctrl.ordenarReservaPorIdHospede();
+				reservas = Ctrl.ordenarReservaHospede(opcao);
 			}
 			montarJsonComDtFormatada(response);
 			break;
 			
 		case "ordenarPorNome":
 			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorNome(nome);
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(opcao, nome);
 			} else {
-				reservas = Ctrl.ordenarReservaPorNomeHospede();
+				reservas = Ctrl.ordenarReservaHospede(opcao);
 			}
 			montarJsonComDtFormatada(response);
 			break;
 			
 		case "ordenarPorCpf":
 			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorCpf(nome);
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(opcao, nome);
 			} else {
-				reservas = Ctrl.ordenarReservaPorCpfHospede();
+				reservas = Ctrl.ordenarReservaHospede(opcao);
 			}
 			montarJsonComDtFormatada(response);
 			break;
 			
 		case "ordenarPorQuarto":
 			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorQuarto(nome);
+				reservas = Ctrl.buscarReservaPorNomeOrdenada(opcao, nome);
 			} else {
-				reservas = Ctrl.ordenarReservaPorQuarto();
+				reservas = Ctrl.ordenarReserva(opcao);
 			}
 			montarJsonComDtFormatada(response);
 			break;
 			
 		case "ordenarPorEmail":
 			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorEmail(nome);
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(opcao, nome);
 			} else {
-				reservas = Ctrl.ordenarReservaPorEmailHospede();
+				reservas = Ctrl.ordenarReservaHospede(opcao);
 			}
 			montarJsonComDtFormatada(response);
 			break;
 			
 		case "ordenarPorDtEntrada":
 			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorDtEntrada(nome);
+				reservas = Ctrl.buscarReservaPorNomeOrdenada(opcao, nome);
 			} else {
-				reservas = Ctrl.ordenarReservaPorDtEntrada();
+				reservas = Ctrl.ordenarReserva(opcao);
 			}
 			montarJsonComDtFormatada(response);
 			break;
 		
 		case "ordenarPorDtSaida":
 			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenadaPorDtSaida(nome);
+				reservas = Ctrl.buscarReservaPorNomeOrdenada(opcao, nome);
 			} else {
-				reservas = Ctrl.ordenarReservaPorDtSaida();
+				reservas = Ctrl.ordenarReserva(opcao);
 			}
 			montarJsonComDtFormatada(response);
 			break;
