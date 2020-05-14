@@ -191,12 +191,10 @@ function montarTabela(data) {
 	var table;
 	for (let i = 0; i < data.length; i++) {
 		table += '<tr>';
-		table += '<td class="col s1"><input type="text" id="id" name="hospedeId" hidden value="'
-				+ data[i].id + '" />' + data[i].id + '</td>';
+		table += '<td class="col s1"><input type="hidden" id="id" name="hospedeId" value="' + data[i].id + '" />' + data[i].id + '</td>';
 		table += '<td class="col s2">' + data[i].hospede.nome + '</td>';
 		table += '<td class="col s2 center">' + data[i].hospede.cpf + '</td>';
-		table += '<td class="col s2 center"><input type="text" id="quarto" name="quartoNum" hidden value="'
-				+ data[i].quarto + '" />' + data[i].quarto + '</td>';
+		table += '<td class="col s2 center"><input type="hidden" id="quarto" name="quartoNum" value="' + data[i].quarto + '" />' + data[i].quarto + '</td>';
 		table += '<td class="col s2 center">' + data[i].hospede.email + '</td>';
 		table += '<td class="col s1 center">' + data[i].dtEntrada + '</td>';
 		table += '<td class="col s1 center">' + data[i].dtSaida + '</td>';
