@@ -9,6 +9,7 @@ public class Util {
 						+ cpf.substring(9, 11));
 
 		} catch (Exception e) {
+			System.err.println("Impossível formatar cpf: " + e);
 			e.printStackTrace();
 		}
 		return cpf;
