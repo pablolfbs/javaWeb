@@ -37,7 +37,7 @@
 		<div class="section center">
 			<h1 class="teal-text text-lighten-2">RESERVA</h1>
 		</div>
-		<form id="formHospedes" action="hospedes" method="POST">
+		<form accept-charset="ISO-8859-1" id="formHospedes" action="hospedes" method="POST">
 			<div class="row">
 				<div class="input-field col s6">
 					<i class="material-icons prefix">account_circle</i>
@@ -81,15 +81,15 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<button class="btn waves-effect waves-light right" type="submit" id="btCadastrar" value="cadastrar" name="opcao" >
-						Cadastrar <i class="material-icons right">send</i>
+					<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="Cadastrar" type="submit" id="btCadastrar" value="cadastrar" name="opcao" >
+						<i class="material-icons">add</i>
 					</button>
 					<!-- <button class="btn waves-effect waves-light #e53935 red darken-1" type="submit" id="btExcluir" value="excluir" name="opcao" >
 						Excluir <i class="material-icons right">send</i>
 					</button>
 					<div id="mensagem"></div> -->
 					<!-- Modal Trigger -->
-					<button data-target="modal1" class="btn modal-trigger #e53935 red darken-1" type="button" id="btExcluir" value="excluir" name="opcao">Excluir <i class="material-icons right">send</i></button>
+					<button data-target="modal1" class="btn tooltipped modal-trigger #e53935 red darken-1 btn-large" data-position="top" data-tooltip="Apagar todas as reservas" type="button" id="btExcluir" value="excluir" name="opcao">Excluir Todos<i class="material-icons right">send</i></button>
 								
 					<!-- Modal Structure -->
 					<div id="modal1" class="modal">
@@ -98,7 +98,7 @@
 							<p>Tem certeza que deseja excluir todas as reservas?</p>
 						</div>
 						<div class="modal-footer">
-							<a href="#!" class="modal-close waves-effect btn-flat ">Não</a>
+							<a href="#!" class="modal-close waves-effect btn-flat">Não</a>
 							<a href="#!" class="modal-close waves-effect waves-green btn-flat">Sim</a>
 						</div>
 					</div>
@@ -139,8 +139,8 @@
 		<form action="listareservas" method="GET">
 			<div class="row">
 				<div class="col s12">
-					<button class="btn waves-effect waves-light" type="submit" id="btListar" value="listar" name="opcao" >
-						Listar <i class="material-icons right">send</i>
+					<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="Listar" type="submit" id="btListar" value="listar" name="opcao" >
+						<i class="material-icons">format_list_bulleted</i>
 					</button>
 				</div>
 			</div>

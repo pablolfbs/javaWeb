@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -78,7 +79,6 @@ public class ServletHospedes extends HttpServlet {
 
 			montarJsonComDtFormatada(res);
 			break;
-
 		}
 	}
 
@@ -87,7 +87,7 @@ public class ServletHospedes extends HttpServlet {
 		String json = gson.toJson(reservas);
 
 		response.setContentType("application/json");
-		response.getOutputStream().write(json.getBytes());
+		response.getOutputStream().write(json.getBytes(StandardCharsets.UTF_8));
 		response.flushBuffer();
 	}
 }

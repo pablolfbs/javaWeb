@@ -7,9 +7,11 @@ $(function() {
 	if (valor == '') {
 		$('#listavazia').show();
 		$('#tabela').hide();
+		$('#exportar').hide();
 	} else {
 		$('#tabela').show();
 		$('#busca').show();
+		$('#exportar').show();
 	}
 
 	$('#tabela').find('tr').on('click', function() {
@@ -198,7 +200,7 @@ function montarTabela(data) {
 		table += '<td class="col s2 center">' + data[i].hospede.email + '</td>';
 		table += '<td class="col s1 center">' + data[i].dtEntrada + '</td>';
 		table += '<td class="col s1 center">' + data[i].dtSaida + '</td>';
-		table += '<td class="col s1 center"><button class="btn" id="btExcluir" value="excluirLinha" name="opcao"><i class="fa fa-trash"></i></button></td>';
+		table += '<td class="col s1 center"><button class="btn waves-effect waves-teal btn-flat" id="btExcluir" value="excluirLinha" name="opcao"><i class="fa fa-trash"></i></button></td>';
 		table += '</tr>';
 	}
 	$('table tbody').html(table);

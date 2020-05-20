@@ -42,28 +42,28 @@
 			<table id="tabela" class="highlight" id="tabela" hidden>
 				<thead>
 					<tr>
-						<th class="col s1"><a class="waves-effect waves-light btn" href="#">#</a></th>
-						<th class="col s2"><a class="waves-effect waves-light btn" href="#">Nome</a></th>
-						<th class="col s2 center"><a class="waves-effect waves-light btn" href="#">CPF</a></th>
-						<th class="col s2 center"><a class="waves-effect waves-light btn" href="#">Quarto</a></th>
-						<th class="col s2 center"><a class="waves-effect waves-light btn" href="#">E-mail</a></th>
-						<th class="col s1 center"><a class="waves-effect waves-light btn" href="#">Entrada</a></th>
-						<th class="col s1 center"><a class="waves-effect waves-light btn" href="#">Saída</a></th>
+						<th class="col s1"><a class="btn waves-effect waves-teal btn-flat" href="#">#</a></th>
+						<th class="col s2"><a class="btn waves-effect waves-teal btn-flat" href="#">Nome</a></th>
+						<th class="col s2 center"><a class="btn waves-effect waves-teal btn-flat" href="#">CPF</a></th>
+						<th class="col s2 center"><a class="btn waves-effect waves-teal btn-flat" href="#">Quarto</a></th>
+						<th class="col s2 center"><a class="btn waves-effect waves-teal btn-flat" href="#">E-mail</a></th>
+						<th class="col s1 center"><a class="btn waves-effect waves-teal btn-flat" href="#">Entrada</a></th>
+						<th class="col s1 center"><a class="btn waves-effect waves-teal btn-flat" href="#">Saída</a></th>
 						<th class="col s1 center"><a class="waves-effect waves-light #e53935 red darken-1 btn" href="#">Excluir</a></th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="reserva" items="${listaHospedes}">
 						<tr>
-							<td class="col s1"><input type="hidden" id="id" name="hospedeId" value="${reserva.hospede.id}" /><c:out value="${reserva.hospede.id}" /></td>
-							<td class="col s2"><c:out value="${reserva.hospede.nome}" /></td>
-							<td class="col s2 center"><c:out value="${reserva.hospede.cpf}" /></td>
-							<td class="col s2 center"><input type="hidden" id="quarto" name="quartoNum" value="${reserva.quarto}" /><c:out value="${reserva.quarto}" /></td>
-							<td class="col s2 center"><c:out value="${reserva.hospede.email}" /></td>
-							<td class="col s1 center"><c:out value="${reserva.dtEntradaFormatada}" /></td>
-							<td class="col s1 center"><c:out value="${reserva.dtSaidaFormatada}" /></td>
+							<td class="col s1"><input type="hidden" id="id" name="hospedeId" value="${ reserva.hospede.id }" /><c:out value="${ reserva.hospede.id }" /></td>
+							<td class="col s2"><c:out value="${ reserva.hospede.nome }" /></td>
+							<td class="col s2 center"><c:out value="${ reserva.hospede.cpf }" /></td>
+							<td class="col s2 center"><input type="hidden" id="quarto" name="quartoNum" value="${ reserva.quarto }" /><c:out value="${ reserva.quarto }" /></td>
+							<td class="col s2 center"><c:out value="${ reserva.hospede.email }" /></td>
+							<td class="col s1 center"><c:out value="${ reserva.dtEntradaFormatada }" /></td>
+							<td class="col s1 center"><c:out value="${ reserva.dtSaidaFormatada }" /></td>
 							<td class="col s1 center">
-								<button class="btn" id="btExcluir" value="excluirLinha" name="opcao"><i class="fa fa-trash"></i></button>
+								<button class="btn waves-effect waves-teal btn-flat" id="btExcluir" value="excluirLinha" name="opcao"><i class="fa fa-trash"></i></button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -79,7 +79,7 @@
 			<!-- <button type="button" class="btn right" id="btPdf" value="exportarPdf" name="opcao">Exportar PDF</button> -->
 			
 			<!-- Modal Trigger -->
-  			<button type="button" data-target="modal1" class="btn modal-trigger right">Exportar PDF</button>
+  			<button type="button" data-target="modal1" id="exportar" class="btn modal-trigger waves-effect waves-teal btn-flat btn-large right">Exportar PDF</button>
   			
 			<!-- Modal Structure -->
 			<div id="modal1" class="modal">

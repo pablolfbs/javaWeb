@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -187,7 +188,7 @@ public class ServletListaReservas extends HttpServlet {
 		String json = gson.toJson(reservas);
 		
 		response.setContentType("application/json");
-		response.getOutputStream().write(json.getBytes());
+		response.getOutputStream().write(json.getBytes(StandardCharsets.UTF_8));
 		response.flushBuffer();
 	}
 }

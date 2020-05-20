@@ -1,4 +1,6 @@
 $(function() {
+	
+    $('.tooltipped').tooltip();
 
 	$('.modal').modal();
 
