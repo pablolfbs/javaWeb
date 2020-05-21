@@ -81,15 +81,15 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="Cadastrar" type="submit" id="btCadastrar" value="cadastrar" name="opcao" >
-						<i class="material-icons">add</i>
+					<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="Nova reserva" type="submit" id="btCadastrar" value="cadastrar" name="opcao" >
+						<i class="material-icons left">add</i>Cadastrar
 					</button>
 					<!-- <button class="btn waves-effect waves-light #e53935 red darken-1" type="submit" id="btExcluir" value="excluir" name="opcao" >
 						Excluir <i class="material-icons right">send</i>
 					</button>
 					<div id="mensagem"></div> -->
 					<!-- Modal Trigger -->
-					<button data-target="modal1" class="btn tooltipped modal-trigger #e53935 red darken-1 btn-large" data-position="top" data-tooltip="Apagar todas as reservas" type="button" id="btExcluir" value="excluir" name="opcao">Excluir Todos<i class="material-icons right">send</i></button>
+					<button data-target="modal1" class="btn tooltipped modal-trigger waves-light red btn-large" data-position="top" data-tooltip="Apagar todas as reservas" type="button" id="btExcluir" value="excluir" name="opcao">Excluir Todos<i class="material-icons right">send</i></button>
 								
 					<!-- Modal Structure -->
 					<div id="modal1" class="modal">
@@ -139,8 +139,8 @@
 		<form action="listareservas" method="GET">
 			<div class="row">
 				<div class="col s12">
-					<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="Listar" type="submit" id="btListar" value="listar" name="opcao" >
-						<i class="material-icons">format_list_bulleted</i>
+					<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="Listar todas as reservas" type="submit" id="btListar" value="listar" name="opcao" >
+						<i class="material-icons left">format_list_bulleted</i>Listar
 					</button>
 				</div>
 			</div>
