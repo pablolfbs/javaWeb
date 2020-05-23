@@ -53,7 +53,7 @@
 			<div class="row">
 				<div class="input-field col s6">
 					<i class="material-icons prefix">dvr</i>
-					<input id="cpf" type="text" name="cpf" class="validate" >
+					<input id="cpf" type="text" name="cpf" class="validate" required >
 					<label for="cpf">CPF</label>
 				</div>
 				<div id="divSelect" class="input-field col s6">
@@ -81,16 +81,16 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="Nova reserva" type="submit" id="btCadastrar" value="cadastrar" name="opcao" >
+					<!-- Modal Trigger -->
+					<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="Nova reserva" type="button" id="btCadastrar" value="cadastrar" name="opcao" >
 						<i class="material-icons left">add</i>Cadastrar
 					</button>
-					<!-- <button class="btn waves-effect waves-light #e53935 red darken-1" type="submit" id="btExcluir" value="excluir" name="opcao" >
-						Excluir <i class="material-icons right">send</i>
-					</button>
-					<div id="mensagem"></div> -->
+					<input id="opcao" type="hidden" name="opcao" value="cadastrar">
 					<!-- Modal Trigger -->
-					<button data-target="modal1" class="btn tooltipped modal-trigger waves-light red btn-large" data-position="top" data-tooltip="Apagar todas as reservas" type="button" id="btExcluir" value="excluir" name="opcao">Excluir Todos<i class="material-icons right">send</i></button>
-								
+					<button class="btn tooltipped modal-trigger waves-light red btn-large" data-position="top" data-tooltip="Apagar todas as reservas" type="button" id="btExcluir" value="excluir" name="opcao">
+						Excluir Todos<i class="material-icons right">send</i>
+					</button>
+					
 					<!-- Modal Structure -->
 					<div id="modal1" class="modal">
 						<div class="modal-content">
@@ -113,10 +113,20 @@
 							<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 						</div>
 					</div>
+					<!-- Modal Structure -->
+					<div id="modal3" class="modal">
+						<div class="modal-content">
+							<h4>AVISO</h4>
+							<p>Não há reservas a serem apagadas!</p>
+						</div>
+						<div class="modal-footer">
+							<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+						</div>
+					</div>
 				</div>
 			</div>
 			<!-- Modal Structure -->
-			<div id="modal3" class="modal">
+			<div id="modal4" class="modal">
 				<div class="modal-content">
 					<h4>AVISO</h4>
 					<p>Por favor, escolha um quarto!</p>
@@ -126,10 +136,20 @@
 				</div>
 			</div>
 			<!-- Modal Structure -->
-			<div id="modal4" class="modal">
+			<div id="modal5" class="modal">
 				<div class="modal-content">
 					<h4>AVISO</h4>
 					<p>Este e-mail já está cadastrado!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
+			<!-- Modal Structure -->
+			<div id="modal6" class="modal">
+				<div class="modal-content">
+					<h4>AVISO</h4>
+					<p>Favor preencher todos os campos!</p>
 				</div>
 				<div class="modal-footer">
 					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>

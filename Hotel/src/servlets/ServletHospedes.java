@@ -2,7 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Set;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +23,7 @@ public class ServletHospedes extends HttpServlet {
 
 	private static final long serialVersionUID = 7653668041008639990L;
 
-	Set<Reserva> reservas = null;
+	Collection<? extends Reserva> reservas = null;
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -56,7 +56,7 @@ public class ServletHospedes extends HttpServlet {
 				return;
 
 			} else if (!Ctrl.isCadastrado(emailHospede)) {
-				
+
 				Quarto quarto = Ctrl.inserirQuarto(quartoHospede);
 
 				Hospede hospede = Ctrl.inserirHospede(nomeHospede, cpfHospede, emailHospede);
@@ -74,8 +74,18 @@ public class ServletHospedes extends HttpServlet {
 			}
 			break;
 
+		case "verificaReservas":
+			reservas = Ctrl.carregaListaReservas();
+
+			montarJsonComDtFormatada(res);
+			break;
+
 		case "excluir":
-			Ctrl.excluirTodos();
+			reservas = Ctrl.carregaListaReservas();
+
+			if (!reservas.isEmpty()) {
+				Ctrl.excluirTodos();
+			}
 
 			montarJsonComDtFormatada(res);
 			break;
