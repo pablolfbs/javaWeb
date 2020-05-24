@@ -45,36 +45,40 @@ public class ServletListaReservas extends HttpServlet {
 		HttpSession secao = request.getSession();
 		
 		String opcao = request.getParameter("opcao");
-		String nome = request.getParameter("param");
+		String param = request.getParameter("param");
 		
 		RequestDispatcher rd;
 		
 		switch (opcao) {
 		case "exportarPdf":
-			try {
-				Document document = new Document();
-				document.setPageSize(PageSize.A3);
-				PdfWriter.getInstance(document, new FileOutputStream("C:\\pdf\\listadereservas " + 
-							new SimpleDateFormat("dd-MM-yyyy HHmmss").format(new Date()) + ".pdf"));
-				
-				// Abre documento
-				document.open();
-				
-				PdfPTable table = ControllerTable.criarCabecalho();
-				
-				reservas = Ctrl.buscarReservaPorNomeHospede(nome);
-				
-				ControllerTable.preencherDados(document, table, reservas);
-				
-				// Encerra documento
-				document.close();
-				
-				montarJsonComDtFormatada(response);
-				
-			} catch (DocumentException de) {
-				System.err.println(de.getMessage());
-			} catch (IOException ioe) {
-				System.err.println(ioe.getMessage());
+			if (param != null) {
+				try {
+					Document document = new Document();
+					document.setPageSize(PageSize.A3);
+					PdfWriter.getInstance(document, new FileOutputStream("C:\\pdf\\listadereservas " + 
+								new SimpleDateFormat("dd-MM-yyyy HHmmss").format(new Date()) + ".pdf"));
+					
+					// Abre documento
+					document.open();
+					
+					PdfPTable table = ControllerTable.criarCabecalho();
+					
+					reservas = Ctrl.buscarReservaPorNomeHospede(param);
+					
+					ControllerTable.preencherDados(document, table, reservas);
+					
+					// Encerra documento
+					document.close();
+					
+					montarJsonComDtFormatada(response);
+					
+				} catch (DocumentException de) {
+					System.err.println(de.getMessage());
+				} catch (IOException ioe) {
+					System.err.println(ioe.getMessage());
+				}
+			} else {
+				throw new NullPointerException("O parâmetro de pesquisa para exportação do pdf não pode ser nulo.");
 			}
 			break;
 			
@@ -111,16 +115,16 @@ public class ServletListaReservas extends HttpServlet {
 			break;
 			
 		case "buscarPorNome":
-			if (nome.length() > 1 || nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeHospede(nome);
+			if (param.length() > 1 || param.isEmpty()) {
+				reservas = Ctrl.buscarReservaPorNomeHospede(param);
 				
 				montarJsonComDtFormatada(response);
 			}
 			break;
 			
 		case "ordenarPorId":
-			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(opcao, nome);
+			if (!param.isEmpty()) {
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(opcao, param);
 			} else {
 				reservas = Ctrl.ordenarReservaHospede(opcao);
 			}
@@ -128,8 +132,8 @@ public class ServletListaReservas extends HttpServlet {
 			break;
 			
 		case "ordenarPorNome":
-			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(opcao, nome);
+			if (!param.isEmpty()) {
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(opcao, param);
 			} else {
 				reservas = Ctrl.ordenarReservaHospede(opcao);
 			}
@@ -137,8 +141,8 @@ public class ServletListaReservas extends HttpServlet {
 			break;
 			
 		case "ordenarPorCpf":
-			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(opcao, nome);
+			if (!param.isEmpty()) {
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(opcao, param);
 			} else {
 				reservas = Ctrl.ordenarReservaHospede(opcao);
 			}
@@ -146,8 +150,8 @@ public class ServletListaReservas extends HttpServlet {
 			break;
 			
 		case "ordenarPorQuarto":
-			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenada(opcao, nome);
+			if (!param.isEmpty()) {
+				reservas = Ctrl.buscarReservaPorNomeOrdenada(opcao, param);
 			} else {
 				reservas = Ctrl.ordenarReserva(opcao);
 			}
@@ -155,8 +159,8 @@ public class ServletListaReservas extends HttpServlet {
 			break;
 			
 		case "ordenarPorEmail":
-			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(opcao, nome);
+			if (!param.isEmpty()) {
+				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(opcao, param);
 			} else {
 				reservas = Ctrl.ordenarReservaHospede(opcao);
 			}
@@ -164,8 +168,8 @@ public class ServletListaReservas extends HttpServlet {
 			break;
 			
 		case "ordenarPorDtEntrada":
-			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenada(opcao, nome);
+			if (!param.isEmpty()) {
+				reservas = Ctrl.buscarReservaPorNomeOrdenada(opcao, param);
 			} else {
 				reservas = Ctrl.ordenarReserva(opcao);
 			}
@@ -173,8 +177,8 @@ public class ServletListaReservas extends HttpServlet {
 			break;
 		
 		case "ordenarPorDtSaida":
-			if (!nome.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenada(opcao, nome);
+			if (!param.isEmpty()) {
+				reservas = Ctrl.buscarReservaPorNomeOrdenada(opcao, param);
 			} else {
 				reservas = Ctrl.ordenarReserva(opcao);
 			}

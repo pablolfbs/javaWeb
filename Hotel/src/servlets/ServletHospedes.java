@@ -56,7 +56,6 @@ public class ServletHospedes extends HttpServlet {
 				throw new RuntimeException("O quarto precisa conter um número!");
 
 			} else {
-
 				Quarto quarto = Ctrl.inserirQuarto(quartoHospede);
 
 				Hospede hospede = Ctrl.inserirHospede(nomeHospede, cpfHospede, emailHospede);

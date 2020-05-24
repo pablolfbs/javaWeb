@@ -21,16 +21,6 @@ $(function() {
 		$('#quarto').val($(this).find('td:eq(3)').text());
 	});
 
-	/*
-	 * $('#confirmaExcluirLinha').on('click', function() { var hospedeId =
-	 * $('table tbody tr').find('#id').val(); var quartoNum = $('table tbody
-	 * tr').find('#quarto').val(); $.ajax({ type: 'POST', url: 'listareservas',
-	 * data: { opcao : 'excluirLinha', hospedeId : hospedeId, quartoNum :
-	 * quartoNum }, dataType: "JSON", success: function(response) {
-	 * montarTabela(response); $('#modal4').modal('open'); return; }, error:
-	 * function (err) { console.log(err); } }); });
-	 */
-	
 	$('#confirmaExport').on('click', function() {
 		var nome = $('#buscarPorNome').val().trim();
 		$.ajax({
@@ -38,10 +28,10 @@ $(function() {
 			url : 'listareservas',
 			data : {
 				opcao : 'exportarPdf',
-				valor : nome
+				param : nome
 			},
 			dataType : "JSON",
-			success : function(response) {
+			success : function() {
 				$('#modal2').modal('open');
 			},
 			error : function(err) {
@@ -59,7 +49,7 @@ $(function() {
 				url : 'listareservas',
 				data : {
 					opcao : 'buscarPorNome',
-					valor : nome
+					param : nome
 				},
 				dataType : "JSON",
 				success : function(response) {
