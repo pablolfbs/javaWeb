@@ -77,7 +77,7 @@ $(function() {
 		carregaQuartos();
 	});
 
-	$('.waves-green').on('click', function() {
+	$('#confirmaExcluir').on('click', function() {
 		$.ajax({
 			type : 'GET',
 			url : 'hospedes',
@@ -85,7 +85,7 @@ $(function() {
 				opcao : 'excluir'
 			},
 			dataType : 'JSON',
-			success : function(response) {
+			success : function() {
 				carregaQuartos();
 				var instance = M.Modal.getInstance($('#modal2').modal());
 				instance.open();

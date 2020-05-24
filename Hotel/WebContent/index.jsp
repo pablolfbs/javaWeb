@@ -99,7 +99,7 @@
 						</div>
 						<div class="modal-footer">
 							<a href="#!" class="modal-close waves-effect btn-flat">Não</a>
-							<a href="#!" class="modal-close waves-effect waves-green btn-flat">Sim</a>
+							<a href="#!" id="confirmaExcluir" class="modal-close waves-effect waves-green btn-flat">Sim</a>
 						</div>
 					</div>
 					
