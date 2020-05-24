@@ -82,12 +82,12 @@
 			<div class="row">
 				<div class="col s12">
 					<!-- Modal Trigger -->
-					<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="Nova reserva" type="button" id="btCadastrar" value="cadastrar" name="opcao" >
+					<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="nova reserva" type="button" id="btCadastrar" value="cadastrar" name="opcao" >
 						<i class="material-icons left">add</i>Cadastrar
 					</button>
 					<input id="opcao" type="hidden" name="opcao" value="cadastrar">
 					<!-- Modal Trigger -->
-					<button class="btn tooltipped modal-trigger waves-light red btn-large" data-position="top" data-tooltip="Apagar todas as reservas" type="button" id="btExcluir" value="excluir" name="opcao">
+					<button class="btn tooltipped modal-trigger waves-light red btn-large" data-position="top" data-tooltip="apagar todas as reservas" type="button" id="btExcluir" value="excluir" name="opcao">
 						Excluir Todos<i class="material-icons right">send</i>
 					</button>
 					
@@ -159,15 +159,15 @@
 		<form action="listareservas" method="GET">
 			<div class="row">
 				<div class="col s12">
-					<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="Listar todas as reservas" type="submit" id="btListar" value="listar" name="opcao" >
+					<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="listar todas as reservas" type="submit" id="btListar" value="listar" name="opcao" >
 						<i class="material-icons left">format_list_bulleted</i>Listar
 					</button>
 				</div>
 			</div>
 		</form>
 		<div class="row">
-				<div class="col s12">
-					<button style="width: 185px" class="btn waves-effect waves-teal btn-flat btn-large right" type="button" id="btLimpar" value="limpar">
+			<div class="col s12">
+				<button style="width: 185px" class="btn waves-effect waves-teal btn-flat btn-large right" type="button" id="btLimpar" value="limpar">
 					<i class="material-icons left">clear_all</i>Limpar
 				</button>
 			</div>

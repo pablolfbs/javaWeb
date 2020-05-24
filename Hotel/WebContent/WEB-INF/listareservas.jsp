@@ -63,7 +63,7 @@
 							<td class="col s1 center"><c:out value="${ reserva.dtEntradaFormatada }" /></td>
 							<td class="col s1 center"><c:out value="${ reserva.dtSaidaFormatada }" /></td>
 							<td class="col s1 center">
-								<button class="btn waves-effect waves-teal btn-flat" id="btExcluir" value="excluirLinha" name="opcao"><i class="fa fa-trash"></i></button>
+								<button class="btn tooltipped waves-effect waves-teal btn-flat" id="btExcluir" data-position="top" data-tooltip="excluir linha" value="excluirLinha" name="opcao"><i class="fa fa-trash"></i></button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -79,7 +79,9 @@
 			<!-- <button type="button" class="btn right" id="btPdf" value="exportarPdf" name="opcao">Exportar PDF</button> -->
 			
 			<!-- Modal Trigger -->
-  			<button type="button" data-target="modal1" id="exportar" class="btn modal-trigger waves-effect waves-teal btn-flat btn-large right">Exportar PDF</button>
+  			<button type="button" data-target="modal1" id="exportar" class="btn modal-trigger waves-effect waves-teal btn-flat btn-large right">
+  				<i class="material-icons left">file_download</i>Exportar PDF
+  			</button>
   			
 			<!-- Modal Structure -->
 			<div id="modal1" class="modal">

@@ -1,7 +1,7 @@
 $(function() {
 
 	$('.tooltipped').tooltip();
-
+	
 	carregaQuartos();
 
 	/*

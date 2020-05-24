@@ -1,4 +1,6 @@
 $(function() {
+	
+	$('.tooltipped').tooltip();
 
 	var valor = $('#tabela td').text();
 
@@ -13,7 +15,7 @@ $(function() {
 		$('#busca').show();
 		$('#exportar').show();
 	}
-
+	
 	$('#tabela').find('tr').on('click', function() {
 		$('#id').val($(this).find('td:first').text());
 		$('#quarto').val($(this).find('td:eq(3)').text());
@@ -72,119 +74,45 @@ $(function() {
 
 	$('#tabela thead tr th').on('click', function() {
 		var nome = $('#buscarPorNome').val().trim();
-		if ($(this).text() == '#') {
-			$.ajax({
-				type : 'GET',
-				url : 'listareservas',
-				data : {
-					opcao : 'ordenarPorId',
-					valor : nome
-				},
-				dataType : "JSON",
-				success : function(response) {
-					montarTabela(response);
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
-		} else if ($(this).text() == 'Nome') {
-			$.ajax({
-				type : 'GET',
-				url : 'listareservas',
-				data : {
-					opcao : 'ordenarPorNome',
-					valor : nome
-				},
-				dataType : "JSON",
-				success : function(response) {
-					montarTabela(response);
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
-		} else if ($(this).text() == 'CPF') {
-			$.ajax({
-				type : 'GET',
-				url : 'listareservas',
-				data : {
-					opcao : 'ordenarPorCpf',
-					valor : nome
-				},
-				dataType : "JSON",
-				success : function(response) {
-					montarTabela(response);
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
-		} else if ($(this).text() == 'Quarto') {
-			$.ajax({
-				type : 'GET',
-				url : 'listareservas',
-				data : {
-					opcao : 'ordenarPorQuarto',
-					valor : nome
-				},
-				dataType : "JSON",
-				success : function(response) {
-					montarTabela(response);
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
-		} else if ($(this).text() == 'E-mail') {
-			$.ajax({
-				type : 'GET',
-				url : 'listareservas',
-				data : {
-					opcao : 'ordenarPorEmail',
-					valor : nome
-				},
-				dataType : "JSON",
-				success : function(response) {
-					montarTabela(response);
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
-		} else if ($(this).text() == 'Entrada') {
-			$.ajax({
-				type : 'GET',
-				url : 'listareservas',
-				data : {
-					opcao : 'ordenarPorDtEntrada',
-					valor : nome
-				},
-				dataType : "JSON",
-				success : function(response) {
-					montarTabela(response);
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
-		} else if ($(this).text() == 'Saída') {
-			$.ajax({
-				type : 'GET',
-				url : 'listareservas',
-				data : {
-					opcao : 'ordenarPorDtSaida',
-					valor : nome
-				},
-				dataType : "JSON",
-				success : function(response) {
-					montarTabela(response);
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
+		var valor = '';
+		switch($(this).text()) {
+		case '#':
+			valor = 'ordenarPorId';
+			break;
+		case 'Nome':
+			valor = 'ordenarPorNome';
+			break;
+		case 'CPF':
+			valor = 'ordenarPorCpf';
+			break;
+		case 'Quarto':
+			valor = 'ordenarPorQuarto';
+			break;
+		case 'E-mail':
+			valor = 'ordenarPorEmail';
+			break;
+		case 'Entrada':
+			valor = 'ordenarPorDtEntrada';
+			break;
+		case 'Saída':
+			valor = 'ordenarPorDtSaida';
+			break;
 		}
+		$.ajax({
+			type : 'GET',
+			url : 'listareservas',
+			data : {
+				opcao : valor,
+				param : nome
+			},
+			dataType : "JSON",
+			success : function(response) {
+				montarTabela(response);
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		});
 	});
 });
 

@@ -45,7 +45,7 @@ public class ServletListaReservas extends HttpServlet {
 		HttpSession secao = request.getSession();
 		
 		String opcao = request.getParameter("opcao");
-		String nome = request.getParameter("valor");
+		String nome = request.getParameter("param");
 		
 		RequestDispatcher rd;
 		
