@@ -14,36 +14,37 @@ $(function() {
 	});
 
 	$('#btCadastrar').on('click', function() {
-		var opcao = 'validaCadastro';
-		var nome = $('#first_name').val();
-		var cpf = $('#cpf').val();
-		var email = $('#email').val();
-		var quarto = $('#comboBox').val();
-		$.ajax({
-			type : 'GET',
-			url : 'hospedes',
-			data : {
-				opcao : opcao,
-				email : email
-			},
-			dataType : 'JSON',
-			success : function(response) {
-				if (response) {
-					var instance = M.Modal.getInstance($('#modal5').modal());
-					instance.open();
-				} else {
-					if (nome != '' && email != '' && quarto != null) {
-						$('#formHospedes').submit();
-					} else {
-						var instance = M.Modal.getInstance($('#modal6').modal());
+		let opcao = 'validaCadastro';
+		let nome = $('#first_name').val();
+		let cpf = $('#cpf').val();
+		let email = $('#email').val();
+		let quarto = $('#comboBox').val();
+		
+		if (nome == '' || email == '' || cpf == '' || quarto == null) {
+			var instance = M.Modal.getInstance($('#modal6').modal());
+			instance.open();
+		} else {
+			$.ajax({
+				type : 'GET',
+				url : 'hospedes',
+				data : {
+					opcao : opcao,
+					email : email
+				},
+				dataType : 'JSON',
+				success : function(response) {
+					if (response) {
+						var instance = M.Modal.getInstance($('#modal5').modal());
 						instance.open();
+					} else {
+						$('#formHospedes').submit();
 					}
+				},
+				error : function(err) {
+					console.log(err);
 				}
-			},
-			error : function(err) {
-				console.log(err);
-			}
-		});
+			});
+		}
 	});
 
 	$('#btExcluir').on('click', function() {
@@ -67,6 +68,13 @@ $(function() {
 				console.log(err);
 			}
 		});
+	});
+	
+	$('#btLimpar').on('click', function() {
+		$('#first_name').val('');
+		$('#cpf').val('');
+		$('#email').val('');
+		carregaQuartos();
 	});
 
 	$('.waves-green').on('click', function() {

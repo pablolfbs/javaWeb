@@ -165,6 +165,13 @@
 				</div>
 			</div>
 		</form>
+		<div class="row">
+				<div class="col s12">
+					<button style="width: 185px" class="btn waves-effect waves-teal btn-flat btn-large right" type="button" id="btLimpar" value="limpar">
+					<i class="material-icons left">clear_all</i>Limpar
+				</button>
+			</div>
+		</div>
 	</div>
 
 	<!--JavaScript at end of body for optimized loading-->

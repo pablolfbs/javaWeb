@@ -52,10 +52,10 @@ public class ServletHospedes extends HttpServlet {
 			break;
 
 		case "cadastrar":
-			if (quartoHospede == null) {
-				return;
+			if (quartoHospede.isEmpty() || quartoHospede == null) {
+				throw new RuntimeException("O quarto precisa conter um número!");
 
-			} else if (!Ctrl.isCadastrado(emailHospede)) {
+			} else {
 
 				Quarto quarto = Ctrl.inserirQuarto(quartoHospede);
 
@@ -68,9 +68,6 @@ public class ServletHospedes extends HttpServlet {
 				Ctrl.enviaEmailConfirmacao(quarto, hospede, reserva);
 
 				res.sendRedirect("confirmacao.jsp");
-
-			} else {
-				res.sendRedirect("emailduplicado.jsp");
 			}
 			break;
 
