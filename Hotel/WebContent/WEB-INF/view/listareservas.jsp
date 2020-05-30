@@ -91,7 +91,7 @@
 				</div>
 			</div>
 			<div class="input-field col s6" id="busca" hidden>
-				<input id="pesquisar" type="text" name="opcao" class="validate" >
+				<input id="pesquisar" type="text" name="acao" class="validate" >
 				<label id="labelPesquisar" for="buscar">Pesquisar</label>
 			</div>
 			<br>
@@ -99,7 +99,7 @@
 				Logout<i class="material-icons left red-text">power_settings_new</i>
 			</button>
 			
-			<!-- <button type="button" class="btn right" id="btPdf" value="exportarPdf" name="opcao">Exportar PDF</button> -->
+			<!-- <button type="button" class="btn right" id="btPdf" value="exportarPdf" name="acao">Exportar PDF</button> -->
 			
 			<!-- Modal Trigger -->
   			<button type="button" data-target="modal1" id="exportar" class="btn modal-trigger waves-effect waves-teal btn-flat btn-large right">

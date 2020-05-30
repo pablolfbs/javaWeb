@@ -31,7 +31,7 @@ $(function() {
 			type : 'GET',
 			url : 'entrada',
 			data : {
-				opcao : 'exportarPdf',
+				acao : 'exportarPdf',
 				param : nome
 			},
 			dataType : "JSON",
@@ -76,8 +76,8 @@ $(function() {
 	});
 	
 	$('#selectPesquisar').on('change', function() {
-		var opcao = $('#selectPesquisar option:selected').text().toLowerCase();
-		$('#labelPesquisar').text('Pesquisar por ' + opcao);
+		var acao = $('#selectPesquisar option:selected').text().toLowerCase();
+		$('#labelPesquisar').text('Pesquisar por ' + acao);
 	});
 
 	$('#tabela thead tr th').on('click', function() {
@@ -110,7 +110,7 @@ $(function() {
 			type : 'GET',
 			url : 'listareservas',
 			data : {
-				opcao : valor,
+				acao : valor,
 				param : nome
 			},
 			dataType : "JSON",
@@ -137,7 +137,7 @@ function montarTabela(data) {
 		table += '<td class="col s1 center">' + data[i].dtEntrada + '</td>';
 		table += '<td class="col s1 center">' + data[i].dtSaida + '</td>';
 		table += '<td class="col s1 center">';
-		table += '<button class="btn waves-effect waves-teal btn-flat" id="btExcluir" value="excluirLinha" name="opcao">';
+		table += '<button class="btn waves-effect waves-teal btn-flat" id="btExcluir" value="excluirLinha" name="acao">';
 		table += '<i class="fa fa-trash"></button></td>';
 		table += '</tr>';
 	}
