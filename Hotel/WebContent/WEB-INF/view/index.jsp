@@ -17,15 +17,15 @@
 	crossorigin="anonymous"></script>
 
 <!--Import Google Icon Font-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!--Import materialize.css-->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style type="text/css">
 	.modal { width: 25% !important; }
@@ -37,7 +37,7 @@
 		<div class="section center">
 			<h1 class="teal-text text-lighten-2">RESERVA</h1>
 		</div>
-		<form accept-charset="ISO-8859-1" id="formHospedes" action="hospedes" method="POST">
+		<form accept-charset="ISO-8859-1" id="formHospedes" action="entrada" method="POST">
 			<div class="row">
 				<div class="input-field col s6">
 					<i class="material-icons prefix">account_circle</i>
@@ -82,13 +82,13 @@
 			<div class="row">
 				<div class="col s12">
 					<!-- Modal Trigger -->
-					<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="nova reserva" type="button" id="btCadastrar" value="cadastrar" name="opcao" >
+					<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="nova reserva" type="button" id="btCadastrar" value="cadastrarHospede" name="acao" >
 						<i class="material-icons left">add</i>Cadastrar
 					</button>
-					<input id="opcao" type="hidden" name="opcao" value="cadastrar">
+					<!-- <input type="hidden" name="acao" value="cadastrarHospede" /> -->
 					<!-- Modal Trigger -->
-					<button class="btn tooltipped modal-trigger waves-light red btn-large" data-position="top" data-tooltip="apagar todas as reservas" type="button" id="btExcluir" value="excluir" name="opcao">
-						Excluir Todos<i class="material-icons right">send</i>
+					<button class="btn tooltipped modal-trigger waves-effect waves-teal btn-flat btn-large" data-position="top" data-tooltip="apagar todas as reservas" type="button" id="btExcluir" value="excluirTodos" name="acao">
+						Excluir Todos<i style="padding-left: 20px" class="fa fa-trash"></i>
 					</button>
 					
 					<!-- Modal Structure -->
@@ -155,11 +155,31 @@
 					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 				</div>
 			</div>
+			<!-- Modal Structure -->
+			<div id="modal7" class="modal">
+				<div class="modal-content">
+					<h4>SUCESSO</h4>
+					<p>Reserva cadastrada com sucesso!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
+			<!-- Modal Structure -->
+			<div id="modal8" class="modal">
+				<div class="modal-content">
+					<h4>ERRO</h4>
+					<p>Erro ao cadastrar reserva!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
 		</form>
-		<form action="listareservas" method="GET">
+		<form action="entrada" method="GET">
 			<div class="row">
 				<div class="col s12">
-					<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="listar todas as reservas" type="submit" id="btListar" value="listar" name="opcao" >
+					<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="listar todas as reservas" type="submit" id="btListar" value="listarReservas" name="acao" >
 						<i class="material-icons left">format_list_bulleted</i>Listar
 					</button>
 				</div>
@@ -175,7 +195,7 @@
 	</div>
 
 	<!--JavaScript at end of body for optimized loading-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 				
 	<script type="text/javascript" src="js/index.js"></script>
 </body>

@@ -12,47 +12,32 @@ $(function() {
 	$('#btListar, #btExcluir, #comboBox').on('click', function() {
 		$('.validate').removeAttr('required');
 	});
+	
+	$('#btLimpar').on('click', function() {
+		limparCampos();
+	});
 
 	$('#btCadastrar').on('click', function() {
-		let opcao = 'validaCadastro';
-		let nome = $('#first_name').val();
-		let cpf = $('#cpf').val();
-		let email = $('#email').val();
-		let quarto = $('#comboBox').val();
+		var acao = 'validaCadastro';
+		var nome = $('#first_name').val();
+		var cpf = $('#cpf').val();
+		var email = $('#email').val();
+		var quarto = $('#comboBox').val();
 		
 		if (nome == '' || email == '' || cpf == '' || quarto == null) {
 			var instance = M.Modal.getInstance($('#modal6').modal());
 			instance.open();
 		} else {
-			$.ajax({
-				type : 'GET',
-				url : 'hospedes',
-				data : {
-					opcao : opcao,
-					email : email
-				},
-				dataType : 'JSON',
-				success : function(response) {
-					if (response) {
-						var instance = M.Modal.getInstance($('#modal5').modal());
-						instance.open();
-					} else {
-						$('#formHospedes').submit();
-					}
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
+			validaCadastro(acao, nome, cpf, email, quarto);
 		}
 	});
 
 	$('#btExcluir').on('click', function() {
 		$.ajax({
 			type : 'GET',
-			url : 'hospedes',
+			url : 'entrada',
 			data : {
-				opcao : 'verificaReservas'
+				acao : 'verificaReservas'
 			},
 			dataType : 'JSON',
 			success : function(response) {
@@ -70,19 +55,12 @@ $(function() {
 		});
 	});
 	
-	$('#btLimpar').on('click', function() {
-		$('#first_name').val('');
-		$('#cpf').val('');
-		$('#email').val('');
-		carregaQuartos();
-	});
-
 	$('#confirmaExcluir').on('click', function() {
 		$.ajax({
 			type : 'GET',
-			url : 'hospedes',
+			url : 'entrada',
 			data : {
-				opcao : 'excluir'
+				acao : 'excluirTodos'
 			},
 			dataType : 'JSON',
 			success : function() {
@@ -107,6 +85,67 @@ $(function() {
 	});
 });
 
+function validaCadastro(acao, nome, cpf, email, quarto) {
+	$.ajax({
+		type : 'GET',
+		url : 'entrada',
+		data : {
+			acao : acao,
+			email : email
+		},
+		dataType : 'JSON',
+		success : function(response) {
+			console.log(response);
+			if (response) {
+				var instance = M.Modal.getInstance($('#modal5').modal());
+				instance.open();
+			} else {
+				/*$('#formHospedes').submit();*/
+				cadastrarReserva(nome, cpf, email, quarto);
+			}
+		},
+		error : function(err) {
+			console.log(err);
+			var instance = M.Modal.getInstance($('#modal8').modal());
+			instance.open();
+		}
+	});
+}
+
+function cadastrarReserva(nome, cpf, email, quarto) {
+	$.ajax({
+	    type: "POST",
+	    url: "entrada",
+	    data: {
+	    	acao : "cadastrarHospede",
+	    	nome : nome,
+	    	cpf : cpf,
+	    	email : email,
+	    	quarto : quarto
+	    },
+	    dataType: "JSON",
+	    success: function () {
+	    	var instance = M.Modal.getInstance($('#modal7').modal());
+			instance.open();
+			
+			limparCampos();
+	    },
+		error : function(err) {
+			console.log(err);
+			var instance = M.Modal.getInstance($('#modal8').modal());
+			instance.open();
+		}
+	});
+}
+
+function limparCampos() {
+	$('#first_name').removeClass('valid').val('').next().removeClass('active');
+	$('#cpf').removeClass('valid').val('').next().removeClass('active');
+	$('#email').removeClass('valid').val('').next().removeClass('active');
+	carregaQuartos();
+	
+}
+
 function montarCombobox(data) {
 	$('#comboBox').html(
 			'<option value="" disabled selected >Escolha seu quarto</option>');
@@ -126,7 +165,10 @@ function montarCombobox(data) {
 function carregaQuartos() {
 	$.ajax({
 		type : 'GET',
-		url : 'quartos',
+		url : 'entrada',
+		data : {
+			acao : 'carregaQuartos'
+		},
 		dataType : 'JSON',
 		success : function(response) {
 			$('#comboBox').text('');

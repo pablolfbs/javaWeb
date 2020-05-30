@@ -5,12 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import controller.Ctrl;
 import model.Hospede;
+import model.Quarto;
 import model.Reserva;
 
 public class ReservaDAO {
@@ -104,6 +107,29 @@ public class ReservaDAO {
 			e.printStackTrace();
 		}
 		return reservas;
+	}
+	
+	public List<Quarto> listarQuartosReservados() {
+		String sql = " SELECT quarto FROM reserva ";
+		PreparedStatement ps;
+		ResultSet rs;
+		List<Quarto> quartos = new ArrayList<Quarto>();
+		try {
+			ps = connection.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Reserva reserva = new Reserva();
+				reserva.setQuarto(rs.getInt("quarto"));
+				Quarto q = new Quarto();
+				q.setNum(reserva.getQuarto());
+				quartos.add(q);
+			}
+			ps.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return quartos;
 	}
 	
 	public Collection<? extends Reserva> buscarPorNomeHospede(String nome) {

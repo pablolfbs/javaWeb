@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -91,21 +92,26 @@ public class QuartoDAO {
 		return quartos;
 	}
 
-	public void iniciarQuartos() {
+	public Collection<? extends Quarto> iniciarQuartos() {
 		String sql = " INSERT INTO quarto (num) VALUES (?), (?), (?), (?), (?), (?), (?), (?), (?), (?) ";
 
 		PreparedStatement ps = null;
+		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
 		try {
 			ps = connection.prepareStatement(sql);
 			
 			for (int i = 1; i <= 10; i++) {
 				ps.setInt(i, i);
+				Quarto q = new Quarto();
+				q.setNum(i);
+				quartos.add(q);
 			}
 			ps.execute();
 			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return quartos;
 	}
 	
 }

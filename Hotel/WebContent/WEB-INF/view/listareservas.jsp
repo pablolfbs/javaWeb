@@ -30,6 +30,8 @@
 
 <style type="text/css">
 	.modal { width: 25% !important; }
+	
+	.radioDistance { padding-left: 20px; }
 </style>
 </head>
 
@@ -38,7 +40,7 @@
 		<div class="section center">
 			<h1 class="teal-text text-lighten-2">RESERVAS</h1>
 		</div>
-		<form id="myForm" action="listareservas" method="POST">
+		<form id="myForm" action="entrada" method="POST">
 			<table id="tabela" class="highlight" id="tabela" hidden>
 				<thead>
 					<tr>
@@ -63,7 +65,9 @@
 							<td class="col s1 center"><c:out value="${ reserva.dtEntradaFormatada }" /></td>
 							<td class="col s1 center"><c:out value="${ reserva.dtSaidaFormatada }" /></td>
 							<td class="col s1 center">
-								<button class="btn tooltipped waves-effect waves-teal btn-flat" id="btExcluir" data-position="top" data-tooltip="excluir linha" value="excluirLinha" name="opcao"><i class="fa fa-trash"></i></button>
+								<button class="btn tooltipped waves-effect waves-teal btn-flat" id="btExcluir" data-position="top" data-tooltip="excluir linha" value="excluirLinha" name="acao">
+									<i class="fa fa-trash"></i>
+								</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -72,10 +76,25 @@
 			
 			<h5 class="center" style="color:red" id="listavazia" hidden>A lista de reservas está vazia.</h5>
 			<br>
-			<div class="input-field col s6" id="busca" hidden>
-				<input id="buscarPorNome" type="text" name="opcao" class="validate" >
-				<label for="buscarPorNome">Pesquisar por nome</label>
+			<div id="divPesquisa" class="row">
+				<div class="input-field col s2">
+					<select id="selectPesquisar">
+						<option value="" disabled selected>Pesquisar por</option>
+						<option value="1">Matrícula</option>
+						<option value="2">Nome</option>
+						<option value="3">CPF</option>
+						<option value="4">Quarto</option>
+						<option value="5">E-mail</option>
+						<option value="6">Data de Entrada</option>
+						<option value="7">Data de Saída</option>
+					</select>
+				</div>
 			</div>
+			<div class="input-field col s6" id="busca" hidden>
+				<input id="pesquisar" type="text" name="opcao" class="validate" >
+				<label id="labelPesquisar" for="buscar">Pesquisar</label>
+			</div>
+			<br>
 			<!-- <button type="button" class="btn right" id="btPdf" value="exportarPdf" name="opcao">Exportar PDF</button> -->
 			
 			<!-- Modal Trigger -->
@@ -116,9 +135,20 @@
 					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 				</div>
 			</div>
+			
+			<!-- Modal Structure -->
+			<div id="modal4" class="modal">
+				<div class="modal-content">
+					<h4>AVISO</h4>
+					<p>Favor escolher um parâmetro para a pesquisa!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
           
 		</form>
-		<br><a href="index.jsp">voltar</a>
+		<br><a href="entrada?acao=index">voltar</a>
 	</div>
 
     <!-- Compiled and minified JavaScript -->

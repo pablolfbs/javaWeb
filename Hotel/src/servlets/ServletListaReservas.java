@@ -51,75 +51,75 @@ public class ServletListaReservas extends HttpServlet {
 		
 		switch (opcao) {
 		case "exportarPdf":
-			if (param != null) {
-				try {
-					Document document = new Document();
-					document.setPageSize(PageSize.A3);
-					PdfWriter.getInstance(document, new FileOutputStream("C:\\pdf\\listadereservas " + 
-								new SimpleDateFormat("dd-MM-yyyy HHmmss").format(new Date()) + ".pdf"));
-					
-					// Abre documento
-					document.open();
-					
-					PdfPTable table = ControllerTable.criarCabecalho();
-					
-					reservas = Ctrl.buscarReservaPorNomeHospede(param);
-					
-					ControllerTable.preencherDados(document, table, reservas);
-					
-					// Encerra documento
-					document.close();
-					
-					montarJsonComDtFormatada(response);
-					
-				} catch (DocumentException de) {
-					System.err.println(de.getMessage());
-				} catch (IOException ioe) {
-					System.err.println(ioe.getMessage());
-				}
-			} else {
-				throw new NullPointerException("O parâmetro de pesquisa para exportação do pdf não pode ser nulo.");
-			}
+//			if (param != null) {
+//				try {
+//					Document document = new Document();
+//					document.setPageSize(PageSize.A3);
+//					PdfWriter.getInstance(document, new FileOutputStream("C:\\pdf\\listadereservas " + 
+//								new SimpleDateFormat("dd-MM-yyyy HHmmss").format(new Date()) + ".pdf"));
+//					
+//					// Abre documento
+//					document.open();
+//					
+//					PdfPTable table = ControllerTable.criarCabecalho();
+//					
+//					reservas = Ctrl.buscarReservaPorNomeHospede(param);
+//					
+//					ControllerTable.preencherDados(document, table, reservas);
+//					
+//					// Encerra documento
+//					document.close();
+//					
+//					montarJsonComDtFormatada(response);
+//					
+//				} catch (DocumentException de) {
+//					System.err.println(de.getMessage());
+//				} catch (IOException ioe) {
+//					System.err.println(ioe.getMessage());
+//				}
+//			} else {
+//				throw new NullPointerException("O parâmetro de pesquisa para exportação do pdf não pode ser nulo.");
+//			}
 			break;
 			
 		case "excluirLinha":
-			String hospedeId = request.getParameter("hospedeId");
-			String quartoNum = request.getParameter("quartoNum");
-
-			Hospede hospede = Ctrl.buscarHospedePorId(Integer.parseInt(hospedeId));
-			
-			Quarto quarto = new Quarto();
-			quarto.setNum(Integer.parseInt(quartoNum));
-			
-			Ctrl.excluiLinha(hospedeId, quarto);
-
-			quartos.addAll(Ctrl.carregaListaQuartos());
-			secao.setAttribute("listaQuartos", quartos);
-			
-			reservas = Ctrl.carregaListaReservas();
-			secao.setAttribute("listaHospedes", reservas);
-			
-			Ctrl.enviaEmailExclusaoReserva(hospede, quarto);
-
-			rd = getServletContext().getRequestDispatcher("/WEB-INF/listareservas.jsp");
-			rd.forward(request, response);
+//			String hospedeId = request.getParameter("hospedeId");
+//			String quartoNum = request.getParameter("quartoNum");
+//
+//			Hospede hospede = Ctrl.buscarHospedePorId(Integer.parseInt(hospedeId));
+//			
+//			Quarto quarto = new Quarto();
+//			quarto.setNum(Integer.parseInt(quartoNum));
+//			
+//			Ctrl.excluiLinha(hospedeId, quarto);
+//
+//			quartos.addAll(Ctrl.carregaListaQuartos());
+//			secao.setAttribute("listaQuartos", quartos);
+//			
+//			reservas = Ctrl.carregaListaReservas();
+//			secao.setAttribute("listaHospedes", reservas);
+//			
+//			Ctrl.enviaEmailExclusaoReserva(hospede, quarto);
+//
+//			rd = getServletContext().getRequestDispatcher("/WEB-INF/listareservas.jsp");
+//			rd.forward(request, response);
 			break;
 			
 		case "listar":
-			reservas = Ctrl.carregaListaReservas();
-
-			secao.setAttribute("listaHospedes", reservas);
-			
-			rd = getServletContext().getRequestDispatcher("/WEB-INF/listareservas.jsp");
-			rd.forward(request, response);
+//			reservas = Ctrl.carregaListaReservas();
+//
+//			secao.setAttribute("listaHospedes", reservas);
+//			
+//			rd = getServletContext().getRequestDispatcher("/WEB-INF/listareservas.jsp");
+//			rd.forward(request, response);
 			break;
 			
-		case "buscarPorNome":
-			if (param.length() > 1 || param.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeHospede(param);
-				
-				montarJsonComDtFormatada(response);
-			}
+		case "pesquisarPorNome":
+//			if (param.length() > 1 || param.isEmpty()) {
+//				reservas = Ctrl.buscarReservaPorNomeHospede(param);
+//				
+//				montarJsonComDtFormatada(response);
+//			}
 			break;
 			
 		case "ordenarPorId":

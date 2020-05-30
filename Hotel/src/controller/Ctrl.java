@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import model.Hospede;
@@ -24,10 +25,10 @@ public class Ctrl {
 		return hDAO.buscarPorId(id);
 	}
 
-	public static void iniciarListaQuartos() {
-		qDAO.iniciarQuartos();
+	public static Collection<? extends Quarto> iniciarListaQuartos() {
+		return qDAO.iniciarQuartos();
 	}
-
+	
 	public static Collection<? extends Reserva> buscarReservaPorNomeHospede(String nome) {
 		return rDAO.buscarPorNomeHospede(nome);
 	}
@@ -42,6 +43,10 @@ public class Ctrl {
 
 	public static Set<Quarto> carregaListaQuartos() {
 		return qDAO.listar();
+	}
+	
+	public static List<Quarto> carregaListaQuartosReservados() {
+		return rDAO.listarQuartosReservados();
 	}
 	
 	public static boolean isCadastrado(String email) {
@@ -132,5 +137,5 @@ public class Ctrl {
 	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaHospede(String param, String nome) {
 		return rDAO.buscarReservaPorNomeOrdenadaPorHospede(Ctrl.getParam(param), nome);
 	}
-
+	
 }

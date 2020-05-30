@@ -1,6 +1,8 @@
 $(function() {
 	
 	$('.tooltipped').tooltip();
+	
+	$('select').formSelect();
 
 	var valor = $('#tabela td').text();
 
@@ -10,10 +12,12 @@ $(function() {
 		$('#listavazia').show();
 		$('#tabela').hide();
 		$('#exportar').hide();
+		$('#divPesquisa').hide();
 	} else {
 		$('#tabela').show();
 		$('#busca').show();
 		$('#exportar').show();
+		$('#divPesquisa').show();
 	}
 	
 	$('#tabela').find('tr').on('click', function() {
@@ -22,48 +26,62 @@ $(function() {
 	});
 
 	$('#confirmaExport').on('click', function() {
-		var nome = $('#buscarPorNome').val().trim();
+		var nome = $('#pesquisar').val().trim();
 		$.ajax({
 			type : 'GET',
-			url : 'listareservas',
+			url : 'entrada',
 			data : {
 				opcao : 'exportarPdf',
 				param : nome
 			},
 			dataType : "JSON",
 			success : function() {
-				$('#modal2').modal('open');
+				var instance = M.Modal.getInstance($('#modal2').modal());
+				instance.open();
 			},
 			error : function(err) {
 				console.log(err);
-				$('#modal3').modal('open');
+				var instance = M.Modal.getInstance($('#modal3').modal());
+				instance.open();
 			}
 		});
 	});
 
-	$('#buscarPorNome').on('keyup', function() {
+	$('#pesquisar').on('keyup', function() {
 		if ($(this).val().length > 1 || $(this).val() == '') {
 			var nome = $(this).val().trim();
-			$.ajax({
-				type : 'GET',
-				url : 'listareservas',
-				data : {
-					opcao : 'buscarPorNome',
-					param : nome
-				},
-				dataType : "JSON",
-				success : function(response) {
-					montarTabela(response);
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
+			var param = $('#selectPesquisar option:selected').text();
+			if ($('#selectPesquisar').val() == null) {
+				var instance = M.Modal.getInstance($('#modal4').modal());
+				instance.open();
+			} else {
+				$.ajax({
+					type : 'GET',
+					url : 'entrada',
+					data : {
+						acao : 'pesquisarPor' + param,
+						param : nome
+					},
+					dataType : "JSON",
+					success : function(response) {
+						montarTabela(response);
+					},
+					error : function(err) {
+						console.log(err);
+					}
+				});
+			}
+			
 		}
+	});
+	
+	$('#selectPesquisar').on('change', function() {
+		var opcao = $('#selectPesquisar option:selected').text().toLowerCase();
+		$('#labelPesquisar').text('Pesquisar por ' + opcao);
 	});
 
 	$('#tabela thead tr th').on('click', function() {
-		var nome = $('#buscarPorNome').val().trim();
+		var nome = $('#pesquisar').val().trim();
 		var valor = '';
 		switch($(this).text()) {
 		case '#':
@@ -118,7 +136,9 @@ function montarTabela(data) {
 		table += '<td class="col s2 center">' + data[i].hospede.email + '</td>';
 		table += '<td class="col s1 center">' + data[i].dtEntrada + '</td>';
 		table += '<td class="col s1 center">' + data[i].dtSaida + '</td>';
-		table += '<td class="col s1 center"><button class="btn waves-effect waves-teal btn-flat" id="btExcluir" value="excluirLinha" name="opcao"><i class="fa fa-trash"></i></button></td>';
+		table += '<td class="col s1 center">';
+		table += '<button class="btn waves-effect waves-teal btn-flat" id="btExcluir" value="excluirLinha" name="opcao">';
+		table += '<i class="fa fa-trash"></button></td>';
 		table += '</tr>';
 	}
 	$('table tbody').html(table);

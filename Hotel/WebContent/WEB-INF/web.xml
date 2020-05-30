@@ -4,4 +4,31 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  
+  <filter>
+  	<filter-name>MF</filter-name>
+  	<filter-class>servlets.MonitoramentoFilter</filter-class>
+  </filter>
+  <filter-mapping>
+	<filter-name>MF</filter-name>
+	<url-pattern>/entrada</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+  	<filter-name>AF</filter-name>
+  	<filter-class>servlets.AutorizacaoFilter</filter-class>
+  </filter>
+  <filter-mapping>
+	<filter-name>AF</filter-name>
+	<url-pattern>/entrada</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+  	<filter-name>CF</filter-name>
+  	<filter-class>servlets.ControladorFilter</filter-class>
+  </filter>
+  <filter-mapping>
+	<filter-name>CF</filter-name>
+	<url-pattern>/entrada</url-pattern>
+  </filter-mapping>
 </web-app>
