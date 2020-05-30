@@ -50,10 +50,10 @@ public class Ctrl {
 	}
 	
 	public static boolean isCadastrado(String email) {
-		Collection<? extends Reserva> r = carregaListaReservas();
+		Collection<? extends Reserva> reservas = carregaListaReservas();
 		Set<String> strList = new HashSet<String>();
 
-		r.forEach(res -> strList.add(res.getHospede().getEmail()));
+		reservas.forEach(r -> strList.add(r.getHospede().getEmail()));
 
 		return strList.contains(email);
 	}

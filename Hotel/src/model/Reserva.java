@@ -15,6 +15,31 @@ public class Reserva implements Serializable {
 	
 	private Hospede hospede;
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((hospede == null) ? 0 : hospede.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reserva other = (Reserva) obj;
+		if (hospede == null) {
+			if (other.hospede != null)
+				return false;
+		} else if (!hospede.equals(other.hospede))
+			return false;
+		return true;
+	}
+
 	/*
 	 * SimpleDateFormat está estático por causa da conversão para JSON. Probably
 	 * because Gson uses DecimalFormat to format numeric type data.

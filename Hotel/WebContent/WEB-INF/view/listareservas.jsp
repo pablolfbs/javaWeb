@@ -95,6 +95,10 @@
 				<label id="labelPesquisar" for="buscar">Pesquisar</label>
 			</div>
 			<br>
+			<button style="width: 185px" class="btn waves-effect waves-teal btn-flat btn-large" type="submit" id="btLogout" name="acao" value="logout">
+				Logout<i class="material-icons left red-text">power_settings_new</i>
+			</button>
+			
 			<!-- <button type="button" class="btn right" id="btPdf" value="exportarPdf" name="opcao">Exportar PDF</button> -->
 			
 			<!-- Modal Trigger -->
@@ -146,7 +150,6 @@
 					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 				</div>
 			</div>
-          
 		</form>
 		<br><a href="entrada?acao=index">voltar</a>
 	</div>

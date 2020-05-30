@@ -80,48 +80,46 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col s12">
-					<!-- Modal Trigger -->
-					<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="nova reserva" type="button" id="btCadastrar" value="cadastrarHospede" name="acao" >
-						<i class="material-icons left">add</i>Cadastrar
-					</button>
-					<!-- <input type="hidden" name="acao" value="cadastrarHospede" /> -->
-					<!-- Modal Trigger -->
-					<button class="btn tooltipped modal-trigger waves-effect waves-teal btn-flat btn-large" data-position="top" data-tooltip="apagar todas as reservas" type="button" id="btExcluir" value="excluirTodos" name="acao">
-						Excluir Todos<i style="padding-left: 20px" class="fa fa-trash"></i>
-					</button>
-					
-					<!-- Modal Structure -->
-					<div id="modal1" class="modal">
-						<div class="modal-content">
-							<h4>AVISO</h4>
-							<p>Tem certeza que deseja excluir todas as reservas?</p>
-						</div>
-						<div class="modal-footer">
-							<a href="#!" class="modal-close waves-effect btn-flat">Não</a>
-							<a href="#!" id="confirmaExcluir" class="modal-close waves-effect waves-green btn-flat">Sim</a>
-						</div>
+				<!-- Modal Trigger -->
+				<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="nova reserva" type="button" id="btCadastrar" value="cadastrarHospede" name="acao" >
+					<i class="material-icons left">add</i>Cadastrar
+				</button>
+				<!-- <input type="hidden" name="acao" value="cadastrarHospede" /> -->
+				<!-- Modal Trigger -->
+				<button class="btn tooltipped modal-trigger waves-effect waves-teal btn-flat btn-large" data-position="top" data-tooltip="apagar todas as reservas" type="button" id="btExcluir" value="excluirTodos" name="acao">
+					<i style="padding-right: 20px" class="fa fa-trash"></i>Excluir Todos
+				</button>
+				
+				<!-- Modal Structure -->
+				<div id="modal1" class="modal">
+					<div class="modal-content">
+						<h4>AVISO</h4>
+						<p>Tem certeza que deseja excluir todas as reservas?</p>
 					</div>
-					
-					<!-- Modal Structure -->
-					<div id="modal2" class="modal">
-						<div class="modal-content">
-							<h4>SUCESSO</h4>
-							<p>Todas as reservas foram apagadas!</p>
-						</div>
-						<div class="modal-footer">
-							<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
-						</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-close waves-effect btn-flat">Não</a>
+						<a href="#!" id="confirmaExcluir" class="modal-close waves-effect waves-green btn-flat">Sim</a>
 					</div>
-					<!-- Modal Structure -->
-					<div id="modal3" class="modal">
-						<div class="modal-content">
-							<h4>AVISO</h4>
-							<p>Não há reservas a serem apagadas!</p>
-						</div>
-						<div class="modal-footer">
-							<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
-						</div>
+				</div>
+				
+				<!-- Modal Structure -->
+				<div id="modal2" class="modal">
+					<div class="modal-content">
+						<h4>SUCESSO</h4>
+						<p>Todas as reservas foram apagadas!</p>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+					</div>
+				</div>
+				<!-- Modal Structure -->
+				<div id="modal3" class="modal">
+					<div class="modal-content">
+						<h4>AVISO</h4>
+						<p>Não há reservas a serem apagadas!</p>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 					</div>
 				</div>
 			</div>
@@ -175,23 +173,20 @@
 					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 				</div>
 			</div>
-		</form>
-		<form action="entrada" method="GET">
 			<div class="row">
-				<div class="col s12">
-					<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="listar todas as reservas" type="submit" id="btListar" value="listarReservas" name="acao" >
-						<i class="material-icons left">format_list_bulleted</i>Listar
-					</button>
-				</div>
+				<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="listar todas as reservas" type="submit" id="btListar" value="listarReservas" name="acao" >
+					<i class="material-icons left">format_list_bulleted</i>Listar
+				</button>
 			</div>
-		</form>
-		<div class="row">
-			<div class="col s12">
+			<div class="row">
+				<button style="width: 185px" class="btn waves-effect waves-teal btn-flat btn-large" type="submit" id="btLogout" name="acao" value="logout">
+					Logout<i class="material-icons left red-text">power_settings_new</i>
+				</button>
 				<button style="width: 185px" class="btn waves-effect waves-teal btn-flat btn-large right" type="button" id="btLimpar" value="limpar">
 					<i class="material-icons left">clear_all</i>Limpar
 				</button>
 			</div>
-		</div>
+		</form>
 	</div>
 
 	<!--JavaScript at end of body for optimized loading-->

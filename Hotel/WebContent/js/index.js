@@ -9,7 +9,7 @@ $(function() {
 	 * alert('Não há quartos disponíveis'); } });
 	 */
 
-	$('#btListar, #btExcluir, #comboBox').on('click', function() {
+	$('#btListar, #btExcluir, #comboBox, #btLogout').on('click', function() {
 		$('.validate').removeAttr('required');
 	});
 	
