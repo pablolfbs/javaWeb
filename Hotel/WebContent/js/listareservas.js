@@ -71,46 +71,23 @@ $(function() {
 					}
 				});
 			}
-			
 		}
 	});
 	
 	$('#selectPesquisar').on('change', function() {
-		var acao = $('#selectPesquisar option:selected').text().toLowerCase();
-		$('#labelPesquisar').text('Pesquisar por ' + acao);
+		var param = $('#selectPesquisar option:selected').text();
+		$('#labelPesquisar').text('Pesquisar por ' + param);
 	});
 
 	$('#tabela thead tr th').on('click', function() {
 		var nome = $('#pesquisar').val().trim();
-		var valor = '';
-		switch($(this).text()) {
-		case '#':
-			valor = 'ordenarPorId';
-			break;
-		case 'Nome':
-			valor = 'ordenarPorNome';
-			break;
-		case 'CPF':
-			valor = 'ordenarPorCpf';
-			break;
-		case 'Quarto':
-			valor = 'ordenarPorQuarto';
-			break;
-		case 'E-mail':
-			valor = 'ordenarPorEmail';
-			break;
-		case 'Entrada':
-			valor = 'ordenarPorDtEntrada';
-			break;
-		case 'Saída':
-			valor = 'ordenarPorDtSaida';
-			break;
-		}
+		var valor = $(this).text().substring(0, 1).toUpperCase() + $(this).text().substring(1).toLowerCase();
 		$.ajax({
 			type : 'GET',
-			url : 'listareservas',
+			url : 'entrada',
 			data : {
-				acao : valor,
+				acao : 'ordenarPor',
+				paramOrdenacao : valor,
 				param : nome
 			},
 			dataType : "JSON",

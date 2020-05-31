@@ -63,7 +63,7 @@
 	<div id="login-page" class="row">
 		<div class="col s12 z-depth-6 card-panel">
 		<h1 class="center" style="color: #26a69a">Login</h1>
-			<form class="login-form" action="entrada?acao=login">
+			<form class="login-form" action="entrada?acao=login" method="POST">
 				<div class="row"></div>
 				<div class="row">
 					<div class="input-field col s12">
