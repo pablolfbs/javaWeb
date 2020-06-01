@@ -4,10 +4,12 @@ $(function() {
 	
 	carregaQuartos();
 
-	/*
-	 * $('#divSelect').on('click', function() { if($('li').length == 1) {
-	 * alert('Não há quartos disponíveis'); } });
-	 */
+	$('#divSelect').on('click', function() {
+		if($('li').length == 1) {
+			var instance = M.Modal.getInstance($('#modal9').modal());
+			instance.open();
+		}
+	});
 
 	$('#btListar, #btExcluir, #comboBox, #btLogout').on('click', function() {
 		$('.validate').removeAttr('required');
@@ -95,7 +97,6 @@ function validaCadastro(acao, nome, cpf, email, quarto) {
 		},
 		dataType : 'JSON',
 		success : function(response) {
-			console.log(response);
 			if (response) {
 				var instance = M.Modal.getInstance($('#modal5').modal());
 				instance.open();
@@ -151,8 +152,7 @@ function montarCombobox(data) {
 			'<option value="" disabled selected >Escolha seu quarto</option>');
 	for (let i = 0; i < data.length; i++) {
 		$('#comboBox').append(
-				'<option value="' + data[i].num + '">' + data[i].num
-						+ '</option>');
+				'<option value="' + data[i].num + '">' + data[i].num + '</option>');
 	}
 
 	// exemplo de enhanced for feito com arrow functions.
@@ -171,7 +171,6 @@ function carregaQuartos() {
 		},
 		dataType : 'JSON',
 		success : function(response) {
-			$('#comboBox').text('');
 			montarCombobox(response);
 		},
 		error : function(err) {

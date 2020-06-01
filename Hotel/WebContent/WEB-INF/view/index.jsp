@@ -173,6 +173,16 @@
 					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 				</div>
 			</div>
+			<!-- Modal Structure -->
+			<div id="modal9" class="modal">
+				<div class="modal-content">
+					<h4>AVISO</h4>
+					<p>Não há quartos disponíveis!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
 			<div class="row">
 				<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="listar todas as reservas" type="submit" id="btListar" value="listarReservas" name="acao" >
 					<i class="material-icons left">format_list_bulleted</i>Listar

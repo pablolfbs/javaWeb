@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import model.Quarto;
+import model.enumerador.QuartoEnum;
 
 public class CarregaQuartos implements Acao {
 
@@ -24,7 +25,7 @@ public class CarregaQuartos implements Acao {
 		} else {
 			Set<Quarto> lista = Ctrl.carregaListaQuartos();
 			quartos = new LinkedHashSet<Quarto>();
-			for (int i = 1; i <= 10; i++) {
+			for (int i = 1; i <= QuartoEnum.values().length; i++) {
 				Quarto q = new Quarto(i);
 				if (!lista.contains(q))
 					quartos.add(q);
