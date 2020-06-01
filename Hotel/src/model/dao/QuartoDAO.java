@@ -14,7 +14,7 @@ public class QuartoDAO {
 	
 	Connection connection = ConnectionFactory.getConnection();
 	
-	public int inserir(Quarto quarto) {
+	public Quarto inserir(Quarto quarto) {
 		String sql = " INSERT INTO quarto (num) VALUES (?) ";
 		
 		PreparedStatement ps = null;
@@ -26,7 +26,7 @@ public class QuartoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return quarto.getNum();
+		return quarto;
 	}
 	
 	public void atualizar(Quarto quarto) {

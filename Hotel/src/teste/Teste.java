@@ -99,10 +99,34 @@ public class Teste {
 //			System.out.println(r.getDtEntradaFormatada() + "\n");
 //		}
 		
-			ReservaDAO rDAO = new ReservaDAO();
-			Collection<? extends Reserva> reservas = rDAO.buscarPorNomeHospede("");
-			reservas.forEach(r -> System.out.println(r.getHospede().getNome()));
-			
+//			ReservaDAO rDAO = new ReservaDAO();
+//			Collection<? extends Reserva> reservas = rDAO.buscarPorNomeHospede("");
+//			reservas.forEach(r -> System.out.println(r.getHospede().getNome()));
+		
+		ListaQuartos[] values = ListaQuartos.values();
+		for (int i = 0; i < values.length; i++) {
+			System.out.println(values[i]);
+		}
+	}
+	
+	private enum ListaQuartos {
+		
+		UM(1), DOIS(2), TRES(3), QUATRO(4), CINCO(5), SEIS(6), SETE(7), OITO(8), NOVE(9), DEZ(10);
+
+		
+		private Integer num;
+		
+		ListaQuartos(Integer num) {
+			this.num = num;
+		}
+		
+		public Integer getNum() {
+			return num;
+		}
+		
+		public void setNum(Integer num) {
+			this.num = num;
+		}
 	}
 
 }

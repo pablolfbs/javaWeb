@@ -26,8 +26,7 @@ public class ExcluirLinha implements Acao {
 
 		Hospede hospede = Ctrl.buscarHospedePorId(Integer.parseInt(hospedeId));
 		
-		Quarto quarto = new Quarto();
-		quarto.setNum(Integer.parseInt(quartoNum));
+		Quarto quarto = new Quarto(Integer.valueOf(quartoNum));
 		
 		Ctrl.excluiLinha(hospedeId, quarto);
 

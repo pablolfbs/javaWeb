@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import model.Hospede;
@@ -14,6 +14,7 @@ import model.Reserva;
 import model.dao.HospedeDAO;
 import model.dao.QuartoDAO;
 import model.dao.ReservaDAO;
+import model.enumerador.QuartoEnum;
 
 public class Ctrl {
 
@@ -26,7 +27,12 @@ public class Ctrl {
 	}
 
 	public static Collection<? extends Quarto> iniciarListaQuartos() {
-		return qDAO.iniciarQuartos();
+		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
+		
+		for (QuartoEnum qEnum : QuartoEnum.values()) {
+			quartos.add(new Quarto(qEnum.getNum()));
+		}
+		return quartos;
 	}
 	
 	public static Collection<? extends Reserva> buscarReservaPorNomeHospede(String nome) {
@@ -45,10 +51,6 @@ public class Ctrl {
 		return qDAO.listar();
 	}
 	
-	public static List<Quarto> carregaListaQuartosReservados() {
-		return rDAO.listarQuartosReservados();
-	}
-	
 	public static boolean isCadastrado(String email) {
 		Collection<? extends Reserva> reservas = carregaListaReservas();
 		Set<String> strList = new HashSet<String>();
@@ -56,13 +58,6 @@ public class Ctrl {
 		reservas.forEach(r -> strList.add(r.getHospede().getEmail()));
 
 		return strList.contains(email);
-	}
-
-	public static Quarto inserirQuarto(String quartoHospede) {
-		Quarto quarto = new Quarto();
-		quarto.setNum(Integer.parseInt(quartoHospede));
-		qDAO.excluir(quarto.getNum());
-		return quarto;
 	}
 
 	public static Reserva inserirReserva(Quarto quarto, Hospede hospede, String dtEntrada, String dtSaida) {
@@ -89,9 +84,13 @@ public class Ctrl {
 		hospede.setId(hDAO.inserir(hospede));
 		return hospede;
 	}
+	
+	public static Quarto inserirQuarto(String quartoHospede) {
+		return qDAO.inserir(new Quarto(Integer.valueOf(quartoHospede)));
+	}
 
 	public static void excluiLinha(String hospedeId, Quarto quarto) {
-		qDAO.inserir(quarto);
+		qDAO.excluir(quarto.getNum());
 		rDAO.excluir(Integer.parseInt(hospedeId));
 		hDAO.excluir(Integer.parseInt(hospedeId));
 	}
@@ -137,5 +136,5 @@ public class Ctrl {
 	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaHospede(String param, String nome) {
 		return rDAO.buscarReservaPorNomeOrdenadaPorHospede(Ctrl.getParam(param), nome);
 	}
-	
+
 }

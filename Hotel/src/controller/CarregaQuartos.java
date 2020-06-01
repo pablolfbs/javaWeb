@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -23,14 +22,15 @@ public class CarregaQuartos implements Acao {
 			quartos.addAll(Ctrl.iniciarListaQuartos());
 			
 		} else {
-			List<Quarto> lista = Ctrl.carregaListaQuartosReservados();
+			Set<Quarto> lista = Ctrl.carregaListaQuartos();
+			quartos = new LinkedHashSet<Quarto>();
 			for (int i = 1; i <= 10; i++) {
-				Quarto q = new Quarto();
-				q.setNum(i);
+				Quarto q = new Quarto(i);
 				if (!lista.contains(q))
 					quartos.add(q);
 			}
 		}
+		
 		String json = new Gson().toJson(quartos);
 
 		response.setContentType("application/json");
