@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Controller c = new Controller();
+		var c = new Controller();
 		c.calculaIMC();
 		
 	}
