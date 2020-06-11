@@ -38,6 +38,10 @@ public class Ctrl {
 	public static Collection<? extends Reserva> buscarReservaPorNomeHospede(String nome) {
 		return rDAO.buscarPorNomeHospede(nome);
 	}
+	
+	public static Collection<? extends Reserva> buscarReservaPorEmailHospede(String nome) {
+		return rDAO.buscarPorEmailHospede(nome);
+	}
 
 	public static Set<Hospede> carregaListaHospedes() {
 		return hDAO.listar();

@@ -31,7 +31,7 @@ public class ExcluirLinha implements Acao {
 		Ctrl.excluiLinha(hospedeId, quarto);
 
 		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
-		quartos .addAll(Ctrl.carregaListaQuartos());
+		quartos.addAll(Ctrl.carregaListaQuartos());
 		sessao.setAttribute("listaQuartos", quartos);
 		
 		Collection<? extends Reserva> reservas = Ctrl.carregaListaReservas();

@@ -19,7 +19,7 @@ public class ListarReservas implements Acao {
 		HttpSession sessao = request.getSession();
 		
 		ReservaDAO rDAO = new ReservaDAO();
-		Collection<? extends Reserva> reservas = rDAO .listar();
+		Collection<? extends Reserva> reservas = rDAO.listar();
 		
 		sessao.setAttribute("listaHospedes", reservas);
 		

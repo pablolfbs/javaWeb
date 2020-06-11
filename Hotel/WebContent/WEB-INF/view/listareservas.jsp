@@ -35,7 +35,7 @@
 </style>
 </head>
 
-<body>
+<body style="margin-bottom: 50px">
 	<div class="container">
 		<div class="section center">
 			<h1 class="teal-text text-lighten-2">RESERVAS</h1>
@@ -80,19 +80,19 @@
 				<div class="input-field col s2">
 					<select id="selectPesquisar">
 						<option value="" disabled selected>Pesquisar por</option>
-						<option value="1">Matrícula</option>
-						<option value="2">Nome</option>
-						<option value="3">CPF</option>
-						<option value="4">Quarto</option>
-						<option value="5">E-mail</option>
-						<option value="6">Data de Entrada</option>
-						<option value="7">Data de Saída</option>
+						<!-- <option value="matricula">Matrícula</option> -->
+						<option value="nome">Nome</option>
+						<!-- <option value="cpf">CPF</option> -->
+						<!-- <option value="quarto">Quarto</option> -->
+						<option value="email">E-mail</option>
+						<!-- <option value="dtEntrada">Data de Entrada</option> -->
+						<!-- <option value="dtSaida">Data de Saída</option> -->
 					</select>
 				</div>
-			</div>
-			<div class="input-field col s6" id="busca" hidden>
-				<input id="pesquisar" type="text" class="validate" >
-				<label id="labelPesquisar" for="buscar">Pesquisar</label>
+				<div class="input-field col s10" id="busca" hidden>
+					<input id="pesquisar" type="text" class="validate" >
+					<label id="labelPesquisar" for="buscar">Pesquisar</label>
+				</div>
 			</div>
 			<br>
 			<button style="width: 185px" class="btn waves-effect waves-teal btn-flat btn-large" type="submit" id="btLogout" name="acao" value="logout">
@@ -149,7 +149,9 @@
 				</div>
 			</div>
 		</form>
-		<br><a href="entrada?acao=index">voltar</a>
+		<div>
+			<br><a href="entrada?acao=index">voltar</a>
+		</div>
 	</div>
 
     <!-- Compiled and minified JavaScript -->

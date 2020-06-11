@@ -131,6 +131,31 @@ public class ReservaDAO {
 		return reservas;
 	}
 	
+	public Collection<? extends Reserva> buscarPorEmailHospede(String nome) {
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.email LIKE '%" 
+				+ nome + "%' ";
+
+		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
+		try {
+			Statement sttm = connection.createStatement();
+			ResultSet rs = sttm.executeQuery(sql);
+			while (rs.next()) {
+				Reserva r = new Reserva();
+				r.setId(rs.getInt("id"));
+				r.setHospede(Ctrl.buscarHospedePorId(rs.getInt("id_hospede")));
+				r.setQuarto(rs.getInt("quarto"));
+				r.setDtEntrada(rs.getDate("dtEntrada"));
+				r.setDtSaida(rs.getDate("dtSaida"));
+				reservas.add(r);
+			}
+			sttm.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservas;
+	}
+	
 	public Collection<? extends Reserva> ordenarReserva(String param) {
 		String sql = " SELECT * FROM reserva r ORDER BY r." + param + " ";
 		

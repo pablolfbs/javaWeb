@@ -50,7 +50,8 @@ $(function() {
 	$('#pesquisar').on('keyup', function() {
 		if ($(this).val().length > 1 || $(this).val() == '') {
 			var nome = $(this).val().trim();
-			var param = $('#selectPesquisar option:selected').text();
+			var param = $('#selectPesquisar option:selected').val();
+			param = param.substring(0, 1).toUpperCase() + param.substring(1);
 			if ($('#selectPesquisar').val() == null) {
 				var instance = M.Modal.getInstance($('#modal4').modal());
 				instance.open();

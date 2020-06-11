@@ -103,9 +103,34 @@ public class Teste {
 //			Collection<? extends Reserva> reservas = rDAO.buscarPorNomeHospede("");
 //			reservas.forEach(r -> System.out.println(r.getHospede().getNome()));
 		
-		ListaQuartos[] values = ListaQuartos.values();
-		for (int i = 0; i < values.length; i++) {
-			System.out.println(values[i]);
+//		ListaQuartos[] values = ListaQuartos.values();
+//		for (int i = 0; i < values.length; i++) {
+//			System.out.println(values[i]);
+//		}
+		
+		String texto = "pablo luiz faria britto de souza";
+		int index = 0;
+		int indexAnterior = 0;
+		System.out.println("O texto tem " + texto.length() + " caracteres.");
+//		while (index >= 0) {
+//			if (index > 0) {
+//				System.out.println(texto.substring(indexAnterior, index));
+//				indexAnterior = index + 1;
+//			}
+//			index = texto.indexOf(" ", index + 1);
+//			if (index == -1) {
+//				System.out.println(texto.substring(indexAnterior));
+//			}
+//		}
+		while (index >= 0) {
+			if (index > 0) {
+				System.out.println(texto.substring(indexAnterior, indexAnterior + 1).toUpperCase().concat(texto.substring(indexAnterior + 1, index)));
+				indexAnterior = index + 1;
+			}
+			index = texto.indexOf(" ", index + 1);
+			if (index == -1) {
+				System.out.println(texto.substring(indexAnterior, indexAnterior + 1).toUpperCase().concat(texto.substring(indexAnterior + 1)));
+			}
 		}
 	}
 	

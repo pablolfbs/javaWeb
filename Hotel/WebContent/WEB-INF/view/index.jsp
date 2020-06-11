@@ -32,7 +32,7 @@
 </style>
 </head>
 
-<body>
+<body style="margin-bottom: 50px">
 	<div class="container">
 		<div class="section center">
 			<h1 class="teal-text text-lighten-2">RESERVA</h1>

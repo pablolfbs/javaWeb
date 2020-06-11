@@ -12,12 +12,12 @@ import model.Hospede;
 import util.Util;
 
 public class HospedeDAO {
-	
-Connection connection = ConnectionFactory.getConnection();
-	
+
+	Connection connection = ConnectionFactory.getConnection();
+
 	public int inserir(Hospede hospede) {
 		String sql = " INSERT INTO hospede (nome, cpf, email) VALUES (?, ?, ?) ";
-		
+
 		PreparedStatement ps = null;
 		try {
 			ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -32,7 +32,7 @@ Connection connection = ConnectionFactory.getConnection();
 		int id = 0;
 		try {
 			rs = ps.getGeneratedKeys();
-			if(rs.next()){
+			if (rs.next()) {
 				id = rs.getInt(1);
 			}
 			ps.close();
@@ -42,10 +42,10 @@ Connection connection = ConnectionFactory.getConnection();
 		}
 		return id;
 	}
-	
+
 	public void atualizar(Hospede hospede) {
 		String sql = " UPDATE hospede SET nome = ?, cpf = ?, email = ? WHERE id = ? ";
-		
+
 		PreparedStatement ps;
 		try {
 			ps = connection.prepareStatement(sql);
@@ -59,10 +59,10 @@ Connection connection = ConnectionFactory.getConnection();
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void excluir(int id) {
 		String sql = " DELETE FROM hospede WHERE id = ? ";
-		
+
 		PreparedStatement ps;
 		try {
 			ps = connection.prepareStatement(sql);
@@ -73,10 +73,10 @@ Connection connection = ConnectionFactory.getConnection();
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void excluirTodos() {
 		String sql = " DELETE FROM hospede ";
-		
+
 		PreparedStatement ps;
 		try {
 			ps = connection.prepareStatement(sql);
@@ -86,10 +86,10 @@ Connection connection = ConnectionFactory.getConnection();
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Set<Hospede> listar() {
 		String sql = " SELECT * FROM hospede ";
-		
+
 		PreparedStatement ps;
 		ResultSet rs;
 		Set<Hospede> hospedes = new LinkedHashSet<Hospede>();
@@ -111,7 +111,7 @@ Connection connection = ConnectionFactory.getConnection();
 		}
 		return hospedes;
 	}
-	
+
 	public Hospede buscarPorId(Integer id) {
 		String sql = " SELECT * FROM hospede WHERE id = ? ";
 

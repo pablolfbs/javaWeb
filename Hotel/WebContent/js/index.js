@@ -1,5 +1,5 @@
 $(function() {
-
+	
 	$('.tooltipped').tooltip();
 	
 	carregaQuartos();
@@ -25,12 +25,14 @@ $(function() {
 		var cpf = $('#cpf').val();
 		var email = $('#email').val();
 		var quarto = $('#comboBox').val();
+		var dtEntrada = $('#dtEntrada').val();
+		var dtSaida = $('#dtSaida').val();
 		
 		if (nome == '' || email == '' || cpf == '' || quarto == null) {
 			var instance = M.Modal.getInstance($('#modal6').modal());
 			instance.open();
 		} else {
-			validaCadastro(acao, nome, cpf, email, quarto);
+			validaCadastro(acao, nome, cpf, email, quarto, dtEntrada, dtSaida);
 		}
 	});
 
@@ -87,7 +89,7 @@ $(function() {
 	});
 });
 
-function validaCadastro(acao, nome, cpf, email, quarto) {
+function validaCadastro(acao, nome, cpf, email, quarto, dtEntrada, dtSaida) {
 	$.ajax({
 		type : 'GET',
 		url : 'entrada',
@@ -102,7 +104,7 @@ function validaCadastro(acao, nome, cpf, email, quarto) {
 				instance.open();
 			} else {
 				/*$('#formHospedes').submit();*/
-				cadastrarReserva(nome, cpf, email, quarto);
+				cadastrarReserva(nome, cpf, email, quarto, dtEntrada, dtSaida);
 			}
 		},
 		error : function(err) {
@@ -113,7 +115,7 @@ function validaCadastro(acao, nome, cpf, email, quarto) {
 	});
 }
 
-function cadastrarReserva(nome, cpf, email, quarto) {
+function cadastrarReserva(nome, cpf, email, quarto, dtEntrada, dtSaida) {
 	$.ajax({
 	    type: "POST",
 	    url: "entrada",
@@ -122,7 +124,9 @@ function cadastrarReserva(nome, cpf, email, quarto) {
 	    	nome : nome,
 	    	cpf : cpf,
 	    	email : email,
-	    	quarto : quarto
+	    	quarto : quarto,
+	    	dtEntrada : dtEntrada,
+	    	dtSaida : dtSaida
 	    },
 	    dataType: "JSON",
 	    success: function () {

@@ -18,7 +18,7 @@ public class ExcluirTodos implements Acao {
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Collection<? extends Reserva> reservas = Ctrl.carregaListaReservas();
-
+		
 		if (!reservas.isEmpty()) {
 			Ctrl.excluirTodos();
 		}
