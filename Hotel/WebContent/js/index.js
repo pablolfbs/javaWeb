@@ -144,10 +144,12 @@ function cadastrarReserva(nome, cpf, email, quarto, dtEntrada, dtSaida) {
 }
 
 function limparCampos() {
-	$('#first_name').removeClass('valid').val('').next().removeClass('active');
-	$('#cpf').removeClass('valid').val('').next().removeClass('active');
-	$('#email').removeClass('valid').val('').next().removeClass('active');
+	$('#first_name').removeClass('valid').val('').removeClass('invalid').val('').next().removeClass('active');
+	$('#cpf').removeClass('valid').val('').removeClass('invalid').val('').next().removeClass('active');
+	$('#email').removeClass('valid').val('').removeClass('invalid').val('').next().removeClass('active');
 	carregaQuartos();
+	$('#dtEntrada').removeClass('valid').val('').next().removeClass('active');
+	$('#dtSaida').removeClass('valid').val('').next().removeClass('active');
 	
 }
 
