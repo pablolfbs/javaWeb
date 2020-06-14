@@ -162,8 +162,7 @@ function montarCombobox(data) {
 	}
 
 	// exemplo de enhanced for feito com arrow functions.
-	// data.map(data => $('#comboBox').append('<option value="' + data.num +
-	// '">' + data.num + '</option>'));
+	// data.map(data => $('#comboBox').append('<option value="' + data.num + '">' + data.num + '</option>'));
 
 	$('select').formSelect();
 }

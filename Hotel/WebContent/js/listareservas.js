@@ -83,22 +83,24 @@ $(function() {
 	$('#tabela thead tr th').on('click', function() {
 		var nome = $('#pesquisar').val().trim();
 		var valor = $(this).text().substring(0, 1).toUpperCase() + $(this).text().substring(1).toLowerCase();
-		$.ajax({
-			type : 'GET',
-			url : 'entrada',
-			data : {
-				acao : 'ordenarPor',
-				paramOrdenacao : valor,
-				param : nome
-			},
-			dataType : "JSON",
-			success : function(response) {
-				montarTabela(response);
-			},
-			error : function(err) {
-				console.log(err);
-			}
-		});
+		if (valor != 'Excluir') {
+			$.ajax({
+				type : 'GET',
+				url : 'entrada',
+				data : {
+					acao : 'ordenarPor',
+					paramOrdenacao : valor,
+					param : nome
+				},
+				dataType : "JSON",
+				success : function(response) {
+					montarTabela(response);
+				},
+				error : function(err) {
+					console.log(err);
+				}
+			});
+		}
 	});
 });
 
