@@ -39,7 +39,7 @@ public class ServiceController extends HttpServlet {
 		
 		// String cep = request.getParameter("cep");
 		
-		String cep = "21051000";
+		String cep = "21051040";
 		
 		try {
 			resultado = port.consultaCEP(cep);

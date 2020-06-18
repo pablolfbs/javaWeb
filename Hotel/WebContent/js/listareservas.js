@@ -1,7 +1,7 @@
-$(function() {
-	
+$(() => {
+
 	$('.tooltipped').tooltip();
-	
+
 	$('select').formSelect();
 
 	var valor = $('#tabela td').text();
@@ -19,27 +19,27 @@ $(function() {
 		$('#exportar').show();
 		$('#divPesquisa').show();
 	}
-	
-	$('#tabela').find('tr').on('click', function() {
+
+	$('#tabela').find('tr').on('click', () => {
 		$('#id').val($(this).find('td:first').text());
 		$('#quarto').val($(this).find('td:eq(3)').text());
 	});
 
-	$('#confirmaExport').on('click', function() {
+	$('#confirmaExport').on('click', () => {
 		var nome = $('#pesquisar').val().trim();
 		$.ajax({
-			type : 'GET',
-			url : 'entrada',
-			data : {
-				acao : 'exportarPdf',
-				param : nome
+			type: 'GET',
+			url: 'entrada',
+			data: {
+				acao: 'exportarPdf',
+				param: nome
 			},
-			dataType : "JSON",
-			success : function() {
+			dataType: "JSON",
+			success: function() {
 				var instance = M.Modal.getInstance($('#modal2').modal());
 				instance.open();
 			},
-			error : function(err) {
+			error: function(err) {
 				console.log(err);
 				var instance = M.Modal.getInstance($('#modal3').modal());
 				instance.open();
@@ -47,7 +47,7 @@ $(function() {
 		});
 	});
 
-	$('#pesquisar').on('keyup', function() {
+	$('#pesquisar').on('keyup', () => {
 		if ($(this).val().length > 1 || $(this).val() == '') {
 			var nome = $(this).val().trim();
 			var param = $('#selectPesquisar option:selected').val();
@@ -57,46 +57,46 @@ $(function() {
 				instance.open();
 			} else {
 				$.ajax({
-					type : 'GET',
-					url : 'entrada',
-					data : {
-						acao : 'pesquisarPor' + param,
-						param : nome
+					type: 'GET',
+					url: 'entrada',
+					data: {
+						acao: 'pesquisarPor' + param,
+						param: nome
 					},
-					dataType : "JSON",
-					success : function(response) {
+					dataType: "JSON",
+					success: function(response) {
 						montarTabela(response);
 					},
-					error : function(err) {
+					error: function(err) {
 						console.log(err);
 					}
 				});
 			}
 		}
 	});
-	
-	$('#selectPesquisar').on('change', function() {
+
+	$('#selectPesquisar').on('change', () => {
 		var param = $('#selectPesquisar option:selected').text();
 		$('#labelPesquisar').text('Pesquisar por ' + param);
 	});
 
-	$('#tabela thead tr th').on('click', function() {
+	$('#tabela thead tr th').on('click', () => {
 		var nome = $('#pesquisar').val().trim();
 		var valor = $(this).text().substring(0, 1).toUpperCase() + $(this).text().substring(1).toLowerCase();
 		if (valor != 'Excluir') {
 			$.ajax({
-				type : 'GET',
-				url : 'entrada',
-				data : {
-					acao : 'ordenarPor',
-					paramOrdenacao : valor,
-					param : nome
+				type: 'GET',
+				url: 'entrada',
+				data: {
+					acao: 'ordenarPor',
+					paramOrdenacao: valor,
+					param: nome
 				},
-				dataType : "JSON",
-				success : function(response) {
+				dataType: "JSON",
+				success: function(response) {
 					montarTabela(response);
 				},
-				error : function(err) {
+				error: function(err) {
 					console.log(err);
 				}
 			});
@@ -104,10 +104,26 @@ $(function() {
 	});
 });
 
-function montarTabela(data) {
+var montarTabela = (data) => {
 	$('tbody tr').remove();
 	var table;
-	for (let i = 0; i < data.length; i++) {
+
+	data.map(d => {
+		table += '<tr>';
+		table += '<td class="col s1"><input type="hidden" id="id" name="hospedeId" value="' + d.id + '" />' + d.id + '</td>';
+		table += '<td class="col s2">' + d.hospede.nome + '</td>';
+		table += '<td class="col s2 center">' + d.hospede.cpf + '</td>';
+		table += '<td class="col s2 center"><input type="hidden" id="quarto" name="quartoNum" value="' + d.quarto + '" />' + d.quarto + '</td>';
+		table += '<td class="col s2 center">' + d.hospede.email + '</td>';
+		table += '<td class="col s1 center">' + d.dtEntrada + '</td>';
+		table += '<td class="col s1 center">' + d.dtSaida + '</td>';
+		table += '<td class="col s1 center">';
+		table += '<button class="btn waves-effect waves-teal btn-flat" id="btExcluir" value="excluirLinha" name="acao">';
+		table += '<i class="fa fa-trash"></button></td>';
+		table += '</tr>';
+	});
+
+	/*for (let i = 0; i < data.length; i++) {
 		table += '<tr>';
 		table += '<td class="col s1"><input type="hidden" id="id" name="hospedeId" value="' + data[i].id + '" />' + data[i].id + '</td>';
 		table += '<td class="col s2">' + data[i].hospede.nome + '</td>';
@@ -120,10 +136,11 @@ function montarTabela(data) {
 		table += '<button class="btn waves-effect waves-teal btn-flat" id="btExcluir" value="excluirLinha" name="acao">';
 		table += '<i class="fa fa-trash"></button></td>';
 		table += '</tr>';
-	}
+	}*/
+
 	$('table tbody').html(table);
 
-	$('#tabela').find('tr').on('click', function() {
+	$('#tabela').find('tr').on('click', () => {
 		$('#id').val($(this).find('td:first').text());
 		$('#quarto').val($(this).find('td:eq(3)').text());
 	});
