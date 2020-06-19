@@ -54,6 +54,8 @@ public class Ctrl {
 	public static Collection<? extends Quarto> carregaListaQuartos() {
 		Collection<? extends Quarto> lista = qDAO.listar();
 		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
+		
+		
 
 		for (QuartoEnum quartoEnum : QuartoEnum.values()) {
 			Quarto q = new Quarto(quartoEnum.getNum());

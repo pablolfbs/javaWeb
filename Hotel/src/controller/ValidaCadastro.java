@@ -14,12 +14,7 @@ public class ValidaCadastro implements Acao {
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String emailHospede = request.getParameter("email");
 		
-		String json;
-		if (Ctrl.isCadastrado(emailHospede)) {
-			json = new Gson().toJson(true);
-		} else {
-			json = new Gson().toJson(false);
-		}
+		String json = new Gson().toJson(Ctrl.isCadastrado(emailHospede) ? true : false);
 		
 		response.setContentType("application/json");
 		response.getOutputStream().write(json.getBytes());

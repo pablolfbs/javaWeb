@@ -29,20 +29,12 @@ public class OrdenarPor implements Acao {
 
 		Collection<? extends Reserva> reservas = new LinkedHashSet<Reserva>();
 		
-		if (paramAcao.equals("Id") || paramAcao.equals("Nome") || paramAcao.equals("Cpf") || paramAcao.equals("Email")) {
-			if (!param.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenadaHospede(acao, param);
-			} else {
-				reservas = Ctrl.ordenarReservaHospede(acao);
-			}
-		} else if (paramAcao.equals("Quarto") || paramAcao.equals("DtEntrada") || paramAcao.equals("DtSaida")) {
-			if (!param.isEmpty()) {
-				reservas = Ctrl.buscarReservaPorNomeOrdenada(acao, param);
-			} else {
-				reservas = Ctrl.ordenarReserva(acao);
-			}
-		}
-
+		if (paramAcao.equals("Id") || paramAcao.equals("Nome") || paramAcao.equals("Cpf") || paramAcao.equals("Email"))
+			reservas = !param.isEmpty() ? Ctrl.buscarReservaPorNomeOrdenadaHospede(acao, param) : Ctrl.ordenarReservaHospede(acao);
+			
+		else if (paramAcao.equals("Quarto") || paramAcao.equals("DtEntrada") || paramAcao.equals("DtSaida"))
+			reservas = !param.isEmpty() ? Ctrl.buscarReservaPorNomeOrdenada(acao, param) : Ctrl.ordenarReserva(acao);
+			
 		Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
 		String json = gson.toJson(reservas);
 

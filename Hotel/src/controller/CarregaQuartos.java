@@ -1,8 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.LinkedHashSet;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,14 +16,10 @@ public class CarregaQuartos implements Acao {
 
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
+		Collection<? extends Quarto> quartos = new LinkedHashSet<Quarto>();
 		
-		if (Ctrl.carregaListaReservas().isEmpty())
-			quartos.addAll(Ctrl.iniciarListaQuartos());
-			
-		else
-			quartos.addAll(Ctrl.carregaListaQuartos());
-			
+		quartos = Ctrl.carregaListaReservas().isEmpty() ? Ctrl.iniciarListaQuartos() : Ctrl.carregaListaQuartos();
+		
 		String json = new Gson().toJson(quartos);
 
 		response.setContentType("application/json");

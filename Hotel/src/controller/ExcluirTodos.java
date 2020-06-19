@@ -19,9 +19,8 @@ public class ExcluirTodos implements Acao {
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Collection<? extends Reserva> reservas = Ctrl.carregaListaReservas();
 		
-		if (!reservas.isEmpty()) {
+		if (!reservas.isEmpty())
 			Ctrl.excluirTodos();
-		}
 
 		Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
 		String json = gson.toJson(reservas);
