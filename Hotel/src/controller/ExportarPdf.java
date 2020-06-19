@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -31,6 +32,10 @@ public class ExportarPdf implements Acao {
 		String json = null;
 		if (param != null) {
 			try {
+				File diretorio = new File("C:\\pdf");
+				if (!diretorio.exists())
+					diretorio.mkdir();
+	            
 				Document document = new Document();
 				document.setPageSize(PageSize.A3);
 				PdfWriter.getInstance(document, new FileOutputStream("C:\\pdf\\listadereservas " + 

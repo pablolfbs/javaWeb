@@ -20,9 +20,9 @@ $(() => {
 		$('#divPesquisa').show();
 	}
 
-	$('#tabela').find('tr').on('click', () => {
-		$('#id').val($(this).find('td:first').text());
-		$('#quarto').val($(this).find('td:eq(3)').text());
+	$('#tabela').find('tr').on('click', e => {
+		$('#id').val($(e.currentTarget).find('td:first').text());
+		$('#quarto').val($(e.currentTarget).find('td:eq(3)').text());
 	});
 
 	$('#confirmaExport').on('click', () => {
@@ -35,11 +35,11 @@ $(() => {
 				param: nome
 			},
 			dataType: "JSON",
-			success: function() {
+			success: () => {
 				var instance = M.Modal.getInstance($('#modal2').modal());
 				instance.open();
 			},
-			error: function(err) {
+			error: err => {
 				console.log(err);
 				var instance = M.Modal.getInstance($('#modal3').modal());
 				instance.open();
@@ -47,9 +47,9 @@ $(() => {
 		});
 	});
 
-	$('#pesquisar').on('keyup', () => {
-		if ($(this).val().length > 1 || $(this).val() == '') {
-			var nome = $(this).val().trim();
+	$('#pesquisar').on('keyup', e => {
+		if ($(e.currentTarget).val().length > 1 || $(e.currentTarget).val() == '') {
+			var nome = $(e.currentTarget).val().trim();
 			var param = $('#selectPesquisar option:selected').val();
 			param = param.substring(0, 1).toUpperCase() + param.substring(1);
 			if ($('#selectPesquisar').val() == null) {
@@ -64,10 +64,10 @@ $(() => {
 						param: nome
 					},
 					dataType: "JSON",
-					success: function(response) {
+					success: response => {
 						montarTabela(response);
 					},
-					error: function(err) {
+					error: err => {
 						console.log(err);
 					}
 				});
@@ -80,9 +80,9 @@ $(() => {
 		$('#labelPesquisar').text('Pesquisar por ' + param);
 	});
 
-	$('#tabela thead tr th').on('click', () => {
+	$('#tabela thead tr th').on('click', e => {
 		var nome = $('#pesquisar').val().trim();
-		var valor = $(this).text().substring(0, 1).toUpperCase() + $(this).text().substring(1).toLowerCase();
+		var valor = $(e.currentTarget).text().substring(0, 1).toUpperCase() + $(e.currentTarget).text().substring(1).toLowerCase();
 		if (valor != 'Excluir') {
 			$.ajax({
 				type: 'GET',
@@ -93,10 +93,10 @@ $(() => {
 					param: nome
 				},
 				dataType: "JSON",
-				success: function(response) {
+				success: response => {
 					montarTabela(response);
 				},
-				error: function(err) {
+				error: err => {
 					console.log(err);
 				}
 			});
@@ -104,7 +104,7 @@ $(() => {
 	});
 });
 
-var montarTabela = (data) => {
+var montarTabela = data => {
 	$('tbody tr').remove();
 	var table;
 
@@ -140,8 +140,8 @@ var montarTabela = (data) => {
 
 	$('table tbody').html(table);
 
-	$('#tabela').find('tr').on('click', () => {
-		$('#id').val($(this).find('td:first').text());
-		$('#quarto').val($(this).find('td:eq(3)').text());
+	$('#tabela').find('tr').on('click', e => {
+		$('#id').val($(e.currentTarget).find('td:first').text());
+		$('#quarto').val($(e.currentTarget).find('td:eq(3)').text());
 	});
 }

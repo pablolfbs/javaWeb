@@ -70,7 +70,7 @@ public class QuartoDAO {
 		}
 	}
 	
-	public Set<Quarto> listar() {
+	public Collection<? extends Quarto> listar() {
 		String sql = " SELECT * FROM quarto ORDER BY num ";
 		
 		PreparedStatement ps;

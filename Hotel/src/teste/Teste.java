@@ -1,10 +1,5 @@
 package teste;
 
-import java.util.Collection;
-
-import model.Reserva;
-import model.dao.ReservaDAO;
-
 public class Teste {
 
 	public static void main(String[] args) {
@@ -108,10 +103,10 @@ public class Teste {
 //			System.out.println(values[i]);
 //		}
 		
-		String texto = "pablo luiz faria britto de souza";
-		int index = 0;
-		int indexAnterior = 0;
-		System.out.println("O texto tem " + texto.length() + " caracteres.");
+//		String texto = "pablo luiz faria britto de souza";
+//		int index = 0;
+//		int indexAnterior = 0;
+//		System.out.println("O texto tem " + texto.length() + " caracteres.");
 //		while (index >= 0) {
 //			if (index > 0) {
 //				System.out.println(texto.substring(indexAnterior, index));
@@ -122,38 +117,51 @@ public class Teste {
 //				System.out.println(texto.substring(indexAnterior));
 //			}
 //		}
-		while (index >= 0) {
-			if (index > 0) {
-				System.out.println(texto.substring(indexAnterior, indexAnterior + 1).toUpperCase().concat(texto.substring(indexAnterior + 1, index)));
-				indexAnterior = index + 1;
-			}
-			index = texto.indexOf(" ", index + 1);
-			if (index == -1) {
-				System.out.println(texto.substring(indexAnterior, indexAnterior + 1).toUpperCase().concat(texto.substring(indexAnterior + 1)));
-			}
-		}
+//		while (index >= 0) {
+//			if (index > 0) {
+//				System.out.println(texto.substring(indexAnterior, indexAnterior + 1).toUpperCase().concat(texto.substring(indexAnterior + 1, index)));
+//				indexAnterior = index + 1;
+//			}
+//			index = texto.indexOf(" ", index + 1);
+//			if (index == -1) {
+//				System.out.println(texto.substring(indexAnterior, indexAnterior + 1).toUpperCase().concat(texto.substring(indexAnterior + 1)));
+//			}
+//		}
+		
+		
+		
+//		QuartoEnum[] enumerador = QuartoEnum.values();
+//		List<QuartoEnum> lista = Arrays.asList(enumerador);
+//		System.out.println(lista);
+//		for (QuartoEnum quartoEnum : enumerador) {
+//			System.out.println(quartoEnum.num);
+//		}
 	}
 	
-	private enum ListaQuartos {
-		
-		UM(1), DOIS(2), TRES(3), QUATRO(4), CINCO(5), SEIS(6), SETE(7), OITO(8), NOVE(9), DEZ(10),
-		ONZE(11), DOZE(12), TREZE(13), QUATORZE(14), QUINZE(15), DEZESSEIS(16), DEZESETE(17), DEZOITO(18), DEZENOVE(19), VINTE(20),
-		VINTEEUM(21), VINTEEDOIS(22), VINTEETRES(23), VINTEEQUATRO(24), VINTEECINCO(25);
-
-		
-		private Integer num;
-		
-		ListaQuartos(Integer num) {
-			this.num = num;
-		}
-		
-		public Integer getNum() {
-			return num;
-		}
-		
-		public void setNum(Integer num) {
-			this.num = num;
-		}
-	}
+//	private enum QuartoEnum {
+//		
+//		UM(1), DOIS(2), TRES(3), QUATRO(4), CINCO(5), SEIS(6), SETE(7), OITO(8), NOVE(9), DEZ(10),
+//		ONZE(11), DOZE(12), TREZE(13), QUATORZE(14), QUINZE(15), DEZESSEIS(16), DEZESETE(17), DEZOITO(18), DEZENOVE(19), VINTE(20),
+//		VINTEEUM(21), VINTEEDOIS(22), VINTEETRES(23), VINTEEQUATRO(24), VINTEECINCO(25);
+//
+//		
+//		private Integer num;
+//		
+//		QuartoEnum(Integer num) {
+//			this.num = num;
+//		}
+//		
+//		static Integer valueOf(QuartoEnum listaQuartosEnum) {
+//			return listaQuartosEnum.num;
+//		}
+//
+//		public Integer getNum() {
+//			return num;
+//		}
+//		
+//		public void setNum(Integer num) {
+//			this.num = num;
+//		}
+//	}
 
 }

@@ -26,19 +26,10 @@ public class Ctrl {
 		return hDAO.buscarPorId(id);
 	}
 
-	public static Collection<? extends Quarto> iniciarListaQuartos() {
-		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
-		
-		for (QuartoEnum qEnum : QuartoEnum.values()) {
-			quartos.add(new Quarto(qEnum.getNum()));
-		}
-		return quartos;
-	}
-	
 	public static Collection<? extends Reserva> buscarReservaPorNomeHospede(String nome) {
 		return rDAO.buscarPorNomeHospede(nome);
 	}
-	
+
 	public static Collection<? extends Reserva> buscarReservaPorEmailHospede(String nome) {
 		return rDAO.buscarPorEmailHospede(nome);
 	}
@@ -51,10 +42,27 @@ public class Ctrl {
 		return rDAO.listar();
 	}
 
-	public static Set<Quarto> carregaListaQuartos() {
-		return qDAO.listar();
+	public static Collection<? extends Quarto> iniciarListaQuartos() {
+		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
+
+		for (QuartoEnum qEnum : QuartoEnum.values())
+			quartos.add(new Quarto(qEnum.getNum()));
+		
+		return quartos;
 	}
-	
+
+	public static Collection<? extends Quarto> carregaListaQuartos() {
+		Collection<? extends Quarto> lista = qDAO.listar();
+		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
+
+		for (QuartoEnum quartoEnum : QuartoEnum.values()) {
+			Quarto q = new Quarto(quartoEnum.getNum());
+			if (!lista.contains(q))
+				quartos.add(q);
+		}
+		return quartos;
+	}
+
 	public static boolean isCadastrado(String email) {
 		Collection<? extends Reserva> reservas = carregaListaReservas();
 		Set<String> strList = new HashSet<String>();
@@ -88,7 +96,7 @@ public class Ctrl {
 		hospede.setId(hDAO.inserir(hospede));
 		return hospede;
 	}
-	
+
 	public static Quarto inserirQuarto(String quartoHospede) {
 		return qDAO.inserir(new Quarto(Integer.valueOf(quartoHospede)));
 	}
@@ -119,7 +127,7 @@ public class Ctrl {
 	public static void inserir(Reserva reserva) {
 		rDAO.inserir(reserva);
 	}
-	
+
 	public static String getParam(String param) {
 		int a = param.indexOf("Por");
 		return param.substring(a + 3, a + 4).toLowerCase() + param.substring(a + 4);

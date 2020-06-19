@@ -44,7 +44,7 @@ $(() => {
 				acao: 'verificaReservas'
 			},
 			dataType: 'JSON',
-			success: (response) => {
+			success: response => {
 				if (response == '') {
 					var instance = M.Modal.getInstance($('#modal3').modal());
 					instance.open();
@@ -53,7 +53,7 @@ $(() => {
 					instance.open();
 				}
 			},
-			error: (err) => {
+			error: err => {
 				console.log(err);
 			}
 		});
@@ -72,7 +72,7 @@ $(() => {
 				var instance = M.Modal.getInstance($('#modal2').modal());
 				instance.open();
 			},
-			error: (err) => {
+			error: err => {
 				console.log(err);
 			}
 		});
@@ -98,7 +98,7 @@ var validaCadastro = (acao, nome, cpf, email, quarto, dtEntrada, dtSaida) => {
 			email: email
 		},
 		dataType: 'JSON',
-		success: function(response) {
+		success: response => {
 			if (response) {
 				var instance = M.Modal.getInstance($('#modal5').modal());
 				instance.open();
@@ -107,7 +107,7 @@ var validaCadastro = (acao, nome, cpf, email, quarto, dtEntrada, dtSaida) => {
 				cadastrarReserva(nome, cpf, email, quarto, dtEntrada, dtSaida);
 			}
 		},
-		error: function(err) {
+		error: err => {
 			console.log(err);
 			var instance = M.Modal.getInstance($('#modal8').modal());
 			instance.open();
@@ -135,7 +135,7 @@ var cadastrarReserva = (nome, cpf, email, quarto, dtEntrada, dtSaida) => {
 
 			limparCampos();
 		},
-		error: (err) => {
+		error: err => {
 			console.log(err);
 			var instance = M.Modal.getInstance($('#modal8').modal());
 			instance.open();
@@ -153,7 +153,7 @@ var limparCampos = () => {
 
 }
 
-var montarCombobox = (data) => {
+var montarCombobox = data => {
 	$('#comboBox').html(
 		'<option value="" disabled selected >Escolha seu quarto</option>');
 	//	for (let i = 0; i < data.length; i++) {
@@ -175,10 +175,10 @@ var carregaQuartos = () => {
 			acao: 'carregaQuartos'
 		},
 		dataType: 'JSON',
-		success: (response) => {
+		success: response => {
 			montarCombobox(response);
 		},
-		error: (err) => {
+		error: err => {
 			console.log(err);
 		}
 	});
