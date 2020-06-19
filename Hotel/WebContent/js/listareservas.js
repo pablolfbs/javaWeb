@@ -52,6 +52,7 @@ $(() => {
 			var nome = $(e.currentTarget).val().trim();
 			var param = $('#selectPesquisar option:selected').val();
 			param = param.substring(0, 1).toUpperCase() + param.substring(1);
+			
 			if ($('#selectPesquisar').val() == null) {
 				var instance = M.Modal.getInstance($('#modal4').modal());
 				instance.open();
@@ -77,6 +78,7 @@ $(() => {
 
 	$('#selectPesquisar').on('change', () => {
 		var param = $('#selectPesquisar option:selected').text();
+
 		$('#labelPesquisar').text('Pesquisar por ' + param);
 	});
 

@@ -25,7 +25,7 @@ public class Ctrl {
 	public static Hospede buscarHospedePorId(Integer id) {
 		return hDAO.buscarPorId(id);
 	}
-
+	
 	public static Collection<? extends Reserva> buscarReservaPorNomeHospede(String nome) {
 		return rDAO.buscarPorNomeHospede(nome);
 	}

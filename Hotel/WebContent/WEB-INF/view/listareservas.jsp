@@ -80,13 +80,8 @@
 				<div class="input-field col s2">
 					<select id="selectPesquisar">
 						<option value="" disabled selected>Pesquisar por</option>
-						<!-- <option value="matricula">Matrícula</option> -->
 						<option value="nome">Nome</option>
-						<!-- <option value="cpf">CPF</option> -->
-						<!-- <option value="quarto">Quarto</option> -->
 						<option value="email">E-mail</option>
-						<!-- <option value="dtEntrada">Data de Entrada</option> -->
-						<!-- <option value="dtSaida">Data de Saída</option> -->
 					</select>
 				</div>
 				<div class="input-field col s10" id="busca" hidden>
