@@ -165,9 +165,7 @@ public class Ctrl {
 	}
 
 	private static void mockReserva(int idHospede, Quarto quarto) {
-		Hospede hospede = new Hospede(idHospede);
-		Reserva r = new Reserva(quarto.getNum(), hospede, new Date(), new Date());
-		rDAO.inserir(r);
+		rDAO.inserir(new Reserva(quarto.getNum(), new Hospede(idHospede), new Date(), new Date()));
 	}
 
 	private static Quarto mockQuarto() {
@@ -185,11 +183,8 @@ public class Ctrl {
 	}
 
 	private static int mockHospede() {
-		String[] arrayNome = { "Pablo", "Ingrid", "Alice", "Marcello", "Nadja", "Antonio Luiz", "Rosa", "Vânia",
-				"Romário", "Rodrigo" };
-		String[] arrayEmail = { "pablo@pablo.com", "ingrid@ingrid.com", "alice@alice.com", "marcello@marcello.com",
-				"nadja@nadja.com", "antonio@antonio.com", "rosa@rosa.com", "vania@vania.com", "romario@romario.com",
-				"rodrigo@rodrigo.com" };
+		String[] arrayNome = carregaArrayNomes();
+		String[] arrayEmail = carregaArrayEmails();
 
 		Set<Hospede> hospedes = hDAO.listar();
 		Set<String> listaEmails = hospedes.stream().map(h -> h.getEmail()).collect(Collectors.toSet());
@@ -202,12 +197,23 @@ public class Ctrl {
 			if (!listaEmails.contains(arrayEmail[i])) {
 				nome = arrayNome[i];
 				email = arrayEmail[i];
-				Hospede hospede = new Hospede(nome, cpf, email);
 
-				return hDAO.inserir(hospede);
+				return hDAO.inserir(new Hospede(nome, cpf, email));
 			}
 		}
 		throw new RuntimeException("Erro ao mockar reserva!");
 	}
 	// Fim de mock.
+
+	private static String[] carregaArrayEmails() {
+		return new String[] { "pablo@pablo.com", "ingrid@ingrid.com", "alice@alice.com", "marcello@marcello.com",
+				"nadja@nadja.com", "antonio@antonio.com", "rosa@rosa.com", "vania@vania.com", "romario@romario.com",
+				"rodrigo@rodrigo.com" };
+	}
+
+	private static String[] carregaArrayNomes() {
+		return new String[] { "Pablo", "Ingrid", "Alice", "Marcello", "Nadja", "Antonio Luiz", "Rosa", "Vânia",
+				"Romário", "Rodrigo" };
+	}
+
 }
