@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import model.Hospede;
 import model.Quarto;
@@ -15,6 +16,7 @@ import model.dao.HospedeDAO;
 import model.dao.QuartoDAO;
 import model.dao.ReservaDAO;
 import model.enumerador.QuartoEnum;
+import util.GeraCpfCnpj;
 
 public class Ctrl {
 
@@ -25,7 +27,7 @@ public class Ctrl {
 	public static Hospede buscarHospedePorId(Integer id) {
 		return hDAO.buscarPorId(id);
 	}
-	
+
 	public static Collection<? extends Reserva> buscarReservaPorNomeHospede(String nome) {
 		return rDAO.buscarPorNomeHospede(nome);
 	}
@@ -47,15 +49,13 @@ public class Ctrl {
 
 		for (QuartoEnum qEnum : QuartoEnum.values())
 			quartos.add(new Quarto(qEnum.getNum()));
-		
+
 		return quartos;
 	}
 
 	public static Collection<? extends Quarto> carregaListaQuartos() {
 		Collection<? extends Quarto> lista = qDAO.listar();
 		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
-		
-		
 
 		for (QuartoEnum quartoEnum : QuartoEnum.values()) {
 			Quarto q = new Quarto(quartoEnum.getNum());
@@ -151,4 +151,63 @@ public class Ctrl {
 		return rDAO.buscarReservaPorNomeOrdenadaPorHospede(Ctrl.getParam(param), nome);
 	}
 
+	// Mockar reservas
+	public static boolean mockar() {
+		if (rDAO.listar().size() < QuartoEnum.values().length) {
+			int idHospede = mockHospede();
+			Quarto quarto = mockQuarto();
+			mockReserva(idHospede, quarto);
+
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private static void mockReserva(int idHospede, Quarto quarto) {
+		Hospede hospede = new Hospede(idHospede);
+		Reserva r = new Reserva(quarto.getNum(), hospede, new Date(), new Date());
+		rDAO.inserir(r);
+	}
+
+	private static Quarto mockQuarto() {
+		Collection<? extends Quarto> quartos = new LinkedHashSet<Quarto>();
+		quartos = Ctrl.carregaListaReservas().isEmpty() ? Ctrl.iniciarListaQuartos() : Ctrl.carregaListaQuartos();
+
+		Quarto q = new Quarto();
+		for (int i = 1; i <= QuartoEnum.values().length; i++) {
+			q.setNum(i);
+			if (quartos.contains(q)) {
+				return qDAO.inserir(q);
+			}
+		}
+		throw new RuntimeException("Erro ao mockar quarto!");
+	}
+
+	private static int mockHospede() {
+		String[] arrayNome = { "Pablo", "Ingrid", "Alice", "Marcello", "Nadja", "Antonio Luiz", "Rosa", "Vânia",
+				"Romário", "Rodrigo" };
+		String[] arrayEmail = { "pablo@pablo.com", "ingrid@ingrid.com", "alice@alice.com", "marcello@marcello.com",
+				"nadja@nadja.com", "antonio@antonio.com", "rosa@rosa.com", "vania@vania.com", "romario@romario.com",
+				"rodrigo@rodrigo.com" };
+
+		Set<Hospede> hospedes = hDAO.listar();
+		Set<String> listaEmails = hospedes.stream().map(h -> h.getEmail()).collect(Collectors.toSet());
+
+		String nome = null;
+		String email = null;
+		String cpf = GeraCpfCnpj.cpf(false);
+
+		for (int i = 0; i < arrayEmail.length; i++) {
+			if (!listaEmails.contains(arrayEmail[i])) {
+				nome = arrayNome[i];
+				email = arrayEmail[i];
+				Hospede hospede = new Hospede(nome, cpf, email);
+
+				return hDAO.inserir(hospede);
+			}
+		}
+		throw new RuntimeException("Erro ao mockar reserva!");
+	}
+	// Fim de mock.
 }

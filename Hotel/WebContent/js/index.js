@@ -19,6 +19,30 @@ $(() => {
 		limparCampos();
 	});
 
+	$('#btCadMock').on('click', () => {
+		$.ajax({
+			type: 'POST',
+			url: 'entrada',
+			data: {
+				acao: 'mock'
+			},
+			dataType: 'JSON',
+			success: response => {
+				if(response == true) {
+					var instance = M.Modal.getInstance($('#modal7').modal());
+					instance.open();
+				} else {
+					var instance = M.Modal.getInstance($('#modal9').modal());
+					instance.open();
+				}
+				carregaQuartos();
+			},
+			error: err => {
+				console.log(err);
+			}
+		});
+	});
+
 	$('#btCadastrar').on('click', () => {
 		var acao = 'validaCadastro';
 		var nome = $('#first_name').val();
@@ -157,8 +181,7 @@ var montarCombobox = data => {
 	$('#comboBox').html(
 		'<option value="" disabled selected >Escolha seu quarto</option>');
 	//	for (let i = 0; i < data.length; i++) {
-	//		$('#comboBox').append(
-	//				'<option value="' + data[i].num + '">' + data[i].num + '</option>');
+	//		$('#comboBox').append('<option value="' + data[i].num + '">' + data[i].num + '</option>');
 	//	}
 
 	// exemplo de enhanced for feito com arrow functions.

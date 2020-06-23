@@ -12,9 +12,19 @@ public class Reserva implements Serializable {
 	private Integer quarto;
 	private Date dtEntrada;
 	private Date dtSaida;
-	
+
 	private Hospede hospede;
-	
+
+	public Reserva() {
+	}
+
+	public Reserva(Integer quarto, Hospede hospede, Date dtEntrada, Date dtSaida) {
+		this.quarto = quarto;
+		this.hospede = hospede;
+		this.dtEntrada = dtEntrada;
+		this.dtSaida = dtSaida;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -45,15 +55,15 @@ public class Reserva implements Serializable {
 	 * because Gson uses DecimalFormat to format numeric type data.
 	 */
 	static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-	
+
 	public String getDtEntradaFormatada() {
 		return sdf.format(getDtEntrada());
 	}
-	
+
 	public String getDtSaidaFormatada() {
 		return sdf.format(getDtSaida());
 	}
-	
+
 	public int getId() {
 		return id;
 	}

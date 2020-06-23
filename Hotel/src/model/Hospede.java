@@ -11,6 +11,19 @@ public class Hospede implements Serializable {
 	private String cpf;
 	private String email;
 
+	public Hospede() {
+	}
+
+	public Hospede(int id) {
+		this.id = id;
+	}
+
+	public Hospede(String nome, String cpf, String email) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

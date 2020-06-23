@@ -135,4 +135,5 @@ public class HospedeDAO {
 		}
 		return hospede;
 	}
+
 }

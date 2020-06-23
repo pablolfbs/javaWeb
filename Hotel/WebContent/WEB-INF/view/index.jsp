@@ -184,6 +184,9 @@
 				</div>
 			</div>
 			<div class="row">
+				<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large" data-position="top" data-tooltip="cadastrar mock" type="button" id="btCadMock" value="cadMock" name="acao" >
+					<i class="material-icons left">child_care</i>Mock
+				</button>
 				<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="listar todas as reservas" type="submit" id="btListar" value="listarReservas" name="acao" >
 					<i class="material-icons left">format_list_bulleted</i>Listar
 				</button>
