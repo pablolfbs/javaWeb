@@ -185,16 +185,17 @@ public class Ctrl {
 	private static int mockHospede() {
 		String[] arrayNome = carregaArrayNomes();
 		String[] arrayEmail = carregaArrayEmails();
-
+		
 		Set<Hospede> hospedes = hDAO.listar();
-		Set<String> listaEmails = hospedes.stream().map(h -> h.getEmail()).collect(Collectors.toSet());
+		
+		Set<String> setEmail = hospedes.stream().map(h -> h.getEmail()).collect(Collectors.toSet());
 
 		String nome = null;
 		String email = null;
 		String cpf = GeraCpfCnpj.cpf(false);
-
+		
 		for (int i = 0; i < arrayEmail.length; i++) {
-			if (!listaEmails.contains(arrayEmail[i])) {
+			if (!setEmail.contains(arrayEmail[i])) {
 				nome = arrayNome[i];
 				email = arrayEmail[i];
 
