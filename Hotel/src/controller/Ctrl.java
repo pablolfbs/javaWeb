@@ -12,9 +12,11 @@ import java.util.stream.Collectors;
 import model.Hospede;
 import model.Quarto;
 import model.Reserva;
+import model.Usuario;
 import model.dao.HospedeDAO;
 import model.dao.QuartoDAO;
 import model.dao.ReservaDAO;
+import model.dao.UsuarioDAO;
 import model.enumerador.QuartoEnum;
 import util.GeraCpfCnpj;
 
@@ -23,6 +25,7 @@ public class Ctrl {
 	static QuartoDAO qDAO = new QuartoDAO();
 	static ReservaDAO rDAO = new ReservaDAO();
 	static HospedeDAO hDAO = new HospedeDAO();
+	static UsuarioDAO cDAO = new UsuarioDAO();
 
 	public static Hospede buscarHospedePorId(Integer id) {
 		return hDAO.buscarPorId(id);
@@ -78,7 +81,7 @@ public class Ctrl {
 		Reserva reserva = new Reserva();
 		reserva.setHospede(hospede);
 		reserva.setQuarto(quarto.getNum());
-
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			reserva.setDtEntrada(dtEntrada == null || dtEntrada.equals("") ? new Date() : sdf.parse(dtEntrada));
@@ -149,6 +152,10 @@ public class Ctrl {
 
 	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaHospede(String param, String nome) {
 		return rDAO.buscarReservaPorNomeOrdenadaPorHospede(Ctrl.getParam(param), nome);
+	}
+	
+	public static Usuario validaUsuario(String email, String senha) {
+		return cDAO.validate(email, senha);
 	}
 
 	// Mockar reservas

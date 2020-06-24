@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Usuario;
-import model.dao.UsuarioDAO;
 
 public class Login implements Acao {
 	
@@ -18,8 +17,7 @@ public class Login implements Acao {
 		String email = request.getParameter("email");
 		String senha = request.getParameter("password");
 		
-		UsuarioDAO cDAO = new UsuarioDAO();
-		Usuario usuario = cDAO.validate(email, senha);
+		Usuario usuario = Ctrl.validaUsuario(email, senha);
 		
 		if (usuario != null) {
 			HttpSession sessao = request.getSession();
