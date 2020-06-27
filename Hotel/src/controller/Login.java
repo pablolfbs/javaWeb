@@ -23,6 +23,7 @@ public class Login implements Acao {
 			HttpSession sessao = request.getSession();
 			if (sessao.getAttribute("valido") == null)
 				sessao.setAttribute("valido", usuario);
+		
 			return "redirect:entrada?acao=index";
 		} else {
 			return "redirect:entrada?acao=loginForm";

@@ -37,9 +37,13 @@
 
 <body style="margin-bottom: 50px">
 	<div class="container">
-		<div class="section center">
-			<h1 class="teal-text text-lighten-2">RESERVAS</h1>
-		</div>
+		<nav>
+			<div class="nav-wrapper">
+				<div class="col s8">
+					<h3 class="brand-logo col s8 center">RESERVAS</h3>
+				</div>
+			</div>
+		</nav>
 		<form id="myForm" action="entrada" method="POST">
 			<table id="tabela" class="highlight" id="tabela" hidden>
 				<thead>

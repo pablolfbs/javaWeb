@@ -34,10 +34,17 @@
 
 <body style="margin-bottom: 50px">
 	<div class="container">
-		<div class="section center">
+		<nav>
+			<div class="nav-wrapper">
+				<div class="col s8">
+					<h3 class="brand-logo col s8 center">RESERVA</h3>
+				</div>
+			</div>
+		</nav>
+		<!-- <div class="section center">
 			<h1 class="teal-text text-lighten-2">RESERVA</h1>
-		</div>
-		<form accept-charset="ISO-8859-1" id="formHospedes" action="entrada" method="POST">
+		</div> -->
+		<form id="formHospedes" action="entrada" method="POST">
 			<div class="row">
 				<div class="input-field hoverable col s6">
 					<i class="material-icons prefix">account_circle</i>

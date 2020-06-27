@@ -62,7 +62,13 @@
 <body ng-app="mainModule" ng-controller="mainController">
 	<div id="login-page" class="row">
 		<div class="col s12 z-depth-6 card-panel">
-		<h1 class="center" style="color: #26a69a">Login</h1>
+			<nav>
+				<div class="nav-wrapper">
+					<div class="col s8">
+						<h3 class="brand-logo col s8">Login</h3>
+					</div>
+				</div>
+			</nav>
 			<form class="login-form" action="entrada" method="POST">
 				<div class="row"></div>
 				<div class="row">
