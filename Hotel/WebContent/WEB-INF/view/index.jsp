@@ -39,24 +39,24 @@
 		</div>
 		<form accept-charset="ISO-8859-1" id="formHospedes" action="entrada" method="POST">
 			<div class="row">
-				<div class="input-field col s6">
+				<div class="input-field hoverable col s6">
 					<i class="material-icons prefix">account_circle</i>
 					<input id="first_name" type="text" name="nome" class="validate" required >
 					<label for="first_name">Nome</label>
 				</div>
-				<div class="input-field col s6">
+				<div class="input-field hoverable col s6">
 					<i class="material-icons prefix">email</i>
 					<input id="email" type="email" name="email" class="validate" required >
 					<label for="email">E-mail</label>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s6">
+				<div class="input-field hoverable col s6">
 					<i class="material-icons prefix">dvr</i>
 					<input id="cpf" type="text" name="cpf" class="validate" required >
 					<label for="cpf">CPF</label>
 				</div>
-				<div id="divSelect" class="input-field col s6">
+				<div id="divSelect" class="input-field hoverable col s6">
 					<i class="material-icons prefix">airline_seat_individual_suite</i>
 					<select id="comboBox" name="quarto" class="validate" required >
 						<!-- <option value="" disabled selected >Escolha seu quarto</option> -->
@@ -68,12 +68,12 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s6">
+				<div class="input-field hoverable col s6">
 					<i class="material-icons prefix">date_range</i>
 					<input id="dtEntrada" type="date" name="dtEntrada" class="validate" maxlength="10" >
 					<label for="dtEntrada">Data de Entrada (somente números)</label>
 				</div>
-				<div class="input-field col s6">
+				<div class="input-field hoverable col s6">
 					<i class="material-icons prefix">date_range</i>
 					<input id="dtSaida" type="date" name="dtSaida" class="validate" maxlength="10" >
 					<label for="dtSaida">Data de Saída (somente números)</label>

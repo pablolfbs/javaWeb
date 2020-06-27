@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
-import java.util.LinkedHashSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,13 +31,13 @@ public class CadastrarHospede implements Acao {
 
 		Hospede hospede = Ctrl.inserirHospede(nomeHospede, cpfHospede, emailHospede);
 
-		Reserva reserva = Ctrl.inserirReserva(quarto, hospede, dtEntrada, dtSaida);
+		Reserva reserva = Ctrl.montarReserva(quarto, hospede, dtEntrada, dtSaida);
 
-		Ctrl.inserir(reserva);
+		Ctrl.inserirReserva(reserva);
 
 		Ctrl.enviaEmailConfirmacao(quarto, hospede, reserva);
 		
-		Collection<? extends Reserva> reservas = new LinkedHashSet<Reserva>();
+		Collection<? extends Reserva> reservas = Ctrl.carregaListaReservas();
 		
 		Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
 		String json = gson.toJson(reservas);

@@ -22,10 +22,10 @@ import util.GeraCpfCnpj;
 
 public class Ctrl {
 
-	static QuartoDAO qDAO = new QuartoDAO();
-	static ReservaDAO rDAO = new ReservaDAO();
-	static HospedeDAO hDAO = new HospedeDAO();
-	static UsuarioDAO cDAO = new UsuarioDAO();
+	private static QuartoDAO qDAO = new QuartoDAO();
+	private static ReservaDAO rDAO = new ReservaDAO();
+	private static HospedeDAO hDAO = new HospedeDAO();
+	private static UsuarioDAO uDAO = new UsuarioDAO();
 
 	public static Hospede buscarHospedePorId(Integer id) {
 		return hDAO.buscarPorId(id);
@@ -46,15 +46,19 @@ public class Ctrl {
 	public static Collection<? extends Reserva> carregaListaReservas() {
 		return rDAO.listar();
 	}
-
-	public static Collection<? extends Quarto> iniciarListaQuartos() {
-		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
-
-		for (QuartoEnum qEnum : QuartoEnum.values())
-			quartos.add(new Quarto(qEnum.getNum()));
-
-		return quartos;
+	
+	public static Usuario registraUsuario(String email, String password) {
+		return uDAO.inserir(new Usuario(email, password));
 	}
+
+//	public static Collection<? extends Quarto> iniciarListaQuartos() {
+//		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
+//
+//		for (QuartoEnum qEnum : QuartoEnum.values())
+//			quartos.add(new Quarto(qEnum.getNum()));
+//
+//		return quartos;
+//	}
 
 	public static Collection<? extends Quarto> carregaListaQuartos() {
 		Collection<? extends Quarto> lista = qDAO.listar();
@@ -76,8 +80,12 @@ public class Ctrl {
 
 		return strList.contains(email);
 	}
+	
+	public static void inserirReserva(Reserva reserva) {
+		rDAO.inserir(reserva);
+	}
 
-	public static Reserva inserirReserva(Quarto quarto, Hospede hospede, String dtEntrada, String dtSaida) {
+	public static Reserva montarReserva(Quarto quarto, Hospede hospede, String dtEntrada, String dtSaida) {
 		Reserva reserva = new Reserva();
 		reserva.setHospede(hospede);
 		reserva.setQuarto(quarto.getNum());
@@ -129,10 +137,6 @@ public class Ctrl {
 		hDAO.excluirTodos();
 	}
 
-	public static void inserir(Reserva reserva) {
-		rDAO.inserir(reserva);
-	}
-
 	public static String getParam(String param) {
 		int a = param.indexOf("Por");
 		return param.substring(a + 3, a + 4).toLowerCase() + param.substring(a + 4);
@@ -155,12 +159,12 @@ public class Ctrl {
 	}
 	
 	public static Usuario validaUsuario(String email, String senha) {
-		return cDAO.validate(email, senha);
+		return uDAO.validate(email, senha);
 	}
 
 	// Mockar reservas
 	public static boolean mockar() {
-		if (rDAO.listar().size() < QuartoEnum.values().length) {
+		if (Ctrl.carregaListaReservas().size() < QuartoEnum.values().length) {
 			int idHospede = mockHospede();
 			Quarto quarto = mockQuarto();
 			mockReserva(idHospede, quarto);
@@ -172,12 +176,11 @@ public class Ctrl {
 	}
 
 	private static void mockReserva(int idHospede, Quarto quarto) {
-		rDAO.inserir(new Reserva(quarto.getNum(), new Hospede(idHospede), new Date(), new Date()));
+		Ctrl.inserirReserva(new Reserva(quarto.getNum(), new Hospede(idHospede), new Date(), new Date()));
 	}
 
 	private static Quarto mockQuarto() {
-		Collection<? extends Quarto> quartos = new LinkedHashSet<Quarto>();
-		quartos = Ctrl.carregaListaReservas().isEmpty() ? Ctrl.iniciarListaQuartos() : Ctrl.carregaListaQuartos();
+		Collection<? extends Quarto> quartos = Ctrl.carregaListaQuartos();
 
 		Quarto q = new Quarto();
 		for (int i = 1; i <= QuartoEnum.values().length; i++) {

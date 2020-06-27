@@ -52,6 +52,7 @@ public class Controller {
 
 			count++;
 		} while (!valor.matches("^-?(?:\\d+|\\d{1,3}(?:,\\d{3})+)(?:(\\.|,)\\d+)?$"));
+		
 		return valor;
 	}
 	
@@ -81,6 +82,7 @@ public class Controller {
 			msg = "Obesidade grau II";
 		else
 			msg = "Obesidade grau III (obesidade mórbida)";
+		
 		return msg;
 	}
 

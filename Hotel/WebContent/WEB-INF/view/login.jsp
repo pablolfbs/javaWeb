@@ -63,16 +63,16 @@
 	<div id="login-page" class="row">
 		<div class="col s12 z-depth-6 card-panel">
 		<h1 class="center" style="color: #26a69a">Login</h1>
-			<form class="login-form" action="entrada?acao=login" method="POST">
+			<form class="login-form" action="entrada" method="POST">
 				<div class="row"></div>
 				<div class="row">
-					<div class="input-field col s12">
+					<div class="input-field hoverable col s12">
 						<i class="material-icons prefix">mail_outline</i>
 						<input class="validate" id="email" type="email" name="email"> <label for="email" data-error="wrong" data-success="right">Email</label>
 					</div>
 				</div>
 				<div class="row">
-					<div class="input-field col s12">
+					<div class="input-field hoverable col s12">
 						<i class="material-icons prefix">lock_outline</i>
 						<input id="password" type="password" name="password"> <label for="password">Password</label>
 					</div>
@@ -92,7 +92,7 @@
 				<div class="row">
 					<div class="input-field col s6 m6 l6">
 						<p class="margin medium-small">
-							<a href="#">Register Now!</a>
+							<a href="entrada?acao=registroForm">Register Now!</a>
 						</p>
 					</div>
 					<div class="input-field col s6 m6 l6">

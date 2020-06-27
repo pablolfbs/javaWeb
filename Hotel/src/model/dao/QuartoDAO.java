@@ -92,26 +92,26 @@ public class QuartoDAO {
 		return quartos;
 	}
 
-	public Collection<? extends Quarto> iniciarQuartos() {
-		String sql = " INSERT INTO quarto (num) VALUES (?), (?), (?), (?), (?), (?), (?), (?), (?), (?) ";
-
-		PreparedStatement ps = null;
-		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
-		try {
-			ps = connection.prepareStatement(sql);
-			
-			for (int i = 1; i <= 10; i++) {
-				ps.setInt(i, i);
-				Quarto q = new Quarto();
-				q.setNum(i);
-				quartos.add(q);
-			}
-			ps.execute();
-			ps.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return quartos;
-	}
+//	public Collection<? extends Quarto> iniciarQuartos() {
+//		String sql = " INSERT INTO quarto (num) VALUES (?), (?), (?), (?), (?), (?), (?), (?), (?), (?) ";
+//
+//		PreparedStatement ps = null;
+//		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
+//		try {
+//			ps = connection.prepareStatement(sql);
+//			
+//			for (int i = 1; i <= 10; i++) {
+//				ps.setInt(i, i);
+//				Quarto q = new Quarto();
+//				q.setNum(i);
+//				quartos.add(q);
+//			}
+//			ps.execute();
+//			ps.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return quartos;
+//	}
 
 }

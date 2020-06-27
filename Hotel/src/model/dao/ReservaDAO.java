@@ -16,7 +16,7 @@ import model.Reserva;
 public class ReservaDAO {
 
 	private Connection connection = ConnectionFactory.getConnection();
-	
+
 	public void inserir(Reserva reserva) {
 		String sql = " INSERT INTO reserva (id_hospede, quarto, dtEntrada, dtSaida) VALUES (?, ?, ?, ?) ";
 		Integer quarto = reserva.getQuarto();
@@ -36,7 +36,7 @@ public class ReservaDAO {
 
 	public void atualizar(Reserva reserva) {
 		String sql = " UPDATE reserva SET id_hospede = ?, quarto = ?, dtEntrada = ?, dtSaida = ? WHERE id = ? ";
-		
+
 		Hospede hospede = reserva.getHospede();
 		Integer quarto = reserva.getQuarto();
 		PreparedStatement ps;
@@ -52,7 +52,7 @@ public class ReservaDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void excluir(int id) {
@@ -67,10 +67,10 @@ public class ReservaDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void excluirTodos() {
 		String sql = " DELETE FROM reserva ";
-		
+
 		PreparedStatement ps;
 		try {
 			ps = connection.prepareStatement(sql);
@@ -80,7 +80,7 @@ public class ReservaDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Collection<? extends Reserva> listar() {
 		String sql = " SELECT * FROM reserva ";
 		PreparedStatement ps;
@@ -105,10 +105,10 @@ public class ReservaDAO {
 		}
 		return reservas;
 	}
-	
+
 	public Collection<? extends Reserva> buscarPorNomeHospede(String nome) {
-		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
-				+ nome + "%' ";
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" + nome
+				+ "%' ";
 
 		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
 		try {
@@ -130,10 +130,10 @@ public class ReservaDAO {
 		}
 		return reservas;
 	}
-	
+
 	public Collection<? extends Reserva> buscarPorEmailHospede(String nome) {
-		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.email LIKE '%" 
-				+ nome + "%' ";
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.email LIKE '%" + nome
+				+ "%' ";
 
 		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
 		try {
@@ -155,10 +155,10 @@ public class ReservaDAO {
 		}
 		return reservas;
 	}
-	
+
 	public Collection<? extends Reserva> ordenarReserva(String param) {
 		String sql = " SELECT * FROM reserva r ORDER BY r." + param + " ";
-		
+
 		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
 		try {
 			Statement sttm = connection.createStatement();
@@ -179,10 +179,10 @@ public class ReservaDAO {
 		}
 		return reservas;
 	}
-	
+
 	public Collection<? extends Reserva> ordenarReservaPorHospede(String param) {
 		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id ORDER BY h." + param + " ";
-		
+
 		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
 		try {
 			Statement sttm = connection.createStatement();
@@ -205,8 +205,8 @@ public class ReservaDAO {
 	}
 
 	public Collection<? extends Reserva> buscarReservaPorNomeOrdenada(String param, String nome) {
-		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
-				+ nome + "%' ORDER BY r." + param + " ";
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" + nome
+				+ "%' ORDER BY r." + param + " ";
 
 		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
 		try {
@@ -230,8 +230,8 @@ public class ReservaDAO {
 	}
 
 	public Collection<? extends Reserva> buscarReservaPorNomeOrdenadaPorHospede(String param, String nome) {
-		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" 
-				+ nome + "%' ORDER BY h." + param + " ";
+		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" + nome
+				+ "%' ORDER BY h." + param + " ";
 
 		Set<Reserva> reservas = new LinkedHashSet<Reserva>();
 		try {

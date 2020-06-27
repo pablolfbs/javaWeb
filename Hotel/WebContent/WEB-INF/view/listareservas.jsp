@@ -77,14 +77,14 @@
 			<h5 class="center" style="color:red" id="listavazia" hidden>A lista de reservas está vazia.</h5>
 			<br>
 			<div id="divPesquisa" class="row">
-				<div class="input-field col s2">
+				<div class="input-field hoverable col s2">
 					<select id="selectPesquisar">
 						<option value="" disabled selected>Pesquisar por</option>
 						<option value="nome">Nome</option>
 						<option value="email">E-mail</option>
 					</select>
 				</div>
-				<div class="input-field col s10" id="busca" hidden>
+				<div class="input-field hoverable col s10" id="busca" hidden>
 					<input id="pesquisar" type="text" class="validate" >
 					<label id="labelPesquisar" for="buscar">Pesquisar</label>
 				</div>

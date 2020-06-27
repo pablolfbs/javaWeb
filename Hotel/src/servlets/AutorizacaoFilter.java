@@ -18,26 +18,27 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/entrada")
 public class AutorizacaoFilter implements Filter {
 
-    public AutorizacaoFilter() {
-        
-    }
+	public AutorizacaoFilter() {
+
+	}
 
 	public void destroy() {
-		
+
 	}
 
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
-		
+
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		
+
 		HttpSession sessao = request.getSession();
-		
+
 		String paramAcao = request.getParameter("acao");
-		
+
 		boolean valido = (sessao.getAttribute("valido") != null);
-		boolean acaoProtegida = !(paramAcao.equals("login") || paramAcao.equals("loginForm"));
-		
+		boolean acaoProtegida = !(paramAcao.equals("login") || paramAcao.equals("loginForm")
+				|| paramAcao.equals("registro") || paramAcao.equals("registroForm"));
+
 		if (!valido && acaoProtegida) {
 			response.sendRedirect("entrada?acao=loginForm");
 			return;
@@ -46,6 +47,6 @@ public class AutorizacaoFilter implements Filter {
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		
+
 	}
 }

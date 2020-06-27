@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Reserva;
-import model.dao.ReservaDAO;
 
 public class ListarReservas implements Acao {
 
@@ -18,8 +17,7 @@ public class ListarReservas implements Acao {
 		
 		HttpSession sessao = request.getSession();
 		
-		ReservaDAO rDAO = new ReservaDAO();
-		Collection<? extends Reserva> reservas = rDAO.listar();
+		Collection<? extends Reserva> reservas = Ctrl.carregaListaReservas();
 		
 		sessao.setAttribute("listaHospedes", reservas);
 		

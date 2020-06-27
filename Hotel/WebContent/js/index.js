@@ -3,7 +3,11 @@ $(() => {
 	$('.tooltipped').tooltip();
 
 	carregaQuartos();
+	
+	limpar.onclick = limparCampos;
 
+	mock.onclick = cadMock;
+	
 	$('#divSelect').on('click', () => {
 		if ($('li').length == 1) {
 			var instance = M.Modal.getInstance($('#modal9').modal());
@@ -14,35 +18,7 @@ $(() => {
 	$('#btListar, #btExcluir, #comboBox, #btLogout').on('click', () => {
 		$('.validate').removeAttr('required');
 	});
-
-	$('#btLimpar').on('click', () => {
-		limparCampos();
-	});
-
-	$('#btCadMock').on('click', () => {
-		$.ajax({
-			type: 'POST',
-			url: 'entrada',
-			data: {
-				acao: 'mock'
-			},
-			dataType: 'JSON',
-			success: response => {
-				if(response == true) {
-					var instance = M.Modal.getInstance($('#modal7').modal());
-					instance.open();
-				} else {
-					var instance = M.Modal.getInstance($('#modal9').modal());
-					instance.open();
-				}
-				carregaQuartos();
-			},
-			error: err => {
-				console.log(err);
-			}
-		});
-	});
-
+	
 	$('#btCadastrar').on('click', () => {
 		var acao = 'validaCadastro';
 		var nome = $('#first_name').val();
@@ -51,8 +27,11 @@ $(() => {
 		var quarto = $('#comboBox').val();
 		var dtEntrada = $('#dtEntrada').val();
 		var dtSaida = $('#dtSaida').val();
-
-		if (nome == '' || email == '' || cpf == '' || quarto == null) {
+		
+		if (!quarto) {
+			var instance = M.Modal.getInstance($('#modal4').modal());
+			instance.open();
+		} else if (nome == '' || email == '' || cpf == '') {
 			var instance = M.Modal.getInstance($('#modal6').modal());
 			instance.open();
 		} else {
@@ -101,17 +80,44 @@ $(() => {
 			}
 		});
 	});
+});
 
-	$('#btCadastrar').on('click', () => {
-		if ($('select option:selected').val() == '') {
-			if ($('#first_name').val() != '' && $('#email').val() != '') {
-				/* alert('Por favor, escolha um quarto!'); */
-				$('#modal4').modal('open');
-				return false;
+var mock = document.getElementById('btCadMock');
+
+var cadMock = () => {
+	$.ajax({
+		type: 'POST',
+		url: 'entrada',
+		data: {
+			acao: 'mock'
+		},
+		dataType: 'JSON',
+		success: response => {
+			if(response == true) {
+				var instance = M.Modal.getInstance($('#modal7').modal());
+				instance.open();
+			} else {
+				var instance = M.Modal.getInstance($('#modal9').modal());
+				instance.open();
 			}
+			limparCampos();
+		},
+		error: err => {
+			console.log(err);
 		}
 	});
-});
+}
+
+var limpar = document.getElementById('btLimpar');
+
+var limparCampos = () => {
+	$('#first_name').removeClass('valid').val('').removeClass('invalid').val('').next().removeClass('active');
+	$('#cpf').removeClass('valid').val('').removeClass('invalid').val('').next().removeClass('active');
+	$('#email').removeClass('valid').val('').removeClass('invalid').val('').next().removeClass('active');
+	carregaQuartos();
+	$('#dtEntrada').removeClass('valid').val('').next().removeClass('active');
+	$('#dtSaida').removeClass('valid').val('').next().removeClass('active');
+}
 
 var validaCadastro = (acao, nome, cpf, email, quarto, dtEntrada, dtSaida) => {
 	$.ajax({
@@ -165,16 +171,6 @@ var cadastrarReserva = (nome, cpf, email, quarto, dtEntrada, dtSaida) => {
 			instance.open();
 		}
 	});
-}
-
-var limparCampos = () => {
-	$('#first_name').removeClass('valid').val('').removeClass('invalid').val('').next().removeClass('active');
-	$('#cpf').removeClass('valid').val('').removeClass('invalid').val('').next().removeClass('active');
-	$('#email').removeClass('valid').val('').removeClass('invalid').val('').next().removeClass('active');
-	carregaQuartos();
-	$('#dtEntrada').removeClass('valid').val('').next().removeClass('active');
-	$('#dtSaida').removeClass('valid').val('').next().removeClass('active');
-
 }
 
 var montarCombobox = data => {
