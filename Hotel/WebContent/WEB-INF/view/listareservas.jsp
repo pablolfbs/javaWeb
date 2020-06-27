@@ -32,18 +32,22 @@
 	.modal { width: 25% !important; }
 	
 	.radioDistance { padding-left: 20px; }
+	
+	th .btn:hover, td .btn:hover, #btLogout:hover, #exportar:hover, tr th:hover { background-color: #ee6e73; color: white; }
 </style>
 </head>
 
 <body style="margin-bottom: 50px">
 	<div class="container">
-		<nav>
-			<div class="nav-wrapper">
-				<div class="col s8">
-					<h3 class="brand-logo col s8 center">RESERVAS</h3>
+		<div class="row">
+			<nav>
+				<div class="nav-wrapper">
+					<div class="col s8">
+						<h3 class="brand-logo col s8">RESERVAS</h3>
+					</div>
 				</div>
-			</div>
-		</nav>
+			</nav>
+		</div>
 		<form id="myForm" action="entrada" method="POST">
 			<table id="tabela" class="highlight" id="tabela" hidden>
 				<thead>
@@ -60,7 +64,7 @@
 				</thead>
 				<tbody>
 					<c:forEach var="reserva" items="${listaHospedes}">
-						<tr>
+						<tr class="hoverable">
 							<td class="col s1"><input type="hidden" id="id" name="hospedeId" value="${ reserva.hospede.id }" /><c:out value="${ reserva.hospede.id }" /></td>
 							<td class="col s2"><c:out value="${ reserva.hospede.nome }" /></td>
 							<td class="col s2 center"><c:out value="${ reserva.hospede.cpf }" /></td>

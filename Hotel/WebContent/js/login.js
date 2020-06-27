@@ -10,7 +10,7 @@ app.controller('mainController', function($scope, $http) { // o scope liga o js
 	
 });*/
 
-$(function() {
+$(() => {
 	
 	
 	

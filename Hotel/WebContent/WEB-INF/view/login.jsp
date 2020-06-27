@@ -56,6 +56,10 @@
 			-ms-transform: translate(-50%, -50%) -o-transform: translate(-50%, -50%)
 			transform: translate(-50%, -50%);
 	}
+	
+	.btn { background-color: #ee6e73; }
+	
+	.btn:hover { background-color: #ee6e73; color: white; }
 </style>
 
 </head>
@@ -92,7 +96,7 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						<button class="btn waves-effect waves-light col s12" type="submit" value="login" name="acao">Login</button>
+						<button class="btn waves-effect waves-light col s12 hoverable" type="submit" value="login" name="acao">Login</button>
 					</div>
 				</div>
 				<div class="row">

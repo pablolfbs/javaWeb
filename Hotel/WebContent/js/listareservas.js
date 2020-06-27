@@ -5,7 +5,7 @@ $(() => {
 	$('select').formSelect();
 
 	var valor = $('#tabela td').text();
-
+	
 	$('.modal').modal();
 
 	if (valor == '') {

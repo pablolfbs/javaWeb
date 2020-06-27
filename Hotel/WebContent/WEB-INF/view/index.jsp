@@ -29,18 +29,22 @@
 
 <style type="text/css">
 	.modal { width: 25% !important; }
+	
+	.btn:hover { background-color: #ee6e73; color: white; }
 </style>
 </head>
 
 <body style="margin-bottom: 50px">
 	<div class="container">
-		<nav>
-			<div class="nav-wrapper">
-				<div class="col s8">
-					<h3 class="brand-logo col s8 center">RESERVA</h3>
+		<div class="row">
+			<nav>
+				<div class="nav-wrapper">
+					<div class="col s8">
+						<h3 class="brand-logo col s8">RESERVA</h3>
+					</div>
 				</div>
-			</div>
-		</nav>
+			</nav>
+		</div>
 		<!-- <div class="section center">
 			<h1 class="teal-text text-lighten-2">RESERVA</h1>
 		</div> -->
