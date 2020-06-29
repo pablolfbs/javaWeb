@@ -33,7 +33,7 @@
 	
 	.radioDistance { padding-left: 20px; }
 	
-	th .btn:hover, td .btn:hover, #btLogout:hover, #exportar:hover, tr th:hover { background-color: #ee6e73; color: white; }
+	th .btn:hover, td .btn:hover, #btLogout:hover, #exportar:hover { background-color: #ee6e73; color: white; }
 </style>
 </head>
 
@@ -52,14 +52,14 @@
 			<table id="tabela" class="highlight" id="tabela" hidden>
 				<thead>
 					<tr>
-						<th class="col s1"><a class="btn waves-effect waves-teal btn-flat" href="#">#</a></th>
-						<th class="col s2"><a class="btn waves-effect waves-teal btn-flat" href="#">Nome</a></th>
-						<th class="col s2 center"><a class="btn waves-effect waves-teal btn-flat" href="#">CPF</a></th>
-						<th class="col s2 center"><a class="btn waves-effect waves-teal btn-flat" href="#">Quarto</a></th>
-						<th class="col s2 center"><a class="btn waves-effect waves-teal btn-flat" href="#">E-mail</a></th>
-						<th class="col s1 center"><a class="btn waves-effect waves-teal btn-flat" href="#">Entrada</a></th>
-						<th class="col s1 center"><a class="btn waves-effect waves-teal btn-flat" href="#">Saída</a></th>
-						<th class="col s1 center"><a class="waves-effect waves-light #e53935 red darken-1 btn" href="#">Excluir</a></th>
+						<th class="col s1"><a class="btn waves-effect waves-orange btn-flat" href="#">#</a></th>
+						<th class="col s2"><a class="btn waves-effect waves-orange btn-flat" href="#">Nome</a></th>
+						<th class="col s2 center"><a class="btn waves-effect waves-orange btn-flat" href="#">CPF</a></th>
+						<th class="col s2 center"><a class="btn waves-effect waves-orange btn-flat" href="#">Quarto</a></th>
+						<th class="col s2 center"><a class="btn waves-effect waves-orange btn-flat" href="#">E-mail</a></th>
+						<th class="col s1 center"><a class="btn waves-effect waves-orange btn-flat" href="#">Entrada</a></th>
+						<th class="col s1 center"><a class="btn waves-effect waves-orange btn-flat" href="#">Saída</a></th>
+						<th class="col s1 center" id="btExcluirTodos"><a class="btn waves-effect waves-orange btn-flat" href="#">Excluir</a></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -73,7 +73,7 @@
 							<td class="col s1 center"><c:out value="${ reserva.dtEntradaFormatada }" /></td>
 							<td class="col s1 center"><c:out value="${ reserva.dtSaidaFormatada }" /></td>
 							<td class="col s1 center">
-								<button class="btn tooltipped waves-effect waves-teal btn-flat" id="btExcluir" data-position="top" data-tooltip="excluir linha" value="excluirLinha" name="acao">
+								<button class="btn tooltipped waves-effect waves-orange btn-flat" id="btExcluir" data-position="top" data-tooltip="excluir linha" value="excluirLinha" name="acao">
 									<i class="fa fa-trash"></i>
 								</button>
 							</td>
@@ -81,9 +81,8 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			
-			<h5 class="center" style="color:red" id="listavazia" hidden>A lista de reservas está vazia.</h5>
 			<br>
+			<h4 class="center" style="color:red" id="listavazia" hidden>A lista de reservas está vazia.</h4	>
 			<div id="divPesquisa" class="row">
 				<div class="input-field hoverable col s2">
 					<select id="selectPesquisar">
@@ -97,13 +96,12 @@
 					<label id="labelPesquisar" for="buscar">Pesquisar</label>
 				</div>
 			</div>
-			<br>
-			<button style="width: 185px" class="btn waves-effect waves-teal btn-flat btn-large" type="submit" id="btLogout" name="acao" value="logout">
+			<button style="width: 185px" class="btn waves-effect waves-orange btn-flat btn-large" type="submit" id="btLogout" name="acao" value="logout">
 				Logout<i class="material-icons left red-text">power_settings_new</i>
 			</button>
 			
 			<!-- Modal Trigger -->
-  			<button type="button" data-target="modal1" id="exportar" class="btn modal-trigger waves-effect waves-teal btn-flat btn-large right">
+  			<button type="button" data-target="modal1" id="exportar" class="btn modal-trigger waves-effect waves-orange btn-flat btn-large right">
   				<i class="material-icons left">file_download</i>Exportar PDF
   			</button>
   			
@@ -153,7 +151,10 @@
 			</div>
 		</form>
 		<div>
-			<br><a href="entrada?acao=index">voltar</a>
+			<!-- <button class="btn tooltipped waves-effect waves-orange btn-flat" id="btExcluir" data-position="top" data-tooltip="excluir linha" value="excluirLinha" name="acao"> -->
+			<br>
+			<a href="entrada?acao=index" class="tooltipped" data-position="top" data-tooltip="voltar" value="voltar">
+			<img border="0" alt="voltar" src="img/btVoltar.jfif" width="35" height="35">
 		</div>
 	</div>
 

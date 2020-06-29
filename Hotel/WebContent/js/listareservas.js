@@ -4,21 +4,27 @@ $(() => {
 
 	$('select').formSelect();
 
-	var valor = $('#tabela td').text();
-	
 	$('.modal').modal();
-
-	if (valor == '') {
-		$('#listavazia').show();
-		$('#tabela').hide();
-		$('#exportar').hide();
-		$('#divPesquisa').hide();
-	} else {
-		$('#tabela').show();
-		$('#busca').show();
-		$('#exportar').show();
-		$('#divPesquisa').show();
-	}
+	
+	alteraVisibilidade();
+	
+	$('#btExcluirTodos').on('click', () => {
+		$.ajax({
+			type: 'GET',
+			url: 'entrada',
+			data: {
+				acao: 'excluirTodos'
+			},
+			dataType: 'JSON',
+			success: () => {
+				$('tbody tr').remove();
+				alteraVisibilidade();
+			},
+			error: err => {
+				console.log(err);
+			}
+		});
+	});
 
 	$('#tabela').find('tr').on('click', e => {
 		$('#id').val($(e.currentTarget).find('td:first').text());
@@ -105,6 +111,22 @@ $(() => {
 		}
 	});
 });
+
+var alteraVisibilidade = () => {
+	var valor = $('#tabela td').text();
+
+	if (valor == '') {
+		$('#listavazia').show();
+		$('#tabela').hide();
+		$('#exportar').hide();
+		$('#divPesquisa').hide();
+	} else {
+		$('#tabela').show();
+		$('#busca').show();
+		$('#exportar').show();
+		$('#divPesquisa').show();
+	}
+}
 
 var montarTabela = data => {
 	$('tbody tr').remove();

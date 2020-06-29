@@ -25,6 +25,8 @@
 
 <style type="text/css">
 	.modal { width: 25% !important; }
+	
+	.btn:hover { background-color: #ee6e73; color: white; }
 </style>
 </head>
 <body>
@@ -70,7 +72,7 @@
 				</div>
 			</div>
 			<!-- <a href="entrada?acao=registro" class="waves-effect waves-light btn right hoverable" type="submit""><i class="large material-icons right">done</i>register</a> -->
-			<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="registrar usuário" type="button" id="btRegistrar" value="registro" name="acao" >
+			<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large right" data-position="top" data-tooltip="registrar usuário" type="button" id="btRegistrar" value="registro" name="acao" >
 				<i class="material-icons left">add</i>Registrar
 			</button>
 			

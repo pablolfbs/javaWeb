@@ -92,12 +92,12 @@
 			</div>
 			<div class="row">
 				<!-- Modal Trigger -->
-				<button class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="nova reserva" type="button" id="btCadastrar" value="cadastrarHospede" name="acao" >
+				<button class="btn tooltipped waves-effect waves-orange btn-flat btn-large right" data-position="top" data-tooltip="nova reserva" type="button" id="btCadastrar" value="cadastrarHospede" name="acao" >
 					<i class="material-icons left">add</i>Cadastrar
 				</button>
 				<!-- <input type="hidden" name="acao" value="cadastrarHospede" /> -->
 				<!-- Modal Trigger -->
-				<button class="btn tooltipped modal-trigger waves-effect waves-teal btn-flat btn-large" data-position="top" data-tooltip="apagar todas as reservas" type="button" id="btExcluir" value="excluirTodos" name="acao">
+				<button class="btn tooltipped modal-trigger waves-effect waves-orange btn-flat btn-large" data-position="top" data-tooltip="apagar todas as reservas" type="button" id="btExcluir" value="excluirTodos" name="acao">
 					<i style="padding-right: 20px" class="fa fa-trash"></i>Excluir Todos
 				</button>
 				
@@ -195,18 +195,18 @@
 				</div>
 			</div>
 			<div class="row">
-				<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large" data-position="top" data-tooltip="cadastrar mock" type="button" id="btCadMock" value="cadMock" name="acao" >
+				<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large" data-position="top" data-tooltip="mockar nova reserva" type="button" id="btCadMock" value="cadMock" name="acao" >
 					<i class="material-icons left">child_care</i>Mock
 				</button>
-				<button style="width: 185px" class="btn tooltipped waves-effect waves-teal btn-flat btn-large right" data-position="top" data-tooltip="listar todas as reservas" type="submit" id="btListar" value="listarReservas" name="acao" >
+				<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large right" data-position="top" data-tooltip="listar reservas" type="submit" id="btListar" value="listarReservas" name="acao" >
 					<i class="material-icons left">format_list_bulleted</i>Listar
 				</button>
 			</div>
 			<div class="row">
-				<button style="width: 185px" class="btn waves-effect waves-teal btn-flat btn-large" type="submit" id="btLogout" name="acao" value="logout">
+				<button style="width: 185px" class="btn waves-effect waves-orange btn-flat btn-large" type="submit" id="btLogout" name="acao" value="logout">
 					Logout<i class="material-icons left red-text">power_settings_new</i>
 				</button>
-				<button style="width: 185px" class="btn waves-effect waves-teal btn-flat btn-large right" type="button" id="btLimpar" value="limpar">
+				<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large right" data-position="top" data-tooltip="limpar campos digitados" type="button" id="btLimpar" value="limpar">
 					<i class="material-icons left">clear_all</i>Limpar
 				</button>
 			</div>
