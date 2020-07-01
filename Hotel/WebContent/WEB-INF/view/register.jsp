@@ -57,13 +57,13 @@
 					<label for="username">Username</label>
 				</div>
 				<div class="input-field hoverable col s6">
-					<i class="material-icons prefix">email</i> <input id="email" type="email" class="validate" name="email">
+					<i class="material-icons prefix">mail_outline</i> <input id="email" type="email" class="validate" name="email">
 					<label for="email">Email</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field hoverable col s6">
-					<i class="material-icons prefix">vpn_key</i> <input id="password" type="password" class="validate" name="password">
+					<i class="material-icons prefix">lock_outline</i> <input id="password" type="password" class="validate" name="password">
 					<label for="password">Password</label>
 				</div>
 				<div class="input-field hoverable col s6">

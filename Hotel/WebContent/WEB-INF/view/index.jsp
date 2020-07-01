@@ -51,12 +51,12 @@
 		<form id="formHospedes" action="entrada" method="POST">
 			<div class="row">
 				<div class="input-field hoverable col s6">
-					<i class="material-icons prefix">account_circle</i>
+					<i class="material-icons prefix">contacts</i>
 					<input id="first_name" type="text" name="nome" class="validate" required >
 					<label for="first_name">Nome</label>
 				</div>
 				<div class="input-field hoverable col s6">
-					<i class="material-icons prefix">email</i>
+					<i class="material-icons prefix">mail_outline</i>
 					<input id="email" type="email" name="email" class="validate" required >
 					<label for="email">E-mail</label>
 				</div>
@@ -196,7 +196,7 @@
 			</div>
 			<div class="row">
 				<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large" data-position="top" data-tooltip="mockar nova reserva" type="button" id="btCadMock" value="cadMock" name="acao" >
-					<i class="material-icons left">child_care</i>Mock
+					<i class="material-icons left">plus_one</i>Mock
 				</button>
 				<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large right" data-position="top" data-tooltip="listar reservas" type="submit" id="btListar" value="listarReservas" name="acao" >
 					<i class="material-icons left">format_list_bulleted</i>Listar
@@ -207,7 +207,7 @@
 					Logout<i class="material-icons left red-text">power_settings_new</i>
 				</button>
 				<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large right" data-position="top" data-tooltip="limpar campos digitados" type="button" id="btLimpar" value="limpar">
-					<i class="material-icons left">clear_all</i>Limpar
+					<i class="material-icons left">clear</i>Limpar
 				</button>
 			</div>
 		</form>

@@ -154,7 +154,7 @@
 			<!-- <button class="btn tooltipped waves-effect waves-orange btn-flat" id="btExcluir" data-position="top" data-tooltip="excluir linha" value="excluirLinha" name="acao"> -->
 			<br>
 			<a href="entrada?acao=index" class="tooltipped" data-position="top" data-tooltip="voltar" value="voltar">
-			<img border="0" alt="voltar" src="img/btVoltar.jfif" width="35" height="35">
+			<img border="0" alt="voltar" src="img/btVoltar.png" width="35" height="35">
 		</div>
 	</div>
 
