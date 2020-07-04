@@ -21,12 +21,12 @@ $(() => {
 	
 	$('#btCadastrar').on('click', () => {
 		var acao = 'validaCadastro';
-		var nome = $('#first_name').val();
-		var cpf = $('#cpf').val();
-		var email = $('#email').val();
-		var quarto = $('#comboBox').val();
-		var dtEntrada = $('#dtEntrada').val();
-		var dtSaida = $('#dtSaida').val();
+		var nome = document.getElementById('first_name').value;
+		var cpf = document.getElementById('cpf').value;
+		var email = document.getElementById('email').value;
+		var quarto = document.getElementById('comboBox').value;
+		var dtEntrada = document.getElementById('dtEntrada').value;
+		var dtSaida = document.getElementById('dtSaida').value;
 		
 		if (!quarto) {
 			var instance = M.Modal.getInstance($('#modal4').modal());
@@ -174,8 +174,8 @@ var cadastrarReserva = (nome, cpf, email, quarto, dtEntrada, dtSaida) => {
 }
 
 var montarCombobox = data => {
-	$('#comboBox').html(
-		'<option value="" disabled selected >Escolha seu quarto</option>');
+	document.getElementById('comboBox').innerHTML =
+		'<option value="" disabled selected >Escolha seu quarto</option>';
 	//	for (let i = 0; i < data.length; i++) {
 	//		$('#comboBox').append('<option value="' + data[i].num + '">' + data[i].num + '</option>');
 	//	}
