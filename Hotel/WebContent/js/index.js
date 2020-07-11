@@ -2,89 +2,62 @@ $(() => {
 
 	$('.tooltipped').tooltip();
 
-	carregaQuartos();
-	
-	limpar.onclick = limparCampos;
-
-	mock.onclick = cadMock;
-	
-	$('#divSelect').on('click', () => {
-		if ($('li').length == 1) {
-			var instance = M.Modal.getInstance($('#modal9').modal());
-			instance.open();
-		}
-	});
-
 	$('#btListar, #btExcluir, #comboBox, #btLogout').on('click', () => {
 		$('.validate').removeAttr('required');
 	});
-	
-	$('#btCadastrar').on('click', () => {
-		var acao = 'validaCadastro';
-		var nome = document.getElementById('first_name').value;
-		var cpf = document.getElementById('cpf').value;
-		var email = document.getElementById('email').value;
-		var quarto = document.getElementById('comboBox').value;
-		var dtEntrada = document.getElementById('dtEntrada').value;
-		var dtSaida = document.getElementById('dtSaida').value;
-		
-		if (!quarto) {
-			var instance = M.Modal.getInstance($('#modal4').modal());
-			instance.open();
-		} else if (nome == '' || email == '' || cpf == '') {
-			var instance = M.Modal.getInstance($('#modal6').modal());
-			instance.open();
-		} else {
-			validaCadastro(acao, nome, cpf, email, quarto, dtEntrada, dtSaida);
-		}
-	});
 
-	$('#btExcluir').on('click', () => {
-		$.ajax({
-			type: 'GET',
-			url: 'entrada',
-			data: {
-				acao: 'verificaReservas'
-			},
-			dataType: 'JSON',
-			success: response => {
-				if (response == '') {
-					var instance = M.Modal.getInstance($('#modal3').modal());
-					instance.open();
-				} else {
-					var instance = M.Modal.getInstance($('#modal1').modal());
-					instance.open();
-				}
-			},
-			error: err => {
-				console.log(err);
-			}
-		});
-	});
-
-	$('#confirmaExcluir').on('click', () => {
-		$.ajax({
-			type: 'GET',
-			url: 'entrada',
-			data: {
-				acao: 'excluirTodos'
-			},
-			dataType: 'JSON',
-			success: () => {
-				carregaQuartos();
-				var instance = M.Modal.getInstance($('#modal2').modal());
-				instance.open();
-			},
-			error: err => {
-				console.log(err);
-			}
-		});
-	});
 });
 
-var mock = document.getElementById('btCadMock');
+document.getElementById('divSelect').onclick = () => {
+	if ($('li').length == 1) {
+		var instance = M.Modal.getInstance($('#modal9').modal());
+		instance.open();
+	}
+}
 
-var cadMock = () => {
+document.getElementById('btExcluir').onclick = () => {
+	$.ajax({
+		type: 'GET',
+		url: 'entrada',
+		data: {
+			acao: 'verificaReservas'
+		},
+		dataType: 'JSON',
+		success: response => {
+			if (response == '') {
+				var instance = M.Modal.getInstance($('#modal3').modal());
+				instance.open();
+			} else {
+				var instance = M.Modal.getInstance($('#modal1').modal());
+				instance.open();
+			}
+		},
+		error: err => {
+			console.log(err);
+		}
+	});
+}
+
+document.getElementById('confirmaExcluir').onclick = () => {
+	$.ajax({
+		type: 'GET',
+		url: 'entrada',
+		data: {
+			acao: 'excluirTodos'
+		},
+		dataType: 'JSON',
+		success: () => {
+			carregaQuartos();
+			var instance = M.Modal.getInstance($('#modal2').modal());
+			instance.open();
+		},
+		error: err => {
+			console.log(err);
+		}
+	});
+}
+
+document.getElementById('btCadMock').onclick = () => {
 	$.ajax({
 		type: 'POST',
 		url: 'entrada',
@@ -93,7 +66,7 @@ var cadMock = () => {
 		},
 		dataType: 'JSON',
 		success: response => {
-			if(response == true) {
+			if (response == true) {
 				var instance = M.Modal.getInstance($('#modal7').modal());
 				instance.open();
 			} else {
@@ -108,7 +81,25 @@ var cadMock = () => {
 	});
 }
 
-var limpar = document.getElementById('btLimpar');
+document.getElementById('btCadastrar').onclick = () => {
+	var acao = 'validaCadastro';
+	var nome = document.getElementById('first_name').value;
+	var cpf = document.getElementById('cpf').value;
+	var email = document.getElementById('email').value;
+	var quarto = document.getElementById('comboBox').value;
+	var dtEntrada = document.getElementById('dtEntrada').value;
+	var dtSaida = document.getElementById('dtSaida').value;
+
+	if (!quarto) {
+		var instance = M.Modal.getInstance($('#modal4').modal());
+		instance.open();
+	} else if (nome == '' || email == '' || cpf == '') {
+		var instance = M.Modal.getInstance($('#modal6').modal());
+		instance.open();
+	} else {
+		validaCadastro(acao, nome, cpf, email, quarto, dtEntrada, dtSaida);
+	}
+}
 
 var limparCampos = () => {
 	$('#first_name').removeClass('valid').val('').removeClass('invalid').val('').next().removeClass('active');
@@ -118,6 +109,8 @@ var limparCampos = () => {
 	$('#dtEntrada').removeClass('valid').val('').next().removeClass('active');
 	$('#dtSaida').removeClass('valid').val('').next().removeClass('active');
 }
+
+document.getElementById('btLimpar').onclick = limparCampos;
 
 var validaCadastro = (acao, nome, cpf, email, quarto, dtEntrada, dtSaida) => {
 	$.ajax({
@@ -202,3 +195,6 @@ var carregaQuartos = () => {
 		}
 	});
 }
+
+carregaQuartos();
+

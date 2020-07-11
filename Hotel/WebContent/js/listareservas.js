@@ -4,88 +4,9 @@ $(() => {
 
 	$('select').formSelect();
 
-	$('.modal').modal();
-	
-	alteraVisibilidade();
-	
-	$('#btExcluirTodos').on('click', () => {
-		$.ajax({
-			type: 'GET',
-			url: 'entrada',
-			data: {
-				acao: 'excluirTodos'
-			},
-			dataType: 'JSON',
-			success: () => {
-				$('tbody tr').remove();
-				alteraVisibilidade();
-			},
-			error: err => {
-				console.log(err);
-			}
-		});
-	});
-
 	$('#tabela').find('tr').on('click', e => {
 		$('#id').val($(e.currentTarget).find('td:first').text());
 		$('#quarto').val($(e.currentTarget).find('td:eq(3)').text());
-	});
-
-	$('#confirmaExport').on('click', () => {
-		var nome = $('#pesquisar').val().trim();
-		$.ajax({
-			type: 'GET',
-			url: 'entrada',
-			data: {
-				acao: 'exportarPdf',
-				param: nome
-			},
-			dataType: "JSON",
-			success: () => {
-				var instance = M.Modal.getInstance($('#modal2').modal());
-				instance.open();
-			},
-			error: err => {
-				console.log(err);
-				var instance = M.Modal.getInstance($('#modal3').modal());
-				instance.open();
-			}
-		});
-	});
-
-	$('#pesquisar').on('keyup', e => {
-		if ($(e.currentTarget).val().length > 1 || $(e.currentTarget).val() == '') {
-			var nome = $(e.currentTarget).val().trim();
-			var param = $('#selectPesquisar option:selected').val();
-			param = param.substring(0, 1).toUpperCase() + param.substring(1);
-			
-			if ($('#selectPesquisar').val() == null) {
-				var instance = M.Modal.getInstance($('#modal4').modal());
-				instance.open();
-			} else {
-				$.ajax({
-					type: 'GET',
-					url: 'entrada',
-					data: {
-						acao: 'pesquisarPor' + param,
-						param: nome
-					},
-					dataType: "JSON",
-					success: response => {
-						montarTabela(response);
-					},
-					error: err => {
-						console.log(err);
-					}
-				});
-			}
-		}
-	});
-
-	$('#selectPesquisar').on('change', () => {
-		var param = $('#selectPesquisar option:selected').text();
-
-		$('#labelPesquisar').text('Pesquisar por ' + param);
 	});
 
 	$('#tabela thead tr th').on('click', e => {
@@ -112,6 +33,81 @@ $(() => {
 	});
 });
 
+document.getElementById('selectPesquisar').onchange = () => {
+	var param = $('#selectPesquisar option:selected').text();
+
+	$('#labelPesquisar').text('Pesquisar por ' + param);
+}
+
+document.getElementById('pesquisar').onkeyup = e => {
+	if ($(e.currentTarget).val().length > 1 || $(e.currentTarget).val() == '') {
+		var nome = $(e.currentTarget).val().trim();
+		var param = $('#selectPesquisar option:selected').val();
+		param = param.substring(0, 1).toUpperCase() + param.substring(1);
+
+		if ($('#selectPesquisar').val() == null) {
+			var instance = M.Modal.getInstance($('#modal4').modal());
+			instance.open();
+		} else {
+			$.ajax({
+				type: 'GET',
+				url: 'entrada',
+				data: {
+					acao: 'pesquisarPor' + param,
+					param: nome
+				},
+				dataType: "JSON",
+				success: response => {
+					montarTabela(response);
+				},
+				error: err => {
+					console.log(err);
+				}
+			});
+		}
+	}
+}
+
+document.getElementById('confirmaExport').onclick = () => {
+	var nome = $('#pesquisar').val().trim();
+	$.ajax({
+		type: 'GET',
+		url: 'entrada',
+		data: {
+			acao: 'exportarPdf',
+			param: nome
+		},
+		dataType: "JSON",
+		success: () => {
+			var instance = M.Modal.getInstance($('#modal2').modal());
+			instance.open();
+		},
+		error: err => {
+			console.log(err);
+			var instance = M.Modal.getInstance($('#modal3').modal());
+			instance.open();
+		}
+	});
+}
+
+document.getElementById('btExcluirTodos').onclick = () => {
+	$.ajax({
+		type: 'GET',
+		url: 'entrada',
+		data: {
+			acao: 'excluirTodos'
+		},
+		dataType: 'JSON',
+		success: () => {
+			$('tbody tr').remove();
+			alteraVisibilidade();
+		},
+		error: err => {
+			console.log(err);
+		}
+	});
+}
+
 var alteraVisibilidade = () => {
 	var valor = $('#tabela td').text();
 
@@ -127,6 +123,8 @@ var alteraVisibilidade = () => {
 		$('#divPesquisa').show();
 	}
 }
+
+alteraVisibilidade();
 
 var montarTabela = data => {
 	$('tbody tr').remove();
