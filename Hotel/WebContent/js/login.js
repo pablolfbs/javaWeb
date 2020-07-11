@@ -10,8 +10,12 @@ app.controller('mainController', function($scope, $http) { // o scope liga o js
 	
 });*/
 
-$(() => {
-	
-	
-	
-});
+
+document.getElementById('botao').onclick = () => {
+	window.localStorage.setItem('login', document.getElementById('email').value);
+	window.localStorage.setItem('senha', document.getElementById('password').value);
+}
+
+document.getElementById('email').value = localStorage.login;
+document.getElementById('password').value = localStorage.senha;
+
