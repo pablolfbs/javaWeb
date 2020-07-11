@@ -3,7 +3,7 @@ $(() => {
 	$('.tooltipped').tooltip();
 
 	$('select').formSelect();
-
+	
 	$('#tabela').find('tr').on('click', e => {
 		$('#id').val($(e.currentTarget).find('td:first').text());
 		$('#quarto').val($(e.currentTarget).find('td:eq(3)').text());
@@ -32,6 +32,11 @@ $(() => {
 		}
 	});
 });
+
+document.getElementById('exportar').onclick = () => {
+	var instance = M.Modal.getInstance($('#modal1').modal());
+	instance.open();
+}
 
 document.getElementById('selectPesquisar').onchange = () => {
 	var param = $('#selectPesquisar option:selected').text();
