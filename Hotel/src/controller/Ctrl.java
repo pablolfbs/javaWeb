@@ -214,7 +214,6 @@ public class Ctrl {
 		}
 		throw new RuntimeException("Erro ao mockar reserva!");
 	}
-	// Fim de mock.
 
 	private static String[] carregaArrayEmails() {
 		return new String[] { "pablo@pablo.com", "ingrid@ingrid.com", "alice@alice.com", "marcello@marcello.com",
@@ -226,5 +225,6 @@ public class Ctrl {
 		return new String[] { "Pablo", "Ingrid", "Alice", "Marcello", "Nadja", "Antonio Luiz", "Rosa", "Vânia",
 				"Romário", "Rodrigo" };
 	}
+	// Fim do mock.
 
 }

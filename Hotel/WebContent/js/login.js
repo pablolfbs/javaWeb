@@ -10,12 +10,19 @@ app.controller('mainController', function($scope, $http) { // o scope liga o js
 	
 });*/
 
+document.getElementById('remember-me').checked = JSON.parse(localStorage.opcao);
+document.getElementById('email').value = !localStorage.login ? '' : localStorage.login;
+document.getElementById('password').value = !localStorage.senha ? '' : localStorage.senha;
 
 document.getElementById('botao').onclick = () => {
-	window.localStorage.setItem('login', document.getElementById('email').value);
-	window.localStorage.setItem('senha', document.getElementById('password').value);
+	if (document.getElementById('remember-me').checked) {
+		window.localStorage.setItem('login', document.getElementById('email').value);
+		window.localStorage.setItem('senha', document.getElementById('password').value);
+	} else {
+		window.localStorage.removeItem('login');
+		window.localStorage.removeItem('senha');
+	}
+	window.localStorage.setItem('opcao', document.getElementById('remember-me').checked);
 }
 
-document.getElementById('email').value = localStorage.login;
-document.getElementById('password').value = localStorage.senha;
 
