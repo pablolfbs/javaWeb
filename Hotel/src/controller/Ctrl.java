@@ -224,7 +224,7 @@ public class Ctrl {
 				return hDAO.inserir(new Hospede(nome, cpf, email));
 			}
 		}
-		throw new RuntimeException("Erro ao mockar reserva!");
+		throw new RuntimeException("Erro ao mockar hospede!");
 	}
 
 	private static String[] carregaArrayEmails() {
