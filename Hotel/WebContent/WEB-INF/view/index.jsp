@@ -112,7 +112,6 @@
 						<a href="#!" id="confirmaExcluir" class="modal-close waves-effect waves-green btn-flat">Sim</a>
 					</div>
 				</div>
-				
 				<!-- Modal Structure -->
 				<div id="modal2" class="modal">
 					<div class="modal-content">
@@ -194,9 +193,22 @@
 					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 				</div>
 			</div>
+			<!-- Modal Structure -->
+			<div id="modal10" class="modal">
+				<div class="modal-content">
+					<h4>SUCESSO</h4>
+					<p>Todas as reservas foram cadastradas!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
 			<div class="row">
 				<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large" data-position="top" data-tooltip="mockar nova reserva" type="button" id="btCadMock" value="cadMock" name="acao" >
 					<i class="material-icons left">plus_one</i>Mock
+				</button>
+				<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large" data-position="top" data-tooltip="mockar todas as reservas" type="button" id="btCadMockAll" value="cadMockAll" name="acao" >
+					<i class="material-icons left">add</i>Mock All
 				</button>
 				<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large right" data-position="top" data-tooltip="listar reservas" type="submit" id="btListar" value="listarReservas" name="acao" >
 					<i class="material-icons left">format_list_bulleted</i>Listar

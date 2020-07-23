@@ -2,10 +2,12 @@ package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -62,7 +64,7 @@ public class Ctrl {
 
 	public static Collection<? extends Quarto> carregaListaQuartos() {
 		Collection<? extends Quarto> lista = qDAO.listar();
-		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
+		List<Quarto> quartos = new ArrayList<Quarto>();
 
 		for (QuartoEnum quartoEnum : QuartoEnum.values()) {
 			Quarto q = new Quarto(quartoEnum.getNum());
@@ -174,6 +176,20 @@ public class Ctrl {
 			return false;
 		}
 	}
+	
+	public static boolean mockAll() {
+		Collection<? extends Quarto> quartos = Ctrl.carregaListaQuartos();
+		Set<Integer> setQuartos = quartos.stream().map(q -> q.getNum()).collect(Collectors.toSet());
+		
+		for (int i = 1; i <= QuartoEnum.values().length; i++) {
+			if (setQuartos.contains(i)) {
+				int idHospede = mockHospede();
+				Quarto quarto = mockQuarto();
+				mockReserva(idHospede, quarto);
+			}
+		}
+		return true;
+	}
 
 	private static void mockReserva(int idHospede, Quarto quarto) {
 		Ctrl.inserirReserva(new Reserva(quarto.getNum(), new Hospede(idHospede), new Date(), new Date()));
@@ -181,13 +197,11 @@ public class Ctrl {
 
 	private static Quarto mockQuarto() {
 		Collection<? extends Quarto> quartos = Ctrl.carregaListaQuartos();
-
-		Quarto q = new Quarto();
-		for (int i = 1; i <= QuartoEnum.values().length; i++) {
-			q.setNum(i);
-			if (quartos.contains(q)) {
-				return qDAO.inserir(q);
-			}
+		List<Integer> listQuartos = quartos.stream().map(q -> q.getNum()).collect(Collectors.toList());
+		Quarto q = new Quarto(listQuartos.get(0));
+		
+		if (quartos.contains(q)) {
+			return qDAO.inserir(q);
 		}
 		throw new RuntimeException("Erro ao mockar quarto!");
 	}
@@ -197,15 +211,14 @@ public class Ctrl {
 		String[] arrayEmail = carregaArrayEmails();
 		
 		Set<Hospede> hospedes = hDAO.listar();
-		
-		Set<String> setEmail = hospedes.stream().map(h -> h.getEmail()).collect(Collectors.toSet());
+		Set<String> setEmails = hospedes.stream().map(h -> h.getEmail()).collect(Collectors.toSet());
 
 		String nome = null;
 		String email = null;
 		String cpf = GeraCpfCnpj.cpf(false);
 		
 		for (int i = 0; i < arrayEmail.length; i++) {
-			if (!setEmail.contains(arrayEmail[i])) {
+			if (!setEmails.contains(arrayEmail[i])) {
 				nome = arrayNome[i];
 				email = arrayEmail[i];
 

@@ -81,6 +81,25 @@ document.getElementById('btCadMock').onclick = () => {
 	});
 }
 
+document.getElementById('btCadMockAll').onclick = () => {
+	$.ajax({
+		type: 'POST',
+		url: 'entrada',
+		data: {
+			acao: 'mockAll'
+		},
+		dataType: 'JSON',
+		success: () => {
+			var instance = M.Modal.getInstance($('#modal10').modal());
+			instance.open();
+			limparCampos();
+		},
+		error: err => {
+			console.log(err);
+		}
+	});
+}
+
 document.getElementById('btCadastrar').onclick = () => {
 	var acao = 'validaCadastro';
 	var nome = document.getElementById('first_name').value;

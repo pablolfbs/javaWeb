@@ -149,6 +149,40 @@
 					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 				</div>
 			</div>
+			
+			<!-- Modal Structure -->
+			<div id="modal5" class="modal">
+				<div class="modal-content">
+					<h4>AVISO</h4>
+					<p>Tem certeza que deseja excluir todas as reservas?</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Não</a>
+					<a href="#!" id="confirmaExcluir" class="modal-close waves-effect waves-green btn-flat">Sim</a>
+				</div>
+			</div>
+			
+			<!-- Modal Structure -->
+			<div id="modal6" class="modal">
+				<div class="modal-content">
+					<h4>SUCESSO</h4>
+					<p>Todas as reservas foram apagadas!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
+			
+			<!-- Modal Structure -->
+			<div id="modal7" class="modal">
+				<div class="modal-content">
+					<h4>AVISO</h4>
+					<p>Não há reservas a serem apagadas!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
 		</form>
 		<div>
 			<!-- <button class="btn tooltipped waves-effect waves-orange btn-flat" id="btExcluir" data-position="top" data-tooltip="excluir linha" value="excluirLinha" name="acao"> -->

@@ -96,6 +96,11 @@ document.getElementById('confirmaExport').onclick = () => {
 }
 
 document.getElementById('btExcluirTodos').onclick = () => {
+	var instance = M.Modal.getInstance($('#modal5').modal());
+	instance.open();
+}
+
+document.getElementById('confirmaExcluir').onclick = () => {
 	$.ajax({
 		type: 'GET',
 		url: 'entrada',
@@ -106,6 +111,9 @@ document.getElementById('btExcluirTodos').onclick = () => {
 		success: () => {
 			$('tbody tr').remove();
 			alteraVisibilidade();
+			
+			var instance = M.Modal.getInstance($('#modal6').modal());
+			instance.open();
 		},
 		error: err => {
 			console.log(err);
