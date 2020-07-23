@@ -230,12 +230,13 @@ public class Ctrl {
 	private static String[] carregaArrayEmails() {
 		return new String[] { "pablo@pablo.com", "ingrid@ingrid.com", "alice@alice.com", "marcello@marcello.com",
 				"nadja@nadja.com", "antonio@antonio.com", "rosa@rosa.com", "vania@vania.com", "romario@romario.com",
-				"rodrigo@rodrigo.com" };
+				"rodrigo@rodrigo.com", "joaquim@joaquim.com", "andre@andre.com", "reinaldo@reinaldo.com", "carla@carla.com",
+				"daniela@daniela.com"};
 	}
 
 	private static String[] carregaArrayNomes() {
 		return new String[] { "Pablo", "Ingrid", "Alice", "Marcello", "Nadja", "Antonio Luiz", "Rosa", "Vânia",
-				"Romário", "Rodrigo" };
+				"Romário", "Rodrigo", "Joaquim", "André", "Reinaldo", "Carla", "Daniela" };
 	}
 	// Fim do mock.
 
