@@ -166,9 +166,7 @@ public class Ctrl {
 	// Mockar reservas
 	public static boolean mockar() {
 		if (Ctrl.carregaListaReservas().size() < QuartoEnum.values().length) {
-			int idHospede = mockHospede();
-			Quarto quarto = mockQuarto();
-			mockReserva(idHospede, quarto);
+			mock();
 
 			return true;
 		} else {
@@ -177,17 +175,23 @@ public class Ctrl {
 	}
 	
 	public static boolean mockAll() {
-		Collection<? extends Quarto> quartos = Ctrl.carregaListaQuartos();
-		Set<Integer> setQuartos = quartos.stream().map(q -> q.getNum()).collect(Collectors.toSet());
-		
-		for (int i = 1; i <= QuartoEnum.values().length; i++) {
-			if (setQuartos.contains(i)) {
-				int idHospede = mockHospede();
-				Quarto quarto = mockQuarto();
-				mockReserva(idHospede, quarto);
+		if (Ctrl.carregaListaReservas().size() < QuartoEnum.values().length) {
+			Collection<? extends Quarto> quartos = Ctrl.carregaListaQuartos();
+			Set<Integer> setQuartos = quartos.stream().map(q -> q.getNum()).collect(Collectors.toSet());
+			
+			for (@SuppressWarnings("unused") Integer num : setQuartos) {
+				mock();
 			}
+			return true;
+		} else {
+			return false;
 		}
-		return true;
+	}
+
+	private static void mock() {
+		int idHospede = mockHospede();
+		Quarto quarto = mockQuarto();
+		mockReserva(idHospede, quarto);
 	}
 
 	private static void mockReserva(int idHospede, Quarto quarto) {
@@ -231,12 +235,15 @@ public class Ctrl {
 		return new String[] { "pablo@pablo.com", "ingrid@ingrid.com", "alice@alice.com", "marcello@marcello.com",
 				"nadja@nadja.com", "antonio@antonio.com", "rosa@rosa.com", "vania@vania.com", "romario@romario.com",
 				"rodrigo@rodrigo.com", "joaquim@joaquim.com", "andre@andre.com", "reinaldo@reinaldo.com", "carla@carla.com",
-				"daniela@daniela.com"};
+				"daniela@daniela.com", "maria@maria.com", "joao@joao.com", "jose@jose.com", "igor@igor.com", "danilo@danilo.com",
+				"fabiana@fabiana.com", "fabricio@fabricio.com", "gilmar@gilmar.com", "ronaldo@ronaldo.com", "junior@junior.com",
+				"marcos@marcos.com", "jonas@jonas.com", "mirian@mirian.com", "vivian@vivian.com", "emmanuel@emmanuel.com" };
 	}
 
 	private static String[] carregaArrayNomes() {
-		return new String[] { "Pablo", "Ingrid", "Alice", "Marcello", "Nadja", "Antonio Luiz", "Rosa", "Vânia",
-				"Romário", "Rodrigo", "Joaquim", "André", "Reinaldo", "Carla", "Daniela" };
+		return new String[] { "Pablo", "Ingrid", "Alice", "Marcello", "Nadja", "Antonio Luiz", "Rosa", "Vânia", "Romário",
+				"Rodrigo", "Joaquim", "André", "Reinaldo", "Carla", "Daniela", "Maria", "João", "José", "Igor", "Danilo",
+				"Fabiana", "Fabrício", "Gilmar", "Ronaldo", "Júnior", "Marcos", "Jonas", "Mirian", "Vivian", "Emmanuel" };
 	}
 	// Fim do mock.
 

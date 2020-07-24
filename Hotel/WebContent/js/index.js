@@ -89,9 +89,14 @@ document.getElementById('btCadMockAll').onclick = () => {
 			acao: 'mockAll'
 		},
 		dataType: 'JSON',
-		success: () => {
-			var instance = M.Modal.getInstance($('#modal10').modal());
-			instance.open();
+		success: response => {
+			if (response == true) {
+				var instance = M.Modal.getInstance($('#modal10').modal());
+				instance.open();
+			} else {
+				var instance = M.Modal.getInstance($('#modal9').modal());
+				instance.open();
+			}
 			limparCampos();
 		},
 		error: err => {
