@@ -156,7 +156,7 @@ var montarTabela = data => {
 	var table;
 
 	data.map(d => {
-		table += '<tr>';
+		table += '<tr class="hoverable">';
 		table += '<td class="col s1"><input type="hidden" id="id" name="hospedeId" value="' + d.id + '" />' + d.id + '</td>';
 		table += '<td class="col s2">' + d.hospede.nome + '</td>';
 		table += '<td class="col s2 center">' + d.hospede.cpf + '</td>';
