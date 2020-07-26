@@ -18,7 +18,7 @@
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-
+	
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -33,7 +33,7 @@
 	
 	.radioDistance { padding-left: 20px; }
 	
-	th .btn:hover, td .btn:hover, #btLogout:hover, #exportar:hover { background-color: #ee6e73; color: white; }
+	th .btn:hover, td .btn:hover, #btLogout:hover, #exportar:hover, li:hover { background-color: #ee6e73; color: white; }
 </style>
 </head>
 
@@ -82,7 +82,12 @@
 				</tbody>
 			</table>
 			<br>
-			<h4 class="center" style="color:red" id="listavazia" hidden>A lista de reservas está vazia.</h4	>
+			<div class="col-md-12 center text-center">
+                <span class="left" id="total_reg"></span>
+                <ul class="pagination pager" id="myPager"></ul>
+            </div>
+			<br>
+			<h4 class="center" style="color:red" id="listavazia" hidden>A lista de reservas está vazia.</h4>
 			<div id="divPesquisa" class="row">
 				<div class="input-field hoverable col s2">
 					<select id="selectPesquisar">
@@ -196,6 +201,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
     <script type="text/javascript" src="js/listareservas.js"></script>
+    
+    <script type="text/javascript" src="js/pagination.js"></script>
 </body>
 
 </html>

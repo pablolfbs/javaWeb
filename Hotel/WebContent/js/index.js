@@ -66,7 +66,7 @@ document.getElementById('btCadMock').onclick = () => {
 		},
 		dataType: 'JSON',
 		success: response => {
-			if (response == true) {
+			if (response) {
 				var instance = M.Modal.getInstance($('#modal7').modal());
 				instance.open();
 			} else {
@@ -90,7 +90,7 @@ document.getElementById('btCadMockAll').onclick = () => {
 		},
 		dataType: 'JSON',
 		success: response => {
-			if (response == true) {
+			if (response) {
 				var instance = M.Modal.getInstance($('#modal10').modal());
 				instance.open();
 			} else {
