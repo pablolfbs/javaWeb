@@ -20,6 +20,7 @@ import model.dao.ReservaDAO;
 import model.dao.UsuarioDAO;
 import model.enumerador.QuartoEnum;
 import util.GeraCpfCnpj;
+import util.NomeIO;
 
 public class Ctrl {
 
@@ -210,40 +211,26 @@ public class Ctrl {
 	}
 
 	private static int mockHospede() {
-		String[] arrayNome = carregaArrayNomes();
-		String[] arrayEmail = carregaArrayEmails();
+		NomeIO n = new NomeIO();
+		Collection<String> nomes = n.lerArquivo();
+		List<String> listaNomes = new ArrayList<String>(nomes);
 		
 		Set<Hospede> hospedes = hDAO.listar();
-		Set<String> setEmails = hospedes.stream().map(h -> h.getEmail()).collect(Collectors.toSet());
+		Set<String> setNomes = hospedes.stream().map(h -> h.getNome()).collect(Collectors.toSet());
 
 		String nome = null;
 		String email = null;
 		String cpf = GeraCpfCnpj.cpf(false);
 		
-		for (int i = 0; i < arrayEmail.length; i++) {
-			if (!setEmails.contains(arrayEmail[i])) {
-				nome = arrayNome[i];
-				email = arrayEmail[i];
+		for (int i = 0; i < listaNomes.size(); i++) {
+			if (!setNomes.contains(listaNomes.get(i))) {
+				nome = listaNomes.get(i);
+				email = listaNomes.get(i).toLowerCase() + "@" + listaNomes.get(i).toLowerCase() + ".com";
 
 				return hDAO.inserir(new Hospede(nome, cpf, email));
 			}
 		}
 		throw new RuntimeException("Erro ao mockar hospede!");
-	}
-
-	private static String[] carregaArrayEmails() {
-		return new String[] { "pablo@pablo.com", "ingrid@ingrid.com", "alice@alice.com", "marcello@marcello.com",
-				"nadja@nadja.com", "antonio@antonio.com", "rosa@rosa.com", "vania@vania.com", "romario@romario.com",
-				"rodrigo@rodrigo.com", "joaquim@joaquim.com", "andre@andre.com", "reinaldo@reinaldo.com", "carla@carla.com",
-				"daniela@daniela.com", "maria@maria.com", "joao@joao.com", "jose@jose.com", "igor@igor.com", "danilo@danilo.com",
-				"fabiana@fabiana.com", "fabricio@fabricio.com", "gilmar@gilmar.com", "ronaldo@ronaldo.com", "junior@junior.com",
-				"marcos@marcos.com", "jonas@jonas.com", "mirian@mirian.com", "vivian@vivian.com", "emmanuel@emmanuel.com" };
-	}
-
-	private static String[] carregaArrayNomes() {
-		return new String[] { "Pablo", "Ingrid", "Alice", "Marcello", "Nadja", "Antonio Luiz", "Rosa", "Vânia", "Romário",
-				"Rodrigo", "Joaquim", "André", "Reinaldo", "Carla", "Daniela", "Maria", "João", "José", "Igor", "Danilo",
-				"Fabiana", "Fabrício", "Gilmar", "Ronaldo", "Júnior", "Marcos", "Jonas", "Mirian", "Vivian", "Emmanuel" };
 	}
 	// Fim do mock.
 

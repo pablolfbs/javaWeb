@@ -16,7 +16,7 @@ $(() => {
 		nextText: 'next',
 		showPrevNext: true,
 		hidePageNumbers: false,
-		perPage: 5
+		perPage: 10
 	});
 	
 	alteraVisibilidade();
@@ -195,7 +195,7 @@ var montarTabela = data => {
 		nextText: 'next',
 		showPrevNext: true,
 		hidePageNumbers: false,
-		perPage: 5
+		perPage: 10
 	});
 
 	$('#tabela').find('tr').on('click', e => {
