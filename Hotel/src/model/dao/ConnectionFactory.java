@@ -10,16 +10,16 @@ public class ConnectionFactory {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost/hotel?autoReconnect=true", "root", "root");
+			String url = "jdbc:mysql://localhost/hotel?autoReconnect=true";
+			String username = "root";
+			String password = "root";
+			con = DriverManager.getConnection(url, username, password);
+			
 			System.out.println("Conectado com sucesso!!");
 		} catch (SQLException | ClassNotFoundException e) {
-			System.out.println("Não pode conectar: " + e.getMessage());
+			throw new RuntimeException("Não pode conectar: " + e.getMessage());
 		}
 		return con;
-	}
-	
-	public static void main(String[] args) {
-		getConnection();
 	}
 	
 }

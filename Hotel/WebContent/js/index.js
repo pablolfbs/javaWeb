@@ -66,8 +66,32 @@ document.getElementById('btCadMock').onclick = () => {
 		},
 		dataType: 'JSON',
 		success: response => {
-			if (response == true) {
+			if (response) {
 				var instance = M.Modal.getInstance($('#modal7').modal());
+				instance.open();
+			} else {
+				var instance = M.Modal.getInstance($('#modal9').modal());
+				instance.open();
+			}
+			limparCampos();
+		},
+		error: err => {
+			console.log(err);
+		}
+	});
+}
+
+document.getElementById('btCadMockAll').onclick = () => {
+	$.ajax({
+		type: 'POST',
+		url: 'entrada',
+		data: {
+			acao: 'mockAll'
+		},
+		dataType: 'JSON',
+		success: response => {
+			if (response) {
+				var instance = M.Modal.getInstance($('#modal10').modal());
 				instance.open();
 			} else {
 				var instance = M.Modal.getInstance($('#modal9').modal());

@@ -3,11 +3,23 @@ $(() => {
 	$('.tooltipped').tooltip();
 
 	$('select').formSelect();
-	
+
 	$('#tabela').find('tr').on('click', e => {
 		$('#id').val($(e.currentTarget).find('td:first').text());
 		$('#quarto').val($(e.currentTarget).find('td:eq(3)').text());
 	});
+
+	$('#tabela').pageMe({
+		pagerSelector: '#myPager',
+		activeColor: '#ee6e73',
+		prevText: 'previous',
+		nextText: 'next',
+		showPrevNext: true,
+		hidePageNumbers: false,
+		perPage: 30
+	});
+	
+	alteraVisibilidade();
 
 	$('#tabela thead tr th').on('click', e => {
 		var nome = $('#pesquisar').val().trim();
@@ -96,6 +108,11 @@ document.getElementById('confirmaExport').onclick = () => {
 }
 
 document.getElementById('btExcluirTodos').onclick = () => {
+	var instance = M.Modal.getInstance($('#modal5').modal());
+	instance.open();
+}
+
+document.getElementById('confirmaExcluir').onclick = () => {
 	$.ajax({
 		type: 'GET',
 		url: 'entrada',
@@ -106,6 +123,9 @@ document.getElementById('btExcluirTodos').onclick = () => {
 		success: () => {
 			$('tbody tr').remove();
 			alteraVisibilidade();
+
+			var instance = M.Modal.getInstance($('#modal6').modal());
+			instance.open();
 		},
 		error: err => {
 			console.log(err);
@@ -121,6 +141,8 @@ var alteraVisibilidade = () => {
 		$('#tabela').hide();
 		$('#exportar').hide();
 		$('#divPesquisa').hide();
+		$('#myPager').hide();
+		$('#total_reg').text('0 registro no total');
 	} else {
 		$('#tabela').show();
 		$('#busca').show();
@@ -129,14 +151,12 @@ var alteraVisibilidade = () => {
 	}
 }
 
-alteraVisibilidade();
-
 var montarTabela = data => {
 	$('tbody tr').remove();
 	var table;
 
 	data.map(d => {
-		table += '<tr>';
+		table += '<tr class="hoverable">';
 		table += '<td class="col s1"><input type="hidden" id="id" name="hospedeId" value="' + d.id + '" />' + d.id + '</td>';
 		table += '<td class="col s2">' + d.hospede.nome + '</td>';
 		table += '<td class="col s2 center">' + d.hospede.cpf + '</td>';
@@ -166,9 +186,21 @@ var montarTabela = data => {
 	}*/
 
 	$('table tbody').html(table);
+	
+	$('#myPager').text('');
+	$('#tabela').pageMe({
+		pagerSelector: '#myPager',
+		activeColor: '#ee6e73',
+		prevText: 'previous',
+		nextText: 'next',
+		showPrevNext: true,
+		hidePageNumbers: false,
+		perPage: 30
+	});
 
 	$('#tabela').find('tr').on('click', e => {
 		$('#id').val($(e.currentTarget).find('td:first').text());
 		$('#quarto').val($(e.currentTarget).find('td:eq(3)').text());
 	});
 }
+

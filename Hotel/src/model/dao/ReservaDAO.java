@@ -105,7 +105,7 @@ public class ReservaDAO {
 		}
 		return reservas;
 	}
-
+	
 	public Collection<? extends Reserva> buscarPorNomeHospede(String nome) {
 		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" + nome
 				+ "%' ";
@@ -253,4 +253,5 @@ public class ReservaDAO {
 		}
 		return reservas;
 	}
+
 }

@@ -2,10 +2,11 @@ package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,7 @@ import model.dao.ReservaDAO;
 import model.dao.UsuarioDAO;
 import model.enumerador.QuartoEnum;
 import util.GeraCpfCnpj;
+import util.NomeIO;
 
 public class Ctrl {
 
@@ -62,7 +64,7 @@ public class Ctrl {
 
 	public static Collection<? extends Quarto> carregaListaQuartos() {
 		Collection<? extends Quarto> lista = qDAO.listar();
-		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
+		List<Quarto> quartos = new ArrayList<Quarto>();
 
 		for (QuartoEnum quartoEnum : QuartoEnum.values()) {
 			Quarto q = new Quarto(quartoEnum.getNum());
@@ -165,14 +167,32 @@ public class Ctrl {
 	// Mockar reservas
 	public static boolean mockar() {
 		if (Ctrl.carregaListaReservas().size() < QuartoEnum.values().length) {
-			int idHospede = mockHospede();
-			Quarto quarto = mockQuarto();
-			mockReserva(idHospede, quarto);
+			mock();
 
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	public static boolean mockAll() {
+		if (Ctrl.carregaListaReservas().size() < QuartoEnum.values().length) {
+			Collection<? extends Quarto> quartos = Ctrl.carregaListaQuartos();
+			Set<Integer> setQuartos = quartos.stream().map(q -> q.getNum()).collect(Collectors.toSet());
+			
+			for (@SuppressWarnings("unused") Integer num : setQuartos) {
+				mock();
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private static void mock() {
+		int idHospede = mockHospede();
+		Quarto quarto = mockQuarto();
+		mockReserva(idHospede, quarto);
 	}
 
 	private static void mockReserva(int idHospede, Quarto quarto) {
@@ -181,49 +201,36 @@ public class Ctrl {
 
 	private static Quarto mockQuarto() {
 		Collection<? extends Quarto> quartos = Ctrl.carregaListaQuartos();
-
-		Quarto q = new Quarto();
-		for (int i = 1; i <= QuartoEnum.values().length; i++) {
-			q.setNum(i);
-			if (quartos.contains(q)) {
-				return qDAO.inserir(q);
-			}
+		List<Integer> listQuartos = quartos.stream().map(q -> q.getNum()).collect(Collectors.toList());
+		Quarto q = new Quarto(listQuartos.get(0));
+		
+		if (quartos.contains(q)) {
+			return qDAO.inserir(q);
 		}
 		throw new RuntimeException("Erro ao mockar quarto!");
 	}
 
 	private static int mockHospede() {
-		String[] arrayNome = carregaArrayNomes();
-		String[] arrayEmail = carregaArrayEmails();
+		NomeIO n = new NomeIO();
+		Collection<String> nomes = n.lerArquivo();
+		List<String> listaNomes = new ArrayList<String>(nomes);
 		
 		Set<Hospede> hospedes = hDAO.listar();
-		
-		Set<String> setEmail = hospedes.stream().map(h -> h.getEmail()).collect(Collectors.toSet());
+		Set<String> setNomes = hospedes.stream().map(h -> h.getNome()).collect(Collectors.toSet());
 
 		String nome = null;
 		String email = null;
 		String cpf = GeraCpfCnpj.cpf(false);
 		
-		for (int i = 0; i < arrayEmail.length; i++) {
-			if (!setEmail.contains(arrayEmail[i])) {
-				nome = arrayNome[i];
-				email = arrayEmail[i];
+		for (int i = 0; i < listaNomes.size(); i++) {
+			if (!setNomes.contains(listaNomes.get(i))) {
+				nome = listaNomes.get(i);
+				email = listaNomes.get(i).toLowerCase() + "@" + listaNomes.get(i).toLowerCase() + ".com";
 
 				return hDAO.inserir(new Hospede(nome, cpf, email));
 			}
 		}
-		throw new RuntimeException("Erro ao mockar reserva!");
-	}
-
-	private static String[] carregaArrayEmails() {
-		return new String[] { "pablo@pablo.com", "ingrid@ingrid.com", "alice@alice.com", "marcello@marcello.com",
-				"nadja@nadja.com", "antonio@antonio.com", "rosa@rosa.com", "vania@vania.com", "romario@romario.com",
-				"rodrigo@rodrigo.com" };
-	}
-
-	private static String[] carregaArrayNomes() {
-		return new String[] { "Pablo", "Ingrid", "Alice", "Marcello", "Nadja", "Antonio Luiz", "Rosa", "Vânia",
-				"Romário", "Rodrigo" };
+		throw new RuntimeException("Erro ao mockar hospede!");
 	}
 	// Fim do mock.
 

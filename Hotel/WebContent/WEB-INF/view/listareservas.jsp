@@ -11,14 +11,13 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Reservas</title>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-
+	
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -33,7 +32,7 @@
 	
 	.radioDistance { padding-left: 20px; }
 	
-	th .btn:hover, td .btn:hover, #btLogout:hover, #exportar:hover { background-color: #ee6e73; color: white; }
+	th .btn:hover, td .btn:hover, #btLogout:hover, #exportar:hover, li:hover { background-color: #ee6e73; color: white; }
 </style>
 </head>
 
@@ -82,7 +81,12 @@
 				</tbody>
 			</table>
 			<br>
-			<h4 class="center" style="color:red" id="listavazia" hidden>A lista de reservas está vazia.</h4	>
+			<div class="col-md-12 center text-center">
+                <span class="left" id="total_reg"></span>
+                <ul class="pagination pager" id="myPager"></ul>
+            </div>
+			<br>
+			<h4 class="center" style="color:red" id="listavazia" hidden>A lista de reservas está vazia.</h4>
 			<div id="divPesquisa" class="row">
 				<div class="input-field hoverable col s2">
 					<select id="selectPesquisar">
@@ -149,6 +153,40 @@
 					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 				</div>
 			</div>
+			
+			<!-- Modal Structure -->
+			<div id="modal5" class="modal">
+				<div class="modal-content">
+					<h4>AVISO</h4>
+					<p>Tem certeza que deseja excluir todas as reservas?</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Não</a>
+					<a href="#!" id="confirmaExcluir" class="modal-close waves-effect waves-green btn-flat">Sim</a>
+				</div>
+			</div>
+			
+			<!-- Modal Structure -->
+			<div id="modal6" class="modal">
+				<div class="modal-content">
+					<h4>SUCESSO</h4>
+					<p>Todas as reservas foram apagadas!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
+			
+			<!-- Modal Structure -->
+			<div id="modal7" class="modal">
+				<div class="modal-content">
+					<h4>AVISO</h4>
+					<p>Não há reservas a serem apagadas!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
 		</form>
 		<div>
 			<!-- <button class="btn tooltipped waves-effect waves-orange btn-flat" id="btExcluir" data-position="top" data-tooltip="excluir linha" value="excluirLinha" name="acao"> -->
@@ -162,6 +200,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
     <script type="text/javascript" src="js/listareservas.js"></script>
+    
+    <script type="text/javascript" src="js/pagination.js"></script>
 </body>
 
 </html>
