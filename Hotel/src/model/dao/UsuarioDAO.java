@@ -23,6 +23,7 @@ public class UsuarioDAO {
 			ps.setString(1, usuario.getEmail());
 			ps.setString(2, usuario.getSenha());
 			ps.execute();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -46,7 +47,8 @@ public class UsuarioDAO {
 				usuario.setSenha(rs.getString("senha"));
 				usuarios.add(usuario);
 			}
-			
+			ps.close();
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,6 +72,8 @@ public class UsuarioDAO {
 				usuario.setEmail(rs.getString("email"));
 				usuario.setSenha(rs.getString("senha"));
 			}
+			ps.close();
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

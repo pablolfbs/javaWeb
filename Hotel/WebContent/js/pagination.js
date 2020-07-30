@@ -2,7 +2,7 @@ $.fn.pageMe = function(opts) {
 	var $this = this,
 		defaults = {
 			activeColor: '#ee6e73',
-			perPage: 10,
+			perPage: 30,
 			showPrevNext: false,
 			nextText: '',
 			prevText: '',
