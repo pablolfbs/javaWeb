@@ -10,7 +10,7 @@ app.controller('mainController', function($scope, $http) { // o scope liga o js
 	
 });*/
 
-document.getElementById('remember-me').checked = JSON.parse(localStorage.opcao);
+document.getElementById('remember-me').checked = localStorage.opcao ? JSON.parse(localStorage.opcao) : window.localStorage.setItem('opcao', document.getElementById('remember-me').checked);
 document.getElementById('email').value = !localStorage.login ? '' : localStorage.login;
 document.getElementById('password').value = !localStorage.senha ? '' : localStorage.senha;
 
