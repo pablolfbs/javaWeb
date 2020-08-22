@@ -24,7 +24,7 @@ public class ServiceClient {
 		// p.setNome("Mariazin");
 
 		// System.out.println(cs.addPessoa(p));
-		
+
 		Pessoa p = cs.getPessoa(7);
 		System.out.println(p.getNome());
 

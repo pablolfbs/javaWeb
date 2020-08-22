@@ -6,10 +6,10 @@ import javax.inject.Named;
 
 import example.ejb.Calculadora;
 
-@Named(value="controleCalculadora")
+@Named(value = "controleCalculadora")
 @RequestScoped
 public class ControleCalculadora {
-	
+
 	@EJB
 	private Calculadora calculadora;
 
@@ -20,5 +20,5 @@ public class ControleCalculadora {
 	public void setCalculadora(Calculadora calculadora) {
 		this.calculadora = calculadora;
 	}
-	
+
 }

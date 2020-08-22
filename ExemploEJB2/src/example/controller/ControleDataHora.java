@@ -20,5 +20,5 @@ public class ControleDataHora {
 	public void setTime(DataHora time) {
 		this.time = time;
 	}
-	
+
 }

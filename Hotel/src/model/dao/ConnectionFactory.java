@@ -10,7 +10,7 @@ public class ConnectionFactory {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost/hotel?autoReconnect=true";
+			String url = "jdbc:mysql://localhost/hotel";
 			String username = "root";
 			String password = "root";
 			con = DriverManager.getConnection(url, username, password);

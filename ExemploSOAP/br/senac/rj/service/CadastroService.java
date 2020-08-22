@@ -6,8 +6,8 @@ import javax.jws.WebMethod;
 import br.senac.rj.model.Pessoa;
 
 /**
-* SEI - Service Endpoint Interface
-*/
+ * SEI - Service Endpoint Interface
+ */
 
 @WebService
 public interface CadastroService {
