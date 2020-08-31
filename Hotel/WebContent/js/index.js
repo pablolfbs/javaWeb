@@ -16,7 +16,21 @@ document.getElementById('divSelect').onclick = () => {
 }
 
 document.getElementById('btExcluir').onclick = () => {
-	$.ajax({
+	axios.get('entrada?acao=verificaReservas')
+		.then(response => {
+			if (response == '') {
+				var instance = M.Modal.getInstance($('#modal3').modal());
+				instance.open();
+			} else {
+				var instance = M.Modal.getInstance($('#modal1').modal());
+				instance.open();
+			}
+		})
+		.catch(err => {
+			console.log(err);
+		});
+	
+	/*$.ajax({
 		type: 'GET',
 		url: 'entrada',
 		data: {
@@ -35,11 +49,21 @@ document.getElementById('btExcluir').onclick = () => {
 		error: err => {
 			console.log(err);
 		}
-	});
+	});*/
 }
 
 document.getElementById('confirmaExcluir').onclick = () => {
-	$.ajax({
+	axios.get('entrada?acao=excluirTodos')
+		.then(() => {
+			carregaQuartos();
+			var instance = M.Modal.getInstance($('#modal2').modal());
+			instance.open();
+		})
+		.catch(err => {
+			console.log(err);
+		})
+	
+	/*$.ajax({
 		type: 'GET',
 		url: 'entrada',
 		data: {
@@ -54,7 +78,7 @@ document.getElementById('confirmaExcluir').onclick = () => {
 		error: err => {
 			console.log(err);
 		}
-	});
+	});*/
 }
 
 document.getElementById('btCadMock').onclick = () => {
