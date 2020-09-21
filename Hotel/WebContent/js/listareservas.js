@@ -5,8 +5,8 @@ $(() => {
 	$('select').formSelect();
 
 	$('#tabela').find('tr').on('click', e => {
-		$('#id').val($(e.currentTarget).find('td:first').text());
-		$('#quarto').val($(e.currentTarget).find('td:eq(3)').text());
+		document.getElementById('id').value = $(e.currentTarget).find('td:first').text();
+		document.getElementById('quarto').value = $(e.currentTarget).find('td:eq(3)').text();
 	});
 
 	$('#tabela').pageMe({
@@ -21,8 +21,8 @@ $(() => {
 	
 	alteraVisibilidade();
 
-	$('#tabela thead tr th').on('click', e => {
-		var nome = $('#pesquisar').val().trim();
+	document.querySelector('#tabela thead tr th').onclick = e => {
+		var nome = document.getElementById('pesquisar').value.trim();
 		var valor = $(e.currentTarget).text().substring(0, 1).toUpperCase() + $(e.currentTarget).text().substring(1).toLowerCase();
 		if (valor != 'Excluir') {
 			$.ajax({
@@ -42,7 +42,7 @@ $(() => {
 				}
 			});
 		}
-	});
+	}
 });
 
 document.getElementById('exportar').onclick = () => {
@@ -86,7 +86,7 @@ document.getElementById('pesquisar').onkeyup = e => {
 }
 
 document.getElementById('confirmaExport').onclick = () => {
-	var nome = $('#pesquisar').val().trim();
+	var nome = document.getElementById('pesquisar').value.trim();
 	$.ajax({
 		type: 'GET',
 		url: 'entrada',
@@ -113,7 +113,19 @@ document.getElementById('btExcluirTodos').onclick = () => {
 }
 
 document.getElementById('confirmaExcluir').onclick = () => {
-	$.ajax({
+	axios.get('entrada?acao=excluirTodos')
+		.then(() => {
+			$('tbody tr').remove();
+			alteraVisibilidade();
+
+			var instance = M.Modal.getInstance($('#modal6').modal());
+			instance.open();
+		})
+		.catch(err => {
+			console.log(err);
+		});
+	
+	/*$.ajax({
 		type: 'GET',
 		url: 'entrada',
 		data: {
@@ -130,13 +142,15 @@ document.getElementById('confirmaExcluir').onclick = () => {
 		error: err => {
 			console.log(err);
 		}
-	});
+	});*/
 }
 
 var alteraVisibilidade = () => {
-	var valor = $('#tabela td').text();
+	// Nesse caso, comparar valor com vazio.
+	// var valor = $('#tabela td').text();
+	var valor = document.querySelector('#tabela td');
 
-	if (valor == '') {
+	if (!valor) {
 		$('#listavazia').show();
 		$('#tabela').hide();
 		$('#exportar').hide();
@@ -185,7 +199,7 @@ var montarTabela = data => {
 		table += '</tr>';
 	}*/
 
-	$('table tbody').html(table);
+	document.querySelector('table tbody').innerHTML = table;
 	
 	$('#myPager').text('');
 	$('#tabela').pageMe({
@@ -199,8 +213,8 @@ var montarTabela = data => {
 	});
 
 	$('#tabela').find('tr').on('click', e => {
-		$('#id').val($(e.currentTarget).find('td:first').text());
-		$('#quarto').val($(e.currentTarget).find('td:eq(3)').text());
+		document.getElementById('id').value = $(e.currentTarget).find('td:first').text();
+		document.getElementById('quarto').value = $(e.currentTarget).find('td:eq(3)').text();
 	});
 }
 

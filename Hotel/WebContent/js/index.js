@@ -1,5 +1,5 @@
 $(() => {
-
+	
 	$('.tooltipped').tooltip();
 
 	$('#btListar, #btExcluir, #comboBox, #btLogout').on('click', () => {
@@ -9,8 +9,9 @@ $(() => {
 });
 
 document.getElementById('divSelect').onclick = () => {
-	if ($('li').length == 1) {
-		var instance = M.Modal.getInstance($('#modal9').modal());
+	if (document.querySelectorAll('li').length == 1) {
+		
+		let instance = M.Modal.getInstance($('#modal9').modal());
 		instance.open();
 	}
 }
@@ -18,18 +19,18 @@ document.getElementById('divSelect').onclick = () => {
 document.getElementById('btExcluir').onclick = () => {
 	axios.get('entrada?acao=verificaReservas')
 		.then(response => {
-			if (response == '') {
-				var instance = M.Modal.getInstance($('#modal3').modal());
+			if (response.data == '') {
+				let instance = M.Modal.getInstance($('#modal3').modal());
 				instance.open();
 			} else {
-				var instance = M.Modal.getInstance($('#modal1').modal());
+				let instance = M.Modal.getInstance($('#modal1').modal());
 				instance.open();
 			}
 		})
 		.catch(err => {
 			console.log(err);
 		});
-	
+
 	/*$.ajax({
 		type: 'GET',
 		url: 'entrada',
@@ -39,10 +40,10 @@ document.getElementById('btExcluir').onclick = () => {
 		dataType: 'JSON',
 		success: response => {
 			if (response == '') {
-				var instance = M.Modal.getInstance($('#modal3').modal());
+				const instance = M.Modal.getInstance($('#modal3').modal());
 				instance.open();
 			} else {
-				var instance = M.Modal.getInstance($('#modal1').modal());
+				const instance = M.Modal.getInstance($('#modal1').modal());
 				instance.open();
 			}
 		},
@@ -56,13 +57,13 @@ document.getElementById('confirmaExcluir').onclick = () => {
 	axios.get('entrada?acao=excluirTodos')
 		.then(() => {
 			carregaQuartos();
-			var instance = M.Modal.getInstance($('#modal2').modal());
+			let instance = M.Modal.getInstance($('#modal2').modal());
 			instance.open();
 		})
 		.catch(err => {
 			console.log(err);
 		})
-	
+
 	/*$.ajax({
 		type: 'GET',
 		url: 'entrada',
@@ -72,7 +73,7 @@ document.getElementById('confirmaExcluir').onclick = () => {
 		dataType: 'JSON',
 		success: () => {
 			carregaQuartos();
-			var instance = M.Modal.getInstance($('#modal2').modal());
+			let instance = M.Modal.getInstance($('#modal2').modal());
 			instance.open();
 		},
 		error: err => {
@@ -82,7 +83,24 @@ document.getElementById('confirmaExcluir').onclick = () => {
 }
 
 document.getElementById('btCadMock').onclick = () => {
-	$.ajax({
+	axios.post('entrada?acao=mock')
+		.then(response => {
+			if (response.data) {
+				let instance = M.Modal.getInstance($('#modal7').modal());
+				instance.open();
+			} else {
+				let instance = M.Modal.getInstance($('#modal9').modal());
+				instance.open();
+			}
+			limparCampos(err => {
+				console.log(err);
+			});
+		})
+		.catch(err => {
+			console.log(err);
+		});
+		
+	/*$.ajax({
 		type: 'POST',
 		url: 'entrada',
 		data: {
@@ -91,10 +109,10 @@ document.getElementById('btCadMock').onclick = () => {
 		dataType: 'JSON',
 		success: response => {
 			if (response) {
-				var instance = M.Modal.getInstance($('#modal7').modal());
+				let instance = M.Modal.getInstance($('#modal7').modal());
 				instance.open();
 			} else {
-				var instance = M.Modal.getInstance($('#modal9').modal());
+				let instance = M.Modal.getInstance($('#modal9').modal());
 				instance.open();
 			}
 			limparCampos();
@@ -102,11 +120,26 @@ document.getElementById('btCadMock').onclick = () => {
 		error: err => {
 			console.log(err);
 		}
-	});
+	});*/
 }
 
 document.getElementById('btCadMockAll').onclick = () => {
-	$.ajax({
+	axios.post('entrada?acao=mockAll')
+		.then(response => {
+			if (response.data) {
+				let instance = M.Modal.getInstance($('#modal10').modal());
+				instance.open();
+			} else {
+				let instance = M.Modal.getInstance($('#modal9').modal());
+				instance.open();
+			}
+			limparCampos();
+		})
+		.catch(err => {
+			console.log(err);
+		});
+
+	/*$.ajax({
 		type: 'POST',
 		url: 'entrada',
 		data: {
@@ -115,10 +148,10 @@ document.getElementById('btCadMockAll').onclick = () => {
 		dataType: 'JSON',
 		success: response => {
 			if (response) {
-				var instance = M.Modal.getInstance($('#modal10').modal());
+				let instance = M.Modal.getInstance($('#modal10').modal());
 				instance.open();
 			} else {
-				var instance = M.Modal.getInstance($('#modal9').modal());
+				let instance = M.Modal.getInstance($('#modal9').modal());
 				instance.open();
 			}
 			limparCampos();
@@ -126,23 +159,23 @@ document.getElementById('btCadMockAll').onclick = () => {
 		error: err => {
 			console.log(err);
 		}
-	});
+	});*/
 }
 
 document.getElementById('btCadastrar').onclick = () => {
-	var acao = 'validaCadastro';
-	var nome = document.getElementById('first_name').value;
-	var cpf = document.getElementById('cpf').value;
-	var email = document.getElementById('email').value;
-	var quarto = document.getElementById('comboBox').value;
-	var dtEntrada = document.getElementById('dtEntrada').value;
-	var dtSaida = document.getElementById('dtSaida').value;
+	const acao = 'validaCadastro';
+	const nome = document.getElementById('first_name').value;
+	const cpf = document.getElementById('cpf').value;
+	const email = document.getElementById('email').value;
+	const quarto = document.getElementById('comboBox').value;
+	const dtEntrada = document.getElementById('dtEntrada').value;
+	const dtSaida = document.getElementById('dtSaida').value;
 
 	if (!quarto) {
-		var instance = M.Modal.getInstance($('#modal4').modal());
+		let instance = M.Modal.getInstance($('#modal4').modal());
 		instance.open();
 	} else if (nome == '' || email == '' || cpf == '') {
-		var instance = M.Modal.getInstance($('#modal6').modal());
+		let instance = M.Modal.getInstance($('#modal6').modal());
 		instance.open();
 	} else {
 		validaCadastro(acao, nome, cpf, email, quarto, dtEntrada, dtSaida);
@@ -171,22 +204,42 @@ var validaCadastro = (acao, nome, cpf, email, quarto, dtEntrada, dtSaida) => {
 		dataType: 'JSON',
 		success: response => {
 			if (response) {
-				var instance = M.Modal.getInstance($('#modal5').modal());
+				let instance = M.Modal.getInstance($('#modal5').modal());
 				instance.open();
 			} else {
-				/*$('#formHospedes').submit();*/
+				// $('#formHospedes').submit();
 				cadastrarReserva(nome, cpf, email, quarto, dtEntrada, dtSaida);
 			}
 		},
 		error: err => {
 			console.log(err);
-			var instance = M.Modal.getInstance($('#modal8').modal());
+			let instance = M.Modal.getInstance($('#modal8').modal());
 			instance.open();
 		}
 	});
 }
 
 var cadastrarReserva = (nome, cpf, email, quarto, dtEntrada, dtSaida) => {
+	/*axios.post('entrada?acao=cadastrarHospede', {
+			nome: nome,
+			cpf: cpf,
+			email: email,
+			quarto: quarto,
+			dtEntrada: dtEntrada,
+			dtSaida: dtSaida
+		})
+		.then(() => {
+			let instance = M.Modal.getInstance($('#modal7').modal());
+			instance.open();
+
+			limparCampos();
+		})
+		.catch(err => {
+			console.log(err);
+			let instance = M.Modal.getInstance($('#modal8').modal());
+			instance.open();
+		});*/
+
 	$.ajax({
 		type: "POST",
 		url: "entrada",
@@ -201,14 +254,14 @@ var cadastrarReserva = (nome, cpf, email, quarto, dtEntrada, dtSaida) => {
 		},
 		dataType: "JSON",
 		success: () => {
-			var instance = M.Modal.getInstance($('#modal7').modal());
+			let instance = M.Modal.getInstance($('#modal7').modal());
 			instance.open();
 
 			limparCampos();
 		},
 		error: err => {
 			console.log(err);
-			var instance = M.Modal.getInstance($('#modal8').modal());
+			let instance = M.Modal.getInstance($('#modal8').modal());
 			instance.open();
 		}
 	});
@@ -222,13 +275,21 @@ var montarCombobox = data => {
 	//	}
 
 	// exemplo de enhanced for feito com arrow functions.
-	data.map(d => $('#comboBox').append('<option value="' + d.num + '">' + d.num + '</option>'));
+	data.data.map(d => $('#comboBox').append('<option value="' + d.num + '">' + d.num + '</option>'));
 
 	$('select').formSelect();
 }
 
 var carregaQuartos = () => {
-	$.ajax({
+	axios.get('entrada?acao=carregaQuartos')
+		.then(response => {
+			montarCombobox(response);
+		})
+		.catch(err => {
+			console.log(err);
+		});
+
+	/*$.ajax({
 		type: 'GET',
 		url: 'entrada',
 		data: {
@@ -241,7 +302,7 @@ var carregaQuartos = () => {
 		error: err => {
 			console.log(err);
 		}
-	});
+	});*/
 }
 
 carregaQuartos();
