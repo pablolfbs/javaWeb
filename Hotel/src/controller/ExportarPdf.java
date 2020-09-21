@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -37,9 +38,12 @@ public class ExportarPdf implements Acao {
 					diretorio.mkdir();
 	            
 				Document document = new Document();
+				
+				File file = new File("C:\\pdf\\listadereservas" + 
+						new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date()) + ".pdf");
+				
 				document.setPageSize(PageSize.A3);
-				PdfWriter.getInstance(document, new FileOutputStream("C:\\pdf\\listadereservas " + 
-							new SimpleDateFormat("dd-MM-yyyy HHmmss").format(new Date()) + ".pdf"));
+				PdfWriter.getInstance(document, new FileOutputStream(file));
 				
 				// Abre documento
 				document.open();
@@ -52,6 +56,10 @@ public class ExportarPdf implements Acao {
 				
 				// Encerra documento
 				document.close();
+				
+				// Abre pasta do arquivo
+				Desktop desktop = Desktop.getDesktop();
+				desktop.open(diretorio);
 				
 				Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
 				json = gson.toJson(reservas);
