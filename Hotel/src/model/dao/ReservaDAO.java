@@ -15,7 +15,7 @@ import model.Reserva;
 
 public class ReservaDAO {
 
-	private Connection connection = ConnectionFactory.getConnection();
+	private Connection connection = ConnectionFactory.createConnection();
 
 	public void inserir(Reserva reserva) {
 		String sql = " INSERT INTO reserva (id_hospede, quarto, dtEntrada, dtSaida) VALUES (?, ?, ?, ?) ";

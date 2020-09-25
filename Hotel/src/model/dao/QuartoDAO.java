@@ -12,7 +12,7 @@ import model.Quarto;
 
 public class QuartoDAO {
 	
-	Connection connection = ConnectionFactory.getConnection();
+	Connection connection = ConnectionFactory.createConnection();
 	
 	public Quarto inserir(Quarto quarto) {
 		String sql = " INSERT INTO quarto (num) VALUES (?) ";

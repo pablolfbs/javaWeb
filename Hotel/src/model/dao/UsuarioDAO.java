@@ -12,7 +12,7 @@ import model.Usuario;
 
 public class UsuarioDAO {
 	
-	Connection connection = ConnectionFactory.getConnection();
+	Connection connection = ConnectionFactory.createConnection();
 	
 	public Usuario inserir(Usuario usuario) {
 		String sql = " INSERT INTO usuario (email, senha) VALUES (?, ?) ";
