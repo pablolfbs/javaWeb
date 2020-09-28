@@ -13,8 +13,7 @@ import util.Util;
 
 public class HospedeDAO {
 
-	// Connection connection = ConnectionFactory.getConnection();
-	Connection connection = ConnectionFactory.createConnection();
+	Connection connection = ConnectionFactory.getConnection();
 	
 	public int inserir(Hospede hospede) {
 		String sql = " INSERT INTO hospede (nome, cpf, email) VALUES (?, ?, ?) ";

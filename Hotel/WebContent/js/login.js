@@ -11,18 +11,18 @@ app.controller('mainController', function($scope, $http) { // o scope liga o js
 });*/
 
 document.getElementById('remember-me').checked = localStorage.opcao ? JSON.parse(localStorage.opcao) : window.localStorage.setItem('opcao', document.getElementById('remember-me').checked);
-document.getElementById('email').value = !localStorage.login ? '' : localStorage.login;
-document.getElementById('password').value = !localStorage.senha ? '' : localStorage.senha;
+document.getElementById('email').value = !sessionStorage.login ? '' : sessionStorage.login;
+document.getElementById('password').value = !sessionStorage.senha ? '' : sessionStorage.senha;
 
 document.getElementById('botao').onclick = () => {
 	
 	if (document.getElementById('remember-me').checked) {
-		window.localStorage.setItem('login', document.getElementById('email').value);
-		window.localStorage.setItem('senha', document.getElementById('password').value);
+		window.sessionStorage.setItem('login', document.getElementById('email').value);
+		window.sessionStorage.setItem('senha', document.getElementById('password').value);
 		
 	} else {
-		window.localStorage.removeItem('login');
-		window.localStorage.removeItem('senha');
+		window.sessionStorage.removeItem('login');
+		window.sessionStorage.removeItem('senha');
 	}
 	
 	window.localStorage.setItem('opcao', document.getElementById('remember-me').checked);

@@ -7,18 +7,18 @@ import java.util.Properties;
 
 public class ConnectionFactory {
 	
-	public static Connection createConnection(){
+	public static Connection getConnection(){
 		// 1) Carrega o driver para o banco de dados
 		Properties props = null;
 		Connection conn = null;
 		PooledConnection pconn = null;
 		try {
-			String driver = "com.mysql.jdbc.Driver";
+			String driver = "com.mysql.cj.jdbc.Driver";
 			Class.forName(driver);
 			props = new Properties();
 			props.put("user","root" );
 			props.put("password", "root");
-			conn =  DriverManager.getConnection("jdbc:mysql://localhost/hotel?useTimezone=true&serverTimezone=UTC", props);
+			conn =  DriverManager.getConnection("jdbc:mysql://localhost/hotel?useTimezone=true&serverTimezone=UTC&autoReconnect=true", props);
 			pconn = new PooledConnection(conn, null);
 			
 			System.out.println("Conectado com sucesso!!");

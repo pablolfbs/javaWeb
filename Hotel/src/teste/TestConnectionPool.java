@@ -38,8 +38,8 @@ public class TestConnectionPool {
 				.setInitialCapacity(3)
 				.setMaxCapacity(10)
 				.setStep(2)
-				.setConnectionString("jdbc:mysql://localhost/hotel?useTimezone=true&serverTimezone=UTC")
-				.setDriver("com.mysql.jdbc.Driver")
+				.setConnectionString("jdbc:mysql://localhost/hotel?useTimezone=true&serverTimezone=UTC&autoReconnect=true&tcpKeepAlive=true")
+				.setDriver("com.mysql.cj.jdbc.Driver")
 				.setProperties(props)
 				.setTimeOut(0)
 				.build();
@@ -56,8 +56,8 @@ public class TestConnectionPool {
 		assertTrue(pool.getInitialCapacity() == 3);
 		assertTrue(pool.getMaxCapacity() == 10);
 		assertTrue(pool.getStep() == 2);
-		assertTrue(pool.getConnectionString().equals("jdbc:mysql://localhost/hotel?useTimezone=true&serverTimezone=UTC"));
-		assertTrue(pool.getDriver().equals("com.mysql.jdbc.Driver"));
+		assertTrue(pool.getConnectionString().equals("jdbc:mysql://localhost/hotel?useTimezone=true&serverTimezone=UTC&autoReconnect=true&tcpKeepAlive=true"));
+		assertTrue(pool.getDriver().equals("com.mysql.cj.jdbc.Driver"));
 		assertTrue(pool.getTimeOut() == 0);
 	}
 	
@@ -92,7 +92,6 @@ public class TestConnectionPool {
 		}
 	}
 	
-
 	private void checkIn(){
 		try {
 			for(Connection conn: usedConnections){
@@ -145,8 +144,6 @@ public class TestConnectionPool {
 		pool.checkIn(pconn);
 		assertTrue(pconn.isAvailable());
 	}
-	
-		
 	
 	/**
 	 * Testa a máxima capacidade e o uso do objeto 'pool' através de Threads
@@ -206,7 +203,6 @@ public class TestConnectionPool {
 				e.printStackTrace();
 			}
 			
-			
 		}
 				
 		//pool.releaseAll();
@@ -221,8 +217,6 @@ public class TestConnectionPool {
 		System.out.println("******************** END Max Capacity **********************");
 		
 	}
-	
-	
 	
 	@Test
 	public void testAleatorio(){
@@ -292,16 +286,13 @@ public class TestConnectionPool {
 		
 	}
 	
-	
-	
-	
 	/**
 	 * Testa o fechamento e exclusão de todas as conexões.
 	 */
 	@Test
 	public void testFechandoConexoes(){
 		pool.releaseAll();
-		assertTrue(pool.totalConnections()==0);
+		assertTrue(pool.totalConnections() == 0);
 	}
 		
 }

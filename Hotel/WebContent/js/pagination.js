@@ -2,15 +2,15 @@ $.fn.pageMe = function(opts) {
 	var $this = this,
 		defaults = {
 			activeColor: '#ee6e73',
-			perPage: 30,
-			showPrevNext: false,
-			nextText: '',
-			prevText: '',
+			perPage: 50,
+			showPrevNext: true,
+			nextText: 'next',
+			prevText: 'previous',
 			hidePageNumbers: false
 		},
 		settings = $.extend(defaults, opts);
 
-	//$this.addClass('initialized');
+	// $this.addClass('initialized');
 
 	var listElement = $this.find("tbody");
 	var perPage = settings.perPage;
@@ -37,6 +37,7 @@ $.fn.pageMe = function(opts) {
 	}
 
 	var curr = 0;
+	
 	while (numPages > curr && (settings.hidePageNumbers == false)) {
 		$('<li class="waves-effect"><a href="#" class="page_link">' + (curr + 1) + '</a></li>').appendTo(pager);
 		curr++;
