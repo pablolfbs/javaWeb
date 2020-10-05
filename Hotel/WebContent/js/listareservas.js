@@ -16,7 +16,7 @@ $(() => {
 		nextText: 'next',
 		showPrevNext: true,
 		hidePageNumbers: false,
-		perPage: 50
+		perPage: 100
 	});
 	
 	alteraVisibilidade();
@@ -201,16 +201,16 @@ var montarTabela = data => {
 
 	document.querySelector('table tbody').innerHTML = table;
 	
-	$('#myPager').text('');
+	/*$('#myPager').text('');
 	$('#tabela').pageMe({
 		pagerSelector: '#myPager',
 		activeColor: '#ee6e73',
 		prevText: 'previous',
 		nextText: 'next',
 		showPrevNext: true,
-		hidePageNumbers: false,
+		hidePageNumbers: true,
 		perPage: 50
-	});
+	});*/
 
 	$('#tabela').find('tr').on('click', e => {
 		document.getElementById('id').value = $(e.currentTarget).find('td:first').text();
