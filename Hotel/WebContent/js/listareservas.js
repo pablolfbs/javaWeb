@@ -22,8 +22,8 @@ $(() => {
 	alteraVisibilidade();
 
 	document.querySelector('#tabela thead tr th').onclick = e => {
-		var nome = document.getElementById('pesquisar').value.trim();
-		var valor = $(e.currentTarget).text().substring(0, 1).toUpperCase() + $(e.currentTarget).text().substring(1).toLowerCase();
+		let nome = document.getElementById('pesquisar').value.trim();
+		let valor = $(e.currentTarget).text().substring(0, 1).toUpperCase() + $(e.currentTarget).text().substring(1).toLowerCase();
 		if (valor != 'Excluir') {
 			$.ajax({
 				type: 'GET',
@@ -46,24 +46,24 @@ $(() => {
 });
 
 document.getElementById('exportar').onclick = () => {
-	var instance = M.Modal.getInstance($('#modal1').modal());
+	let instance = M.Modal.getInstance($('#modal1').modal());
 	instance.open();
 }
 
 document.getElementById('selectPesquisar').onchange = () => {
-	var param = $('#selectPesquisar option:selected').text();
+	let param = $('#selectPesquisar option:selected').text();
 
 	$('#labelPesquisar').text('Pesquisar por ' + param);
 }
 
 document.getElementById('pesquisar').onkeyup = e => {
 	if ($(e.currentTarget).val().length > 1 || $(e.currentTarget).val() == '') {
-		var nome = $(e.currentTarget).val().trim();
-		var param = $('#selectPesquisar option:selected').val();
+		let nome = $(e.currentTarget).val().trim();
+		let param = $('#selectPesquisar option:selected').val();
 		param = param.substring(0, 1).toUpperCase() + param.substring(1);
 
 		if ($('#selectPesquisar').val() == null) {
-			var instance = M.Modal.getInstance($('#modal4').modal());
+			let instance = M.Modal.getInstance($('#modal4').modal());
 			instance.open();
 		} else {
 			$.ajax({
@@ -86,7 +86,7 @@ document.getElementById('pesquisar').onkeyup = e => {
 }
 
 document.getElementById('confirmaExport').onclick = () => {
-	var nome = document.getElementById('pesquisar').value.trim();
+	let nome = document.getElementById('pesquisar').value.trim();
 	$.ajax({
 		type: 'GET',
 		url: 'entrada',
@@ -96,19 +96,19 @@ document.getElementById('confirmaExport').onclick = () => {
 		},
 		dataType: "JSON",
 		success: () => {
-			var instance = M.Modal.getInstance($('#modal2').modal());
+			let instance = M.Modal.getInstance($('#modal2').modal());
 			instance.open();
 		},
 		error: err => {
 			console.log(err);
-			var instance = M.Modal.getInstance($('#modal3').modal());
+			let instance = M.Modal.getInstance($('#modal3').modal());
 			instance.open();
 		}
 	});
 }
 
 document.getElementById('btExcluirTodos').onclick = () => {
-	var instance = M.Modal.getInstance($('#modal5').modal());
+	let instance = M.Modal.getInstance($('#modal5').modal());
 	instance.open();
 }
 
@@ -118,7 +118,7 @@ document.getElementById('confirmaExcluir').onclick = () => {
 			$('tbody tr').remove();
 			alteraVisibilidade();
 
-			var instance = M.Modal.getInstance($('#modal6').modal());
+			let instance = M.Modal.getInstance($('#modal6').modal());
 			instance.open();
 		})
 		.catch(err => {
@@ -136,7 +136,7 @@ document.getElementById('confirmaExcluir').onclick = () => {
 			$('tbody tr').remove();
 			alteraVisibilidade();
 
-			var instance = M.Modal.getInstance($('#modal6').modal());
+			let instance = M.Modal.getInstance($('#modal6').modal());
 			instance.open();
 		},
 		error: err => {
@@ -145,10 +145,10 @@ document.getElementById('confirmaExcluir').onclick = () => {
 	});*/
 }
 
-var alteraVisibilidade = () => {
+let alteraVisibilidade = () => {
 	// Nesse caso, comparar valor com vazio.
-	// var valor = $('#tabela td').text();
-	var valor = document.querySelector('#tabela td');
+	// let valor = $('#tabela td').text();
+	let valor = document.querySelector('#tabela td');
 
 	if (!valor) {
 		$('#listavazia').show();
@@ -165,9 +165,9 @@ var alteraVisibilidade = () => {
 	}
 }
 
-var montarTabela = data => {
+let montarTabela = data => {
 	$('tbody tr').remove();
-	var table;
+	let table = '';
 
 	data.map(d => {
 		table += '<tr class="hoverable">';
@@ -201,16 +201,16 @@ var montarTabela = data => {
 
 	document.querySelector('table tbody').innerHTML = table;
 	
-	/*$('#myPager').text('');
+	$('#myPager').text('');
 	$('#tabela').pageMe({
 		pagerSelector: '#myPager',
 		activeColor: '#ee6e73',
 		prevText: 'previous',
 		nextText: 'next',
 		showPrevNext: true,
-		hidePageNumbers: true,
-		perPage: 50
-	});*/
+		hidePageNumbers: false,
+		perPage: 100
+	});
 
 	$('#tabela').find('tr').on('click', e => {
 		document.getElementById('id').value = $(e.currentTarget).find('td:first').text();

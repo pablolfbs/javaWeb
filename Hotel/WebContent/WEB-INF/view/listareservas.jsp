@@ -204,8 +204,6 @@
     <script type="text/javascript" src="js/listareservas.js"></script>
     
     <script type="text/javascript" src="js/pagination.js"></script>
-    
-    <script type="text/javascript" src="js/materialize-pagination.js"></script>
 </body>
 
 </html>

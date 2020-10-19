@@ -8,7 +8,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import org.primefaces.context.RequestContext;
+import com.sun.xml.internal.ws.client.RequestContext;
 
 import domain.User;
 import service.UserService;
