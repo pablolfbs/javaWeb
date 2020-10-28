@@ -18,31 +18,9 @@ $(() => {
 		hidePageNumbers: false,
 		perPage: 100
 	});
-	
+
 	alteraVisibilidade();
 
-	document.querySelector('#tabela thead tr th').onclick = e => {
-		let nome = document.getElementById('pesquisar').value.trim();
-		let valor = $(e.currentTarget).text().substring(0, 1).toUpperCase() + $(e.currentTarget).text().substring(1).toLowerCase();
-		if (valor != 'Excluir') {
-			$.ajax({
-				type: 'GET',
-				url: 'entrada',
-				data: {
-					acao: 'ordenarPor',
-					paramOrdenacao: valor,
-					param: nome
-				},
-				dataType: "JSON",
-				success: response => {
-					montarTabela(response);
-				},
-				error: err => {
-					console.log(err);
-				}
-			});
-		}
-	}
 });
 
 document.getElementById('exportar').onclick = () => {
@@ -124,7 +102,7 @@ document.getElementById('confirmaExcluir').onclick = () => {
 		.catch(err => {
 			console.log(err);
 		});
-	
+
 	/*$.ajax({
 		type: 'GET',
 		url: 'entrada',
@@ -165,6 +143,36 @@ let alteraVisibilidade = () => {
 	}
 }
 
+const itens = document.querySelectorAll("#tabela thead tr th");
+
+for (const item of itens) {
+
+	item.addEventListener('click', e => {
+
+		let nome = document.getElementById('pesquisar').value.trim();
+		let valor = $(e.currentTarget).text().substring(0, 1).toUpperCase() + $(e.currentTarget).text().substring(1).toLowerCase();
+		if (valor != 'Excluir') {
+
+			$.ajax({
+				type: 'GET',
+				url: 'entrada',
+				data: {
+					acao: 'ordenarPor',
+					paramOrdenacao: valor,
+					param: nome
+				},
+				dataType: "JSON",
+				success: response => {
+					montarTabela(response);
+				},
+				error: err => {
+					console.log(err);
+				}
+			});
+		}
+	});
+}
+
 let montarTabela = data => {
 	$('tbody tr').remove();
 	let table = '';
@@ -200,7 +208,7 @@ let montarTabela = data => {
 	}*/
 
 	document.querySelector('table tbody').innerHTML = table;
-	
+
 	$('#myPager').text('');
 	$('#tabela').pageMe({
 		pagerSelector: '#myPager',
