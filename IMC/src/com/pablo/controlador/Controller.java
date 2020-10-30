@@ -11,10 +11,10 @@ public class Controller {
 			var strPeso = "";
 			var strAltura = "";
 
-			strPeso = formDados(strPeso, "seu peso");
+			strPeso = formParam("seu peso");
 			var peso = Float.parseFloat(strPeso);
 
-			strAltura = formDados(strAltura, "sua altura");
+			strAltura = formParam("sua altura");
 			var altura = Float.parseFloat(strAltura);
 
 			if (altura > 2)
@@ -32,8 +32,9 @@ public class Controller {
 		}
 	}
 	
-	private static String formDados(String valor, String param) {
+	private static String formParam(String param) {
 		var count = 0;
+		String valor = null;
 		do {
 			if (count == 0)
 				valor = JOptionPane.showInputDialog(null, "Digite " + param + ": ", "IMC", JOptionPane.QUESTION_MESSAGE)

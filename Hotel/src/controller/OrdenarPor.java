@@ -27,13 +27,7 @@ public class OrdenarPor implements Acao {
 		String acao = request.getParameter("acao") + paramAcao;
 		String param = request.getParameter("param");
 
-		Collection<? extends Reserva> reservas = new LinkedHashSet<Reserva>();
-		
-		if (paramAcao.equals("Id") || paramAcao.equals("Nome") || paramAcao.equals("Cpf") || paramAcao.equals("Email"))
-			reservas = !param.isEmpty() ? Ctrl.buscarReservaPorNomeOrdenadaHospede(acao, param) : Ctrl.ordenarReservaHospede(acao);
-			
-		else if (paramAcao.equals("Quarto") || paramAcao.equals("DtEntrada") || paramAcao.equals("DtSaida"))
-			reservas = !param.isEmpty() ? Ctrl.buscarReservaPorNomeOrdenada(acao, param) : Ctrl.ordenarReserva(acao);
+		Collection<? extends Reserva> reservas = condicaoReservas(paramAcao, acao, param);
 			
 		Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
 		String json = gson.toJson(reservas);
@@ -42,5 +36,16 @@ public class OrdenarPor implements Acao {
 		response.getOutputStream().write(json.getBytes(StandardCharsets.UTF_8));
 		response.flushBuffer();
 		return json;
+	}
+
+	private Collection<? extends Reserva> condicaoReservas(String paramAcao, String acao, String param) {
+		Collection<? extends Reserva> reservas = new LinkedHashSet<>();
+		
+		if (paramAcao.equals("Id") || paramAcao.equals("Nome") || paramAcao.equals("Cpf") || paramAcao.equals("Email"))
+			reservas = !param.isEmpty() ? Ctrl.buscarReservaPorNomeOrdenadaHospede(acao, param) : Ctrl.ordenarReservaHospede(acao);
+			
+		else if (paramAcao.equals("Quarto") || paramAcao.equals("DtEntrada") || paramAcao.equals("DtSaida"))
+			reservas = !param.isEmpty() ? Ctrl.buscarReservaPorNomeOrdenada(acao, param) : Ctrl.ordenarReserva(acao);
+		return reservas;
 	}
 }

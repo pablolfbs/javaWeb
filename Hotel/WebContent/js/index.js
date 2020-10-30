@@ -1,22 +1,26 @@
 $(() => {
-	
-	$('.tooltipped').tooltip();
 
-	$('#btListar, #btExcluir, #comboBox, #btLogout').on('click', () => {
-		$('.validate').removeAttr('required');
-	});
+	$('.tooltipped').tooltip();
 
 });
 
-document.getElementById('divSelect').onclick = () => {
+const listaIds = document.querySelectorAll('#btListar, #btExcluir, #comboBox, #btLogout');
+
+for (const id of listaIds) {
+	id.addEventListener('click', () => {
+		$('.validate').removeAttr('required');
+	});
+}
+
+document.getElementById('divSelect').addEventListener('click', () => {
 	if (document.querySelectorAll('li').length == 1) {
-		
+
 		let instance = M.Modal.getInstance($('#modal9').modal());
 		instance.open();
 	}
-}
+});
 
-document.getElementById('btExcluir').onclick = () => {
+document.getElementById('btExcluir').addEventListener('click', () => {
 	axios.get('entrada?acao=verificaReservas')
 		.then(response => {
 			if (response.data == '') {
@@ -26,6 +30,7 @@ document.getElementById('btExcluir').onclick = () => {
 				let instance = M.Modal.getInstance($('#modal1').modal());
 				instance.open();
 			}
+			limparCampos();
 		})
 		.catch(err => {
 			console.log(err);
@@ -51,9 +56,9 @@ document.getElementById('btExcluir').onclick = () => {
 			console.log(err);
 		}
 	});*/
-}
+});
 
-document.getElementById('confirmaExcluir').onclick = () => {
+document.getElementById('confirmaExcluir').addEventListener('click', () => {
 	axios.get('entrada?acao=excluirTodos')
 		.then(() => {
 			carregaQuartos();
@@ -80,9 +85,9 @@ document.getElementById('confirmaExcluir').onclick = () => {
 			console.log(err);
 		}
 	});*/
-}
+});
 
-document.getElementById('btCadMock').onclick = () => {
+document.getElementById('btCadMock').addEventListener('click', () => {
 	axios.post('entrada?acao=mock')
 		.then(response => {
 			if (response.data) {
@@ -92,14 +97,12 @@ document.getElementById('btCadMock').onclick = () => {
 				let instance = M.Modal.getInstance($('#modal9').modal());
 				instance.open();
 			}
-			limparCampos(err => {
-				console.log(err);
-			});
+			limparCampos();
 		})
 		.catch(err => {
 			console.log(err);
 		});
-		
+
 	/*$.ajax({
 		type: 'POST',
 		url: 'entrada',
@@ -121,9 +124,9 @@ document.getElementById('btCadMock').onclick = () => {
 			console.log(err);
 		}
 	});*/
-}
+});
 
-document.getElementById('btCadMockAll').onclick = () => {
+document.getElementById('btCadMockAll').addEventListener('click', () => {
 	axios.post('entrada?acao=mockAll')
 		.then(response => {
 			if (response.data) {
@@ -160,9 +163,9 @@ document.getElementById('btCadMockAll').onclick = () => {
 			console.log(err);
 		}
 	});*/
-}
+});
 
-document.getElementById('btCadastrar').onclick = () => {
+document.getElementById('btCadastrar').addEventListener('click', () => {
 	const acao = 'validaCadastro';
 	const nome = document.getElementById('first_name').value;
 	const cpf = document.getElementById('cpf').value;
@@ -180,7 +183,7 @@ document.getElementById('btCadastrar').onclick = () => {
 	} else {
 		validaCadastro(acao, nome, cpf, email, quarto, dtEntrada, dtSaida);
 	}
-}
+});
 
 var limparCampos = () => {
 	$('#first_name').removeClass('valid').val('').removeClass('invalid').val('').next().removeClass('active');

@@ -64,7 +64,7 @@ public class ControllerTable {
 			Collection<? extends Reserva> reservas) throws DocumentException {
 		if (document.isOpen()) {
 			for (Reserva reserva : reservas) {
-				PdfPCell celula1 = new PdfPCell(new Phrase(Integer.valueOf(reserva.getId()).toString()));
+				PdfPCell celula1 = new PdfPCell(new Phrase(Integer.toString(reserva.getId())));
 				celula1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				PdfPCell celula2 = new PdfPCell(new Phrase(reserva.getHospede().getNome()));
 				PdfPCell celula3 = new PdfPCell(new Phrase(reserva.getHospede().getCpf()));

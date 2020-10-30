@@ -40,9 +40,8 @@ public class Quarto implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Quarto other = (Quarto) obj;
-		if (num != other.num)
-			return false;
-		return true;
+		
+		return num == other.num;
 	}
 
 	@Override

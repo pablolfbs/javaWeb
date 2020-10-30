@@ -29,15 +29,19 @@ public class Ctrl {
 	private static HospedeDAO hDAO = new HospedeDAO();
 	private static UsuarioDAO uDAO = new UsuarioDAO();
 
+	private Ctrl() {
+		
+	}
+	
 	public static Hospede buscarHospedePorId(Integer id) {
 		return hDAO.buscarPorId(id);
 	}
 
-	public static Collection<? extends Reserva> buscarReservaPorNomeHospede(String nome) {
+	public static Collection<Reserva> buscarReservaPorNomeHospede(String nome) {
 		return rDAO.buscarPorNomeHospede(nome);
 	}
 
-	public static Collection<? extends Reserva> buscarReservaPorEmailHospede(String nome) {
+	public static Collection<Reserva> buscarReservaPorEmailHospede(String nome) {
 		return rDAO.buscarPorEmailHospede(nome);
 	}
 
@@ -45,7 +49,7 @@ public class Ctrl {
 		return hDAO.listar();
 	}
 
-	public static Collection<? extends Reserva> carregaListaReservas() {
+	public static Collection<Reserva> carregaListaReservas() {
 		return rDAO.listar();
 	}
 	
@@ -62,9 +66,9 @@ public class Ctrl {
 //		return quartos;
 //	}
 
-	public static Collection<? extends Quarto> carregaListaQuartos() {
-		Collection<? extends Quarto> lista = qDAO.listar();
-		List<Quarto> quartos = new ArrayList<Quarto>();
+	public static List<Quarto> carregaListaQuartos() {
+		Collection<Quarto> lista = qDAO.listar();
+		List<Quarto> quartos = new ArrayList<>();
 
 		for (QuartoEnum quartoEnum : QuartoEnum.values()) {
 			Quarto q = new Quarto(quartoEnum.getNum());
@@ -75,8 +79,8 @@ public class Ctrl {
 	}
 
 	public static boolean isCadastrado(String email) {
-		Collection<? extends Reserva> reservas = carregaListaReservas();
-		Set<String> strList = new HashSet<String>();
+		Collection<Reserva> reservas = carregaListaReservas();
+		Set<String> strList = new HashSet<>();
 
 		reservas.forEach(r -> strList.add(r.getHospede().getEmail()));
 
@@ -144,19 +148,19 @@ public class Ctrl {
 		return param.substring(a + 3, a + 4).toLowerCase() + param.substring(a + 4);
 	}
 
-	public static Collection<? extends Reserva> ordenarReserva(String param) {
+	public static Collection<Reserva> ordenarReserva(String param) {
 		return rDAO.ordenarReserva(Ctrl.getParam(param));
 	}
 
-	public static Collection<? extends Reserva> ordenarReservaHospede(String param) {
+	public static Collection<Reserva> ordenarReservaHospede(String param) {
 		return rDAO.ordenarReservaPorHospede(Ctrl.getParam(param));
 	}
 
-	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenada(String param, String nome) {
+	public static Collection<Reserva> buscarReservaPorNomeOrdenada(String param, String nome) {
 		return rDAO.buscarReservaPorNomeOrdenada(Ctrl.getParam(param), nome);
 	}
 
-	public static Collection<? extends Reserva> buscarReservaPorNomeOrdenadaHospede(String param, String nome) {
+	public static Collection<Reserva> buscarReservaPorNomeOrdenadaHospede(String param, String nome) {
 		return rDAO.buscarReservaPorNomeOrdenadaPorHospede(Ctrl.getParam(param), nome);
 	}
 	
@@ -177,12 +181,10 @@ public class Ctrl {
 	
 	public static boolean mockAll() {
 		if (Ctrl.carregaListaReservas().size() < QuartoEnum.values().length) {
-			Collection<? extends Quarto> quartos = Ctrl.carregaListaQuartos();
-			Set<Integer> setQuartos = quartos.stream().map(q -> q.getNum()).collect(Collectors.toSet());
+			Collection<Quarto> quartos = Ctrl.carregaListaQuartos();
+			// quartos.stream().map(Quarto::getNum).forEach(q -> mock());
+			quartos.forEach(q -> mock());
 			
-			for (@SuppressWarnings("unused") Integer num : setQuartos) {
-				mock();
-			}
 			return true;
 		} else {
 			return false;
@@ -200,9 +202,8 @@ public class Ctrl {
 	}
 
 	private static Quarto mockQuarto() {
-		Collection<? extends Quarto> quartos = Ctrl.carregaListaQuartos();
-		List<Integer> listQuartos = quartos.stream().map(q -> q.getNum()).collect(Collectors.toList());
-		Quarto q = new Quarto(listQuartos.get(0));
+		List<Quarto> quartos = Ctrl.carregaListaQuartos();
+		Quarto q = new Quarto(quartos.get(0).getNum());
 		
 		if (quartos.contains(q)) {
 			return qDAO.inserir(q);
@@ -213,10 +214,10 @@ public class Ctrl {
 	private static int mockHospede() {
 		NomeIO n = new NomeIO();
 		Collection<String> nomes = n.lerArquivo();
-		List<String> listaNomes = new ArrayList<String>(nomes);
+		List<String> listaNomes = new ArrayList<>(nomes);
 		
 		Set<Hospede> hospedes = hDAO.listar();
-		Set<String> setNomes = hospedes.stream().map(h -> h.getNome()).collect(Collectors.toSet());
+		Set<String> setNomes = hospedes.stream().map(Hospede::getNome).collect(Collectors.toSet());
 
 		String nome = null;
 		String email = null;

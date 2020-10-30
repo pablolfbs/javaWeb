@@ -1,7 +1,11 @@
 package model;
 
-public class Usuario {
+import java.io.Serializable;
 
+public class Usuario implements Serializable {
+
+	private static final long serialVersionUID = -6093944336957320306L;
+	
 	private Integer id;
 	private String email;
 	private String senha;
@@ -38,11 +42,4 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public boolean validate(String email, String senha) {
-		if (!this.email.equals(email) && !this.senha.equals(senha)) {
-			return false;
-		} else {
-			return true;
-		}
-	}
 }

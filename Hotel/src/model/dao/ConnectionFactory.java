@@ -7,6 +7,10 @@ import java.util.Properties;
 
 public class ConnectionFactory {
 	
+	private ConnectionFactory() {
+		
+	}
+	
 	public static Connection getConnection(){
 		// 1) Carrega o driver para o banco de dados
 		Properties props = null;

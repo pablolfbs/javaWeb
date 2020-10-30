@@ -4,10 +4,7 @@ $(() => {
 
 	$('select').formSelect();
 
-	$('#tabela').find('tr').on('click', e => {
-		document.getElementById('id').value = $(e.currentTarget).find('td:first').text();
-		document.getElementById('quarto').value = $(e.currentTarget).find('td:eq(3)').text();
-	});
+	selecionaLinha();
 
 	$('#tabela').pageMe({
 		pagerSelector: '#myPager',
@@ -23,24 +20,24 @@ $(() => {
 
 });
 
-document.getElementById('exportar').onclick = () => {
+document.getElementById('exportar').addEventListener('click', () => {
 	let instance = M.Modal.getInstance($('#modal1').modal());
 	instance.open();
-}
+});
 
-document.getElementById('selectPesquisar').onchange = () => {
-	let param = $('#selectPesquisar option:selected').text();
+document.getElementById('selectPesquisar').addEventListener('change', () => {
+	let param = document.querySelector('#selectPesquisar option:checked').innerText;
 
-	$('#labelPesquisar').text('Pesquisar por ' + param);
-}
+	document.querySelector('#labelPesquisar').innerText = 'Pesquisar por ' + param;
+});
 
-document.getElementById('pesquisar').onkeyup = e => {
-	if ($(e.currentTarget).val().length > 1 || $(e.currentTarget).val() == '') {
-		let nome = $(e.currentTarget).val().trim();
-		let param = $('#selectPesquisar option:selected').val();
+document.getElementById('pesquisar').addEventListener('keyup', e => {
+	if (e.currentTarget.value.length > 1 || e.currentTarget.value == '') {
+		let nome = e.currentTarget.value.trim();
+		let param = document.querySelector('#selectPesquisar option:checked').value;
 		param = param.substring(0, 1).toUpperCase() + param.substring(1);
 
-		if ($('#selectPesquisar').val() == null) {
+		if (document.getElementById('selectPesquisar').value == '') {
 			let instance = M.Modal.getInstance($('#modal4').modal());
 			instance.open();
 		} else {
@@ -61,9 +58,9 @@ document.getElementById('pesquisar').onkeyup = e => {
 			});
 		}
 	}
-}
+});
 
-document.getElementById('confirmaExport').onclick = () => {
+document.getElementById('confirmaExport').addEventListener('click', () => {
 	let nome = document.getElementById('pesquisar').value.trim();
 	$.ajax({
 		type: 'GET',
@@ -83,14 +80,14 @@ document.getElementById('confirmaExport').onclick = () => {
 			instance.open();
 		}
 	});
-}
+});
 
-document.getElementById('btExcluirTodos').onclick = () => {
+document.getElementById('btExcluirTodos').addEventListener('click', () => {
 	let instance = M.Modal.getInstance($('#modal5').modal());
 	instance.open();
-}
+});
 
-document.getElementById('confirmaExcluir').onclick = () => {
+document.getElementById('confirmaExcluir').addEventListener('click', () => {
 	axios.get('entrada?acao=excluirTodos')
 		.then(() => {
 			$('tbody tr').remove();
@@ -121,7 +118,7 @@ document.getElementById('confirmaExcluir').onclick = () => {
 			console.log(err);
 		}
 	});*/
-}
+});
 
 let alteraVisibilidade = () => {
 	// Nesse caso, comparar valor com vazio.
@@ -150,7 +147,7 @@ for (const item of itens) {
 	item.addEventListener('click', e => {
 
 		let nome = document.getElementById('pesquisar').value.trim();
-		let valor = $(e.currentTarget).text().substring(0, 1).toUpperCase() + $(e.currentTarget).text().substring(1).toLowerCase();
+		let valor = e.currentTarget.innerText.substring(0, 1).toUpperCase() + e.currentTarget.innerText.substring(1).toLowerCase();
 		if (valor != 'Excluir') {
 
 			$.ajax({
@@ -220,6 +217,10 @@ let montarTabela = data => {
 		perPage: 100
 	});
 
+	selecionaLinha();
+}
+
+let selecionaLinha = () => {
 	$('#tabela').find('tr').on('click', e => {
 		document.getElementById('id').value = $(e.currentTarget).find('td:first').text();
 		document.getElementById('quarto').value = $(e.currentTarget).find('td:eq(3)').text();

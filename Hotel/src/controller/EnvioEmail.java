@@ -12,6 +12,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EnvioEmail {
+	
+	private EnvioEmail() {
+		
+	}
 
 	public static void send(String destinatario, String corpoMensagem) {
 		Properties props = new Properties();
@@ -24,6 +28,7 @@ public class EnvioEmail {
 		props.put("mail.smtp.port", "465");
 
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication("", "");// Autentica��o
 			}

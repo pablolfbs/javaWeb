@@ -19,7 +19,7 @@ public class Registro implements Acao {
 		String password2 = request.getParameter("password2");
 		
 		Usuario usuario = null;
-		if (!email.equals("") && email != null && !password.equals("") && password != null && password.equals(password2)) {
+		if (!email.equals("") && !password.equals("") && password.equals(password2)) {
 			usuario = Ctrl.registraUsuario(email, password);
 			
 			HttpSession sessao = request.getSession();

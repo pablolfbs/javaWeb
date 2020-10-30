@@ -46,15 +46,12 @@ public class HospedeDAO {
 	public void atualizar(Hospede hospede) {
 		String sql = " UPDATE hospede SET nome = ?, cpf = ?, email = ? WHERE id = ? ";
 
-		PreparedStatement ps;
-		try {
-			ps = connection.prepareStatement(sql);
+		try (PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setString(1, hospede.getNome());
 			ps.setString(2, hospede.getCpf());
 			ps.setString(3, hospede.getEmail());
 			ps.setInt(4, hospede.getId());
 			ps.execute();
-			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -63,12 +60,9 @@ public class HospedeDAO {
 	public void excluir(int id) {
 		String sql = " DELETE FROM hospede WHERE id = ? ";
 
-		PreparedStatement ps;
-		try {
-			ps = connection.prepareStatement(sql);
+		try (PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.setInt(1, id);
 			ps.execute();
-			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -77,11 +71,8 @@ public class HospedeDAO {
 	public void excluirTodos() {
 		String sql = " DELETE FROM hospede ";
 
-		PreparedStatement ps;
-		try {
-			ps = connection.prepareStatement(sql);
+		try (PreparedStatement ps = connection.prepareStatement(sql);) {
 			ps.execute();
-			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -90,12 +81,9 @@ public class HospedeDAO {
 	public Set<Hospede> listar() {
 		String sql = " SELECT * FROM hospede ";
 
-		PreparedStatement ps;
-		ResultSet rs;
-		Set<Hospede> hospedes = new LinkedHashSet<Hospede>();
-		try {
-			ps = connection.prepareStatement(sql);
-			rs = ps.executeQuery();
+		Set<Hospede> hospedes = new LinkedHashSet<>();
+		
+		try (PreparedStatement ps = connection.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
 			while (rs.next()) {
 				Hospede hospede = new Hospede();
 				hospede.setId(rs.getInt("id"));
@@ -104,8 +92,6 @@ public class HospedeDAO {
 				hospede.setEmail(rs.getString("email"));
 				hospedes.add(hospede);
 			}
-			ps.close();
-			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -113,23 +99,17 @@ public class HospedeDAO {
 	}
 
 	public Hospede buscarPorId(Integer id) {
-		String sql = " SELECT * FROM hospede WHERE id = ? ";
+		String sql = " SELECT * FROM hospede WHERE id = " + id + "; ";
 
 		Hospede hospede = new Hospede();
-		PreparedStatement ps;
-		try {
-			ps = connection.prepareStatement(sql);
-			ps.setInt(1, id);
-
-			ResultSet rs = ps.executeQuery();
+		
+		try (Statement sttm = connection.createStatement(); ResultSet rs = sttm.executeQuery(sql);) {
 			if (rs.next()) {
 				hospede.setId(id);
 				hospede.setNome(rs.getString("nome"));
 				hospede.setCpf(Util.formataCpf(rs.getString("cpf")));
 				hospede.setEmail(rs.getString("email"));
 			}
-			ps.close();
-			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
