@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import exception.MockException;
 import model.Hospede;
 import model.Quarto;
 import model.Reserva;
@@ -56,15 +57,6 @@ public class Ctrl {
 	public static Usuario registraUsuario(String email, String password) {
 		return uDAO.inserir(new Usuario(email, password));
 	}
-
-//	public static Collection<? extends Quarto> iniciarListaQuartos() {
-//		Set<Quarto> quartos = new LinkedHashSet<Quarto>();
-//
-//		for (QuartoEnum qEnum : QuartoEnum.values())
-//			quartos.add(new Quarto(qEnum.getNum()));
-//
-//		return quartos;
-//	}
 
 	public static List<Quarto> carregaListaQuartos() {
 		Collection<Quarto> lista = qDAO.listar();
@@ -182,7 +174,6 @@ public class Ctrl {
 	public static boolean mockAll() {
 		if (Ctrl.carregaListaReservas().size() < QuartoEnum.values().length) {
 			Collection<Quarto> quartos = Ctrl.carregaListaQuartos();
-			// quartos.stream().map(Quarto::getNum).forEach(q -> mock());
 			quartos.forEach(q -> mock());
 			
 			return true;
@@ -208,7 +199,7 @@ public class Ctrl {
 		if (quartos.contains(q)) {
 			return qDAO.inserir(q);
 		}
-		throw new RuntimeException("Erro ao mockar quarto!");
+		throw new MockException("Erro ao mockar quarto!");
 	}
 
 	private static int mockHospede() {
@@ -223,7 +214,7 @@ public class Ctrl {
 		String email = null;
 		String cpf = GeraCpfCnpj.cpf(false);
 		
-		for (int i = 0; i < listaNomes.size(); i++) {
+		for (int i = hospedes.size(); i < listaNomes.size(); i++) {
 			if (!setNomes.contains(listaNomes.get(i))) {
 				nome = listaNomes.get(i);
 				email = listaNomes.get(i).toLowerCase() + "@" + listaNomes.get(i).toLowerCase() + ".com";
@@ -231,7 +222,7 @@ public class Ctrl {
 				return hDAO.inserir(new Hospede(nome, cpf, email));
 			}
 		}
-		throw new RuntimeException("Erro ao mockar hospede!");
+		throw new MockException("Erro ao mockar hospede!");
 	}
 	// Fim do mock.
 

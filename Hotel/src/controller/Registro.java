@@ -13,15 +13,15 @@ public class Registro implements Acao {
 
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String password2 = request.getParameter("password2");
-		
+
 		Usuario usuario = null;
 		if (!email.equals("") && !password.equals("") && password.equals(password2)) {
 			usuario = Ctrl.registraUsuario(email, password);
-			
+
 			HttpSession sessao = request.getSession();
 			if (sessao.getAttribute("valido") == null)
 				sessao.setAttribute("valido", usuario);
@@ -29,7 +29,7 @@ public class Registro implements Acao {
 		} else {
 			return "redirect:entrada?acao=registroForm";
 		}
-		
+
 	}
 
 }
