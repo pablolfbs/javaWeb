@@ -4,7 +4,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 
-import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
@@ -15,7 +14,7 @@ import controller.Ctrl;
 import model.Reserva;
 
 public class GeneratorPDF {
-	public static void main(String[] args) throws BadElementException {
+	public static void main(String[] args) {
 		try {
 			Document document = new Document();
 			document.setPageSize(PageSize.A3);

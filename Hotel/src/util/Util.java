@@ -9,6 +9,10 @@ import java.util.GregorianCalendar;
 
 public class Util {
 
+	private Util() {
+
+	}
+
 	/**
 	 * Formata uma string de 11 caracteres para o formato de cpf.
 	 * 
@@ -37,29 +41,29 @@ public class Util {
 	public static String capitalize(String texto) {
 		int indexAnterior = 0;
 		int index = 0;
-		String textoCapitalizado = "";
+		StringBuilder textoCapitalizado = new StringBuilder();
 
 		while (index >= 0) {
 			if (index > 0) {
 				if (!Arrays.asList("e", "da", "de", "do", "das", "dos").contains(texto.substring(indexAnterior, index)))
-					textoCapitalizado += texto.substring(indexAnterior, indexAnterior + 1).toUpperCase()
-							.concat(texto.substring(indexAnterior + 1, index + 1).toLowerCase());
+					textoCapitalizado.append(texto.substring(indexAnterior, indexAnterior + 1).toUpperCase()
+							.concat(texto.substring(indexAnterior + 1, index + 1).toLowerCase()));
 				else
-					textoCapitalizado += texto.substring(indexAnterior, indexAnterior + 1)
-							.concat(texto.substring(indexAnterior + 1, index + 1).toLowerCase());
+					textoCapitalizado.append(texto.substring(indexAnterior, indexAnterior + 1)
+							.concat(texto.substring(indexAnterior + 1, index + 1).toLowerCase()));
 				indexAnterior = index + 1;
 			}
 			index = texto.indexOf(" ", index + 1);
 			if (index == -1)
-				textoCapitalizado += texto.substring(indexAnterior, indexAnterior + 1).toUpperCase()
-						.concat(texto.substring(indexAnterior + 1).toLowerCase());
+				textoCapitalizado.append(texto.substring(indexAnterior, indexAnterior + 1).toUpperCase()
+						.concat(texto.substring(indexAnterior + 1).toLowerCase()));
 		}
-		return textoCapitalizado;
+		return textoCapitalizado.toString();
 	}
 
 	/**
-	 * Calcula a Idade baseado em String.
-	 * Exemplo: calculaIdade("20/08/1977","dd/MM/yyyy");
+	 * Calcula a Idade baseado em String. Exemplo:
+	 * calculaIdade("20/08/1977","dd/MM/yyyy");
 	 * 
 	 * @param dataNasc
 	 * @param pattern

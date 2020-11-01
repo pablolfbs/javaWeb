@@ -6,8 +6,7 @@ import java.util.Random;
 public class GeraCpfCnpj {
 
 	private static int randomiza(int n) {
-		int ranNum = (int) (Math.random() * n);
-		return ranNum;
+		return (int) (Math.random() * n);
 	}
 
 	private static int mod(int dividendo, int divisor) {

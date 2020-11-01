@@ -4,6 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 class UtilityDate {
+	
+	private UtilityDate() {
+		
+	}
 
 	/** Formatador da Date */
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -38,16 +42,14 @@ class UtilityDate {
 	 *            {@code String} da data a ser convertida e formatada.
 	 * @return {@code Date} formatada e convertida.
 	 */
-	@SuppressWarnings("finally")
 	public static Date stringToDate(String date) {
 		try {
 			return sdf.parse(date);
 		} catch (ParseException e) {
 			System.err.println("Invalid date to format.");
 			e.printStackTrace();
-		} finally {
-			return null;
 		}
+		return null;
 	}
 
 }

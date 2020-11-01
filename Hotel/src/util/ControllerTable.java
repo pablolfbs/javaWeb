@@ -15,7 +15,11 @@ import model.Reserva;
 
 public class ControllerTable {
 	
-	public static PdfPTable criarCabecalho() throws DocumentException {
+	private ControllerTable() {
+		
+	}
+	
+	public static PdfPTable criarCabecalho() {
 		
 		PdfPTable table = new PdfPTable(new float[] { 3f, 5f, 6f, 3.5f, 10f, 4f, 4f });
 		

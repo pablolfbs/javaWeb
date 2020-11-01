@@ -20,7 +20,7 @@ import controller.Acao;
 public class ControladorFilter implements Filter {
 
 	public void destroy() {
-
+		
 	}
 
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
@@ -35,24 +35,31 @@ public class ControladorFilter implements Filter {
 		String nome = null;
 
 		try {
-			Class<?> classe = Class.forName(className);
-			try {
-				Acao acao = (Acao) classe.getDeclaredConstructor().newInstance();
-				nome = acao.executa(request, response);
-			} catch (IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-				e.printStackTrace();
-			}
+			nome = buscaClasse(request, response, className, nome);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ServletException | IOException e) {
 			throw new ServletException(e);
 		}
 
-		String[] param = nome.split(":");
+		String[] param = nome != null ? nome.split(":") : new String[] {};
 		if (param[0].equals("forward")) {
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/" + param[1]);
 			rd.forward(request, response);
 		} else if (param[0].equals("redirect")) {
 			response.sendRedirect(param[1]);
 		}
+	}
+
+	private String buscaClasse(HttpServletRequest request, HttpServletResponse response, String className, String nome)
+			throws ClassNotFoundException, InstantiationException, IllegalAccessException, ServletException,
+			IOException {
+		Class<?> classe = Class.forName(className);
+		try {
+			Acao acao = (Acao) classe.getDeclaredConstructor().newInstance();
+			nome = acao.executa(request, response);
+		} catch (IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
+		return nome;
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
