@@ -124,5 +124,43 @@ public class Util {
 		return age;
 
 	}
+	
+	public static int[] calculaIdadeCompleta(java.util.Date dataNasc) {
+
+		Calendar dateOfBirth = new GregorianCalendar();
+
+		dateOfBirth.setTime(dataNasc);
+
+		// Cria um objeto calendar com a data atual
+		Calendar today = Calendar.getInstance();
+		Calendar mesAnterior = Calendar.getInstance();
+		mesAnterior.set(Calendar.MONTH, today.get(Calendar.MONTH) - 1);
+
+		// Obtém a idade baseado no ano
+		int anos = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+		
+		dateOfBirth.add(Calendar.YEAR, anos);
+
+		// se a data de hoje é antes da data de Nascimento, então diminui 1(um)
+		if (today.before(dateOfBirth))
+			anos--;
+		
+		// Obtém os meses
+		int meses = today.get(Calendar.MONTH) - dateOfBirth.get(Calendar.MONTH);
+		
+		int dias;
+		
+		// se o mês é antes do mês de Nascimento, então diminui 1(um)
+		// e faz o cálculo dos dias decorridos
+		if (today.get(Calendar.DATE) < (dateOfBirth.get(Calendar.DATE))) {
+			meses--;
+			dias = today.get(Calendar.DATE) - dateOfBirth.get(Calendar.DATE) + mesAnterior.getActualMaximum(Calendar.DAY_OF_MONTH);
+		} else {
+			dias = today.get(Calendar.DATE) - dateOfBirth.get(Calendar.DATE);
+		}
+		
+		return new int[]{anos, meses, dias};
+
+	}
 
 }

@@ -22,6 +22,8 @@ public class ReservaDAO {
 	private static final String DT_ENTRADA = "dtEntrada";
 	private static final String DT_SAIDA = "dtSaida";
 
+	private static final String QUERY_RESEVAHOSPEDE = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%";
+
 	public void inserir(Reserva reserva) {
 		String sql = " INSERT INTO reserva (id_hospede, quarto, dtEntrada, dtSaida) VALUES (?, ?, ?, ?) ";
 		Integer quarto = reserva.getQuarto();
@@ -99,7 +101,7 @@ public class ReservaDAO {
 	}
 	
 	public Collection<Reserva> buscarPorNomeHospede(String nome) {
-		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" + nome
+		String sql = QUERY_RESEVAHOSPEDE + nome
 				+ "%' ";
 
 		Set<Reserva> reservas = new LinkedHashSet<>();
@@ -186,7 +188,7 @@ public class ReservaDAO {
 	}
 
 	public Collection<Reserva> buscarReservaPorNomeOrdenada(String param, String nome) {
-		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" + nome
+		String sql = QUERY_RESEVAHOSPEDE + nome
 				+ "%' ORDER BY r." + param + " ";
 
 		Set<Reserva> reservas = new LinkedHashSet<>();
@@ -207,7 +209,7 @@ public class ReservaDAO {
 	}
 
 	public Collection<Reserva> buscarReservaPorNomeOrdenadaPorHospede(String param, String nome) {
-		String sql = " SELECT * FROM reserva r JOIN hospede h WHERE r.id_hospede = h.id AND h.nome LIKE '%" + nome
+		String sql = QUERY_RESEVAHOSPEDE + nome
 				+ "%' ORDER BY h." + param + " ";
 
 		Set<Reserva> reservas = new LinkedHashSet<>();

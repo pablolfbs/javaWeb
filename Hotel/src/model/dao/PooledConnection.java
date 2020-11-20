@@ -330,7 +330,7 @@ public class PooledConnection implements Connection, Comparable<PooledConnection
 
 	@Override
 	public String toString() {
-		return "Conexão " + Double.valueOf(this.id).toString();
+		return "Conexão " + Double.toString(this.id);
 		// return new Long(this.lastUsed).toString();
 	}
 
