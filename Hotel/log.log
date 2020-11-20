@@ -1,0 +1,4 @@
+[main] DEBUG teste.TesteLog4j  - debug test
+[main] INFO  teste.TesteLog4j  - info test
+[main] WARN  teste.TesteLog4j  - warn test
+[main] ERROR teste.TesteLog4j  - error test
