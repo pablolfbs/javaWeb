@@ -16,7 +16,7 @@ import model.Reserva;
 public class ControllerTable {
 	
 	private ControllerTable() {
-		
+		throw new IllegalStateException("Utility class");
 	}
 	
 	public static PdfPTable criarCabecalho() {

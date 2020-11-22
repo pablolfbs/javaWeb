@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
 public class Util {
 
 	private Util() {
-
+		throw new IllegalStateException("Utility class");
 	}
 
 	/**
@@ -26,14 +26,14 @@ public class Util {
 						+ cpf.substring(9, 11));
 
 		} catch (Exception e) {
-			System.err.println("Impossível formatar cpf: " + e);
+			System.err.println("ImpossÃ­vel formatar cpf: " + e);
 			e.printStackTrace();
 		}
 		return cpf;
 	}
 
 	/**
-	 * Altera a primeira letra de cada palavra para maiúscula.
+	 * Altera a primeira letra de cada palavra para maiÃºscula.
 	 * 
 	 * @param texto
 	 * @return
@@ -86,7 +86,7 @@ public class Util {
 		// Cria um objeto calendar com a data atual
 		Calendar today = Calendar.getInstance();
 
-		// Obtém a idade baseado no ano
+		// Obtï¿½m a idade baseado no ano
 		int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
 
 		dateOfBirth.add(Calendar.YEAR, age);
@@ -112,12 +112,12 @@ public class Util {
 		// Cria um objeto calendar com a data atual
 		Calendar today = Calendar.getInstance();
 
-		// Obtém a idade baseado no ano
+		// ObtÃ©m a idade baseado no ano
 		int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
 
 		dateOfBirth.add(Calendar.YEAR, age);
 
-		// se a data de hoje é antes da data de Nascimento, então diminui 1(um)
+		// se a data de hoje Ã© antes da data de Nascimento, entÃ£o diminui 1(um)
 		if (today.before(dateOfBirth)) {
 			age--;
 		}
@@ -136,22 +136,22 @@ public class Util {
 		Calendar mesAnterior = Calendar.getInstance();
 		mesAnterior.set(Calendar.MONTH, today.get(Calendar.MONTH) - 1);
 
-		// Obtém a idade baseado no ano
+		// ObtÃ©m a idade baseado no ano
 		int anos = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
 		
 		dateOfBirth.add(Calendar.YEAR, anos);
 
-		// se a data de hoje é antes da data de Nascimento, então diminui 1(um)
+		// se a data de hoje Ã© antes da data de Nascimento, entÃ£o diminui 1(um)
 		if (today.before(dateOfBirth))
 			anos--;
 		
-		// Obtém os meses
+		// ObtÃ©m os meses
 		int meses = today.get(Calendar.MONTH) - dateOfBirth.get(Calendar.MONTH);
 		
 		int dias;
 		
-		// se o mês é antes do mês de Nascimento, então diminui 1(um)
-		// e faz o cálculo dos dias decorridos
+		// se o mÃªs Ã© antes do mÃªs de Nascimento, entÃ£o diminui 1(um)
+		// e faz o cÃ¡lculo dos dias decorridos
 		if (today.get(Calendar.DATE) < (dateOfBirth.get(Calendar.DATE))) {
 			meses--;
 			dias = today.get(Calendar.DATE) - dateOfBirth.get(Calendar.DATE) + mesAnterior.getActualMaximum(Calendar.DAY_OF_MONTH);

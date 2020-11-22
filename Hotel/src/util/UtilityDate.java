@@ -6,7 +6,7 @@ import java.util.Date;
 class UtilityDate {
 	
 	private UtilityDate() {
-		
+		throw new IllegalStateException("Utility class");
 	}
 
 	/** Formatador da Date */

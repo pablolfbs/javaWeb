@@ -20,10 +20,11 @@ import controller.Acao;
 public class ControladorFilter implements Filter {
 
 	public void destroy() {
-		
+
 	}
 
-	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
+			throws IOException, ServletException {
 
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
@@ -33,10 +34,10 @@ public class ControladorFilter implements Filter {
 		String className = "controller." + paramAcao.substring(0, 1).toUpperCase() + paramAcao.substring(1);
 
 		String nome = null;
-
 		try {
-			nome = buscaClasse(request, response, className, nome);
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ServletException | IOException e) {
+			nome = buscaClasse(request, response, className);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ServletException
+				| IOException | InvocationTargetException | NoSuchMethodException e) {
 			throw new ServletException(e);
 		}
 
@@ -47,22 +48,21 @@ public class ControladorFilter implements Filter {
 		} else if (param[0].equals("redirect")) {
 			response.sendRedirect(param[1]);
 		}
+
 	}
 
-	private String buscaClasse(HttpServletRequest request, HttpServletResponse response, String className, String nome)
+	private String buscaClasse(HttpServletRequest request, HttpServletResponse response, String className)
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, ServletException,
-			IOException {
+			IOException, InvocationTargetException, NoSuchMethodException {
+				
 		Class<?> classe = Class.forName(className);
-		try {
-			Acao acao = (Acao) classe.getDeclaredConstructor().newInstance();
-			nome = acao.executa(request, response);
-		} catch (IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			e.printStackTrace();
-		}
-		return nome;
+		Acao acao = (Acao) classe.getDeclaredConstructor().newInstance();
+
+		return acao.executa(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		
+
 	}
+
 }

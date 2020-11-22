@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import model.Reserva;
 import util.ControllerTable;
+import util.Propriedades;
 
 public class ExportarPdf implements Acao {
 
@@ -30,16 +32,18 @@ public class ExportarPdf implements Acao {
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String param = request.getParameter("param");
 		
+		Properties props = Propriedades.getProp();
+		
 		String json = null;
 		if (param != null) {
 			try {
-				File diretorio = new File("C:\\pdf");
+				File diretorio = new File(props.getProperty("prop.pathname"));
 				if (!diretorio.exists())
 					diretorio.mkdir();
 	            
 				Document document = new Document();
 				
-				File file = new File("C:\\pdf\\listadereservas" + 
+				File file = new File(props.getProperty("prop.pathname") + "\\listadereservas" + 
 						new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date()) + ".pdf");
 				
 				document.setPageSize(PageSize.A3);

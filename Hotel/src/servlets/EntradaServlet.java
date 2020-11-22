@@ -16,7 +16,8 @@ public class EntradaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String paramAcao = request.getParameter("acao");
 
@@ -24,13 +25,13 @@ public class EntradaServlet extends HttpServlet {
 
 		String nome = null;
 
+		Class<?> classe;
 		try {
-			Class<?> classe = Class.forName(className);
+			classe = Class.forName(className);
 			Acao acao = (Acao) classe.getDeclaredConstructor().newInstance();
 			nome = acao.executa(request, response);
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ServletException
-				| IOException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
-				| SecurityException e) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			throw new ServletException(e);
 		}
 

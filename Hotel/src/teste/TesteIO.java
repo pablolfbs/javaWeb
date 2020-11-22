@@ -9,8 +9,7 @@ public class TesteIO {
 	
 	public static void main(String[] args) {
 		
-		NomeIO io = new NomeIO();
-		Collection<String> colecao = io.lerArquivo();
+		Collection<String> colecao = NomeIO.lerArquivo();
 		ArrayList<String> list = new ArrayList<>(colecao);
 		
 		for (int i = 0; i < list.size(); i++) {

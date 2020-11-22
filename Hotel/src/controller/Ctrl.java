@@ -203,8 +203,7 @@ public class Ctrl {
 	}
 
 	private static int mockHospede() {
-		NomeIO n = new NomeIO();
-		Collection<String> nomes = n.lerArquivo();
+		Collection<String> nomes = NomeIO.lerArquivo();
 		List<String> listaNomes = new ArrayList<>(nomes);
 		
 		Set<Hospede> hospedes = hDAO.listar();

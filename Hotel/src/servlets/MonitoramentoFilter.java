@@ -12,8 +12,12 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
+import org.apache.log4j.Logger;
+
 @WebFilter("/entrada")
 public class MonitoramentoFilter implements Filter {
+
+	Logger logger = Logger.getLogger(MonitoramentoFilter.class);
 
 	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
@@ -33,7 +37,7 @@ public class MonitoramentoFilter implements Filter {
 		chain.doFilter(request, response);
 
 		long depois = System.currentTimeMillis();
-		System.out.println("Hora da execução -> " + sdf.format(hrExecucao) + " | Tempo de execução da ação " + acao
+		logger.info("Hora da execução -> " + sdf.format(hrExecucao) + " | Tempo de execução da ação " + acao
 				+ " -> " + (depois - antes));
 	}
 

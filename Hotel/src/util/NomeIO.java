@@ -10,7 +10,11 @@ import java.util.Collection;
 
 public class NomeIO {
 	
-	public Collection<String> lerArquivo() {
+	private NomeIO() {
+		throw new IllegalStateException("Utility class");
+	}
+	
+	public static Collection<String> lerArquivo() {
 		
 //		InputStream input = getClass().getResourceAsStream("file.properties");
 //		try {
@@ -26,7 +30,9 @@ public class NomeIO {
 		BufferedReader br;
 		Collection<String> lista = new ArrayList<>();
 		try {
-			fis = getClass().getResourceAsStream("nomes.txt");
+			// Código alterado para transformar o método em estático.
+			// fis = getClass().getResourceAsStream("nomes.txt");
+			fis = NomeIO.class.getResourceAsStream("nomes.txt");
 			isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
 			br = new BufferedReader(isr);
 			String linha = br.readLine();
