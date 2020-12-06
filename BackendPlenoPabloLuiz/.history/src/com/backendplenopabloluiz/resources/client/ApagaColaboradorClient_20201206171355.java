@@ -25,6 +25,7 @@ public class ApagaColaboradorClient {
 
 		try {
 
+			int id = 106;
 			WebTarget webTarget = client.target("http://localhost:8080/BackendPlenoPabloLuiz-0.0.1-SNAPSHOT/colaborador/remover/" + id);
 
 			Colaborador col = ColaboradorApiBuscarPorId.buscarPorId(id);

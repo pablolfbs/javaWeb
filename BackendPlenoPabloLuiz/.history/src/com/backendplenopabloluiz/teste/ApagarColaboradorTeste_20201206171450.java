@@ -13,7 +13,8 @@ public class ApagarColaboradorTeste {
 	public static void main(String[] args) {
 		
 		ApagaColaboradorClient client = new ApagaColaboradorClient();
-		client.removeColaborador(105);
+		
+		client.removeColaborador(106);
 	    
 	}
 

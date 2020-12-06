@@ -19,12 +19,13 @@ public class ApagaColaboradorClient {
 	/**
 	 * Client para remover colaborador.
 	 */
-	public void removeColaborador(int id) {
+	public void removeColaborador() {
 		
 		Client client = ClientBuilder.newClient();
 
 		try {
 
+			int id = 106;
 			WebTarget webTarget = client.target("http://localhost:8080/BackendPlenoPabloLuiz-0.0.1-SNAPSHOT/colaborador/remover/" + id);
 
 			Colaborador col = ColaboradorApiBuscarPorId.buscarPorId(id);
@@ -36,10 +37,14 @@ public class ApagaColaboradorClient {
 				Response response = webTarget.request().accept(MediaType.APPLICATION_JSON).delete();
 				if (response.getStatus() == 200) {
 					System.out.println("Colaborador apagado com sucesso!");
+					
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
+		
 	}
+
 }
