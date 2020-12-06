@@ -28,7 +28,7 @@ public class AdicionaColaboradorClient {
 	 */
 	public static void adicionaColaborador(Colaborador colaborador) {
 
-		String url = "http://localhost:8080/BackendPlenoPabloLuiz-0.0.1-SNAPSHOT/colaborador/adicionar";
+		String url = "http://localhost:8080-0.0.1-SNAPSHOT/BackendPlenoPabloLuiz/colaborador/adicionar";
 		String json = new Gson().toJson(colaborador);
 
 		try {

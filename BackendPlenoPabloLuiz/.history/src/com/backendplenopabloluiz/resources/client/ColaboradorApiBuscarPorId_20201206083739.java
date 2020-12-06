@@ -30,7 +30,7 @@ public class ColaboradorApiBuscarPorId {
 	 */
 	public static Colaborador buscarPorId(int id) throws Exception {
 
-		String servico = "http://localhost:8080/BackendPlenoPabloLuiz-0.0.1-SNAPSHOT/colaborador/buscar/" + id;
+		String servico = "http://localhost:8080-0.0.1-SNAPSHOT/BackendPlenoPabloLuiz/colaborador/buscar/" + id;
 
 		try {
 			URL url = new URL(servico);

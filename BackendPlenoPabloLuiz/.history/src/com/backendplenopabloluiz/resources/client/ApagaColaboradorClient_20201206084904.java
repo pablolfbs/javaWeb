@@ -33,7 +33,7 @@ public class ApagaColaboradorClient {
 			Response response = webTarget.request().accept(MediaType.APPLICATION_JSON).delete();
 
 			if (col.getId() == null) {
-				System.out.println("Colaborador não existe!");
+				System.out.println("Colaborador n�o existe!");
 				
 			} else {
 				if (response.getStatus() == 200) {

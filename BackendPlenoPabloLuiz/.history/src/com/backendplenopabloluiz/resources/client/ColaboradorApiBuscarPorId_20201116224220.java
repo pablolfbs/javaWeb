@@ -22,7 +22,7 @@ public class ColaboradorApiBuscarPorId {
 	}
 
 	/**
-	 * Mï¿½todo de cliente do webservice de colaborador que devolve o colaborador, pesquisado pelo id.
+	 * Método de cliente do webservice de colaborador que devolve o colaborador, pesquisado pelo id.
 	 * 
 	 * @param id
 	 * @return
@@ -30,7 +30,7 @@ public class ColaboradorApiBuscarPorId {
 	 */
 	public static Colaborador buscarPorId(int id) throws Exception {
 
-		String servico = "http://localhost:8080/BackendPlenoPabloLuiz-0.0.1-SNAPSHOT/colaborador/buscar/" + id;
+		String servico = "http://localhost:8080/BackendPlenoPabloLuiz/colaborador/buscar/" + id;
 
 		try {
 			URL url = new URL(servico);

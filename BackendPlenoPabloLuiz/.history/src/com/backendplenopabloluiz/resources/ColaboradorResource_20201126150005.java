@@ -29,7 +29,7 @@ public class ColaboradorResource {
 	private ColaboradorService repositorio = new ColaboradorService();
 
 	/**
-	 * Envia requisiÃ§Ã£o post para inserir um novo colaborador.
+	 * Envia requisição post para inserir um novo colaborador.
 	 * 
 	 * @param json
 	 * @return
@@ -51,7 +51,7 @@ public class ColaboradorResource {
 	}
 
 	/**
-	 * Envia requisiÃ§Ã£o para apagar colaborador.
+	 * Envia requisição para apagar colaborador.
 	 * @param id
 	 * @return
 	 */

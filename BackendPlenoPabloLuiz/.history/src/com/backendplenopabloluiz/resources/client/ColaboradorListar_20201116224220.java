@@ -27,14 +27,14 @@ public class ColaboradorListar {
 	}
 
 	/**
-	 * Mï¿½todo de cliente do webservice de colaborador que devolve uma lista de colaboradores.
+	 * Método de cliente do webservice de colaborador que devolve uma lista de colaboradores.
 	 * 
 	 * @return
 	 */
 	public static List<Colaborador> listar() {
 
 		final int sucesso = 200;
-		String servico = "http://localhost:8080/BackendPlenoPabloLuiz-0.0.1-SNAPSHOT/colaborador/listar";
+		String servico = "http://localhost:8080/BackendPlenoPabloLuiz/colaborador/listar";
 		String jsonEmString = null;
 		Type collectionType = null;
 

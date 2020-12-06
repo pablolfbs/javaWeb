@@ -25,15 +25,17 @@ public class ApagaColaboradorClient {
 
 		try {
 
-			int id = 107;
-			WebTarget webTarget = client.target("http://localhost:8080/BackendPlenoPabloLuiz-0.0.1-SNAPSHOT/colaborador/remover/" + id);
+		int id = 108;
+		WebTarget webTarget = client.target("http://localhost:8080/BackendPlenoPabloLuiz-0.0.1-SNAPSHOT/colaborador/remover/" + id);
 
-			Colaborador col = ColaboradorApiBuscarPorId.buscarPorId(id);
+		Colaborador col = ColaboradorApiBuscarPorId.buscarPorId(id);
 
-			Response response = webTarget.request().accept(MediaType.APPLICATION_JSON).delete();
+		Response response = webTarget.request().accept(MediaType.APPLICATION_JSON).delete();
 
+		
+			
 			if (col.getId() == null) {
-				System.out.println("Colaborador não existe!");
+				System.out.println("Colaborador n�o existe!");
 				
 			} else {
 				if (response.getStatus() == 200) {

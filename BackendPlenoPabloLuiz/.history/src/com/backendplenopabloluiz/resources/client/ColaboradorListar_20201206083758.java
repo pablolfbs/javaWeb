@@ -34,7 +34,7 @@ public class ColaboradorListar {
 	public static List<Colaborador> listar() {
 
 		final int sucesso = 200;
-		String servico = "http://localhost:8080/BackendPlenoPabloLuiz-0.0.1-SNAPSHOT/colaborador/listar";
+		String servico = "http://localhost:8080-0.0.1-SNAPSHOT/BackendPlenoPabloLuiz/colaborador/listar";
 		String jsonEmString = null;
 		Type collectionType = null;
 
