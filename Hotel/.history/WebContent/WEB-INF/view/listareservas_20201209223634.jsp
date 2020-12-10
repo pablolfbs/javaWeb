@@ -49,7 +49,6 @@
 		</div>
 		<form id="myForm" action="entrada" method="POST">
 			<table id="tabela" class="highlight" id="tabela" hidden>
-				<caption>Reservas</caption>
 				<thead>
 					<tr>
 						<th class="col s1" scope="col"><a class="btn waves-effect waves-orange btn-flat" href="#">#</a></th>

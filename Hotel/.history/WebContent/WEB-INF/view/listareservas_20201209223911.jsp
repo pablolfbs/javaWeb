@@ -49,7 +49,7 @@
 		</div>
 		<form id="myForm" action="entrada" method="POST">
 			<table id="tabela" class="highlight" id="tabela" hidden>
-				<caption>Reservas</caption>
+				<caption>New York City Marathon Results 2013</caption>
 				<thead>
 					<tr>
 						<th class="col s1" scope="col"><a class="btn waves-effect waves-orange btn-flat" href="#">#</a></th>

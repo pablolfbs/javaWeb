@@ -1,5 +1,5 @@
 {
-    "java.home": "C:\\dev\\java\\jdk-11.0.9",
+    "java.home": "C:\\dev\\java\\jdk-15.0.1",
     "telemetry.enableCrashReporter": false,
 	"telemetry.enableTelemetry": false,
     "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"c:\\Users\\pablo\\.vscode\\extensions\\gabrielbb.vscode-lombok-1.0.1\\server\\lombok.jar\"",

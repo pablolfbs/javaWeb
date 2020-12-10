@@ -49,7 +49,6 @@
 		</div>
 		<form id="myForm" action="entrada" method="POST">
 			<table id="tabela" class="highlight" id="tabela" hidden>
-				<caption>Reservas</caption>
 				<thead>
 					<tr>
 						<th class="col s1" scope="col"><a class="btn waves-effect waves-orange btn-flat" href="#">#</a></th>
@@ -58,7 +57,7 @@
 						<th class="col s2 center" scope="col"><a class="btn waves-effect waves-orange btn-flat" href="#">Quarto</a></th>
 						<th class="col s2 center" scope="col"><a class="btn waves-effect waves-orange btn-flat" href="#">E-mail</a></th>
 						<th class="col s1 center" scope="col"><a class="btn waves-effect waves-orange btn-flat" href="#">Entrada</a></th>
-						<th class="col s1 center" scope="col"><a class="btn waves-effect waves-orange btn-flat" href="#">Saída</a></th>
+						<th class="col s1 center" ><a class="btn waves-effect waves-orange btn-flat" href="#">Saída</a></th>
 						<th class="col s1 center" id="btExcluirTodos"><a class="btn waves-effect waves-orange btn-flat" href="#">Excluir</a></th>
 					</tr>
 				</thead>

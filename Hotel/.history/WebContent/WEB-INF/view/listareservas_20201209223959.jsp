@@ -74,7 +74,7 @@
 							<td class="col s1 center"><c:out value="${ reserva.dtSaidaFormatada }" /></td>
 							<td class="col s1 center">
 								<button class="btn tooltipped waves-effect waves-orange btn-flat" id="btExcluir" data-position="top" data-tooltip="excluir linha" value="excluirLinha" name="acao">
-									<i class="fa fa-trash"></i>
+									<em class="fa fa-trash"></em>
 								</button>
 							</td>
 						</tr>

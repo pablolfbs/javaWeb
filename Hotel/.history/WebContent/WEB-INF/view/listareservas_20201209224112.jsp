@@ -74,7 +74,7 @@
 							<td class="col s1 center"><c:out value="${ reserva.dtSaidaFormatada }" /></td>
 							<td class="col s1 center">
 								<button class="btn tooltipped waves-effect waves-orange btn-flat" id="btExcluir" data-position="top" data-tooltip="excluir linha" value="excluirLinha" name="acao">
-									<i class="fa fa-trash"></i>
+									<em class="fa fa-trash"></em>
 								</button>
 							</td>
 						</tr>
@@ -102,7 +102,7 @@
 				</div>
 			</div>
 			<button style="width: 185px" class="btn waves-effect waves-orange btn-flat btn-large" type="submit" id="btLogout" name="acao" value="logout">
-				Logout<i class="material-icons left red-text">power_settings_new</i>
+				Logout<em class="material-icons left red-text">power_settings_new</em>
 			</button>
 			
 			<!-- Modal Trigger -->

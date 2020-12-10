@@ -42,37 +42,37 @@
 		<form class="col s14" id="formRegistro" action="entrada" method="POST">
 			<div class="row">
 				<div class="input-field hoverable col s6">
-					<i class="material-icons prefix">contacts</i> <input id="first_name" type="text" class="validate" name="first_name">
+					<em class="material-icons prefix">contacts</em> <input id="first_name" type="text" class="validate" name="first_name">
 					<label for="first_name">First Name</label>
 				</div>
 				<div class="input-field hoverable col s6">
-					<i class="material-icons prefix">contacts</i> <input id="last_name" type="text" class="validate" name="last_name">
+					<em class="material-icons prefix">contacts</em> <input id="last_name" type="text" class="validate" name="last_name">
 					<label for="last_name">Last Name</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field hoverable col s6">
-					<i class="material-icons prefix">account_circle</i> <input id="username" type="text" class="validate" name="username">
+					<em class="material-icons prefix">account_circle</em> <input id="username" type="text" class="validate" name="username">
 					<label for="username">Username</label>
 				</div>
 				<div class="input-field hoverable col s6">
-					<i class="material-icons prefix">mail_outline</i> <input id="email" type="email" class="validate" name="email">
+					<em class="material-icons prefix">mail_outline</em> <input id="email" type="email" class="validate" name="email">
 					<label for="email">Email</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field hoverable col s6">
-					<i class="material-icons prefix">lock_outline</i> <input id="password" type="password" class="validate" name="password">
+					<em class="material-icons prefix">lock_outline</em> <input id="password" type="password" class="validate" name="password">
 					<label for="password">Password</label>
 				</div>
 				<div class="input-field hoverable col s6">
-					<i class="material-icons prefix">replay</i> <input id="password2" type="password" class="validate" name="password2">
+					<em class="material-icons prefix">replay</em> <input id="password2" type="password" class="validate" name="password2">
 					<label for="password2">Retype Password</label>
 				</div>
 			</div>
-			<!-- <a href="entrada?acao=registro" class="waves-effect waves-light btn right hoverable" type="submit""><i class="large material-icons right">done</i>register</a> -->
-			<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large right" data-position="top" data-tooltip="registrar usu�rio" type="button" id="btRegistrar" value="registro" name="acao" >
-				<i class="material-icons left">add</i>Registrar
+			<!-- <a href="entrada?acao=registro" class="waves-effect waves-light btn right hoverable" type="submit""><em class="large material-icons right">done</em>register</a> -->
+			<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large right" data-position="top" data-tooltip="registrar usuario" type="button" id="btRegistrar" value="registro" name="acao" >
+				<em class="material-icons left">add</em>Registrar
 			</button>
 			
 			<!-- Modal Structure -->

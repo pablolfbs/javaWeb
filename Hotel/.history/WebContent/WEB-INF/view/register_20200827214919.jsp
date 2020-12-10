@@ -71,7 +71,7 @@
 				</div>
 			</div>
 			<!-- <a href="entrada?acao=registro" class="waves-effect waves-light btn right hoverable" type="submit""><i class="large material-icons right">done</i>register</a> -->
-			<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large right" data-position="top" data-tooltip="registrar usuï¿½rio" type="button" id="btRegistrar" value="registro" name="acao" >
+			<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large right" data-position="top" data-tooltip="registrar usuário" type="button" id="btRegistrar" value="registro" name="acao" >
 				<i class="material-icons left">add</i>Registrar
 			</button>
 			
@@ -79,7 +79,7 @@
 			<div id="modal1" class="modal">
 				<div class="modal-content">
 					<h4>AVISO</h4>
-					<p>O email e a senha nï¿½o podem estar vazios!</p>
+					<p>O email e a senha não podem estar vazios!</p>
 				</div>
 				<div class="modal-footer">
 					<a href="#!" class="modal-close waves-effect btn-flat" id="ok">Ok</a>
