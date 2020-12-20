@@ -8,7 +8,7 @@ import com.pablo.util.Utils;
 
 public class Controller {
 	
-	public void init() {
+	public void calculaIMC() {
 		try {
 			var strPeso = "";
 			var strAltura = "";
@@ -20,7 +20,7 @@ public class Controller {
 			var altura = Double.parseDouble(strAltura);
 			altura = Utils.toMetters(altura);
 
-			var imc = Utils.calculaIMC(peso, altura);
+			var imc = (Double) (peso / Math.pow(altura, 2));
 
 			var msg = msgIMC(imc);
 
@@ -44,6 +44,9 @@ public class Controller {
 						"Vamos tentar novamente." + System.lineSeparator() + "Digite " + param + ": ", "IMC",
 						JOptionPane.QUESTION_MESSAGE).replace(",", "").replace(".", "");
 
+			if (valor == null)
+				throw new NullPointerException();
+
 			count++;
 		} while (verificaNulo(valor) || validaValor(valor) || validaPeso(param, valor) || validaAltura(param, valor));
 		
@@ -60,7 +63,7 @@ public class Controller {
 				null, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 		
 		if (n == 1)
-			new Controller().init();
+			new Controller().calculaIMC();
 		else
 			msgAgradecimento();
 	}

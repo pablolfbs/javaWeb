@@ -8,7 +8,7 @@ import com.pablo.util.Utils;
 
 public class Controller {
 	
-	public void init() {
+	public void calculaIMC() {
 		try {
 			var strPeso = "";
 			var strAltura = "";
@@ -18,9 +18,8 @@ public class Controller {
 
 			strAltura = formParam("sua altura");
 			var altura = Double.parseDouble(strAltura);
-			altura = Utils.toMetters(altura);
 
-			var imc = Utils.calculaIMC(peso, altura);
+			var imc = (float) (peso / Math.pow(altura, 2));
 
 			var msg = msgIMC(imc);
 
@@ -42,7 +41,10 @@ public class Controller {
 			else
 				valor = JOptionPane.showInputDialog(null,
 						"Vamos tentar novamente." + System.lineSeparator() + "Digite " + param + ": ", "IMC",
-						JOptionPane.QUESTION_MESSAGE).replace(",", "").replace(".", "");
+						JOptionPane.QUESTION_MESSAGE).replace(",", "").replace("0", "");
+
+			if (valor == null)
+				throw new NullPointerException();
 
 			count++;
 		} while (verificaNulo(valor) || validaValor(valor) || validaPeso(param, valor) || validaAltura(param, valor));
@@ -50,7 +52,7 @@ public class Controller {
 		return valor;
 	}
 	
-	private static void msgFinal(Double imc, String msg) {
+	private static void msgFinal(float imc, String msg) {
 		JOptionPane.showMessageDialog(null, "Seu IMC é " + new DecimalFormat("#.00").format(imc) + ". " + msg + ".");
 	}
 	
@@ -60,7 +62,7 @@ public class Controller {
 				null, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 		
 		if (n == 1)
-			new Controller().init();
+			new Controller().calculaIMC();
 		else
 			msgAgradecimento();
 	}
@@ -69,7 +71,7 @@ public class Controller {
 		JOptionPane.showMessageDialog(null, "Volte Sempre :)", "OBRIGADO", JOptionPane.PLAIN_MESSAGE);
 	}
 
-	private static String msgIMC(Double imc) {
+	private static String msgIMC(float imc) {
 		var msg = "";
 		if (imc < 16)
 			msg = "Baixo peso muito grave";

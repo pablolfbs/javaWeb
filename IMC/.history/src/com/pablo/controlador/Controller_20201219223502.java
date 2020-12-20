@@ -44,6 +44,9 @@ public class Controller {
 						"Vamos tentar novamente." + System.lineSeparator() + "Digite " + param + ": ", "IMC",
 						JOptionPane.QUESTION_MESSAGE).replace(",", "").replace(".", "");
 
+			if (valor == null)
+				throw new NullPointerException();
+
 			count++;
 		} while (verificaNulo(valor) || validaValor(valor) || validaPeso(param, valor) || validaAltura(param, valor));
 		
