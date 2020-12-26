@@ -213,7 +213,7 @@ public class Ctrl {
 		String email = null;
 		String cpf = GeraCpfCnpj.cpf(false);
 		
-		for (int i = hospedes.size(); i < listaNomes.size(); i++) {
+		for (int i = 0; i < listaNomes.size(); i++) {
 			if (!setNomes.contains(listaNomes.get(i))) {
 				nome = listaNomes.get(i);
 				email = listaNomes.get(i).toLowerCase() + "@" + listaNomes.get(i).toLowerCase() + ".com";

@@ -202,6 +202,16 @@
 					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
 				</div>
 			</div>
+			<!-- Modal Structure -->
+			<div id="modal11" class="modal">
+				<div class="modal-content">
+					<h4>AVISO</h4>
+					<p>O cpf deve conter 11 dígitos!</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect btn-flat">Ok</a>
+				</div>
+			</div>
 			<div class="row">
 				<button style="width: 185px" class="btn tooltipped waves-effect waves-orange btn-flat btn-large" data-position="top" data-tooltip="mockar nova reserva" type="button" id="btCadMock" value="cadMock" name="acao" >
 					<i class="material-icons left">plus_one</i>Mock
