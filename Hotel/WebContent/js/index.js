@@ -165,6 +165,18 @@ document.getElementById('btCadMockAll').addEventListener('click', () => {
 	});*/
 });
 
+document.getElementById('cpf').addEventListener('keypress', evt => {
+	var theEvent = evt || window.event;
+	var key = theEvent.keyCode || theEvent.which;
+	key = String.fromCharCode(key);
+	//var regex = /^[0-9.,]+$/;
+	var regex = /^[0-9.]+$/;
+	if (!regex.test(key)) {
+		theEvent.returnValue = false;
+		if (theEvent.preventDefault) theEvent.preventDefault();
+	}
+});
+
 document.getElementById('btCadastrar').addEventListener('click', () => {
 	const acao = 'validaCadastro';
 	const nome = document.getElementById('first_name').value;
@@ -177,7 +189,10 @@ document.getElementById('btCadastrar').addEventListener('click', () => {
 	if (!quarto) {
 		let instance = M.Modal.getInstance($('#modal4').modal());
 		instance.open();
-	} else if (nome == '' || email == '' || cpf == '') {
+	} else if (cpf.length != 11) {
+		let instance = M.Modal.getInstance($('#modal11').modal());
+		instance.open();
+	} else if (nome == '' || email == '') {
 		let instance = M.Modal.getInstance($('#modal6').modal());
 		instance.open();
 	} else {
