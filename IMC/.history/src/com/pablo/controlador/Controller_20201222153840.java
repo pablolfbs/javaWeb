@@ -57,7 +57,7 @@ public class Controller {
 	}
 	
 	private static void repetirConsulta() {
-		Object[] options = { "Não, obrigado", "Sim, por favor" };
+		Object[] options = { "No, thanks", "Yes, please" };
 		int n = JOptionPane.showOptionDialog(null, "Deseja fazer outra consulta? ",
 				null, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 		
