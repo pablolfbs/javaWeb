@@ -15,6 +15,8 @@ import model.Reserva;
 @WebServlet("/opcao")
 public class IndexServlets extends HttpServlet{
 	
+	private static final long serialVersionUID = -6032644068954720210L;
+	
 	ArrayList<Reserva> reserva = (ArrayList<Reserva>) RegistraReservasServlets.reservas;
 	
 	@Override

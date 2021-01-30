@@ -16,6 +16,8 @@ import model.dao.ReservaDAO;
 @SessionScoped
 public class ControleReserva implements Serializable {
 	
+	private static final long serialVersionUID = -6875136894917040009L;
+	
 	@EJB
 	private ReservaDAO dao;
 	@EJB

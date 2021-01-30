@@ -14,6 +14,8 @@ import model.dao.QuartoDAO;
 @SessionScoped
 public class ControleQuarto implements Serializable {
 	
+	private static final long serialVersionUID = -8852880419253131543L;
+	
 	@EJB
 	private QuartoDAO dao;
 	private Quarto quarto;

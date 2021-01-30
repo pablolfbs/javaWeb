@@ -1,6 +1,5 @@
 package br.com.hightechcursos.teste;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.hightechcursos.entidades.Usuario;

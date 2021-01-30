@@ -14,6 +14,8 @@ import model.dao.HospedeDAO;
 @SessionScoped
 public class ControlHospede implements Serializable {
 
+	private static final long serialVersionUID = -408476396648746223L;
+	
 	@EJB
 	private HospedeDAO dao;
 	private Hospede hospede;
