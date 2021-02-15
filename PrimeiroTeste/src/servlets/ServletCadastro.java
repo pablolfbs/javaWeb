@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ServletCadastro extends HttpServlet{
 	
+	private static final long serialVersionUID = -3410152004813244654L;
+
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
