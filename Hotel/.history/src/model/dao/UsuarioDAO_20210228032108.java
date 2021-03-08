@@ -65,28 +65,16 @@ public class UsuarioDAO {
 		return usuario;
 	}
 
-	public boolean isUsuarioCadastrado(String email) {
-		String sql = " SELECT * FROM usuario WHERE email = '" + email + "';";
+	public void buscarPorEmail(String email) {
+		String sql = " SELECT * FROM usuario WHERE email = '" + email + ";";
 		
 		try (Statement sttm = connection.createStatement(); ResultSet rs = sttm.executeQuery(sql);) {
 			if (rs.next()) {
-				return true;
+				email.setEmail(rs.getString("email"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
-	}
-
-	public void cadastrarNovaSenha(Usuario usuario) {
-		String sql = " UPDATE usuario SET senha = ? WHERE email = ? ";
-		
-		try (PreparedStatement ps = connection.prepareStatement(sql);) {
-			ps.setString(1, usuario.getSenha());
-			ps.setString(2, usuario.getEmail());
-			ps.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		return email;
 	}
 }

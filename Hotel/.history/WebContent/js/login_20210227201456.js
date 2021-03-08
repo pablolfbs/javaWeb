@@ -27,3 +27,34 @@ document.getElementById('botao').onclick = () => {
 	
 	window.localStorage.setItem('opcao', document.getElementById('remember-me').checked);
 }
+
+document.getElementById('teste').addEventListener('click', () => {
+	axios.get('entrada?acao=esqueciSenha')
+		.then(() => {
+			alert('ok')
+		})
+		.catch(err => {
+			console.log(err);
+		});
+
+	/*$.ajax({
+		type: 'GET',
+		url: 'entrada',
+		data: {
+			acao: 'excluirTodos'
+		},
+		dataType: 'JSON',
+		success: () => {
+			$('tbody tr').remove();
+			alteraVisibilidade();
+
+			let instance = M.Modal.getInstance($('#modal6').modal());
+			instance.open();
+		},
+		error: err => {
+			console.log(err);
+		}
+	});*/
+});
+
+

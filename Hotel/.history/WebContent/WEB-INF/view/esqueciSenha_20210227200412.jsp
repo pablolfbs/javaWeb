@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Login</title>
+<title>Senha</title>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
 	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -68,11 +68,11 @@
 			<nav>
 				<div class="nav-wrapper">
 					<div class="col s8">
-						<h3 class="brand-logo col s8">Login</h3>
+						<h3 class="brand-logo col s8">Senha</h3>
 					</div>
 				</div>
 			</nav>
-			<form class="login-form" action="entrada" method="POST">
+			<form class="senha-form" action="entrada" method="POST">
 				<div class="row"></div>
 				<div class="row">
 					<div class="input-field hoverable col s12">
@@ -81,33 +81,8 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="input-field hoverable col s12">
-						<i class="material-icons prefix">lock_outline</i>
-						<input id="password" type="password" name="password"> <label for="password">Password</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s12 m12 l12 login-text">
-					<label for="remember-me">
-						<input type="checkbox" id="remember-me" /><span>Remember me</span>
-					</label>
-					</div>
-				</div>
-				<div class="row">
 					<div class="input-field col s12">
-						<button class="btn waves-effect waves-light col s12 waves-orange hoverable" type="submit" id="botao" value="login" name="acao">Login</button>
-					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s6 m6 l6">
-						<p class="margin medium-small">
-							<a href="entrada?acao=registroForm">Register Now!</a>
-						</p>
-					</div>
-					<div class="input-field col s6 m6 l6">
-						<p class="margin right-align medium-small">
-							<a href="entrada?acao=esqueciSenha">Forgot password?</a>
-						</p>
+						<button class="btn waves-effect waves-light col s12 waves-orange hoverable" type="submit" id="botao" value="enviar" name="acao">Enviar</button>
 					</div>
 				</div>
 			</form>

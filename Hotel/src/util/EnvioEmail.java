@@ -1,4 +1,4 @@
-package controller;
+package util;
 
 import java.util.Properties;
 
@@ -20,7 +20,7 @@ public class EnvioEmail {
 	public static void send(String destinatario, String corpoMensagem) {
 		Properties props = new Properties();
 
-		/** Configuraï¿½ï¿½o para acesso smtp */
+		/** Configuração para acesso smtp */
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "465");
 		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
@@ -30,7 +30,7 @@ public class EnvioEmail {
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("", "");// Autenticaï¿½ï¿½o
+				return new PasswordAuthentication("", "");// Autenticação
 			}
 		});
 

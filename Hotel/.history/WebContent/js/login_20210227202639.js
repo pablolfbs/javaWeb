@@ -27,3 +27,30 @@ document.getElementById('botao').onclick = () => {
 	
 	window.localStorage.setItem('opcao', document.getElementById('remember-me').checked);
 }
+
+document.getElementById('teste').addEventListener('click', () => {
+	/*axios.get('entrada?acao=esqueciSenha')
+		.then(() => {
+			alert('ok');
+		})
+		.catch(err => {
+			console.log(err);
+		});*/
+
+	$.ajax({
+		type: 'GET',
+		url: 'entrada',
+		data: {
+			acao: 'esqueciSenha'
+		},
+		dataType: 'JSON',
+		success: () => {
+			console.log('ok');
+		},
+		error: err => {
+			console.log(err);
+		}
+	});
+});
+
+

@@ -93,11 +93,11 @@
 					</label>
 					</div>
 				</div>
-				<div class="row">
+				<!-- <div class="row">
 					<div class="input-field col s12">
 						<button class="btn waves-effect waves-light col s12 waves-orange hoverable" type="submit" id="botao" value="login" name="acao">Login</button>
 					</div>
-				</div>
+				</div> -->
 				<div class="row">
 					<div class="input-field col s6 m6 l6">
 						<p class="margin medium-small">
@@ -106,7 +106,7 @@
 					</div>
 					<div class="input-field col s6 m6 l6">
 						<p class="margin right-align medium-small">
-							<a href="entrada?acao=esqueciSenha">Forgot password?</a>
+							<a href="#" id="teste">Forgot password?</a>
 						</p>
 					</div>
 				</div>

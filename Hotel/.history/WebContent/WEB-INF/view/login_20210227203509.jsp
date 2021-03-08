@@ -106,7 +106,7 @@
 					</div>
 					<div class="input-field col s6 m6 l6">
 						<p class="margin right-align medium-small">
-							<a href="entrada?acao=esqueciSenha">Forgot password?</a>
+							<a href="#" id="teste">Forgot password?</a>
 						</p>
 					</div>
 				</div>

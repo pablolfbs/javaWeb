@@ -72,7 +72,7 @@
 					</div>
 				</div>
 			</nav>
-			<form class="login-form" action="entrada" method="POST">
+			<!-- <form class="login-form" action="entrada" method="POST"> -->
 				<div class="row"></div>
 				<div class="row">
 					<div class="input-field hoverable col s12">
@@ -106,11 +106,11 @@
 					</div>
 					<div class="input-field col s6 m6 l6">
 						<p class="margin right-align medium-small">
-							<a href="entrada?acao=esqueciSenha">Forgot password?</a>
+							<a href="#" id="teste">Forgot password?</a>
 						</p>
 					</div>
 				</div>
-			</form>
+			<!-- </form> -->
 		</div>
 	</div>
 	<!--JavaScript at end of body for optimized loading-->

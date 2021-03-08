@@ -27,3 +27,5 @@ document.getElementById('botao').onclick = () => {
 	
 	window.localStorage.setItem('opcao', document.getElementById('remember-me').checked);
 }
+
+

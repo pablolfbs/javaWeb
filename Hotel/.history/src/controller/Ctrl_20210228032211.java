@@ -7,7 +7,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -129,14 +128,6 @@ public class Ctrl {
 //		EnvioEmail.send(hospede.getEmail(), "Sr(a). " + hospede.getNome() + ", sua reserva para o quarto "
 //				+ quarto.getNum() + " foi cancelada.");
 	}
-	
-	public static void enviaEmailNovaSenha(Usuario usuario) {
-//		EnvioEmail.send(usuario.getEmail(), "Cadastre sua nova senha!");
-	}
-	
-	public static void cadastrarNovaSenha(Usuario usuario) {
-		uDAO.cadastrarNovaSenha(usuario);
-	}
 
 	public static void excluirTodos() {
 		qDAO.excluirTodos();
@@ -218,7 +209,6 @@ public class Ctrl {
 		Set<Hospede> hospedes = hDAO.listar();
 		Set<String> setNomes = hospedes.stream().map(Hospede::getNome).collect(Collectors.toSet());
 
-		String[] arrayEmails = {"gmail", "outlook", "hotmail"};
 		String nome = null;
 		String email = null;
 		String cpf = GeraCpfCnpj.cpf(false);
@@ -226,7 +216,7 @@ public class Ctrl {
 		for (int i = 0; i < listaNomes.size(); i++) {
 			if (!setNomes.contains(listaNomes.get(i))) {
 				nome = listaNomes.get(i);
-				email = listaNomes.get(i).toLowerCase() + "@" + arrayEmails[new Random().nextInt(arrayEmails.length)] + ".com";
+				email = listaNomes.get(i).toLowerCase() + "@" + listaNomes.get(i).toLowerCase() + ".com";
 
 				return hDAO.inserir(new Hospede(nome, cpf, email));
 			}
@@ -235,8 +225,8 @@ public class Ctrl {
 	}
 	// Fim do mock.
 
-	public static boolean usuarioExiste(Usuario u) {
-		return uDAO.isUsuarioCadastrado(u.getEmail());
+	public static void usuarioExiste(String email) {
+		uDAO.buscarPorEmail(email);
 	}
 
 }

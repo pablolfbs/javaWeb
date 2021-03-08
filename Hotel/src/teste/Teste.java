@@ -1,8 +1,29 @@
 package teste;
 
+import java.util.Random;
+
+
 public class Teste {
 
 	public static void main(String[] args) {
+		
+		String[] array = {"gmail", "outlook", "hotmail", "yahoo", "ig"};
+		
+//		Random rand = new Random();
+//		int nextInt = rand.nextInt(array.length);
+//		System.out.println(array[nextInt]);
+		
+		System.out.println(array[new Random().nextInt(array.length)]);
+		
+		@SuppressWarnings("deprecation")
+		Integer a = new Integer(5);
+		
+		@SuppressWarnings("deprecation")
+		Integer b = new Integer(5);
+		
+		System.out.println(a == b);
+		System.out.println(a.equals(b));
+		
 		
 //		Hospede h = new Hospede();
 //		h.setNome("FAR");

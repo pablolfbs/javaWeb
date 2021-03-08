@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Login</title>
+<title>Cadastrar Nova Senha</title>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
 	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -76,39 +76,23 @@
 				<div class="row"></div>
 				<div class="row">
 					<div class="input-field hoverable col s12">
-						<i class="material-icons prefix">mail_outline</i>
-						<input class="validate" id="email" type="email" name="email"> <label for="email" data-error="wrong" data-success="right">Email</label>
+						<i class="material-icons prefix">lock_outline</i>
+						<input class="validate" id="pass1" type="password" name="pass1"> <label for="pass1" data-error="wrong" data-success="right">Digite a senha</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field hoverable col s12">
 						<i class="material-icons prefix">lock_outline</i>
-						<input id="password" type="password" name="password"> <label for="password">Password</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s12 m12 l12 login-text">
-					<label for="remember-me">
-						<input type="checkbox" id="remember-me" /><span>Remember me</span>
-					</label>
+						<input id="pass2" type="password" name="pass2"> <label for="pass2">Repita a senha</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						<button class="btn waves-effect waves-light col s12 waves-orange hoverable" type="submit" id="botao" value="login" name="acao">Login</button>
+						<button class="btn waves-effect waves-light col s12 waves-orange hoverable" type="submit" id="botao" value="cadastrarNovaSenha" name="acao">Enviar</button>
 					</div>
 				</div>
-				<div class="row">
-					<div class="input-field col s6 m6 l6">
-						<p class="margin medium-small">
-							<a href="entrada?acao=registroForm">Register Now!</a>
-						</p>
-					</div>
-					<div class="input-field col s6 m6 l6">
-						<p class="margin right-align medium-small">
-							<a href="entrada?acao=esqueciSenha">Forgot password?</a>
-						</p>
-					</div>
+				<div>
+					<br><a href="entrada?acao=loginForm">voltar</a>
 				</div>
 			</form>
 		</div>
@@ -116,7 +100,9 @@
 	<!--JavaScript at end of body for optimized loading-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	
-	<script type="text/javascript" src="js/login.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	
+	<script type="text/javascript" src="js/novasenha.js"></script>
 </body>
 
 </html>
