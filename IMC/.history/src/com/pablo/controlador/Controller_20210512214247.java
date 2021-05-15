@@ -13,19 +13,19 @@ public class Controller {
 	
 	public void init() {
 		try {
-			var strPeso = "";
-			var strAltura = "";
+			String strPeso = "";
+			String strAltura = "";
 
 			strPeso = formParam(SEU_PESO);
-			var peso = Double.parseDouble(strPeso);
+			Double peso = Double.parseDouble(strPeso);
 
 			strAltura = formParam(SUA_ALTURA);
-			var altura = Double.parseDouble(strAltura);
+			Double altura = Double.parseDouble(strAltura);
 			altura = Utils.toMetters(altura);
 
-			var imc = Utils.calculaIMC(peso, altura);
+			Double imc = Utils.calculaIMC(peso, altura);
 
-			var msg = msgIMC(imc);
+			String msg = msgIMC(imc);
 
 			msgFinal(imc, msg);
 			repetirConsulta();

@@ -1,11 +1,3 @@
-package com.pablo.controlador;
-
-import java.text.DecimalFormat;
-
-import javax.swing.JOptionPane;
-
-import com.pablo.util.Utils;
-
 public class Controller {
 
 	private static final String SEU_PESO = "seu peso";
@@ -13,19 +5,19 @@ public class Controller {
 	
 	public void init() {
 		try {
-			var strPeso = "";
-			var strAltura = "";
+			String strPeso = "";
+			String strAltura = "";
 
 			strPeso = formParam(SEU_PESO);
-			var peso = Double.parseDouble(strPeso);
+			Double peso = Double.parseDouble(strPeso);
 
 			strAltura = formParam(SUA_ALTURA);
-			var altura = Double.parseDouble(strAltura);
+			Double altura = Double.parseDouble(strAltura);
 			altura = Utils.toMetters(altura);
 
-			var imc = Utils.calculaIMC(peso, altura);
+			Double imc = Utils.calculaIMC(peso, altura);
 
-			var msg = msgIMC(imc);
+			String msg = msgIMC(imc);
 
 			msgFinal(imc, msg);
 			repetirConsulta();
@@ -36,11 +28,14 @@ public class Controller {
 	}
 	
 	private static String formParam(String param) {
+		int count = 0;
 		String valor = null;
 		do {
-			valor = verificaParam(param, valor);
-		} while (verificaNulo(valor) || validaValor(valor) || validaPeso(param, valor) || validaAltura(param, valor));
+			valor = verificaParam(param, valor, count);
+			count++;
 
+		} while (verificaNulo(valor) || validaValor(valor) || validaPeso(param, valor) || validaAltura(param, valor));
+		
 		return valor;
 	}
 	
@@ -64,7 +59,7 @@ public class Controller {
 	}
 
 	private static String msgIMC(Double imc) {
-		var msg = "";
+		String msg = "";
 		if (imc < 16)
 			msg = "Baixo peso muito grave";
 		else if (imc < 17)
@@ -106,6 +101,7 @@ public class Controller {
 	private static boolean validaPeso(String param, String valor) {
 		if (param.equals(SEU_PESO) && (Utils.stringToDouble(valor) > 600 || Utils.stringToDouble(valor) < 0)) {
 			JOptionPane.showMessageDialog(null, "O peso deve estar entre 0 e 600 kg.", "ERRO", JOptionPane.ERROR_MESSAGE);
+
 			return true;				
 		}
 		return false;
@@ -114,21 +110,32 @@ public class Controller {
 	private static boolean validaAltura(String param, String valor) {
 		if (param.contentEquals(SUA_ALTURA) && (Utils.stringToDouble(valor) > 250 || Utils.stringToDouble(valor) <= 40)) {
 			JOptionPane.showMessageDialog(null, "Altura deve estar entre 0,4 e 2,5 metros.", "ERRO", JOptionPane.ERROR_MESSAGE);
+
 			return true;				
 		}
 		return false;
 	}
 
-	private static String verificaParam(String param, String valor) {
+	private static String verificaParam(String param, String valor, int count) {
 		switch (param) {
 			case SEU_PESO:
-			valor = JOptionPane.showInputDialog(null, "Digite " + param + ": ", "IMC", JOptionPane.QUESTION_MESSAGE)
-			.replace(",", ".");
+				if (count == 0)
+					valor = JOptionPane.showInputDialog(null, "Digite " + param + ": ", "IMC", JOptionPane.QUESTION_MESSAGE)
+					.replace(",", ".");
+				else
+					valor = JOptionPane.showInputDialog(null,
+							"Vamos tentar novamente." + System.lineSeparator() + "Digite " + param + ": ", "IMC",
+							JOptionPane.QUESTION_MESSAGE).replace(",", ".");
 				break;
 
 			case SUA_ALTURA:
-			valor = JOptionPane.showInputDialog(null, "Digite " + param + ": ", "IMC", JOptionPane.QUESTION_MESSAGE)
-			.replace(",", "").replace(".", "");
+				if (count == 0)
+					valor = JOptionPane.showInputDialog(null, "Digite " + param + ": ", "IMC", JOptionPane.QUESTION_MESSAGE)
+					.replace(",", "").replace(".", "");
+				else
+					valor = JOptionPane.showInputDialog(null,
+						"Vamos tentar novamente." + System.lineSeparator() + "Digite " + param + ": ", "IMC",
+						JOptionPane.QUESTION_MESSAGE).replace(",", "").replace(".", "");
 				break;
 		
 			default:
