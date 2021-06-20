@@ -13,6 +13,7 @@ import org.primefaces.context.RequestContext;
 import domain.User;
 import service.UserService;
 
+@SuppressWarnings("deprecation")
 @ManagedBean(name = "userloginview")
 public class Userloginview {
 

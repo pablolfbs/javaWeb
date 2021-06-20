@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import dao.CarDAO;
 import domain.Car;
 
+@SuppressWarnings("deprecation")
 @ManagedBean(name = "carService")
 @ApplicationScoped
 public class CarService {

@@ -11,7 +11,7 @@ public abstract class DAOGenerico<T> {
 	@PersistenceContext(unitName="Hotel")
 	protected EntityManager em;
 	
-	protected Class classePersistente;
+	protected Class<T> classePersistente;
 	
 	public void gravar(T obj) {
 		em.persist(obj);
@@ -30,7 +30,7 @@ public abstract class DAOGenerico<T> {
 		em.remove(obj);
 	}
 	
-	public List<T> todosObjetos() {
+	public List<?> todosObjetos() {
 		return em.createQuery("from" + classePersistente.getName()).getResultList();
 		
 	}

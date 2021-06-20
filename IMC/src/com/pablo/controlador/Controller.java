@@ -83,7 +83,7 @@ public class Controller {
 		else if (imc < 40)
 			msg = "Obesidade grau II";
 		else
-			msg = "Obesidade grau III (obesidade mÃ³rbida)";
+			msg = "Obesidade grau III (obesidade mórbida)";
 		
 		return msg;
 	}

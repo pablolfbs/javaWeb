@@ -50,7 +50,7 @@ public class ControlHospede implements Serializable {
 		return dao.buscaPorId(hospede.getId());
 	}
 
-	public List<Hospede> listar() {
+	public List<?> listar() {
 		return dao.listAll();
 	}
 

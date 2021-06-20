@@ -55,7 +55,7 @@ public class ControlReservas implements Serializable {
 		return dao.buscaPorId(reserva.getId());
 	}
 
-	public List<Reservas> listar() {
+	public List<?> listar() {
 		return dao.listAll();
 	}
 

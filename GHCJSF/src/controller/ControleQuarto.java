@@ -36,7 +36,7 @@ public class ControleQuarto implements Serializable {
 		return dao.buscarPorId(quarto.getNum());
 	}
 
-	public List<Quarto> listar() {
+	public List<?> listar() {
 		return dao.todosObjetos();
 	}
 

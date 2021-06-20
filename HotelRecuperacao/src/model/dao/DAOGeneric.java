@@ -5,16 +5,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import model.Hospede;
-import model.Quarto;
-import model.Reservas;
-
 public abstract class DAOGeneric<T> {
 
 	@PersistenceContext(unitName = "HotelDB")
 	protected EntityManager em;
 
-	protected Class persistence;
+	protected Class<T> persistence;
 
 	/*
 	 * Criar um método para inserir as reservas
@@ -40,7 +36,7 @@ public abstract class DAOGeneric<T> {
 		em.remove(obj);
 	}
 
-	public List<T> listAll() {
+	public List<?> listAll() {
 //		List<Reservas> list = new ArrayList<Reservas>();
 //		Reservas reservas = new Reservas();
 //		reservas.setHospede(reservas.getHospede());

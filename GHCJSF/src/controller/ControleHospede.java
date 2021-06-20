@@ -41,7 +41,7 @@ public class ControleHospede implements Serializable {
 		return dao.buscarPorId(hospede.getId());
 	}
 
-	public List<Hospede> listar() {
+	public List<?> listar() {
 		return dao.todosObjetos();
 	}
 

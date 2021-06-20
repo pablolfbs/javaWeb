@@ -2,7 +2,6 @@ package view;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -10,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import domain.Anuncio;
 import service.AnuncioService;
 
+@SuppressWarnings("deprecation")
 @ManagedBean
 @ViewScoped
 public class DataScrollerView implements Serializable {

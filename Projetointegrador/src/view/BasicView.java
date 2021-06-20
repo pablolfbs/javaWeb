@@ -14,6 +14,7 @@ import org.primefaces.event.RowEditEvent;
 import domain.Car;
 import service.CarService;
 
+@SuppressWarnings("deprecation")
 @ManagedBean(name = "dtBasicView")
 @ViewScoped
 public class BasicView implements Serializable {

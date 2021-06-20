@@ -10,10 +10,13 @@ import javax.inject.Named;
 import model.Quarto;
 import model.dao.QuartoDAO;
 
+@SuppressWarnings("deprecation")
 @Named(value = "controlQuarto")
 @SessionScoped
 public class ControlQuarto implements Serializable {
 
+	private static final long serialVersionUID = -8838968940744176786L;
+	
 	@EJB
 	private QuartoDAO dao;
 	private List<Quarto> list;
@@ -47,7 +50,7 @@ public class ControlQuarto implements Serializable {
 		return dao.buscaPorId(quarto.getNumero());
 	}
 
-	public List<Quarto> listar() {
+	public List<?> listar() {
 		return dao.listAll();
 	}
 
