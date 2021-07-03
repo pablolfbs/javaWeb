@@ -37,7 +37,7 @@ public class MonitoramentoFilter implements Filter {
 		chain.doFilter(request, response);
 
 		long depois = System.currentTimeMillis();
-		logger.info("Hora da execução -> " + sdf.format(hrExecucao) + " | Tempo de execução da ação " + acao
+		logger.info("Hora da execuÃ§Ã£o -> " + sdf.format(hrExecucao) + " | Tempo de execuÃ§Ã£o da aÃ§Ã£o " + acao
 				+ " -> " + (depois - antes));
 	}
 

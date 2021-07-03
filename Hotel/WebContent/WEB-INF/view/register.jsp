@@ -79,7 +79,7 @@
 			<div id="modal1" class="modal">
 				<div class="modal-content">
 					<h4>AVISO</h4>
-					<p>O email e a senha não podem estar vazios!</p>
+					<p>O email e a senha nï¿½o podem estar vazios!</p>
 				</div>
 				<div class="modal-footer">
 					<a href="#!" class="modal-close waves-effect btn-flat" id="ok">Ok</a>
@@ -87,7 +87,7 @@
 			</div>
 		</form>
 		<div>
-			<br><a href="entrada?acao=loginForm">voltar</a>
+			<br><a href="entrada?acao=index">voltar</a>
 		</div>
 	</div>
 	

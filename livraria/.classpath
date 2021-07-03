@@ -7,7 +7,13 @@
 			<attribute name="owner.project.facets" value="jst.web;#system#"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_291">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="lib" path="C:/dev/lib/java server faces/primefaces-7.0.jar"/>
+	<classpathentry kind="lib" path="C:/dev/lib/ejb/jakarta.jakartaee-api-8.0.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -9,5 +9,8 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="lib" path="C:/dev/lib/java server faces/primefaces-7.0.jar"/>
+	<classpathentry kind="lib" path="C:/dev/lib/ejb/jakarta.jakartaee-api-8.0.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

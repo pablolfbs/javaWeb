@@ -4,17 +4,6 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode
-@ToString
 public class Reserva implements Serializable {
 
 	private static final long serialVersionUID = -2316524651754740385L;
@@ -26,11 +15,39 @@ public class Reserva implements Serializable {
 
 	private Hospede hospede;
 
+	public Reserva() {
+	}
+
 	public Reserva(Integer quarto, Hospede hospede, Date dtEntrada, Date dtSaida) {
 		this.quarto = quarto;
 		this.hospede = hospede;
 		this.dtEntrada = dtEntrada;
 		this.dtSaida = dtSaida;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((hospede == null) ? 0 : hospede.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reserva other = (Reserva) obj;
+		if (hospede == null) {
+			if (other.hospede != null)
+				return false;
+		} else if (!hospede.equals(other.hospede))
+			return false;
+		return true;
 	}
 
 	/*
@@ -45,6 +62,46 @@ public class Reserva implements Serializable {
 
 	public String getDtSaidaFormatada() {
 		return sdf.format(getDtSaida());
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Hospede getHospede() {
+		return hospede;
+	}
+
+	public void setHospede(Hospede hospede) {
+		this.hospede = hospede;
+	}
+
+	public Integer getQuarto() {
+		return quarto;
+	}
+
+	public void setQuarto(Integer quarto) {
+		this.quarto = quarto;
+	}
+
+	public Date getDtEntrada() {
+		return dtEntrada;
+	}
+
+	public void setDtEntrada(Date dtEntrada) {
+		this.dtEntrada = dtEntrada;
+	}
+
+	public Date getDtSaida() {
+		return dtSaida;
+	}
+
+	public void setDtSaida(Date dtSaida) {
+		this.dtSaida = dtSaida;
 	}
 
 }

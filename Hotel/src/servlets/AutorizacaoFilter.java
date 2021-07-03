@@ -37,8 +37,7 @@ public class AutorizacaoFilter implements Filter {
 
 		boolean valido = (sessao.getAttribute("valido") != null);
 		boolean acaoProtegida = !(paramAcao.equals("login") || paramAcao.equals("loginForm")
-				|| paramAcao.equals("registro") || paramAcao.equals("registroForm") || paramAcao.equals("esqueciSenha")
-				|| paramAcao.equals("resetarSenha") || paramAcao.equals("cadastrarNovaSenha"));
+				|| paramAcao.equals("registro") || paramAcao.equals("registroForm"));
 
 		if (!valido && acaoProtegida) {
 			response.sendRedirect("entrada?acao=loginForm");
