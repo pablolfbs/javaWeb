@@ -14,14 +14,18 @@ public class TesteCallable {
 	public static void main(String args[]) throws InterruptedException, ExecutionException {
 		GerarNumeroAleatorio task = new GerarNumeroAleatorio();
 		System.out.println("Processando a tarefa ...");
+		
 		Future<Integer> future = threadpool.submit(task);
+		
 		while (!future.isDone()) {
 			System.out.println("A tarefa ainda não foi processada!");
 			Thread.sleep(1); // sleep for 1 millisecond before checking again
 		}
 		System.out.println("Tarefa completa!");
+		
 		long factorial = (long) future.get();
 		System.out.println("O número gerado foi: " + factorial);
+		
 		threadpool.shutdown();
 	}
 

@@ -16,15 +16,19 @@ public class FatorialCallable {
 
 		Fatorial task = new Fatorial(20);
 		System.out.println("Enviando a tarefa...");
+		
 		Future<Long> future = threadpool.submit(task);
 		System.out.println("Task is submitted");
+		
 		while (!future.isDone()) {
 			System.out.println("Tarefa não terminada ainda...");
 			Thread.sleep(1); // espera para tentar novamente
 		}
 		System.out.println("Tarefa finalizada!");
+		
 		long factorial = (long) future.get();
 		System.out.println("Fatorial de 10 é: " + factorial);
+		
 		threadpool.shutdown();
 
 	}
