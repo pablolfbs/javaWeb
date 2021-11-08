@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -11,7 +12,9 @@ public class Exemplo1 {
 	
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		
-		Fatorial task = new Fatorial(20);
+		int randNumber = new Random().nextInt(20) + 1;
+		
+		Fatorial task = new Fatorial(randNumber);
 		System.out.println("Enviando a tarefa ...");
 		
 		Future<Long> future = threadpool.submit(task);
@@ -19,11 +22,11 @@ public class Exemplo1 {
 		
 		while(!future.isDone()) {
 			System.out.println("Tarefa não terminada ainda ...");
-			Thread.sleep(10000);
+			Thread.sleep(5000);
 		}
 		System.out.println("Tarefa finalizada!");
 		long factorial = (long) future.get();
-		System.out.println("Fatorial de 10 é: " + factorial);
+		System.out.println("Fatorial de " + randNumber + " é: " + factorial);
 		
 		threadpool.shutdown();
 	}
