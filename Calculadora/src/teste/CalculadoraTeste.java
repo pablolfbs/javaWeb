@@ -12,7 +12,7 @@ class CalculadoraTeste {
 
 	@Test
 	public void testarASomaEntreInteiros() {
-		assertEquals(calculadora .somar(2, 2), 4);
+		assertEquals(calculadora.somar(2, 2), 4);
 		assertEquals(calculadora.somar(1, 1), 2);
 		assertEquals(calculadora.somar(-5, 2), -3);
 	}
